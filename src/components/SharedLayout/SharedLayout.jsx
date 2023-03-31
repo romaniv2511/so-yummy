@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { GlobalStyle } from '../GlobalStyle';
 import { AppBar } from '../AppBar/AppBar';
 import { Footer } from 'components/Footer/Footer';
+import { AddRecipe } from 'components/AddRecipe/AddRecipe';
 
 const SharedLayout = () => {
   return (
@@ -12,6 +13,7 @@ const SharedLayout = () => {
       <Suspense fallback={<p>Loading...</p>}>
         <Outlet />
       </Suspense>
+      <AddRecipe />
       <Footer />
     </>
   );
