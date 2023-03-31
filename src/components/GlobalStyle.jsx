@@ -1,12 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
 
-
 export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    color: ${p=>p.theme.color.title};
+    color: ${p => p.theme.color.title};
     background-color: ${p => p.theme.color.bg};
   }
   code {
@@ -22,4 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     list-style: none;
   }
-`
+  a {
+    text-decoration: none
+  }
+`;
