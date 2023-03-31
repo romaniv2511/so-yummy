@@ -10,6 +10,9 @@ export const Link = styled.p`
   letter-spacing: -0.02em;
   color: ${({ theme }) => theme.color.textSecondary};
   transition: ${({ theme }) => theme.transitions.main};
+  &.active {
+    color: ${({ theme }) => theme.color.textRights};
+  }
 `;
 
 export const NavContainer = styled.div`
@@ -17,4 +20,8 @@ export const NavContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 14px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    gap: 20px;
+    margin: 0;
+  }
 `;
