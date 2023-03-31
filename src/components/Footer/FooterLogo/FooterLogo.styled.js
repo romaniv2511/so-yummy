@@ -12,8 +12,16 @@ export const Link = styled(NavLink)`
   line-height: 1;
   letter-spacing: 0.015em;
   color: ${({ theme }) => theme.color.logo};
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    font-size: 28px;
+    justify-content: start;
+  }
   img {
     width: 32px;
     height: 32px;
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+      width: 44px;
+      height: 44px;
+    }
   }
 `;
