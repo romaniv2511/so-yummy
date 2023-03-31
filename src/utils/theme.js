@@ -30,6 +30,7 @@ export const lightTheme = {
     socIcon: '#8BAA36',
     socIconHover: '#FFFFFF',
     logo: '#FAFAFA',
+    footerInput: 'rgba(255, 255, 255, 0.3)',
   },
 };
 
