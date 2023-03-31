@@ -23,8 +23,7 @@ export const FooterBg = styled.div`
 export const FooterWrapTab = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     display: flex;
-    gap: 173px;
+    gap: 175px;
     width: 100%;
-    vertical-align: baseline;
   }
 `;
