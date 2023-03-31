@@ -27,12 +27,12 @@ export const FormInput = styled.input`
   border-radius: 6px;
   padding-left: 42px;
   padding-right: 38px;
-  border: 1px solid ${({ borderColor }) => borderColor};
+  border: 1px solid ${({ theme }) => theme.color.footerInput};
   outline: transparent;
   transition: ${({ theme }) => theme.transitions.main};
   :hover,
   :focus {
-    border: 1px solid ${({ color }) => color};
+    border: 1px solid ${({ theme }) => theme.color.bgLightEl};
     &::placeholder {
       opacity: 1;
     }
