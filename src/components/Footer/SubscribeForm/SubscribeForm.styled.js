@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-  position: relative;
   margin-top: 32px;
   display: flex;
   flex-direction: column;
@@ -14,10 +13,14 @@ export const Form = styled.form`
     gap: 12px;
     flex-direction: row;
   }
+`;
+export const FormWrap = styled.div`
+  position: relative;
   svg {
     position: absolute;
     width: 16px;
     height: 12px;
+    /* top: 0; */
     top: 13px;
     left: 14px;
     fill: ${({ theme }) => theme.color.bg};
@@ -26,7 +29,6 @@ export const Form = styled.form`
       width: 20px;
       height: 16px;
       top: 16px;
-      left: 147px;
       transition: ${({ theme }) => theme.transitions.main};
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
