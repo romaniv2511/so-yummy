@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/so-yummy/static/css/main.7acaea2f.css",
-    "main.js": "/so-yummy/static/js/main.1e29ba39.js",
+    "main.css": "/so-yummy/static/css/main.c3d5249d.css",
+    "main.js": "/so-yummy/static/js/main.0cf5d860.js",
     "index.html": "/so-yummy/index.html",
-    "main.7acaea2f.css.map": "/so-yummy/static/css/main.7acaea2f.css.map",
-    "main.1e29ba39.js.map": "/so-yummy/static/js/main.1e29ba39.js.map"
+    "main.c3d5249d.css.map": "/so-yummy/static/css/main.c3d5249d.css.map",
+    "main.0cf5d860.js.map": "/so-yummy/static/js/main.0cf5d860.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.1e29ba39.js"
+    "static/css/main.c3d5249d.css",
+    "static/js/main.0cf5d860.js"
   ]
 }
