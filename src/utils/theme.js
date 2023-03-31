@@ -2,18 +2,18 @@ const mainVars = {
   breakpoints: {
     mob: '375px',
     tab: '768px',
-    desk: '1440px'
+    desk: '1440px',
   },
   fontWeights: {
     s: 400,
     m: 500,
     l: 600,
-    xl: 700
+    xl: 700,
   },
   transitions: {
     main: 'all 250ms cubic-bezier(0.4, 0, 0.2, 1)',
   },
-}
+};
 export const lightTheme = {
   ...mainVars,
   color: {
@@ -25,9 +25,13 @@ export const lightTheme = {
     bgAccentEl: '#EBF3D4',
     bgLightEl: '#FFFFFF',
     gbCancel: '#D9D9D9',
-
+    textSecondary: '#FAFAFA',
+    textRights: '#22252A',
+    socIcon: '#8BAA36',
+    socIconHover: '#FFFFFF',
+    logo: '#FAFAFA',
   },
-}
+};
 
 export const darkTheme = {
   ...mainVars,
@@ -41,5 +45,4 @@ export const darkTheme = {
     bgLightEl: '#2A2C36',
     gbCancel: '#D9D9D9',
   },
-}
-
+};
