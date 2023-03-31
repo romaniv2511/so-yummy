@@ -25,5 +25,6 @@ export const FooterWrapTab = styled.div`
     display: flex;
     gap: 175px;
     width: 100%;
+    justify-content: center;
   }
 `;
