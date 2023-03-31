@@ -1,4 +1,4 @@
-import { FooterRightsBg } from './FooterRights.styled';
+import { FooterRightsContainer, FooterRightsBg } from './FooterRights.styled';
 
 export const FooterRights = () => {
   return (

@@ -12,4 +12,8 @@ export const Link = styled(NavLink)`
   line-height: 1;
   letter-spacing: 0.015em;
   color: ${({ theme }) => theme.color.logo};
+  img {
+    width: 32px;
+    height: 32px;
+  }
 `;

@@ -1,5 +1,5 @@
 import { Link } from './FooterLogo.styled';
-import logo from '../../../images/logoFooter.svg';
+import logo from '../../../img/logo-footer.svg';
 export const FooterLogo = () => {
   return (
     <Link to="/">

@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { Form, FormInput, FormBtn } from './SubscribeForm.styled';
-import sprite from '../../../images/sprite.svg';
+import sprite from '../../../img/sprite.svg';
 
 export const SubscribeForm = () => {
   return (

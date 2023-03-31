@@ -1,4 +1,4 @@
-import sprite from '../../../images/sprite.svg';
+import sprite from '../../../img/sprite.svg';
 import { FollowUsContainer, Link } from './FollowUs.styled';
 
 export const FollowUs = () => {
