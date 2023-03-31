@@ -28,7 +28,7 @@ export const FormWrap = styled.div`
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
       width: 20px;
       height: 16px;
-      top: 16px;
+      top: 18px;
       transition: ${({ theme }) => theme.transitions.main};
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {

@@ -9,7 +9,7 @@ export const SubscribeForm = () => {
         <Form>
           <FormWrap>
             <FormInput type="email" placeholder="Enter your email address" />
-            <svg width={16} height={12}>
+            <svg>
               <use href={sprite + '#email'}></use>
             </svg>
           </FormWrap>
