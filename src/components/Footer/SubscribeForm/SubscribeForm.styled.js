@@ -69,4 +69,8 @@ export const FormBtn = styled.button`
   text-align: center;
   color: ${({ theme }) => theme.color.textSecondary};
   transition: ${({ theme }) => theme.transitions.main};
+  :hover,
+  :focus {
+    color: ${({ theme }) => theme.color.textRights};
+  }
 `;
