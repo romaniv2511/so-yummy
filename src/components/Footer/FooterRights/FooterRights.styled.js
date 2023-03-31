@@ -7,6 +7,9 @@ export const FooterRightsBg = styled.div`
   width: 100%;
   padding: 28px 0;
   background-color: transparent;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    padding: 32px 0;
+  }
   span {
     margin-left: 14px;
     font-weight: 400;
@@ -20,6 +23,9 @@ export const FooterRightsBg = styled.div`
     letter-spacing: -0.01em;
     color: #22252a;
     opacity: 0.5;
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+      font-size: 14px;
+    }
   }
 `;
 // export const FooterRightsContainer = styled.div`

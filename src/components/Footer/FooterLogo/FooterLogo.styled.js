@@ -12,8 +12,36 @@ export const Link = styled(NavLink)`
   line-height: 1;
   letter-spacing: 0.015em;
   color: ${({ theme }) => theme.color.logo};
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    font-size: 28px;
+    justify-content: start;
+  }
   img {
     width: 32px;
     height: 32px;
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+      width: 44px;
+      height: 44px;
+    }
   }
 `;
+export const FooterAdvantagesList = styled.ul`
+  list-style-type: disc;
+  padding: 0;
+  margin: 0;
+  margin-top: 24px;
+  padding-left: 30px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  color: ${({ theme }) => theme.color.textSecondary};
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 400px;
+`;
+
+export const FooterAdvantagesContainer = styled.div``;
