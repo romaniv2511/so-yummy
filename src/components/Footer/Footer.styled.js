@@ -12,4 +12,19 @@ export const FooterBg = styled.div`
   text-align: center;
   padding-top: 28px;
   padding-bottom: 18px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    text-align: left;
+    padding-top: 50px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 24px;
+  }
+`;
+export const FooterWrapTab = styled.div`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    display: flex;
+    gap: 173px;
+    width: 100%;
+    vertical-align: baseline;
+  }
 `;
