@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Field, Form } from 'formik';
 
 export const HeroContainer = styled.section`
   position: relative;
@@ -71,76 +70,5 @@ export const BottomText = styled.p`
     line-height: 1.33;
     width: 465px;
     margin-bottom: 50px;
-  }
-`;
-
-export const FormContainer = styled(Form)`
-  position: relative;
-`;
-
-export const FieldContainer = styled(Field)`
-  width: 292px;
-  height: 52px;
-  padding: 17px 32px;
-  color: ${props => props.theme.color.bgSecondary};
-  background-color: #fafafa;
-  border-radius: 24px 44px;
-  border: 1px solid #f0f0f0;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.5;
-
-  @media screen and (max-width: 767px) {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    width: 362px;
-    height: 59px;
-    padding: 18px 38px;
-    font-size: 16px;
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
-    width: 510px;
-    height: 70px;
-    padding: 23px 48px;
-  }
-`;
-
-export const ButtonSearch = styled.button`
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 25px;
-  width: 113px;
-  height: 52px;
-  background-color: ${props => props.theme.color.bgSecondary};
-  border-radius: 24px 44px;
-  border: none;
-  color: ${props => props.theme.color.bg};
-  font-family: inherit;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.5;
-
-  transition: ${props => props.theme.transitions.main};
-
-  &:hover,
-  &:focus {
-    background-color: ${props => props.theme.color.accent};
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    width: 161px;
-    height: 59px;
-    left: 201px;
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
-    font-size: 16px;
-    height: 70px;
-    left: 350px;
   }
 `;

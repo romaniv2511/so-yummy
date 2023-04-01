@@ -9,6 +9,7 @@ import Categories from '../pages/Categories/Categories';
 import AddRecipes from '../pages/AddRecipes/AddRecipes';
 import MyRecipes from '../pages/MyRecipes/MyRecipes';
 import Favorites from '../pages/Favorites/Favorites';
+import SearchPage from 'pages/SearchPage/SearchPage';
 
 export const App = () => {
   return (
