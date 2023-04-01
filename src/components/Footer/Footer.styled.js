@@ -19,6 +19,13 @@ export const FooterBg = styled.div`
     padding-right: 32px;
     padding-bottom: 24px;
   }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    text-align: left;
+    padding-top: 64px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+  }
 `;
 export const FooterWrapTab = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
@@ -26,5 +33,14 @@ export const FooterWrapTab = styled.div`
     gap: 175px;
     width: 100%;
     justify-content: center;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    margin-right: 250px;
+    gap: 159px;
+  }
+`;
+export const FooterWrapDesk = styled.div`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    display: flex;
   }
 `;
