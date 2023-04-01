@@ -4,11 +4,11 @@ export const Nav = () => {
   return (
     <NavContainer>
       {/* Добавити переадресацію на кожен Link */}
-      <Link>Ingredients</Link>
-      <Link>Add recipes</Link>
-      <Link>My recipes</Link>
-      <Link>Favorite</Link>
-      <Link>Shopping list</Link>
+      <Link to="/">Ingredients</Link>
+      <Link to="/">Add recipes</Link>
+      <Link to="/">My recipes</Link>
+      <Link to="/">Favorite</Link>
+      <Link to="/">Shopping list</Link>
     </NavContainer>
   );
 };

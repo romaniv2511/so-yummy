@@ -15,6 +15,13 @@ export const FollowUsContainer = styled.div`
       fill: ${({ theme }) => theme.color.socIconHover};
     }
   }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    margin-top: 38px;
+    gap: 18px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    margin-top: 40px;
+  }
 `;
 
 export const Link = styled(NavLink)``;
