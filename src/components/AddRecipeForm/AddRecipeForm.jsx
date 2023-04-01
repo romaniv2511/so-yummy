@@ -1,7 +1,9 @@
 import React from 'react';
-// import { MdOutlineAddAPhoto } from 'react-icons/md';
+import { IoCloseOutline } from 'react-icons/io5';
 import uploadImg from '../../../src/img/add-recipe-placeholder.png';
 import { InputUpload } from './AddRecipeForm.styles';
+
+// const ingredients = [];
 
 export const AddRecipe = () => {
   return (
@@ -43,6 +45,47 @@ export const AddRecipe = () => {
               <option value="">5 min</option>
             </select>
           </div>
+          <div>
+            <h2>Ingredients</h2>
+            <button type="button">-</button>
+            <span>0</span>
+            <button type="button">+</button>
+            <input type="text" name="" id="" placeholder="chicken" />
+            <select name="ingredients" id="ingredients">
+              <option value="Beef">tbs</option>
+              <option value="Breakfast">tsp</option>
+              <option value="Dessert">kg</option>
+              <option value="Goat">g</option>
+            </select>
+            <IoCloseOutline />
+            <input type="text" name="" id="" placeholder="avocado" />
+            <select name="ingredients" id="ingredients">
+              <option value="Beef">tbs</option>
+              <option value="Breakfast">tsp</option>
+              <option value="Dessert">kg</option>
+              <option value="Goat">g</option>
+            </select>
+            <IoCloseOutline />
+            <input type="text" name="" id="" placeholder="cucumber" />
+            <select name="ingredients" id="ingredients">
+              <option value="Beef">tbs</option>
+              <option value="Breakfast">tsp</option>
+              <option value="Dessert">kg</option>
+              <option value="Goat">g</option>
+            </select>
+            <IoCloseOutline />
+            <div>
+              <h2>Recipe Preparation</h2>
+              <textarea
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                placeholder="Enter recipe"
+              ></textarea>
+            </div>
+          </div>
+          <button type="submit">Add</button>
         </form>
       </div>
     </>
