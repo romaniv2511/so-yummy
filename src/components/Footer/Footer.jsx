@@ -3,16 +3,23 @@ import { FollowUs } from './FollowUs/FollowUs';
 import { FooterRights } from './FooterRights/FooterRights';
 import { FooterLogo } from './FooterLogo/FooterLogo';
 import { SubscribeForm } from './SubscribeForm/SubscribeForm';
-import { FooterContainer, FooterBg, FooterWrapTab } from './Footer.styled';
+import {
+  FooterContainer,
+  FooterBg,
+  FooterWrapTab,
+  FooterWrapDesk,
+} from './Footer.styled';
 export const Footer = () => {
   return (
     <FooterContainer>
       <FooterBg>
-        <FooterWrapTab>
-          <FooterLogo />
-          <Nav />
-        </FooterWrapTab>
-        <SubscribeForm />
+        <FooterWrapDesk>
+          <FooterWrapTab>
+            <FooterLogo />
+            <Nav />
+          </FooterWrapTab>
+          <SubscribeForm />
+        </FooterWrapDesk>
         <FollowUs />
       </FooterBg>
       <FooterRights />

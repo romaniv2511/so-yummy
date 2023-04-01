@@ -13,6 +13,12 @@ export const Form = styled.form`
     gap: 12px;
     flex-direction: row;
   }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    margin-top: 0;
+    gap: 0;
+    flex-direction: column;
+    width: 339px;
+  }
 `;
 export const FormWrap = styled.div`
   position: relative;
@@ -32,8 +38,7 @@ export const FormWrap = styled.div`
       transition: ${({ theme }) => theme.transitions.main};
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
-      top: 126px;
-      left: 20px;
+      top: 20px;
     }
   }
 `;
@@ -59,6 +64,11 @@ export const FormInput = styled.input`
     padding-left: 51px;
     font-size: 14px;
     line-height: 1.5;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    width: 338px;
+    padding-left: 51px;
+    height: 59px;
   }
   :hover,
   :focus {
@@ -110,5 +120,31 @@ export const FormBtn = styled.button`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     width: 171px;
     height: 50px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    margin-top: 16px;
+    height: 60px;
+    font-size: 16px;
+    width: 100%;
+    line-height: 1.13;
+  }
+`;
+export const FormWrapText = styled.div`
+  margin-bottom: 28px;
+  h2 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.5;
+    color: ${({ theme }) => theme.color.textSecondary};
+    margin-bottom: 14px;
+  }
+  p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.02em;
+    color: ${({ theme }) => theme.color.textSecondary};
   }
 `;
