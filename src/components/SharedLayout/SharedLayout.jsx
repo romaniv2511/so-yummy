@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { GlobalStyle } from '../GlobalStyle';
 import { AppBar } from '../AppBar/AppBar';
 import { Footer } from 'components/Footer/Footer';
-import { AddRecipe } from 'components/AddingRecipes/AddRecipe';
+import { AddRecipe } from 'components/AddRecipeForm/AddRecipeForm';
 
 const SharedLayout = () => {
   return (
