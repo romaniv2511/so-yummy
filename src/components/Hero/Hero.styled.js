@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Field, Form } from 'formik';
 
-export const HeroContainer = styled.div`
+export const HeroContainer = styled.section`
   position: relative;
   padding-top: 71px;
   padding-bottom: 147px;
@@ -10,12 +10,12 @@ export const HeroContainer = styled.div`
     text-align: center;
   }
 
-  @media (min-width: ${props => props.theme.breakpoints.tab}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     padding-top: 141px;
     padding-bottom: 267px;
   }
 
-  @media (min-width: ${props => props.theme.breakpoints.desk}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     padding-top: 175px;
     padding-bottom: 368px;
   }
@@ -29,14 +29,14 @@ export const HeroTitle = styled.h1`
   margin-bottom: 14px;
   text-align: center;
 
-  @media (min-width: ${props => props.theme.breakpoints.tab}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     font-weight: 700;
     font-size: 72px;
     margin-bottom: 24px;
     text-align: start;
   }
 
-  @media (min-width: ${props => props.theme.breakpoints.desk}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     font-size: 100px;
     letter-spacing: -0.005em;
     margin-bottom: 14px;
@@ -61,12 +61,12 @@ export const BottomText = styled.p`
     margin-left: auto;
   }
 
-  @media (min-width: ${props => props.theme.breakpoints.tab}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     width: 362px;
     margin-bottom: 32px;
   }
 
-  @media (min-width: ${props => props.theme.breakpoints.desk}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     font-size: 18px;
     line-height: 1.33;
     width: 465px;
@@ -95,14 +95,14 @@ export const FieldContainer = styled(Field)`
     margin-right: auto;
   }
 
-  @media (min-width: ${props => props.theme.breakpoints.tab}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     width: 362px;
     height: 59px;
     padding: 18px 38px;
     font-size: 16px;
   }
 
-  @media (min-width: ${props => props.theme.breakpoints.desk}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     width: 510px;
     height: 70px;
     padding: 23px 48px;
@@ -113,7 +113,7 @@ export const ButtonSearch = styled.button`
   cursor: pointer;
   position: absolute;
   top: 0;
-  right: 38px;
+  right: 25px;
   width: 113px;
   height: 52px;
   background-color: ${props => props.theme.color.bgSecondary};
@@ -132,13 +132,13 @@ export const ButtonSearch = styled.button`
     background-color: ${props => props.theme.color.accent};
   }
 
-  @media (min-width: ${props => props.theme.breakpoints.tab}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     width: 161px;
     height: 59px;
     left: 201px;
   }
 
-  @media (min-width: ${props => props.theme.breakpoints.desk}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     font-size: 16px;
     height: 70px;
     left: 350px;
@@ -155,7 +155,7 @@ export const HealthyBlock = styled.div`
   background-color: ${props => props.theme.color.bg};
   padding: 8px 8px 11px 8px;
 
-  @media (min-width: ${props => props.theme.breakpoints.tab}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     width: 264px;
     height: 100px;
     padding: 11px;
@@ -163,7 +163,7 @@ export const HealthyBlock = styled.div`
     right: 43px;
   }
 
-  @media (min-width: ${props => props.theme.breakpoints.desk}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     width: 298px;
     height: 114px;
     padding: 16px;
@@ -181,12 +181,12 @@ export const Text = styled.p`
   text-align: start;
   color: ${props => props.theme.color.text};
 
-  @media (min-width: ${props => props.theme.breakpoints.tab}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     font-size: 14px;
     line-height: 1.29;
   }
 
-  @media (min-width: ${props => props.theme.breakpoints.desk}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     line-height: 1.43;
   }
 `;

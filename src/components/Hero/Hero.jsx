@@ -16,7 +16,7 @@ import { Formik } from 'formik';
 
 import * as Yup from 'yup';
 
-const SignupSchema = Yup.object().shape({
+const SearchSchema = Yup.object().shape({
   searchText: Yup.string()
     .min(1, 'Too Short!')
     .max(50, 'Too Long!')
@@ -29,8 +29,8 @@ const Hero = () => {
   };
 
   return (
-    <Container>
-      <HeroContainer>
+    <HeroContainer>
+      <Container>
         <HeroTitle>
           <TitleAccent>So</TitleAccent>Yummy
         </HeroTitle>
@@ -42,7 +42,7 @@ const Hero = () => {
           initialValues={{
             searchText: '',
           }}
-          validationSchema={SignupSchema}
+          validationSchema={SearchSchema}
           onSubmit={onFormSubmit}
         >
           <FormContainer>
@@ -63,8 +63,8 @@ const Hero = () => {
             See recipes <BsArrowRight size={12} />
           </GoToRecipe>
         </HealthyBlock>
-      </HeroContainer>
-    </Container>
+      </Container>
+    </HeroContainer>
   );
 };
 
