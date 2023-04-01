@@ -25,6 +25,11 @@ export const Link = styled(NavLink)`
     }
   }
 `;
+export const FooterAdvantagesContainer = styled.div`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    width: 418px;
+  }
+`;
 export const FooterAdvantagesList = styled.ul`
   list-style-type: disc;
   padding: 0;
@@ -42,6 +47,11 @@ export const FooterAdvantagesList = styled.ul`
   flex-wrap: wrap;
   gap: 10px;
   width: 400px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    margin-top: 40px;
+    gap: 12px;
+    width: 458px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
 `;
-
-export const FooterAdvantagesContainer = styled.div``;
