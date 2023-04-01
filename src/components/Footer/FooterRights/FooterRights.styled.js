@@ -10,6 +10,9 @@ export const FooterRightsBg = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     padding: 32px 0;
   }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    padding: 50px 0;
+  }
   span {
     margin-left: 14px;
     font-weight: 400;
