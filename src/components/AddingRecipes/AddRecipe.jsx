@@ -1,34 +1,34 @@
 import React from 'react';
+// import { MdOutlineAddAPhoto } from 'react-icons/md';
+import uploadImg from '../../../src/img/add-recipe-placeholder.png';
+import { InputUpload } from './AddRecipe.styles';
 
 export const AddRecipe = () => {
   return (
-    <div>
-      <h2>Add recipe</h2>
-      <form>
-        <input type="file" />
-        <input type="text" placeholder="Enter item title" />
-        <input type="text" placeholder="Enter about recipe" />
-        <input type="text" placeholder="Category" />
-        <input type="text" placeholder="Cooking time" />
-        <h3>Ingredients</h3>
-        <input type="text" />
-        <input type="text" />
-        <input type="text" />
-        <input type="text" />
-        <h3>Recipe Preparation</h3>
-        <textarea
-          name=""
-          id=""
-          cols="30"
-          rows="10"
-          placeholder="Enter recipe"
-        ></textarea>
-      </form>
-    </div>
+    <>
+      <div class="row">
+        <span class="label">Select Text</span>
+        <span class="box">
+          <input type="text" name="data" class="datatext" id="datatext" />
+          <select class="contentselect" id="contentselect">
+            <option></option>
+            <option value="one">test1</option>
+            <option value="two">test2</option>
+          </select>
+        </span>
+      </div>
+      <div>
+        <h2>Add recipe</h2>
+        <form>
+          <div class="image-upload">
+            <label for="file-input">
+              <img src={uploadImg} alt="upload-img" />
+            </label>
+
+            <InputUpload id="file-input" type="file" />
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
-
-// Зверстати компоненти що знаходяться на сторінці AddRecipePage (мобільна,
-//         планшет та десктопна версії): 1. MainTitle - універсальний компонент, що
-//         відмальовує заголовок і використовується на різних сторінках застосунку
-//         2. AddRecipeForm 3. FollowUs 4. PopularRecipe
