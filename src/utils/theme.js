@@ -1,7 +1,9 @@
 const mainVars = {
   breakpoints: {
     mob: '375px',
+    mobMax: '767px',
     tab: '768px',
+    tabMax: '1439px',
     desk: '1440px',
   },
   fontWeights: {

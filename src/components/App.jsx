@@ -5,6 +5,7 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import WelcomePage from '../pages/WelcomePage/WelcomePage';
 import Register from '../pages/Register/Register';
 import SignIn from '../pages/SignIn/SignIn';
+import MainPage from '../pages/MainPage/MainPage';
 import Categories from '../pages/Categories/Categories';
 import AddRecipes from '../pages/AddRecipes/AddRecipes';
 import MyRecipes from '../pages/MyRecipes/MyRecipes';
@@ -16,7 +17,7 @@ export const App = () => {
     <ThemeProvider theme={lightTheme}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Categories />} />
+          <Route index element={<MainPage />} />
           <Route path="welcome" element={<WelcomePage />} />
           <Route path="register" element={<Register />} />
           <Route path="signin" element={<SignIn />} />

@@ -6,9 +6,13 @@ export const Wrapper = styled.div`
   padding-left: 16px;
   padding-right: 16px;
   min-width: 320px;
-  max-width: ${p => p.theme.breakpoints.desc};
 
-  @media screen and (min-width: ${p => p.theme.breakpoints.tab}) {
+  @media screen and (max-width: ${p => p.theme.breakpoints.mobMax}) {
+    max-width: ${p => p.theme.breakpoints.mob};
+  }
+
+
+  @media screen and (min-width: ${p => p.theme.breakpoints.tab} ) {
     width: ${p => p.theme.breakpoints.tab};
     padding-left: 32px;
     padding-right: 32px;
