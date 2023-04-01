@@ -9,7 +9,6 @@ import {
   ButtonSearch,
 } from './Hero.styled';
 import { Formik } from 'formik';
-
 import * as Yup from 'yup';
 import { ChooseYourBreakfast } from 'components/ChooseYourBreakfast/ChooseYourBreakfast';
 
