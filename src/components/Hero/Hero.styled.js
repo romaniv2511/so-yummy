@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HeroContainer = styled.section`
   position: relative;
-  padding-top: 71px;
+  padding-top: 132px;
   padding-bottom: 147px;
 
   @media screen and (max-width: 767px) {
@@ -10,12 +10,12 @@ export const HeroContainer = styled.section`
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    padding-top: 141px;
+    padding-top: 204px;
     padding-bottom: 267px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
-    padding-top: 175px;
+    padding-top: 226px;
     padding-bottom: 368px;
   }
 `;

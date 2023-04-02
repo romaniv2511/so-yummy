@@ -5,6 +5,7 @@ import bgTablet from '../../img/main-bg-leaf-tablet.png';
 import bgTabletRetina from '../../img/main-bg-leaf-tablet@2x.png';
 import bgDesktop from '../../img/main-bg-leaf-desktop.png';
 import bgDesktopRetina from '../../img/main-bg-leaf-desktop@2x.png';
+import { NavLink } from 'react-router-dom';
 
 export const MainContainer = styled.section`
   padding-bottom: 100px;
@@ -105,8 +106,10 @@ export const CategoriesList = styled.ul`
   }
 `;
 
-export const Link = styled.button`
-  display: block;
+export const Link = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   width: 94px;
   height: 38px;
@@ -128,8 +131,10 @@ export const Link = styled.button`
   }
 `;
 
-export const ButtonOtherCategory = styled.button`
-  display: block;
+export const ButtonOtherCategory = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   width: 195px;
   height: 46px;
@@ -156,5 +161,25 @@ export const ButtonOtherCategory = styled.button`
     width: 239px;
     height: 61px;
     font-size: 16px;
+  }
+`;
+
+export const ErrorMessage = styled.p`
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: ${props => props.theme.color.title};
+  margin-bottom: 100px;
+  text-align: center;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    font-size: 36px;
+    margin-bottom: 140px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    font-size: 44px;
+    margin-bottom: 180px;
   }
 `;
