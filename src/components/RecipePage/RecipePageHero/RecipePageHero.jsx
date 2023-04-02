@@ -1,34 +1,24 @@
 import {
   RecipePageHeroContainer,
-  // RecipePageHeroTitle,
-  // RecipePageHeroText,
-  // RecipePageHeroCookingTime,
+  RecipePageHeroTitle,
+  RecipePageHeroText,
+  RecipePageHeroCookingTime,
 } from './RecipePageHero.styled';
-import axios from 'axios';
-// import sprite from '../../../img/sprite.svg';
-import { useEffect, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import sprite from '../../../img/sprite.svg';
+import { RecipeBtnFavorite } from '../RecipeBtnFavorite/RecipeBtnFavorite';
 
-export const RecipePageHero = () => {
-  const [recept, setRecept] = useState([]);
-  console.log('recept', recept);
-
-  async function getRecipe() {
-    try {
-      const response = await axios.get(
-        'https://soyummy-tw3y.onrender.com/api/v1/recipes/:id'
-      );
-      const { data } = response.data;
-
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    getRecipe();
-  }, []);
-
-  return <RecipePageHeroContainer></RecipePageHeroContainer>;
+export const RecipePageHero = ({ title, description, time }) => {
+  return (
+    <RecipePageHeroContainer>
+      <RecipePageHeroTitle>{title}</RecipePageHeroTitle>
+      <RecipePageHeroText>{description}</RecipePageHeroText>
+      <RecipeBtnFavorite />
+      <RecipePageHeroCookingTime>
+        <svg>
+          <use href={sprite + `#icon-clock`} />
+        </svg>
+        <span>{time + ` min`}</span>
+      </RecipePageHeroCookingTime>
+    </RecipePageHeroContainer>
+  );
 };

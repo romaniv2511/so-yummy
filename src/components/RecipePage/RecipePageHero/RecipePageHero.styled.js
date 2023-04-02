@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import bgMob from '../../../img/recipe-bg-mob.png';
+import bgMobRetina from '../../../img/recipe-bg-mob@2x.png';
+import bgTablet from '../../../img/recipe-bg-tablet.png';
+import bgTabletRetina from '../../../img/recipe-bg-tablet.@2x.png';
+import bgDesktop from '../../../img/recipe-bg-desktop.jpg';
+import bgDesktopRetina from '../../../img/recipe-bg-desktop@2x.jpg';
 
 export const RecipePageHeroContainer = styled.div`
   display: flex;
@@ -7,10 +13,40 @@ export const RecipePageHeroContainer = styled.div`
   width: 100%;
   background-repeat: no-repeat;
   margin-bottom: 32px;
-  padding-top: 144px;
+  padding-top: 83px;
   padding-bottom: 90px;
-  height: 455px;
   background-size: 100%;
+  background-image: url(${bgMob});
+
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url(${bgMobRetina});
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    background-image: url(${bgTablet});
+    background-repeat: no-repeat;
+
+    @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(${bgTabletRetina});
+    }
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    background-image: url(${bgDesktop});
+
+    background-repeat: no-repeat;
+
+    @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(${bgDesktopRetina});
+    }
+  }
 `;
 
 export const RecipePageHeroTitle = styled.title`
@@ -19,7 +55,7 @@ export const RecipePageHeroTitle = styled.title`
   font-weight: 600;
   font-size: 24px;
   line-height: 1.3;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
   letter-spacing: -0.02em;
   color: ${({ theme }) => theme.color.accent};
   max-width: 330px;
