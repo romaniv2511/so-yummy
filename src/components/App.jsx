@@ -23,6 +23,7 @@ export const App = () => {
           <Route path="register" element={<Register />} />
           <Route path="signin" element={<SignIn />} />
           <Route path="categories" element={<Categories />} />
+          <Route path="categories/:categoryName" element={<Categories />} />
           <Route path="add-recipes" element={<AddRecipes />} />
           <Route path="my-recipes" element={<MyRecipes />} />
           <Route path="recipe/:recipeId" element={<Recipe />} />

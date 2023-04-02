@@ -9,7 +9,7 @@ export const ChooseYourBreakfast = () => {
         <TitleAccent>Delicious and healthy</TitleAccent> way to enjoy a variety
         of fresh ingredients in one satisfying meal
       </Text>
-      <GoToRecipe to="/categories">
+      <GoToRecipe to="/categories/Breakfast">
         See recipes <BsArrowRight size={12} />
       </GoToRecipe>
     </HealthyBlock>
