@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrap = styled.div`
   padding-top: 50px;
   padding-bottom: 72px;
 `;
 
 export const Title = styled.h2`
   margin-bottom: 72px;
-  margin-left: 16px;
   color: ${({ theme }) => theme.color.title};
   font-weight: ${({ theme }) => theme.fontWeights.l};
   font-size: 28px;
@@ -34,6 +33,7 @@ export const InputUpload = styled.input`
 `;
 
 export const InputDescriptionWrap = styled.div`
+  position: relative;
   margin-top: 24px;
   &: first-child {
     margin-top: 0;
@@ -42,4 +42,14 @@ export const InputDescriptionWrap = styled.div`
 
 export const InputDescription = styled.input`
   padding-bottom: 19px;
+  width: 343px;
+  border: none;
+  border-bottom: 1px solid grey;
+`;
+
+export const SelectDescription = styled.select`
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
 `;
