@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/so-yummy/static/css/main.c3d5249d.css",
-    "main.js": "/so-yummy/static/js/main.f69f78fe.js",
+    "main.js": "/so-yummy/static/js/main.69c3456a.js",
     "static/media/hero-right-salad-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-salad-bg-desktop@2x.88a5b9a1bc55ece6fe58.png",
     "static/media/hero-right-leaf-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-leaf-bg-desktop@2x.cf2fa79869e6f4e17fdf.png",
     "static/media/main-bg-leaf-desktop@2x.png": "/so-yummy/static/media/main-bg-leaf-desktop@2x.60636b5ced64d8c541b1.png",
@@ -37,10 +37,10 @@
     "index.html": "/so-yummy/index.html",
     "static/media/logo-footer.svg": "/so-yummy/static/media/logo-footer.3dc4a1172f0f3a055eec904912aa4e43.svg",
     "main.c3d5249d.css.map": "/so-yummy/static/css/main.c3d5249d.css.map",
-    "main.f69f78fe.js.map": "/so-yummy/static/js/main.f69f78fe.js.map"
+    "main.69c3456a.js.map": "/so-yummy/static/js/main.69c3456a.js.map"
   },
   "entrypoints": [
     "static/css/main.c3d5249d.css",
-    "static/js/main.f69f78fe.js"
+    "static/js/main.69c3456a.js"
   ]
 }
