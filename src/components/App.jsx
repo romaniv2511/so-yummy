@@ -10,6 +10,7 @@ import Categories from '../pages/Categories/Categories';
 import AddRecipes from '../pages/AddRecipes/AddRecipes';
 import MyRecipes from '../pages/MyRecipes/MyRecipes';
 import Favorites from '../pages/Favorites/Favorites';
+import ShopingList from '../pages/ShopingList/ShopingList';
 import SearchPage from 'pages/SearchPage/SearchPage';
 
 export const App = () => {
@@ -25,6 +26,7 @@ export const App = () => {
           <Route path="add-recipes" element={<AddRecipes />} />
           <Route path="my-recipes" element={<MyRecipes />} />
           <Route path="favorites" element={<Favorites />} />
+          <Route path="shopping-list" element={<ShopingList />} />
           <Route path="search" element={<SearchPage />} />
         </Route>
       </Routes>
