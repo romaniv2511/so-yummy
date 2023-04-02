@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/so-yummy/static/css/main.c3d5249d.css",
-    "main.js": "/so-yummy/static/js/main.73f549b8.js",
+    "main.js": "/so-yummy/static/js/main.d86916a7.js",
     "static/media/hero-right-salad-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-salad-bg-desktop@2x.88a5b9a1bc55ece6fe58.png",
     "static/media/hero-right-leaf-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-leaf-bg-desktop@2x.cf2fa79869e6f4e17fdf.png",
     "static/media/main-bg-leaf-desktop@2x.png": "/so-yummy/static/media/main-bg-leaf-desktop@2x.60636b5ced64d8c541b1.png",
@@ -23,8 +23,12 @@
     "static/media/hero-left-bg-desktop@2x.png": "/so-yummy/static/media/hero-left-bg-desktop@2x.a47668d24c86dcb5f2e7.png",
     "static/media/main-bg-leaf-tablet.png": "/so-yummy/static/media/main-bg-leaf-tablet.1f67ae79ca99649a6be4.png",
     "static/media/bg-menu-tablet.png": "/so-yummy/static/media/bg-menu-tablet.0cf18e213de2d05fde03.png",
+    "static/media/error-page-desktop@2x.png": "/so-yummy/static/media/error-page-desktop@2x.a60559710f10c779ecd2.png",
+    "static/media/error-page-tablet@2x.png": "/so-yummy/static/media/error-page-tablet@2x.b38e93587723c753d415.png",
     "static/media/bg-menu-mob.png": "/so-yummy/static/media/bg-menu-mob.a2df8cccd9303734cf35.png",
     "static/media/main-bg-leaf-mob.png": "/so-yummy/static/media/main-bg-leaf-mob.aaa5a520a7cf001ebcbb.png",
+    "static/media/error-page-desktop.png": "/so-yummy/static/media/error-page-desktop.8c69496624b989a57187.png",
+    "static/media/error-page-tablet.png": "/so-yummy/static/media/error-page-tablet.a44a4e0962ac6ec575a4.png",
     "static/media/hero-left-bg-tablet@2x.png": "/so-yummy/static/media/hero-left-bg-tablet@2x.f030b57c946eda18305f.png",
     "static/media/hero-arrow-desk@2x.png": "/so-yummy/static/media/hero-arrow-desk@2x.a03520a73692702b9756.png",
     "static/media/hero-left-bg-desktop.png": "/so-yummy/static/media/hero-left-bg-desktop.afb21ddd4bba7d5165bf.png",
@@ -33,10 +37,10 @@
     "index.html": "/so-yummy/index.html",
     "static/media/logo-footer.svg": "/so-yummy/static/media/logo-footer.3dc4a1172f0f3a055eec904912aa4e43.svg",
     "main.c3d5249d.css.map": "/so-yummy/static/css/main.c3d5249d.css.map",
-    "main.73f549b8.js.map": "/so-yummy/static/js/main.73f549b8.js.map"
+    "main.d86916a7.js.map": "/so-yummy/static/js/main.d86916a7.js.map"
   },
   "entrypoints": [
     "static/css/main.c3d5249d.css",
-    "static/js/main.73f549b8.js"
+    "static/js/main.d86916a7.js"
   ]
 }
