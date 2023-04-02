@@ -4,10 +4,12 @@ import { PreviewCategories } from 'components/PreviewCategories/PreviewCategorie
 
 const WelcomePage = () => {
   return (
-    <BackgroundHero>
-      <Hero />
-      <PreviewCategories />
-    </BackgroundHero>
+    <main>
+      <BackgroundHero>
+        <Hero />
+        <PreviewCategories />
+      </BackgroundHero>
+    </main>
   );
 };
 export default WelcomePage;
