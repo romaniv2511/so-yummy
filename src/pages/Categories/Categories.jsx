@@ -17,22 +17,9 @@ import {
   ActiveButton,
 } from './Categories.styled';
 
-const menuList = [
-  'Beef',
-  'Breakfast',
-  'Chicken',
-  'Desserts',
-  'Goat',
-  'Lamb',
-  'Miscellaneous',
-  'Pasts',
-  'Pork',
-  'Seafood',
-  'Side',
-];
-
 const Categories = () => {
   const { categoryName } = useParams();
+  const [menuList, setMenuList] = useState([]);
   const [category, setCategory] = useState(categoryName || 'Beef');
   const [categoriesList, setCategoriesList] = useState([]);
   const [error, setError] = useState(null);
@@ -61,6 +48,20 @@ const Categories = () => {
       console.log(error);
     }
   };
+
+  const searchMenuList = async () => {
+    const results = await axios.get(
+      `https://soyummy-tw3y.onrender.com/api/v1/recipes/category-list`
+    );
+    console.log(results);
+    const { data } = results.data;
+
+    setMenuList(data);
+  };
+
+  useEffect(() => {
+    searchMenuList();
+  }, []);
 
   useEffect(() => {
     searchCategory(category);
@@ -101,7 +102,12 @@ const Categories = () => {
             <RecipesList>
               {categoriesList.map(({ _id, thumb, title }) => {
                 return (
-                  <CategoryDishItem key={_id} thumb={thumb} title={title} />
+                  <CategoryDishItem
+                    key={_id}
+                    id={_id}
+                    thumb={thumb}
+                    title={title}
+                  />
                 );
               })}
             </RecipesList>

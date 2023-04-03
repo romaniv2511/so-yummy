@@ -11,7 +11,10 @@ import AddRecipes from '../pages/AddRecipes/AddRecipes';
 import MyRecipes from '../pages/MyRecipes/MyRecipes';
 import Recipe from '../pages/Recipe/Recipe';
 import Favorites from '../pages/Favorites/Favorites';
+import ShopingList from '../pages/ShopingList/ShopingList';
 import SearchPage from 'pages/SearchPage/SearchPage';
+import ErrorPage from 'pages/ErrorPage/ErrorPage';
+
 
 export const App = () => {
   return (
@@ -28,7 +31,9 @@ export const App = () => {
           <Route path="my-recipes" element={<MyRecipes />} />
           <Route path="recipe/:recipeId" element={<Recipe />} />
           <Route path="favorites" element={<Favorites />} />
+          <Route path="shopping-list" element={<ShopingList />} />
           <Route path="search" element={<SearchPage />} />
+          <Route path='*' element={<ErrorPage />}/>
         </Route>
       </Routes>
     </ThemeProvider>

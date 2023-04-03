@@ -83,6 +83,7 @@ export const PreviewCategories = () => {
                           key={_id}
                           thumb={thumb}
                           title={title}
+                          id={_id}
                         />
                       );
                     })}
