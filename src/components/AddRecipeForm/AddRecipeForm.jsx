@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
+
 import uploadImg from '../../../src/img/add-recipe-placeholder.png';
 import {
   InputUpload,
@@ -10,8 +11,21 @@ import {
   InputDescriptionWrap,
   InputDescription,
   SelectDescription,
+  TitleIngredients,
+  WrapIngredients,
+  InputIngredientsWrap,
+  MainWrapIngredients,
+  InputIngredients,
+  SelectIngredients,
+  TitlePreparation,
+  WrapPreparation,
+  TextAreaPreparation,
+  ButtonAdd,
+  WrapButtonAdd,
 } from './AddRecipeForm.styled';
 import { Wrapper } from 'components/Container/Container.styles';
+import { Counter } from './Counter/Counter';
+// import Select from 'react-select';
 
 export const AddRecipe = () => {
   const [count, setCount] = useState(0);
@@ -59,11 +73,11 @@ export const AddRecipe = () => {
                 name=""
                 id=""
                 placeholder="Category"
+                disabled
               />
               <SelectDescription name="categories" id="categories">
                 <option value="Breakfast">Breakfast</option>
                 <option value="Beef">Beef</option>
-
                 <option value="Dessert">Dessert</option>
                 <option value="Goat">Goat</option>
                 <option value="Lamb">Lamb</option>
@@ -76,6 +90,7 @@ export const AddRecipe = () => {
                 name=""
                 id="cooking-time"
                 placeholder="Cooking time"
+                disabled
               />
               <SelectDescription name="cooking-time" id="cooking-time">
                 <option value="">40 min</option>
@@ -87,72 +102,55 @@ export const AddRecipe = () => {
               </SelectDescription>
             </InputDescriptionWrap>
           </div>
-          <div>
-            <div>
-              <h2>Ingredients</h2>
+          <MainWrapIngredients>
+            <WrapIngredients>
+              <TitleIngredients>Ingredients</TitleIngredients>
+              <Counter
+                count={count}
+                handleIncrement={handleIncrement}
+                handleDecrement={handleDecrement}
+              />
+            </WrapIngredients>
 
-              <button
-                type="button"
-                onClick={handleDecrement}
-                disabled={count === 0}
-              >
-                -
-              </button>
-              <span>{count}</span>
-              <button type="button" onClick={handleIncrement}>
-                +
-              </button>
-            </div>
+            <InputIngredientsWrap>
+              <div>
+                <InputIngredients type="text" name="" id="" placeholder="" />
+                <SelectIngredients name="ingredients" id="ingredients">
+                  <option value="Beef">tbs</option>
+                  <option value="Breakfast">tsp</option>
+                  <option value="Dessert">kg</option>
+                  <option value="Goat">g</option>
+                </SelectIngredients>
+              </div>
+              <IoCloseOutline size={18} />
+            </InputIngredientsWrap>
+            <InputIngredientsWrap>
+              <div>
+                <InputIngredients type="text" name="" id="" placeholder="" />
+                <SelectIngredients name="ingredients" id="ingredients">
+                  <option value="Beef">tbs</option>
+                  <option value="Breakfast">tsp</option>
+                  <option value="Dessert">kg</option>
+                  <option value="Goat">g</option>
+                </SelectIngredients>
+              </div>
+              <IoCloseOutline size={18} />
+            </InputIngredientsWrap>
 
-            <div>
-              <input type="text" name="" id="" placeholder="chicken" />
-              <select name="ingredients" id="ingredients">
-                <option value="Beef">tbs</option>
-                <option value="Breakfast">tsp</option>
-                <option value="Dessert">kg</option>
-                <option value="Goat">g</option>
-              </select>
-              <button type="button">
-                <IoCloseOutline />
-              </button>
-            </div>
-            <div>
-              {' '}
-              <input type="text" name="" id="" placeholder="avocado" />
-              <select name="ingredients" id="ingredients">
-                <option value="Beef">tbs</option>
-                <option value="Breakfast">tsp</option>
-                <option value="Dessert">kg</option>
-                <option value="Goat">g</option>
-              </select>
-              <button type="button">
-                <IoCloseOutline />
-              </button>
-            </div>
-            <div>
-              <input type="text" name="" id="" placeholder="cucumber" />
-              <select name="ingredients" id="ingredients">
-                <option value="Beef">tbs</option>
-                <option value="Breakfast">tsp</option>
-                <option value="Dessert">kg</option>
-                <option value="Goat">g</option>
-              </select>
-              <button type="button">
-                <IoCloseOutline />
-              </button>
-            </div>
-            <div>
-              <h2>Recipe Preparation</h2>
-              <textarea
+            <WrapPreparation>
+              <TitlePreparation>Recipe Preparation</TitlePreparation>
+              <TextAreaPreparation
                 name=""
                 id=""
-                cols="30"
-                rows="10"
+                // cols="30"
+                rows="7"
                 placeholder="Enter recipe"
-              ></textarea>
-            </div>
-          </div>
-          <button type="submit">Add</button>
+              ></TextAreaPreparation>
+            </WrapPreparation>
+          </MainWrapIngredients>
+          <WrapButtonAdd>
+            <ButtonAdd type="submit">Add</ButtonAdd>
+          </WrapButtonAdd>
         </Form>
       </Wrap>
     </Wrapper>
