@@ -13,8 +13,8 @@ export const RecipePageHeroContainer = styled.div`
   width: 100%;
   background-repeat: no-repeat;
   margin-bottom: 32px;
-  padding-top: 83px;
-  padding-bottom: 90px;
+  padding-top: 97px;
+  padding-bottom: 80px;
   background-size: 100%;
   background-image: url(${bgMob});
 
@@ -25,6 +25,9 @@ export const RecipePageHeroContainer = styled.div`
     background-image: url(${bgMobRetina});
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    padding-bottom: 32px;
+    margin-bottom: 50px;
+    padding-top: 136px;
     background-image: url(${bgTablet});
     background-repeat: no-repeat;
 
@@ -36,8 +39,8 @@ export const RecipePageHeroContainer = styled.div`
     }
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    padding-top: 170px;
     background-image: url(${bgDesktop});
-
     background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
@@ -62,6 +65,14 @@ export const RecipePageHeroTitle = styled.title`
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-y: clip;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    max-width: 680px;
+    font-size: 44px;
+    margin-bottom: 24px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    max-width: 1000px;
+  }
 `;
 export const RecipePageHeroText = styled.p`
   font-weight: 400;
@@ -74,6 +85,15 @@ export const RecipePageHeroText = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-y: clip;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    width: 506px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    margin-bottom: 30px;
+    width: 656px;
+  }
 `;
 export const RecipePageHeroCookingTime = styled.div`
   display: flex;
@@ -85,11 +105,25 @@ export const RecipePageHeroCookingTime = styled.div`
   font-size: 10px;
   line-height: 1.4;
   align-items: center;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    height: 20px;
+    margin-top: 60px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+    margin-top: 48px;
+  }
   & svg {
     display: inline-block;
     margin-right: 5px;
     width: 14px;
     height: 14px;
     stroke: black;
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
   }
 `;
