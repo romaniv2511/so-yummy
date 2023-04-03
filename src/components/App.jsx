@@ -19,23 +19,25 @@ import ScrollToTop from './ScrollToTop/ScrollToTop';
 export const App = () => {
   return (
     <ThemeProvider theme={lightTheme}>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<MainPage />} />
-          <Route path="welcome" element={<WelcomePage />} />
-          <Route path="register" element={<Register />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="categories" element={<Categories />} />
-          <Route path="categories/:categoryName" element={<Categories />} />
-          <Route path="add-recipes" element={<AddRecipes />} />
-          <Route path="my-recipes" element={<MyRecipes />} />
-          <Route path="recipe/:recipeId" element={<Recipe />} />
-          <Route path="favorites" element={<Favorites />} />
-          <Route path="shopping-list" element={<ShopingList />} />
-          <Route path="search" element={<SearchPage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
+      <ScrollToTop>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<MainPage />} />
+            <Route path="welcome" element={<WelcomePage />} />
+            <Route path="register" element={<Register />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="categories/:categoryName" element={<Categories />} />
+            <Route path="add-recipes" element={<AddRecipes />} />
+            <Route path="my-recipes" element={<MyRecipes />} />
+            <Route path="recipe/:recipeId" element={<Recipe />} />
+            <Route path="favorites" element={<Favorites />} />
+            <Route path="shopping-list" element={<ShopingList />} />
+            <Route path="search" element={<SearchPage />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Route>
+        </Routes>
+      </ScrollToTop>
     </ThemeProvider>
   );
 };
