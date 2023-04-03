@@ -14,6 +14,7 @@ import {
   UserBox,
   HeaderModal,
   Section,
+  GlobalStyle,
 } from './Header.styled';
 
 export const Header = () => {
@@ -43,6 +44,7 @@ export const Header = () => {
           </Section>
         </Container>
       </HeaderBox>
+      <GlobalStyle isOpen={openMenu} />
       <Modal isOpen={openMenu}>
         <div>
           <HeaderModal>
