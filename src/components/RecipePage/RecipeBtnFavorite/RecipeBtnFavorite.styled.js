@@ -15,6 +15,14 @@ export const RecipeBtn = styled.button`
   outline: none;
   border-radius: 30px 80px;
   text-align: center;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    font-size: 16px;
+    padding: 18px 44px;
+    border: 2px solid ${({ theme }) => theme.color.accent};
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+  }
+
   :hover,
   :focus {
     background: ${({ theme }) => theme.color.accent};

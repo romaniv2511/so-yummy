@@ -1,105 +1,64 @@
 import { RecipePageHero } from './../../components/RecipePage/RecipePageHero/RecipePageHero';
+import { RecipePreparation } from './../../components/RecipePage/RecipePreparation/RecipePreparation';
 import axios from 'axios';
+
 import { useEffect, useState } from 'react';
 import { ContainerRecipe, TableRecipe } from './Recipe.styled';
 import { Container } from 'components/Container/Container';
-// const Recipe = () => {
-//   const [recipe, setRecipe] = useState([]);
-
-//   useEffect(() => {
-//     async function getRecipe() {
-//       try {
-//         const response = await axios.get(
-//           'https://soyummy-tw3y.onrender.com/api/v1/recipes/640cd5ac2d9fecf12e889863'
-//         );
-//         const { data } = response.data;
-//         setRecipe(data);
-//         console.log(data);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     }
-
-//     getRecipe();
-//   }, []);
-
-//   // async function getRecipe() {
-//   //   setRecept([]);
-//   //   try {
-//   //     const response = await axios.get(
-//   //       'https://soyummy-tw3y.onrender.com/api/v1/recipes/640cd5ac2d9fecf12e889863'
-//   //     );
-//   //     const { data } = response.data;
-//   //     console.log(data);
-//   //     setRecept(data);
-//   //   } catch (error) {
-//   //     setRecept([]);
-//   //     console.log(error);
-//   //   }
-//   // }
-//   // // console.log(recept);
-//   // useEffect(() => {
-//   //   getRecipe();
-//   // }, []);
-
-//   return (
-//     <ContainerRecipe>
-//       {/* <ContainerRecipeHero>
-//         {recipe.map(({ _id, title, description, time }) => {
-//           return (
-//             <RecipePageHero
-//               key={_id}
-//               title={title}
-//               description={description}
-//               time={time}
-//             />
-//           );
-//         })}
-//       </ContainerRecipeHero> */}
-//     </ContainerRecipe>
-//   );
-// };
-
-// export default Recipe;
-
+import { useParams } from 'react-router-dom';
+import { ErrorMessage } from 'components/PreviewCategories/PreviewCategories.styled';
 const Recipe = () => {
   const [recipe, setRecipe] = useState({});
+  const { recipeId } = useParams();
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getRecipe() {
+      setLoading(true);
       try {
         const response = await axios.get(
-          'https://soyummy-tw3y.onrender.com/api/v1/recipes/640cd5ac2d9fecf12e889863'
+          `https://soyummy-tw3y.onrender.com/api/v1/recipes/${recipeId}`
         );
         const { data } = response.data;
-        if (data && data.title && data.description && data.time) {
-          setRecipe(data);
-        } else {
-          console.log('Invalid response data');
-        }
+        setRecipe(data);
       } catch (error) {
+        setLoading(false);
+        setError(error.message);
         console.log(error);
       }
     }
 
     getRecipe();
-  }, []);
+  }, [recipeId]);
 
   return (
     <ContainerRecipe>
-      <RecipePageHero
-        title={recipe.title}
-        description={recipe.description}
-        time={recipe.time}
-      />
-      <Container>
-        <TableRecipe>
-          <p>Ingredients</p>
-          <p>
-            Number <span>Add to list</span>
-          </p>
-        </TableRecipe>
-      </Container>
+      {error && !loading && (
+        <ErrorMessage>Doesn't find any recipes...</ErrorMessage>
+      )}
+      {recipe && (
+        <>
+          <RecipePageHero
+            title={recipe.title}
+            description={recipe.description}
+            time={recipe.time}
+          />
+          <Container>
+            <TableRecipe>
+              <p>Ingredients</p>
+              <p>
+                Number <span>Add to list</span>
+              </p>
+            </TableRecipe>
+            <RecipePreparation
+              title={recipe.title}
+              image={recipe.thumb}
+              instructions={recipe.instructions}
+            />
+          </Container>
+        </>
+      )}
     </ContainerRecipe>
   );
 };
