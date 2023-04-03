@@ -14,6 +14,8 @@ export const RecipePageHeroContainer = styled.div`
   background-repeat: no-repeat;
   margin-bottom: 32px;
   padding-top: 97px;
+  padding-left: 16px;
+  padding-right: 16px;
   padding-bottom: 80px;
   background-size: 100%;
   background-image: url(${bgMob});
@@ -26,6 +28,8 @@ export const RecipePageHeroContainer = styled.div`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     padding-bottom: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
     margin-bottom: 50px;
     padding-top: 136px;
     background-image: url(${bgTablet});
@@ -40,6 +44,8 @@ export const RecipePageHeroContainer = styled.div`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
     padding-top: 170px;
+    padding-left: 100px;
+    padding-right: 100px;
     background-image: url(${bgDesktop});
     background-repeat: no-repeat;
 
