@@ -1,0 +1,1 @@
+import RecipeInngredientsItem from 'components/RecipePage/RecipeInngredientsItem/RecipeInngredientsItem';
