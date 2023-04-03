@@ -11,7 +11,7 @@ export const Link = styled(NavLink)`
   color: ${({ theme }) => theme.color.textSecondary};
   transition: ${({ theme }) => theme.transitions.main};
   /* &.active {
-    color: ${({ theme }) => theme.color.textRights};
+    color: ${({ theme }) => theme.color.accent};
   } */
   :hover,
   :focus {
@@ -30,5 +30,6 @@ export const NavContainer = styled.div`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
     gap: 24px;
+    width: 89px;
   }
 `;

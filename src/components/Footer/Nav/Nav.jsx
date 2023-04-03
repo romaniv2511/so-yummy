@@ -5,10 +5,10 @@ export const Nav = () => {
     <NavContainer>
       {/* Добавити переадресацію на кожен Link */}
       <Link to="/">Ingredients</Link>
-      <Link to="/">Add recipes</Link>
-      <Link to="/">My recipes</Link>
-      <Link to="/">Favorite</Link>
-      <Link to="/">Shopping list</Link>
+      <Link to="/add-recipes">Add recipes</Link>
+      <Link to="/my-recipes">My recipes</Link>
+      <Link to="/favorites">Favorite</Link>
+      <Link to="/shopping-list">Shopping list</Link>
     </NavContainer>
   );
 };
