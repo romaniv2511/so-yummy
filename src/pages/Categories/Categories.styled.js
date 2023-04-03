@@ -1,4 +1,42 @@
 import styled from 'styled-components';
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+
+export const ScrollableContainer = styled(PerfectScrollbar)`
+  height: 55px;
+  margin-bottom: 32px;
+
+  .ps__rail-x {
+    height: 5px;
+    background-color: transparent;
+    opacity: 1;
+  }
+
+  .ps__thumb-x {
+    height: 5px;
+    background-color: transparent;
+    border-radius: 4px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    margin-bottom: 50px;
+  }
+
+  &:hover .ps__rail-x,
+  &:focus .ps__rail-x {
+    background-color: #f1f1f1;
+  }
+
+  &:hover .ps__thumb-x,
+  &:focus .ps__thumb-x {
+    background-color: #bdbdbd;
+  }
+
+  .ps__thumb-x:hover,
+  .ps__thumb-x:focus {
+    height: 7px;
+  }
+`;
 
 export const TitleCategory = styled.h2`
   font-weight: 600;
@@ -19,32 +57,27 @@ export const TitleCategory = styled.h2`
 `;
 
 export const ButtonsList = styled.div`
-  max-width: 343px;
-  padding-left: 30px;
-  padding-right: 30px;
   display: flex;
   flex-direction: row;
+  width: 1160px;
+  padding-left: 30px;
+  padding-right: 30px;
 
   gap: 28px;
   border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 32px;
-  overflow-x: scroll;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    max-width: 704px;
-    margin-bottom: 50px;
+    width: 1711px;
     gap: 55px;
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
-    max-width: 1240px;
   }
 `;
 
 export const ButtonCategory = styled.button`
   cursor: pointer;
-  color: #bdbdbd;
+  color: ${props => (props.active ? props.theme.color.accent : '#bdbdbd')};
   border: none;
+  border-bottom: ${props =>
+    props.active ? `2px solid ${props.theme.color.accent}` : 'none'};
   padding: 0 0 32px 0;
   background-color: transparent;
   font-family: inherit;
@@ -81,26 +114,5 @@ export const RecipesList = styled.ul`
   @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     row-gap: 100px;
     column-gap: 13px;
-  }
-`;
-
-export const ActiveButton = styled.button`
-  cursor: pointer;
-  border: none;
-  padding: 0 0 32px 0;
-  background-color: transparent;
-  font-family: inherit;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1;
-  color: ${props => props.theme.color.accent};
-  border-bottom: 2px solid ${props => props.theme.color.accent};
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    font-size: 18px;
-    padding: 0 0 27px 0;
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
   }
 `;

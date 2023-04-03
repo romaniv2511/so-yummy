@@ -9,7 +9,7 @@ import {
   ButtonsList,
   ButtonCategory,
   RecipesList,
-  ActiveButton,
+  ScrollableContainer,
 } from './Categories.styled';
 import { PagesWrapper } from 'components/PagesWrapper/PagesWrapper';
 
@@ -49,7 +49,6 @@ const Categories = () => {
     const results = await axios.get(
       `https://soyummy-tw3y.onrender.com/api/v1/recipes/category-list`
     );
-    console.log(results);
     const { data } = results.data;
 
     setMenuList(data);
@@ -67,28 +66,42 @@ const Categories = () => {
     <main>
       <PagesWrapper>
         <TitleCategory>Categories</TitleCategory>
-        <ButtonsList>
-          {menuList.map(item => {
-            if (category === item) {
+
+        <ScrollableContainer
+          options={{ suppressScrollX: false, suppressScrollY: true }}
+        >
+          <ButtonsList>
+            {menuList.map(item => {
+              if (category === item) {
+                return (
+                  <ButtonCategory
+                    type="button"
+                    key={item}
+                    active={true}
+                    onClick={() => {
+                      setCategory(item);
+                    }}
+                  >
+                    {item}
+                  </ButtonCategory>
+                );
+              }
               return (
-                <ActiveButton type="button" key={item}>
+                <ButtonCategory
+                  type="button"
+                  active={false}
+                  key={item}
+                  onClick={() => {
+                    setCategory(item);
+                  }}
+                >
                   {item}
-                </ActiveButton>
+                </ButtonCategory>
               );
-            }
-            return (
-              <ButtonCategory
-                type="button"
-                key={item}
-                onClick={() => {
-                  setCategory(item);
-                }}
-              >
-                {item}
-              </ButtonCategory>
-            );
-          })}
-        </ButtonsList>
+            })}
+          </ButtonsList>
+        </ScrollableContainer>
+
         {error && !loading && (
           <ErrorMessage>Doesn't find any recipes...</ErrorMessage>
         )}
