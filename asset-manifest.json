@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/so-yummy/static/css/main.851f63e6.css",
-    "main.js": "/so-yummy/static/js/main.dd5a507d.js",
+    "main.js": "/so-yummy/static/js/main.7b814b55.js",
     "static/media/hero-right-salad-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-salad-bg-desktop@2x.88a5b9a1bc55ece6fe58.png",
     "static/media/hero-right-leaf-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-leaf-bg-desktop@2x.cf2fa79869e6f4e17fdf.png",
     "static/media/main-bg-leaf-desktop@2x.png": "/so-yummy/static/media/main-bg-leaf-desktop@2x.60636b5ced64d8c541b1.png",
@@ -11,15 +11,20 @@
     "static/media/hero-right-salad-bg-desktop.png": "/so-yummy/static/media/hero-right-salad-bg-desktop.b7213127068fdf737be7.png",
     "static/media/hero-right-leaf-bg-mob@2x.png": "/so-yummy/static/media/hero-right-leaf-bg-mob@2x.cb66f2c855c8e44104f2.png",
     "static/media/bg-menu-tablet@2x.png": "/so-yummy/static/media/bg-menu-tablet@2x.406ec857f9cd53cc2e48.png",
+    "static/media/search-any-desktop@2x.png": "/so-yummy/static/media/search-any-desktop@2x.88e854d7f35f41a91900.png",
+    "static/media/search-any-tablet@2x.png": "/so-yummy/static/media/search-any-tablet@2x.88e854d7f35f41a91900.png",
     "static/media/main-bg-leaf-tablet@2x.png": "/so-yummy/static/media/main-bg-leaf-tablet@2x.2c2bad16c0c1e2b1992c.png",
     "static/media/hero-right-leaf-bg-desktop.png": "/so-yummy/static/media/hero-right-leaf-bg-desktop.0648438fa82b9af0d451.png",
     "static/media/main-bg-leaf-desktop.png": "/so-yummy/static/media/main-bg-leaf-desktop.b627d5152e6dbba7ba61.png",
     "static/media/hero-right-salad-bg-tablet.png": "/so-yummy/static/media/hero-right-salad-bg-tablet.8761751c2b11b33e8316.png",
     "static/media/bg-menu-mob@2x.png": "/so-yummy/static/media/bg-menu-mob@2x.b779686638241e2a3361.png",
     "static/media/main-bg-leaf-mob@2x.png": "/so-yummy/static/media/main-bg-leaf-mob@2x.ce55e997c7e242592e58.png",
+    "static/media/search-any-mob@2x.png": "/so-yummy/static/media/search-any-mob@2x.ca6e6f30499a8bbe1d31.png",
     "static/media/hero-right-leaf-bg-tablet.png": "/so-yummy/static/media/hero-right-leaf-bg-tablet.39bd2738acb90dabc99c.png",
     "static/media/hero-right-salad-bg-mob.png": "/so-yummy/static/media/hero-right-salad-bg-mob.6771d3dc9c2616b68c48.png",
     "static/media/hero-right-leaf-bg-mob.png": "/so-yummy/static/media/hero-right-leaf-bg-mob.13dd4fa06b652ee61c5e.png",
+    "static/media/search-any-desktop.png": "/so-yummy/static/media/search-any-desktop.90d42ea82405a9e312ff.png",
+    "static/media/search-any-tablet.png": "/so-yummy/static/media/search-any-tablet.90d42ea82405a9e312ff.png",
     "static/media/hero-left-bg-desktop@2x.png": "/so-yummy/static/media/hero-left-bg-desktop@2x.a47668d24c86dcb5f2e7.png",
     "static/media/main-bg-leaf-tablet.png": "/so-yummy/static/media/main-bg-leaf-tablet.1f67ae79ca99649a6be4.png",
     "static/media/bg-menu-tablet.png": "/so-yummy/static/media/bg-menu-tablet.0cf18e213de2d05fde03.png",
@@ -29,6 +34,7 @@
     "static/media/main-bg-leaf-mob.png": "/so-yummy/static/media/main-bg-leaf-mob.aaa5a520a7cf001ebcbb.png",
     "static/media/error-page-desktop.png": "/so-yummy/static/media/error-page-desktop.8c69496624b989a57187.png",
     "static/media/error-page-tablet.png": "/so-yummy/static/media/error-page-tablet.a44a4e0962ac6ec575a4.png",
+    "static/media/search-any-mob.png": "/so-yummy/static/media/search-any-mob.45f9232ad635532adac1.png",
     "static/media/hero-left-bg-tablet@2x.png": "/so-yummy/static/media/hero-left-bg-tablet@2x.f030b57c946eda18305f.png",
     "static/media/hero-arrow-desk@2x.png": "/so-yummy/static/media/hero-arrow-desk@2x.a03520a73692702b9756.png",
     "static/media/hero-left-bg-desktop.png": "/so-yummy/static/media/hero-left-bg-desktop.afb21ddd4bba7d5165bf.png",
@@ -37,10 +43,10 @@
     "index.html": "/so-yummy/index.html",
     "static/media/logo-footer.svg": "/so-yummy/static/media/logo-footer.3dc4a1172f0f3a055eec904912aa4e43.svg",
     "main.851f63e6.css.map": "/so-yummy/static/css/main.851f63e6.css.map",
-    "main.dd5a507d.js.map": "/so-yummy/static/js/main.dd5a507d.js.map"
+    "main.7b814b55.js.map": "/so-yummy/static/js/main.7b814b55.js.map"
   },
   "entrypoints": [
     "static/css/main.851f63e6.css",
-    "static/js/main.dd5a507d.js"
+    "static/js/main.7b814b55.js"
   ]
 }
