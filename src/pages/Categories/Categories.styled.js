@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { NavLink } from 'react-router-dom';
 
 export const ScrollableContainer = styled(PerfectScrollbar)`
   height: 55px;
@@ -72,7 +73,7 @@ export const ButtonsList = styled.div`
   }
 `;
 
-export const ButtonCategory = styled.button`
+export const ButtonCategory = styled(NavLink)`
   cursor: pointer;
   color: ${props => (props.active ? props.theme.color.accent : '#bdbdbd')};
   border: none;
@@ -114,5 +115,19 @@ export const RecipesList = styled.ul`
   @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     row-gap: 100px;
     column-gap: 13px;
+  }
+`;
+
+export const ErrorImage = styled.img`
+  display: block;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 208px;
+  height: 133px;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    width: 350px;
+    height: 225px;
   }
 `;
