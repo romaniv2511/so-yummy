@@ -1,10 +1,16 @@
+import { Link } from 'react-router-dom';
 import { CardContainer, Image, CardTitle } from './CategoryDishItem.styled';
+import EllipsisText from 'react-ellipsis-text';
 
-export const CategoryDishItem = ({ thumb, title }) => {
+export const CategoryDishItem = ({ id, thumb, title }) => {
   return (
     <CardContainer>
-      <Image src={thumb} alt={title} />
-      <CardTitle>{title}</CardTitle>
+      <Link to={`/recipe/${id}`}>
+        <Image src={thumb} alt={title} />
+        <CardTitle>
+          <EllipsisText text={title} length={30} />
+        </CardTitle>
+      </Link>
     </CardContainer>
   );
 };

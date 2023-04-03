@@ -8,11 +8,11 @@ import {
   CategoriesList,
   Link,
   ButtonOtherCategory,
-  MainContainer,
   ErrorMessage,
 } from './PreviewCategories.styled';
 import { useMediaQuery } from 'react-responsive';
 import { Loader } from 'components/Loader/Loader';
+import { MainContainerDownStyle } from 'components/PagesWrapper/PagesWrapper.styled';
 
 export const PreviewCategories = () => {
   const [dishes, setDishes] = useState([]);
@@ -37,13 +37,18 @@ export const PreviewCategories = () => {
         setLoading(false);
       }
 
-      const newData = data.filter(
-        item =>
-          item._id === 'Breakfast' ||
-          item._id === 'Miscellaneous' ||
-          item._id === 'Vegan' ||
-          item._id === 'Dessert'
-      );
+      const newData = data.reduce((acc, item) => {
+        if (item._id === 'Breakfast') {
+          acc[0] = item;
+        } else if (item._id === 'Miscellaneous') {
+          acc[1] = item;
+        } else if (item._id === 'Vegan') {
+          acc[2] = item;
+        } else if (item._id === 'Dessert') {
+          acc[3] = item;
+        }
+        return acc;
+      }, []);
 
       setDishes(newData);
     } catch (error) {
@@ -58,7 +63,7 @@ export const PreviewCategories = () => {
   }, []);
 
   return (
-    <MainContainer>
+    <MainContainerDownStyle>
       <Container>
         {dishes.length > 0 && (
           <MainList>
@@ -83,6 +88,7 @@ export const PreviewCategories = () => {
                           key={_id}
                           thumb={thumb}
                           title={title}
+                          id={_id}
                         />
                       );
                     })}
@@ -97,10 +103,10 @@ export const PreviewCategories = () => {
           <ErrorMessage>Something wrong! Reload the page...</ErrorMessage>
         )}
         {loading && <Loader />}
-        <ButtonOtherCategory to="/categories">
+        <ButtonOtherCategory to="/categories/Beef">
           Other categories
         </ButtonOtherCategory>
       </Container>
-    </MainContainer>
+    </MainContainerDownStyle>
   );
 };

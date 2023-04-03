@@ -26,6 +26,7 @@ export const MainContainerHeaderStyle = styled.div`
   background-repeat: no-repeat;
   background-position: top 76px left 120px, top 142px left 247px,
     top 109px left 349px;
+
   @media (min-device-pixel-ratio: 2),
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
@@ -33,6 +34,7 @@ export const MainContainerHeaderStyle = styled.div`
     background-image: url(${categoryLeftMobRetina}),
       url(${categoryCenterMobRetina}), url(${categoryRightMobRetina});
   }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     padding-top: 136px;
     background-image: url(${categoryLeftDesk}), url(${categoryCenterDesk}),
@@ -40,6 +42,7 @@ export const MainContainerHeaderStyle = styled.div`
     background-size: 18px 17px, 15px 15px, 18px 17px;
     background-position: top 85px left 219px, top 155px left 437px,
       top 98px left 726px;
+
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -48,6 +51,7 @@ export const MainContainerHeaderStyle = styled.div`
         url(${categoryCenterDeskRetina}), url(${categoryRightDeskRetina});
     }
   }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     padding-top: 164px;
     background-position: top 116px left 328px, top 200px left 807px,
@@ -61,17 +65,20 @@ export const MainContainerDownStyle = styled.section`
   background-size: 315px 487px;
   background-repeat: no-repeat;
   background-position: bottom -225px left 0;
+
   @media (min-device-pixel-ratio: 2),
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     background-image: url(${bgMobRetina});
   }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     background-image: url(${bgTablet});
     background-size: 500px 790px;
     background-repeat: no-repeat;
     background-position: bottom -380px left 0;
+
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -79,12 +86,14 @@ export const MainContainerDownStyle = styled.section`
       background-image: url(${bgTabletRetina});
     }
   }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     padding-bottom: 118px;
     background-image: url(${bgDesktop});
     background-size: 696px 1037px;
     background-repeat: no-repeat;
     background-position: bottom -518px left 0;
+
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
