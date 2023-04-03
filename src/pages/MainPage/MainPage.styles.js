@@ -50,7 +50,7 @@ export const BackgroundHero = styled.div`
     background-size: 186px 115px, 67px 323px, 368px 351px, 583px 640px,
       332px 640px;
     background-repeat: no-repeat;
-    background-position: top 447px right 90px, top 0 left 0, top 159px right 0,
+    background-position: top 442px right 60px, top 0 left 0, top 159px right 0,
       top 0 right 0, top 0 right 0;
 
     @media (min-device-pixel-ratio: 2),
@@ -69,7 +69,7 @@ export const BackgroundHero = styled.div`
     background-size: 220px 148px, 116px 398px, 578px 539px, 913px 800px,
       725px 689px;
     background-repeat: no-repeat;
-    background-position: top 550px right 210px, top 0 left 0,
+    background-position: top 540px right 170px, top 0 left 0,
       top 126px right 184px, top 0 right 0, top 0 right 0;
 
     @media (min-device-pixel-ratio: 2),

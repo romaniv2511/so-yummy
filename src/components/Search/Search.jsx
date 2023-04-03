@@ -5,8 +5,8 @@ import {
   ContainerError,
 } from './Search.styled';
 import { Formik } from 'formik';
-// import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 const SearchSchema = Yup.object().shape({
   searchText: Yup.string()
@@ -16,8 +16,13 @@ const SearchSchema = Yup.object().shape({
 });
 
 export const Search = () => {
-  const onFormSubmit = values => {
+  const navigate = useNavigate();
+
+  const onFormSubmit = (values, actions) => {
     console.log(values);
+    actions.resetForm();
+
+    navigate(`/search`, { state: values });
   };
 
   return (
@@ -38,10 +43,7 @@ export const Search = () => {
           {errors.searchText && touched.searchText ? (
             <ContainerError>{errors.searchText}</ContainerError>
           ) : null}
-          <ButtonSearch type="submit">
-            {/* <Link to="/search">Search</Link> */}
-            Search
-          </ButtonSearch>
+          <ButtonSearch type="submit">Search</ButtonSearch>
         </FormContainer>
       )}
     </Formik>
