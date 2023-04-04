@@ -1,11 +1,15 @@
 {
   "files": {
     "main.css": "/so-yummy/static/css/main.851f63e6.css",
-    "main.js": "/so-yummy/static/js/main.6b9fa4c2.js",
+    "main.js": "/so-yummy/static/js/main.bfae8369.js",
+    "static/media/recipe-bg-tablet.@2x.png": "/so-yummy/static/media/recipe-bg-tablet.@2x.19064f0c5cebd732dbdc.png",
     "static/media/hero-right-salad-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-salad-bg-desktop@2x.88a5b9a1bc55ece6fe58.png",
     "static/media/hero-right-leaf-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-leaf-bg-desktop@2x.cf2fa79869e6f4e17fdf.png",
+    "static/media/recipe-bg-mob@2x.png": "/so-yummy/static/media/recipe-bg-mob@2x.8d9375ce6281e76a6bf4.png",
+    "static/media/recipe-bg-desktop@2x.jpg": "/so-yummy/static/media/recipe-bg-desktop@2x.4c33a56bd1f09e050b9b.jpg",
     "static/media/main-bg-leaf-desktop@2x.png": "/so-yummy/static/media/main-bg-leaf-desktop@2x.60636b5ced64d8c541b1.png",
     "static/media/hero-right-salad-bg-tablet@2x.png": "/so-yummy/static/media/hero-right-salad-bg-tablet@2x.47c2074cb32d3c04fcf3.png",
+    "static/media/recipe-bg-tablet.png": "/so-yummy/static/media/recipe-bg-tablet.3333f3f4a871a22466b2.png",
     "static/media/hero-right-leaf-bg-tablet@2x.png": "/so-yummy/static/media/hero-right-leaf-bg-tablet@2x.db6944dc0e92367f6be5.png",
     "static/media/hero-right-salad-bg-mob@2x.png": "/so-yummy/static/media/hero-right-salad-bg-mob@2x.91f0a213890a2aec02d9.png",
     "static/media/hero-right-salad-bg-desktop.png": "/so-yummy/static/media/hero-right-salad-bg-desktop.b7213127068fdf737be7.png",
@@ -15,6 +19,9 @@
     "static/media/search-any-tablet@2x.png": "/so-yummy/static/media/search-any-tablet@2x.88e854d7f35f41a91900.png",
     "static/media/main-bg-leaf-tablet@2x.png": "/so-yummy/static/media/main-bg-leaf-tablet@2x.2c2bad16c0c1e2b1992c.png",
     "static/media/hero-right-leaf-bg-desktop.png": "/so-yummy/static/media/hero-right-leaf-bg-desktop.0648438fa82b9af0d451.png",
+    "static/media/recipe-bg-mob.png": "/so-yummy/static/media/recipe-bg-mob.f397883e6124451cac03.png",
+    "static/media/recipe-bg-desktop.jpg": "/so-yummy/static/media/recipe-bg-desktop.291a044f10bc865b7c92.jpg",
+    "static/media/footer-bg-desktop@2x.png": "/so-yummy/static/media/footer-bg-desktop@2x.6bc918ba708fc2dba591.png",
     "static/media/main-bg-leaf-desktop.png": "/so-yummy/static/media/main-bg-leaf-desktop.b627d5152e6dbba7ba61.png",
     "static/media/hero-right-salad-bg-tablet.png": "/so-yummy/static/media/hero-right-salad-bg-tablet.8761751c2b11b33e8316.png",
     "static/media/bg-menu-mob@2x.png": "/so-yummy/static/media/bg-menu-mob@2x.b779686638241e2a3361.png",
@@ -30,6 +37,8 @@
     "static/media/bg-menu-tablet.png": "/so-yummy/static/media/bg-menu-tablet.0cf18e213de2d05fde03.png",
     "static/media/error-page-desktop@2x.png": "/so-yummy/static/media/error-page-desktop@2x.a60559710f10c779ecd2.png",
     "static/media/error-page-tablet@2x.png": "/so-yummy/static/media/error-page-tablet@2x.b38e93587723c753d415.png",
+    "static/media/footer-bg-tablet@2x.png": "/so-yummy/static/media/footer-bg-tablet@2x.6886b940b712f040b0ab.png",
+    "static/media/footer-bg-desktop.png": "/so-yummy/static/media/footer-bg-desktop.bc92f889023ddcbbb20b.png",
     "static/media/bg-menu-mob.png": "/so-yummy/static/media/bg-menu-mob.a2df8cccd9303734cf35.png",
     "static/media/main-bg-leaf-mob.png": "/so-yummy/static/media/main-bg-leaf-mob.aaa5a520a7cf001ebcbb.png",
     "static/media/error-page-desktop.png": "/so-yummy/static/media/error-page-desktop.8c69496624b989a57187.png",
@@ -37,16 +46,18 @@
     "static/media/search-any-mob.png": "/so-yummy/static/media/search-any-mob.45f9232ad635532adac1.png",
     "static/media/hero-left-bg-tablet@2x.png": "/so-yummy/static/media/hero-left-bg-tablet@2x.f030b57c946eda18305f.png",
     "static/media/hero-arrow-desk@2x.png": "/so-yummy/static/media/hero-arrow-desk@2x.a03520a73692702b9756.png",
+    "static/media/footer-bg-mob@2x.png": "/so-yummy/static/media/footer-bg-mob@2x.a959cd7ae61d416156fd.png",
     "static/media/hero-left-bg-desktop.png": "/so-yummy/static/media/hero-left-bg-desktop.afb21ddd4bba7d5165bf.png",
     "static/media/hero-arrow-tab@2x.png": "/so-yummy/static/media/hero-arrow-tab@2x.8631d5b7372fbe540d37.png",
-    "static/media/sprite.svg": "/so-yummy/static/media/sprite.d07d9bb29143867e75f477746214ebb0.svg",
+    "static/media/footer-bg-tablet.png": "/so-yummy/static/media/footer-bg-tablet.06bedb088575abf765ff.png",
+    "static/media/sprite.svg": "/so-yummy/static/media/sprite.d588186119eb8be4f6e90af62ba89963.svg",
     "index.html": "/so-yummy/index.html",
     "static/media/logo-footer.svg": "/so-yummy/static/media/logo-footer.3dc4a1172f0f3a055eec904912aa4e43.svg",
     "main.851f63e6.css.map": "/so-yummy/static/css/main.851f63e6.css.map",
-    "main.6b9fa4c2.js.map": "/so-yummy/static/js/main.6b9fa4c2.js.map"
+    "main.bfae8369.js.map": "/so-yummy/static/js/main.bfae8369.js.map"
   },
   "entrypoints": [
     "static/css/main.851f63e6.css",
-    "static/js/main.6b9fa4c2.js"
+    "static/js/main.bfae8369.js"
   ]
 }
