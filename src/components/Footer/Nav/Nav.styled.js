@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-// Добавити навігацію коли все буде готово
 
 export const Link = styled(NavLink)`
   font-style: normal;

@@ -3,7 +3,6 @@ import { Link, NavContainer } from './Nav.styled';
 export const Nav = () => {
   return (
     <NavContainer>
-      {/* Добавити переадресацію на кожен Link */}
       <Link to="/search">Ingredients</Link>
       <Link to="/add-recipes">Add recipes</Link>
       <Link to="/my-recipes">My recipes</Link>
