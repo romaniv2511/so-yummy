@@ -75,8 +75,8 @@ export const ButtonsList = styled.div`
 
 export const ButtonCategory = styled(NavLink)`
   cursor: pointer;
-  color: ${props => (props.active ? props.theme.color.accent : '#bdbdbd')};
   border: none;
+  color: ${props => (props.active ? props.theme.color.accent : '#bdbdbd')};
   border-bottom: ${props =>
     props.active ? `2px solid ${props.theme.color.accent}` : 'none'};
   padding: 0 0 32px 0;
@@ -92,6 +92,11 @@ export const ButtonCategory = styled(NavLink)`
     color: ${props => props.theme.color.accent};
   }
 
+  &.active {
+    color: ${props => props.theme.color.accent};
+    border-bottom: ${props => `2px solid ${props.theme.color.accent}`};
+  }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     font-size: 18px;
     padding: 0 0 27px 0;
@@ -105,11 +110,13 @@ export const RecipesList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 28px;
+  margin-bottom: 40px;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 32px;
+    margin-bottom: 50px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {

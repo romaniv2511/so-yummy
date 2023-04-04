@@ -2,11 +2,15 @@ import styled from 'styled-components';
 
 export const CardContainer = styled.li`
   position: relative;
-  width: 343px;
-  height: 323px;
+  width: 288px;
   border-radius: 8px;
   margin-left: auto;
   margin-right: auto;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.mob}) {
+    width: 343px;
+    height: 323px;
+  }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     width: 336px;
@@ -27,7 +31,7 @@ export const CardTitle = styled.p`
   position: absolute;
   bottom: 26px;
   left: 18px;
-  width: 307px;
+  width: 256px;
   height: 52px;
   padding: 16px;
   border-radius: 8px;
@@ -37,6 +41,10 @@ export const CardTitle = styled.p`
   line-height: 1.25;
   letter-spacing: -0.24px;
   color: ${props => props.theme.color.text};
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.mob}) {
+    width: 307px;
+  }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     width: 300px;

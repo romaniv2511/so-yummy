@@ -29,6 +29,7 @@ export const lightTheme = {
     gbCancel: '#D9D9D9',
     textSecondary: '#FAFAFA',
     textRights: '#22252A',
+    textPagination: '#656565',
     socIcon: '#8BAA36',
     socIconHover: '#FFFFFF',
     logo: '#FAFAFA',

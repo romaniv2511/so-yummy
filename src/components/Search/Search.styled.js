@@ -6,7 +6,7 @@ export const FormContainer = styled(Form)`
 `;
 
 export const FieldContainer = styled(Field)`
-  width: 292px;
+  width: 288px;
   height: 52px;
   padding: 17px 32px;
   color: ${props => props.theme.color.bgSecondary};
@@ -16,6 +16,10 @@ export const FieldContainer = styled(Field)`
   font-weight: 400;
   font-size: 12px;
   line-height: 1.5;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.mob}) {
+    width: 292px;
+  }
 
   @media screen and (max-width: 767px) {
     margin-left: auto;
@@ -43,7 +47,7 @@ export const ButtonSearch = styled.button`
   cursor: pointer;
   position: absolute;
   top: 0;
-  right: 25px;
+  left: 175px;
   width: 113px;
   height: 52px;
   background-color: ${props => props.theme.color.bgSecondary};
@@ -60,6 +64,10 @@ export const ButtonSearch = styled.button`
   &:hover,
   &:focus {
     background-color: ${props => props.theme.color.accent};
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.mob}) {
+    left: 203px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
