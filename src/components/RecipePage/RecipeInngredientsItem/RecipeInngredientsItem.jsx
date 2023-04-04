@@ -10,47 +10,24 @@ import {
   IngDescr,
 } from './RecipeInngredientsItem.styled';
 import sprite from '../../../img/sprite.svg';
-import { useDispatch } from 'react-redux';
+import MediaQuery from 'react-responsive';
 
-export const RecipeInngredientsItem = ({title, image, description, number }) => {
-  const dispatch = useDispatch();
-
-  const addToShoppingList = () => {
-    if (recipe.inShoppingList) {
-      const ingrid = recipe.list.find(
-        item => item.recipeId === recipe.recipeId
-      );
-      dispatch(removeShoppingIngredient(ingrid._id));
-      return;
-    }
-    dispatch(
-      addShoppingIngredient({
-        image: recipe.image,
-        weight: recipe.weight,
-        strIngredient: recipe.strIngredient,
-        recipeId: recipe.recipeId,
-      })
-    );
-    return;
-  };
-
+export const RecipeInngredientsItem = ({ ttl, thb, desc, measure }) => {
   return (
     <>
       <RecipeItem>
         <CheckLabel>
           <ImageWrapper>
-            <img src={image} alt={title} />
+            <img src={thb} alt={ttl} />
           </ImageWrapper>
           <IngTextContainer>
-            <IngName>{title}</IngName>
-            <IngDescr>{description}</IngDescr>
+            <IngName>{ttl}</IngName>
+            <MediaQuery minWidth={768}>
+              <IngDescr>{desc}</IngDescr>
+            </MediaQuery>
           </IngTextContainer>
-          <IngNumber>{number}</IngNumber>
-          <DoneCheckbox
-            type="checkbox"
-            onChange={addToShoppingList}
-            checked={}
-          />
+          <IngNumber>{measure}</IngNumber>
+          <DoneCheckbox type="checkbox" />
           <CustomCheckbox>
             <svg>
               <use href={sprite + `#icon-pick`} />
