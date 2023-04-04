@@ -19,6 +19,7 @@ import imageErrorTab from '../../img/search-any-tablet.png';
 import imageErrorTabRetina from '../../img/search-any-tablet@2x.png';
 import imageErrorDesk from '../../img/search-any-desktop.png';
 import imageErrorDeskRetina from '../../img/search-any-desktop@2x.png';
+import { Pagination } from 'components/Pagination/Pagination';
 
 const Categories = () => {
   const { categoryName } = useParams();
@@ -27,6 +28,7 @@ const Categories = () => {
   const [categoriesList, setCategoriesList] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
   const searchCategory = async category => {
     setLoading(true);
@@ -69,6 +71,30 @@ const Categories = () => {
     searchCategory(category);
   }, [category]);
 
+  const totalPages =
+    categoriesList.length > 0 ? Math.ceil(categoriesList.length / 8) : 0;
+
+  const perPage = 8;
+  const lastIndex = perPage * page;
+  const startIndex = lastIndex - perPage;
+  const renderList = categoriesList.slice(startIndex, lastIndex);
+
+  const handlePageChange = id => {
+    setPage(id);
+  };
+
+  const handlePageChangeDecrement = () => {
+    if (page < totalPages) {
+      setPage(prevState => prevState + 1);
+    }
+  };
+
+  const handlePageChangeIncrement = () => {
+    if (page >= 2) {
+      setPage(prevState => prevState - 1);
+    }
+  };
+
   return (
     <main>
       <PagesWrapper>
@@ -79,27 +105,13 @@ const Categories = () => {
         >
           <ButtonsList>
             {menuList.map(item => {
-              if (category === item) {
-                return (
-                  <ButtonCategory
-                    type="button"
-                    key={item}
-                    active={true}
-                    onClick={() => {
-                      setCategory(item);
-                    }}
-                  >
-                    {item}
-                  </ButtonCategory>
-                );
-              }
               return (
                 <ButtonCategory
                   to={`/categories/${item}`}
-                  active={false}
                   key={item}
                   onClick={() => {
                     setCategory(item);
+                    setPage(1);
                   }}
                 >
                   {item}
@@ -131,9 +143,9 @@ const Categories = () => {
           </>
         )}
         {!error && loading && <Loader />}
-        {categoriesList.length > 0 && (
+        {renderList.length > 0 && (
           <RecipesList>
-            {categoriesList.map(({ _id, thumb, title }) => {
+            {renderList.map(({ _id, thumb, title }) => {
               return (
                 <CategoryDishItem
                   key={_id}
@@ -145,8 +157,18 @@ const Categories = () => {
             })}
           </RecipesList>
         )}
+        {totalPages > 1 && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={page}
+            onSelectPage={handlePageChange}
+            onArrowLeftClick={handlePageChangeDecrement}
+            onArrowRightClick={handlePageChangeIncrement}
+          />
+        )}
       </PagesWrapper>
     </main>
   );
 };
+
 export default Categories;

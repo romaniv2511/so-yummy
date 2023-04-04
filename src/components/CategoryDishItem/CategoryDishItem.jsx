@@ -8,7 +8,7 @@ export const CategoryDishItem = ({ id, thumb, title }) => {
       <Link to={`/recipe/${id}`}>
         <Image src={thumb} alt={title} />
         <CardTitle>
-          <EllipsisText text={title} length={30} />
+          <EllipsisText text={title} length={25} />
         </CardTitle>
       </Link>
     </CardContainer>
