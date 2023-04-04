@@ -10,9 +10,9 @@ export const Link = styled(NavLink)`
   letter-spacing: -0.02em;
   color: ${({ theme }) => theme.color.textSecondary};
   transition: ${({ theme }) => theme.transitions.main};
-  /* &.active {
+  &.active {
     color: ${({ theme }) => theme.color.accent};
-  } */
+  }
   :hover,
   :focus {
     color: ${({ theme }) => theme.color.accent};
