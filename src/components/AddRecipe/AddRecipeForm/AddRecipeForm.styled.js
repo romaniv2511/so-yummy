@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import { IoCloseOutline } from 'react-icons/io5';
 
 export const Wrap = styled.div`
   padding-top: 50px;
@@ -22,8 +23,19 @@ export const Form = styled.form`
   text-align: center;
 `;
 
+export const Description = styled.div`
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+`;
+
 export const ImgUploadWrap = styled.div`
   margin-bottom: 32px;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    margin-bottom: 0;
+  }
 `;
 
 export const InputUpload = styled.input`
@@ -43,6 +55,7 @@ export const InputDescriptionWrap = styled.div`
 export const InputDescription = styled.input`
   padding-bottom: 19px;
   width: 343px;
+  height: 43px;
   border: none;
   border-bottom: 1px solid grey;
   background: transparent;
@@ -59,12 +72,18 @@ export const SelectDescription = styled.select`
 export const MainWrapIngredients = styled.div`
   margin-top: 44px;
   width: 100%;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    margin-top: 100px;
+  }
 `;
 
 export const WrapIngredients = styled.div`
   margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    margin-bottom: 32px;
+  }
 `;
 
 export const TitleIngredients = styled.h2`
@@ -84,20 +103,29 @@ export const InputIngredients = styled.input`
   height: 53px;
   padding-left: 16px;
   border: none;
-  background: #f5f5f5;
+  background: ${({ theme }) => theme.color.gbCancel};
   border-radius: 6px;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    margin-right: 32px;
+    width: 398px;
+    height: 59px;
+  }
 `;
 
 export const SelectIngredients = styled.select`
   height: 53px;
   border: none;
-  background: #f5f5f5;
+  background: ${({ theme }) => theme.color.gbCancel};
   border-radius: 6px;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    height: 59px;
+  }
 `;
+
+// export const IoCloseOutline = styled(IoCloseOutline)``;
 
 export const WrapPreparation = styled.div`
   margin-top: 44px;
-
   width: 100%;
 `;
 

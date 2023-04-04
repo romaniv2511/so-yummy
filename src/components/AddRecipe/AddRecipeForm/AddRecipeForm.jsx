@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 
-import uploadImg from '../../../src/img/add-recipe-placeholder.png';
+import uploadImg from 'img/add-recipe-placeholder.png';
 import {
   InputUpload,
   Title,
@@ -22,12 +22,12 @@ import {
   TextAreaPreparation,
   ButtonAdd,
   WrapButtonAdd,
+  Description,
 } from './AddRecipeForm.styled';
 import { Wrapper } from 'components/Container/Container.styles';
-import { Counter } from './Counter/Counter';
-// import Select from 'react-select';
+import { Counter } from '../Counter/Counter';
 
-export const AddRecipe = () => {
+export const AddRecipeForm = () => {
   const [count, setCount] = useState(0);
 
   const handleIncrement = () => {
@@ -43,65 +43,67 @@ export const AddRecipe = () => {
       <Wrap>
         <Title>Add recipe</Title>
         <Form>
-          <ImgUploadWrap>
-            <label htmlFor="file-input">
-              <img src={uploadImg} alt="upload-img" />
-            </label>
+          <Description>
+            <ImgUploadWrap>
+              <label htmlFor="file-input">
+                <img src={uploadImg} alt="upload-img" />
+              </label>
 
-            <InputUpload id="file-input" type="file" />
-          </ImgUploadWrap>
-          <div>
-            <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                name=""
-                id=""
-                placeholder="Enter item title"
-              />
-            </InputDescriptionWrap>
-            <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                name=""
-                id=""
-                placeholder="Enter about recipe"
-              />
-            </InputDescriptionWrap>
-            <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                name=""
-                id=""
-                placeholder="Category"
-                disabled
-              />
-              <SelectDescription name="categories" id="categories">
-                <option value="Breakfast">Breakfast</option>
-                <option value="Beef">Beef</option>
-                <option value="Dessert">Dessert</option>
-                <option value="Goat">Goat</option>
-                <option value="Lamb">Lamb</option>
-                <option value="Miscellaneous">Miscellaneous</option>
-              </SelectDescription>
-            </InputDescriptionWrap>
-            <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                name=""
-                id="cooking-time"
-                placeholder="Cooking time"
-                disabled
-              />
-              <SelectDescription name="cooking-time" id="cooking-time">
-                <option value="">40 min</option>
-                <option value="">30 min</option>
-                <option value="">20 min</option>
-                <option value="">15 min</option>
-                <option value="">10 min</option>
-                <option value="">5 min</option>
-              </SelectDescription>
-            </InputDescriptionWrap>
-          </div>
+              <InputUpload id="file-input" type="file" />
+            </ImgUploadWrap>
+            <div>
+              <InputDescriptionWrap>
+                <InputDescription
+                  type="text"
+                  name=""
+                  id=""
+                  placeholder="Enter item title"
+                />
+              </InputDescriptionWrap>
+              <InputDescriptionWrap>
+                <InputDescription
+                  type="text"
+                  name=""
+                  id=""
+                  placeholder="Enter about recipe"
+                />
+              </InputDescriptionWrap>
+              <InputDescriptionWrap>
+                <InputDescription
+                  type="text"
+                  name=""
+                  id=""
+                  placeholder="Category"
+                  disabled
+                />
+                <SelectDescription name="categories" id="categories">
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Beef">Beef</option>
+                  <option value="Dessert">Dessert</option>
+                  <option value="Goat">Goat</option>
+                  <option value="Lamb">Lamb</option>
+                  <option value="Miscellaneous">Miscellaneous</option>
+                </SelectDescription>
+              </InputDescriptionWrap>
+              <InputDescriptionWrap>
+                <InputDescription
+                  type="text"
+                  name=""
+                  id="cooking-time"
+                  placeholder="Cooking time"
+                  disabled
+                />
+                <SelectDescription name="cooking-time" id="cooking-time">
+                  <option value="">40 min</option>
+                  <option value="">30 min</option>
+                  <option value="">20 min</option>
+                  <option value="">15 min</option>
+                  <option value="">10 min</option>
+                  <option value="">5 min</option>
+                </SelectDescription>
+              </InputDescriptionWrap>
+            </div>
+          </Description>
           <MainWrapIngredients>
             <WrapIngredients>
               <TitleIngredients>Ingredients</TitleIngredients>
