@@ -12,6 +12,7 @@ export const ImageWrapper = styled.div`
   & img {
     width: 57px;
     height: 57px;
+    transition: ${props => props.theme.transitions.main};
     margin-right: 12px;
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
       width: 112px;
@@ -67,11 +68,13 @@ export const IngName = styled.title`
   }
 `;
 export const IngDescr = styled.p`
+  display: ${({ showFullDesc }) => (showFullDesc ? 'block' : 'none')};
   font-weight: 400;
   font-size: 8px;
   line-height: 1.38;
   letter-spacing: -0.24px;
   color: ${({ theme }) => theme.color.text};
+  transition: ${props => props.theme.transitions.main};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     overflow-y: clip;
     font-size: 24px;
@@ -138,5 +141,22 @@ export const DoneCheckbox = styled.input`
   display: none;
   &:checked + ${CustomCheckbox} svg {
     transform: translate(-50%, -50%) scale(1);
+  }
+`;
+export const IngDescrButton = styled.button`
+  background-color: transparent;
+  border: none;
+  padding: 4px;
+  border-radius: 4px;
+  background: ${({ theme }) => theme.color.accent};
+  color: ${({ theme }) => theme.color.textSecondary};
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 14px;
+  transition: ${props => props.theme.transitions.main};
+  & :focus {
+    /* text-decoration: underline; */
+    color: ${({ theme }) => theme.color.accent};
+    background: ${({ theme }) => theme.color.textSecondary};
   }
 `;
