@@ -84,15 +84,11 @@ const Categories = () => {
   };
 
   const handlePageChangeDecrement = () => {
-    if (page < totalPages) {
-      setPage(prevState => prevState + 1);
-    }
+    setPage(prevState => prevState + 1);
   };
 
   const handlePageChangeIncrement = () => {
-    if (page >= 2) {
-      setPage(prevState => prevState - 1);
-    }
+    setPage(prevState => prevState - 1);
   };
 
   return (

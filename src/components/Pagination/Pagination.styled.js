@@ -23,6 +23,7 @@ export const PaginationContainer = styled.div`
 `;
 
 export const ArrowButton = styled.button`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,32 +53,24 @@ export const PaginationList = styled.ul`
   }
 `;
 
-export const PaginationItem = styled.li`
+export const ButtonPage = styled.button`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
   width: 27px;
   height: 27px;
   border-radius: 14px;
-  background-color: ${props =>
-    props.active ? props.theme.color.bgAccentEl : 'transparent'};
-
-  & p {
-    color: ${props =>
-      props.active
-        ? props.theme.color.textRights
-        : props.theme.color.textPagination};
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-  }
-`;
-
-export const ItemText = styled.p`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.5;
+  border: none;
+  background-color: ${props =>
+    props.active ? props.theme.color.bgAccentEl : 'transparent'};
+
+  color: ${props =>
+    props.active
+      ? props.theme.color.textRights
+      : props.theme.color.textPagination};
 `;
