@@ -22,11 +22,15 @@ export const HeroContainer = styled.section`
 
 export const HeroTitle = styled.h1`
   font-weight: 400;
-  font-size: 60px;
+  font-size: 55px;
   line-height: 1;
   color: ${props => props.theme.color.bgSecondary};
   margin-bottom: 14px;
   text-align: center;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.mob}) {
+    font-size: 60px;
+  }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     font-weight: 700;
