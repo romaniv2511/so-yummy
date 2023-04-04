@@ -1,9 +1,15 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import bgMenuMob from '../../img/bg-menu-mob.png';
 import bgMenuMob2x from '../../img/bg-menu-mob@2x.png';
 import bgMenuTablet from '../../img/bg-menu-tablet.png';
 import bgMenuTablet2x from '../../img/bg-menu-tablet@2x.png';
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    overflow: ${({ isOpen }) => (isOpen ? 'hidden' : 'auto')};
+  }
+`;
 
 export const HeaderBox = styled.header`
   position: absolute;
@@ -63,12 +69,11 @@ export const Modal = styled.div`
   height: 100vh;
   padding: 18px 16px;
   display: flex;
-  transform: ${p =>
-    p.isOpen ? 'translate3d(0, 0, 0)' : 'translate3d(0, -100vh, 0)'};
-  transition: transform 0.8s cubic-bezier(0, 0, 0.58, 1);
   flex-direction: column;
   justify-content: space-between;
   align-items: space-between;
+  transform: ${p => (p.isOpen ? 'translateY(0)' : 'translateY(-100vh)')};
+  transition: transform 0.8s cubic-bezier(0, 0, 0.58, 1);
   background-color: rgba(235, 243, 212, 1);
   background-image: url(${bgMenuMob});
   background-repeat: no-repeat;

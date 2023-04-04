@@ -16,14 +16,14 @@ const ErrorPage = () => {
             srcSet={`
               ${imgDeskX2} 2880w,
               ${imgDesk} 1440w,
-              ${imgTabX2} 1356w,
-              ${imgTab} 678w,
+              ${imgTabX2} 1536w,
+              ${imgTab} 768w,
               ${imgMobX2} 750w,
               ${imgMob} 375w,
             `}
             sizes="
-              (max-width: 677px) 375px,
-              (max-width: 1439px) 678px,
+              (max-width: 767px) 375px,
+              (max-width: 1439px) 768px,
               1440px
             "
             src={imgMob}
