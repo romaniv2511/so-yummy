@@ -35,6 +35,9 @@ export const SubscribeForm = () => {
       throw new Error(error.response.status);
     }
   };
+  const getDisabledBtn = (errors, values) => {
+    return !values.email || Boolean(errors.email);
+  };
   return (
     <>
       <Formik
@@ -93,7 +96,12 @@ export const SubscribeForm = () => {
             {props.errors.email && props.touched.email && (
               <div style={{ color: 'red' }}>{props.errors.email}</div>
             )}
-            <FormBtn type="submit">Subcribe</FormBtn>
+            <FormBtn
+              type="submit"
+              disabled={getDisabledBtn(props.errors, props.values)}
+            >
+              Subcribe
+            </FormBtn>
           </Form>
         )}
       </Formik>

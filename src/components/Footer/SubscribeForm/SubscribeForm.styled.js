@@ -128,6 +128,13 @@ export const FormBtn = styled.button`
     width: 100%;
     line-height: 1.13;
   }
+  :hover:not([disabled]),
+  :focus:not([disabled]) {
+    color: ${({ theme }) => theme.color.textRights};
+  }
+  &[disabled] {
+    opacity: 0.7;
+  }
 `;
 export const FormWrapText = styled.div`
   margin-bottom: 28px;
