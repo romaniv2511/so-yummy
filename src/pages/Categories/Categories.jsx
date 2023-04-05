@@ -1,25 +1,17 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { CategoryDishItem } from 'components/CategoryDishItem/CategoryDishItem';
-import { ErrorMessage } from 'components/PreviewCategories/PreviewCategories.styled';
 import { Loader } from 'components/Loader/Loader';
 import {
-  TitleCategory,
   ButtonsList,
   ButtonCategory,
-  RecipesList,
   ScrollableContainer,
-  ErrorImage,
 } from './Categories.styled';
 import { PagesWrapper } from 'components/PagesWrapper/PagesWrapper';
-import imageErrorMob from '../../img/search-any-mob.png';
-import imageErrorMobRetina from '../../img/search-any-mob@2x.png';
-import imageErrorTab from '../../img/search-any-tablet.png';
-import imageErrorTabRetina from '../../img/search-any-tablet@2x.png';
-import imageErrorDesk from '../../img/search-any-desktop.png';
-import imageErrorDeskRetina from '../../img/search-any-desktop@2x.png';
 import { Pagination } from 'components/Pagination/Pagination';
+import { MainPageTitle } from 'components/MainPageTitle/MainPageTitle';
+import { ErrorImageContainer } from 'components/ErrorImageContainer/ErrorImageContainer';
+import { RecipesList } from 'components/RecipesList/RecipesList';
 
 const Categories = () => {
   const { categoryName } = useParams();
@@ -29,6 +21,7 @@ const Categories = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const activeRef = useRef();
 
   const searchCategory = async category => {
     setLoading(true);
@@ -64,7 +57,13 @@ const Categories = () => {
   };
 
   useEffect(() => {
-    searchMenuList();
+    searchMenuList().then(() => {
+      const elList = activeRef.current;
+      const el = elList.querySelector('.active');
+      if (el) {
+        el.scrollIntoView({ block: 'start' });
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -94,65 +93,38 @@ const Categories = () => {
   return (
     <main>
       <PagesWrapper>
-        <TitleCategory>Categories</TitleCategory>
+        <MainPageTitle title="Categories" />
 
         <ScrollableContainer
-          options={{ suppressScrollX: false, suppressScrollY: true }}
+          options={{
+            suppressScrollX: false,
+            suppressScrollY: true,
+          }}
         >
-          <ButtonsList>
+          <ButtonsList ref={activeRef}>
             {menuList.map(item => {
               return (
-                <ButtonCategory
-                  to={`/categories/${item}`}
-                  key={item}
-                  onClick={() => {
-                    setCategory(item);
-                    setPage(1);
-                  }}
-                >
-                  {item}
-                </ButtonCategory>
+                <li key={item}>
+                  <ButtonCategory
+                    to={`/categories/${item}`}
+                    onClick={() => {
+                      setCategory(item);
+                      setPage(1);
+                    }}
+                  >
+                    {item}
+                  </ButtonCategory>
+                </li>
               );
             })}
           </ButtonsList>
         </ScrollableContainer>
 
         {error && !loading && (
-          <>
-            <ErrorImage
-              srcSet={`
-              ${imageErrorDeskRetina} 2880w,
-              ${imageErrorDesk} 1440w,
-              ${imageErrorTabRetina} 1536w,
-              ${imageErrorTab} 768w,
-              ${imageErrorMobRetina} 750w,
-              ${imageErrorMob} 375w,
-            `}
-              sizes="
-              (max-width: 767px) 208px,
-              (min-width: 768px) 350px, 100vw
-            "
-              src={imageErrorMob}
-              alt="doesn't find"
-            />
-            <ErrorMessage>Doesn't find any recipes...</ErrorMessage>
-          </>
+          <ErrorImageContainer title="Doesn't find any recipes..." />
         )}
         {!error && loading && <Loader />}
-        {renderList.length > 0 && (
-          <RecipesList>
-            {renderList.map(({ _id, thumb, title }) => {
-              return (
-                <CategoryDishItem
-                  key={_id}
-                  id={_id}
-                  thumb={thumb}
-                  title={title}
-                />
-              );
-            })}
-          </RecipesList>
-        )}
+        {renderList.length > 0 && <RecipesList list={renderList} />}
         {totalPages > 1 && (
           <Pagination
             totalPages={totalPages}

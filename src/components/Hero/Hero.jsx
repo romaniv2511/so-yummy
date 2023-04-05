@@ -7,7 +7,7 @@ import {
 } from './Hero.styled';
 
 import { ChooseYourBreakfast } from 'components/ChooseYourBreakfast/ChooseYourBreakfast';
-import { Search } from 'components/Search/Search';
+import { SearchForm } from 'components/SearchForm/SearchForm';
 
 const Hero = () => {
   return (
@@ -20,7 +20,7 @@ const Hero = () => {
           "What to cook?" is not only a recipe app, it is, in fact, your
           cookbook. You can add your own recipes to save them for the future.
         </BottomText>
-        <Search />
+        <SearchForm />
         <ChooseYourBreakfast />
       </Container>
     </HeroContainer>

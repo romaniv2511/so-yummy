@@ -3,7 +3,7 @@ import {
   FieldContainer,
   ButtonSearch,
   ContainerError,
-} from './Search.styled';
+} from './SearchForm.styled';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ const SearchSchema = Yup.object().shape({
     .required('You must enter some text'),
 });
 
-export const Search = () => {
+export const SearchForm = () => {
   const navigate = useNavigate();
 
   const onFormSubmit = (values, actions) => {
