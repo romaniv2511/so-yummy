@@ -94,9 +94,9 @@ export const SubscribeForm = () => {
                 <use href={`${sprite}#email`}></use>
               </svg>
             </FormWrap>
-            {props.errors.email && props.touched.email && (
+            {/* {props.errors.email && props.touched.email && (
               <ErrorEmail>Enter a valid Email</ErrorEmail>
-            )}
+            )} */}
             <FormBtn
               type="submit"
               disabled={getDisabledBtn(props.errors, props.values)}
