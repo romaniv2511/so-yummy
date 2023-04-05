@@ -39,30 +39,11 @@ export const ScrollableContainer = styled(PerfectScrollbar)`
   }
 `;
 
-export const TitleCategory = styled.h2`
-  font-weight: 600;
-  font-size: 28px;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  margin-bottom: 60px;
-  color: ${props => props.theme.color.title};
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    font-size: 32px;
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
-    margin-bottom: 110px;
-    font-size: 44px;
-  }
-`;
-
-export const ButtonsList = styled.div`
+export const ButtonsList = styled.ul`
   display: flex;
   flex-direction: row;
   width: 1160px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 0 30px 30px 30px;
 
   gap: 28px;
   border-bottom: 1px solid #e0e0e0;
@@ -103,38 +84,5 @@ export const ButtonCategory = styled(NavLink)`
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
-  }
-`;
-
-export const RecipesList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  margin-bottom: 40px;
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 32px;
-    margin-bottom: 50px;
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
-    row-gap: 100px;
-    column-gap: 13px;
-  }
-`;
-
-export const ErrorImage = styled.img`
-  display: block;
-  margin-bottom: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 208px;
-  height: 133px;
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    width: 350px;
-    height: 225px;
   }
 `;
