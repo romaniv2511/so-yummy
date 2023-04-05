@@ -1,5 +1,6 @@
 import { Container } from '../../components/Container/Container';
 import { Logo, Title, Description } from './WelcomePage.styled';
+import { Link } from 'react-router-dom';
 
 const WelcomePage = () => {
   return (
@@ -11,6 +12,9 @@ const WelcomePage = () => {
         to be your very own digital cookbook. You can easily save and retrieve
         your own recipes at any time.
       </Description>
+      <Link to={'/register'}>Register</Link>
+      <br/>
+      <Link to={"/signin"}>Sign In</Link>
     </Container>
   );
 };

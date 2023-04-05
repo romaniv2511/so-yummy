@@ -1,13 +1,13 @@
-import { Helmet } from 'react-helmet-async';
-import { LoginPageWrap } from './Login.styled';
+// import { Helmet } from 'react-helmet-async';
+import { LoginPageWrap } from './SignIn.styled';
 import { LoginForm } from 'components/forms/LogInForm/LogInForm';
 
 export default function Login() {
   return (
     <LoginPageWrap>
-      <Helmet>
+      {/*<Helmet>*/}
         <title>Login</title>
-      </Helmet>
+      {/*</Helmet>*/}
       <h2>
         Login form
         <br />
