@@ -59,7 +59,7 @@ export const ButtonPage = styled.button`
   justify-content: center;
   align-items: center;
   padding: 0;
-  width: 27px;
+  width: ${props => (props.active ? '27px' : '14px')};
   height: 27px;
   border-radius: 14px;
   font-weight: 500;
