@@ -2,8 +2,9 @@ import { RecipePageHero } from 'components/RecipePage/RecipePageHero/RecipePageH
 import { RecipePreparation } from 'components/RecipePage/RecipePreparation/RecipePreparation';
 import { RecipeInngredientsItem } from 'components/RecipePage/RecipeInngredientsItem/RecipeInngredientsItem';
 import axios from 'axios';
-import { ErrorImage } from '../Categories/Categories.styled';
+import { ErrorImageContainer } from 'components/ErrorImageContainer/ErrorImageContainer';
 import { useEffect, useState } from 'react';
+import { Loader } from 'components/Loader/Loader';
 import {
   ContainerRecipe,
   TableRecipe,
@@ -11,13 +12,13 @@ import {
 } from './Recipe.styled';
 import { Container } from 'components/Container/Container';
 import { useParams } from 'react-router-dom';
-import { ErrorMessage } from 'components/PreviewCategories/PreviewCategories.styled';
-import imageErrorMob from '../../img/search-any-mob.png';
-import imageErrorMobRetina from '../../img/search-any-mob@2x.png';
-import imageErrorTab from '../../img/search-any-tablet.png';
-import imageErrorTabRetina from '../../img/search-any-tablet@2x.png';
-import imageErrorDesk from '../../img/search-any-desktop.png';
-import imageErrorDeskRetina from '../../img/search-any-desktop@2x.png';
+// import { ErrorMessage } from 'components/PreviewCategories/PreviewCategories.styled';
+// import imageErrorMob from '../../img/search-any-mob.png';
+// import imageErrorMobRetina from '../../img/search-any-mob@2x.png';
+// import imageErrorTab from '../../img/search-any-tablet.png';
+// import imageErrorTabRetina from '../../img/search-any-tablet@2x.png';
+// import imageErrorDesk from '../../img/search-any-desktop.png';
+// import imageErrorDeskRetina from '../../img/search-any-desktop@2x.png';
 import { ContainerError } from './Recipe.styled';
 
 const Recipe = () => {
@@ -60,26 +61,10 @@ const Recipe = () => {
     <ContainerRecipe>
       {error && !loading && (
         <ContainerError>
-          <ErrorImage
-            srcSet={`
-              ${imageErrorDeskRetina} 2880w,
-              ${imageErrorDesk} 1440w,
-              ${imageErrorTabRetina} 1536w,
-              ${imageErrorTab} 768w,
-              ${imageErrorMobRetina} 750w,
-              ${imageErrorMob} 375w,
-            `}
-            sizes="
-              (max-width: 767px) 208px,
-              (min-width: 768px) 350px, 100vw
-            "
-            src={imageErrorMob}
-            alt="doesn't find"
-          />
-          <ErrorMessage>Doesn't find any recipes...</ErrorMessage>
+          <ErrorImageContainer title="Doesn't find any recipes..." />
         </ContainerError>
       )}
-      {recipe && !error && !loading && (
+      {recipe && !error && !loading && <Loader /> && (
         <>
           <RecipePageHero
             title={recipe.title}
