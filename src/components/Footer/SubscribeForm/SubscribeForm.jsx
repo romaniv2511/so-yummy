@@ -7,20 +7,16 @@ import {
   FormBtn,
   FormWrap,
   FormWrapText,
-  ErrorEmail,
+  // ErrorEmail,
 } from './SubscribeForm.styled';
 import sprite from '../../../img/sprite.svg';
 import { toast } from 'react-toastify';
 import MediaQuery from 'react-responsive';
 
 const LoginSchema = Yup.object().shape({
-  email: Yup.mixed().test({
-    name: 'email',
-    params: { a: 'test', b: 'qwe' },
-    test: value => {
-      return /\w+@\w+\.\w{1,5}/.test(value);
-    },
-  }),
+  email: Yup.mixed().test('email', 'Invalid email address', value =>
+    /\w+@\w+\.\w{1,5}/.test(value)
+  ),
 });
 
 export const SubscribeForm = () => {
