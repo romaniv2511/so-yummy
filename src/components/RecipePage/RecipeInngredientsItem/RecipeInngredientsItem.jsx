@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   RecipeItem,
   ImageWrapper,
@@ -8,25 +9,34 @@ import {
   IngTextContainer,
   IngName,
   IngDescr,
+  IngDescrButton,
 } from './RecipeInngredientsItem.styled';
 import sprite from '../../../img/sprite.svg';
 import MediaQuery from 'react-responsive';
 
 export const RecipeInngredientsItem = ({ ttl, thb, desc, measure }) => {
+  const [showFullDesc, setShowFullDesc] = useState(false);
+
+  const handleDescToggle = () => {
+    setShowFullDesc(!showFullDesc);
+  };
   return (
     <>
       <RecipeItem>
+        <ImageWrapper>
+          <img src={thb} alt={ttl} />
+        </ImageWrapper>
+        <IngTextContainer>
+          <IngName>{ttl}</IngName>
+          <MediaQuery minWidth={768}>
+            <IngDescrButton onClick={handleDescToggle}>
+              {showFullDesc ? 'Collapse' : 'Description'}
+            </IngDescrButton>
+            <IngDescr showFullDesc={showFullDesc}>{desc}</IngDescr>
+          </MediaQuery>
+        </IngTextContainer>
+        <IngNumber>{measure}</IngNumber>
         <CheckLabel>
-          <ImageWrapper>
-            <img src={thb} alt={ttl} />
-          </ImageWrapper>
-          <IngTextContainer>
-            <IngName>{ttl}</IngName>
-            <MediaQuery minWidth={768}>
-              <IngDescr>{desc}</IngDescr>
-            </MediaQuery>
-          </IngTextContainer>
-          <IngNumber>{measure}</IngNumber>
           <DoneCheckbox type="checkbox" />
           <CustomCheckbox>
             <svg>
