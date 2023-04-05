@@ -4,8 +4,6 @@ import { IoCloseOutline } from 'react-icons/io5';
 import uploadImg from 'img/add-recipe-placeholder.png';
 import {
   InputUpload,
-  Title,
-  Wrap,
   Form,
   ImgUploadWrap,
   InputDescriptionWrap,
@@ -39,8 +37,7 @@ export const AddRecipeForm = () => {
   };
 
   return (
-    <Wrap>
-      <Title>Add recipe</Title>
+    <div>
       <Form>
         <Description>
           <ImgUploadWrap>
@@ -153,6 +150,6 @@ export const AddRecipeForm = () => {
           <ButtonAdd type="submit">Add</ButtonAdd>
         </WrapButtonAdd>
       </Form>
-    </Wrap>
+    </div>
   );
 };

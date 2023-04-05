@@ -1,21 +1,6 @@
 import styled from 'styled-components';
 // import { IoCloseOutline } from 'react-icons/io5';
 
-export const Wrap = styled.div`
-  padding-top: 50px;
-  padding-bottom: 72px;
-`;
-
-export const Title = styled.h2`
-  margin-bottom: 72px;
-  color: ${({ theme }) => theme.color.title};
-  font-weight: ${({ theme }) => theme.fontWeights.l};
-  font-size: 28px;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-feature-settings: 'liga' off;
-`;
-
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
