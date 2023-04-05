@@ -47,9 +47,6 @@ export const InputUpload = styled.input`
 export const InputDescriptionWrap = styled.div`
   position: relative;
   margin-top: 24px;
-  &: first-child {
-    margin-top: 0;
-  }
 `;
 
 export const InputDescription = styled.input`
@@ -59,6 +56,12 @@ export const InputDescription = styled.input`
   border: none;
   border-bottom: 1px solid grey;
   background: transparent;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    font-weight: ${({ theme }) => theme.fontWeights.s};
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
 `;
 
 export const SelectDescription = styled.select`
@@ -71,9 +74,11 @@ export const SelectDescription = styled.select`
 
 export const MainWrapIngredients = styled.div`
   margin-top: 44px;
+  margin-bottom: 18px;
   width: 100%;
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     margin-top: 100px;
+    margin-bottom: 32px;
   }
 `;
 
@@ -89,6 +94,11 @@ export const WrapIngredients = styled.div`
 export const TitleIngredients = styled.h2`
   color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.fontWeights.l};
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.24px;
+  }
 `;
 
 export const InputIngredientsWrap = styled.div`
@@ -100,6 +110,7 @@ export const InputIngredientsWrap = styled.div`
 
 export const InputIngredients = styled.input`
   margin-right: 14px;
+  max-width: 194px;
   height: 53px;
   padding-left: 16px;
   border: none;
@@ -107,8 +118,10 @@ export const InputIngredients = styled.input`
   border-radius: 6px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     margin-right: 32px;
+    max-width: none;
     width: 398px;
     height: 59px;
+    padding-left: 18px;
   }
 `;
 
@@ -118,7 +131,9 @@ export const SelectIngredients = styled.select`
   background: ${({ theme }) => theme.color.gbCancel};
   border-radius: 6px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    width: 97px;
     height: 59px;
+    text-align: center;
   }
 `;
 
@@ -127,6 +142,10 @@ export const SelectIngredients = styled.select`
 export const WrapPreparation = styled.div`
   margin-top: 44px;
   width: 100%;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    margin-top: 100px;
+    margin-bottom: 0;
+  }
 `;
 
 export const TitlePreparation = styled.h2`
@@ -134,10 +153,15 @@ export const TitlePreparation = styled.h2`
   color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.fontWeights.l};
   text-align: start;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    margin-bottom: 32px;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.24px;
+  }
 `;
 
 export const TextAreaPreparation = styled.textarea`
-  margin-bottom: 18px;
   padding-top: 10px;
   padding-left: 16px;
   width: 100%;
