@@ -18,6 +18,7 @@ export const PreviewCategories = () => {
   const [dishes, setDishes] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  let dishesList;
 
   const isDesktop = useMediaQuery({
     query: '(min-width: 1440px)',
@@ -68,7 +69,6 @@ export const PreviewCategories = () => {
         {dishes.length > 0 && (
           <MainList>
             {dishes.map(({ _id, documents }) => {
-              let dishesList;
               if (isMobile) {
                 dishesList = [documents[0]];
               }
@@ -81,18 +81,20 @@ export const PreviewCategories = () => {
               return (
                 <li key={_id}>
                   <TitleList>{_id}</TitleList>
-                  <CategoriesList>
-                    {dishesList.map(({ _id, thumb, title }) => {
-                      return (
-                        <CategoryDishItem
-                          key={_id}
-                          thumb={thumb}
-                          title={title}
-                          id={_id}
-                        />
-                      );
-                    })}
-                  </CategoriesList>
+                  {dishesList.length > 0 && (
+                    <CategoriesList>
+                      {dishesList.map(({ _id, thumb, title }) => {
+                        return (
+                          <CategoryDishItem
+                            key={_id}
+                            thumb={thumb}
+                            title={title}
+                            id={_id}
+                          />
+                        );
+                      })}
+                    </CategoriesList>
+                  )}
                   <Link to={`/categories/${_id}`}>See all</Link>
                 </li>
               );

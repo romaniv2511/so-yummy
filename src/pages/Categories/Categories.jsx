@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { CategoryDishItem } from 'components/CategoryDishItem/CategoryDishItem';
 import { ErrorMessage } from 'components/PreviewCategories/PreviewCategories.styled';
@@ -29,6 +29,7 @@ const Categories = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const listItemRef = useRef();
 
   const searchCategory = async category => {
     setLoading(true);
@@ -71,6 +72,11 @@ const Categories = () => {
     searchCategory(category);
   }, [category]);
 
+  const handleScroll = () => {
+    const listItem = listItemRef.current;
+    listItem.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const totalPages =
     categoriesList.length > 0 ? Math.ceil(categoriesList.length / 8) : 0;
 
@@ -98,6 +104,7 @@ const Categories = () => {
 
         <ScrollableContainer
           options={{ suppressScrollX: false, suppressScrollY: true }}
+          onScrollX={handleScroll}
         >
           <ButtonsList>
             {menuList.map(item => {
@@ -105,6 +112,7 @@ const Categories = () => {
                 <ButtonCategory
                   to={`/categories/${item}`}
                   key={item}
+                  ref={listItemRef}
                   onClick={() => {
                     setCategory(item);
                     setPage(1);

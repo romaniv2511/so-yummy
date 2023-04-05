@@ -20,10 +20,10 @@ export const Pagination = ({
   }
 
   let viewPages;
-  if (totalPages > 4) {
-    viewPages = pages.slice(currentPage - 1, currentPage + 3);
-    if (currentPage + 3 >= totalPages) {
-      viewPages = pages.slice(totalPages - 4, totalPages);
+  if (totalPages > 5) {
+    viewPages = pages.slice(currentPage - 1, currentPage + 4);
+    if (currentPage + 4 >= totalPages) {
+      viewPages = pages.slice(totalPages - 5, totalPages);
     }
   } else {
     viewPages = pages;
