@@ -126,6 +126,7 @@ export const CustomCheckbox = styled.span`
   background: transparent;
   border: 1px solid rgba(126, 126, 126, 0.5);
   border-radius: 4px;
+  transition: ${({ theme }) => theme.transitions.main};
   &:hover {
     cursor: pointer;
   }
@@ -145,6 +146,7 @@ export const CustomCheckbox = styled.span`
     position: absolute;
     left: 50%;
     top: 50%;
+    transition: ${({ theme }) => theme.transitions.main};
     transform: translate(-50%, -50%) scale(0);
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
       width: 18px;
@@ -154,6 +156,7 @@ export const CustomCheckbox = styled.span`
 `;
 export const DoneCheckbox = styled.input`
   display: none;
+  transition: ${({ theme }) => theme.transitions.main};
   &:hover {
     cursor: pointer;
   }
