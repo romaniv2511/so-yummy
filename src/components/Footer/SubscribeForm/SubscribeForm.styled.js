@@ -19,6 +19,25 @@ export const Form = styled.form`
     flex-direction: column;
     width: 339px;
   }
+  .error {
+    position: absolute;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 21px;
+    color: #e74a3b;
+    top: -20px;
+    left: 0;
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+      font-size: 14px;
+      top: -23px;
+      left: 103px;
+    }
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+      top: 82px;
+      left: 0;
+    }
+  }
 `;
 export const FormWrap = styled.div`
   position: relative;
@@ -154,4 +173,13 @@ export const FormWrapText = styled.div`
     letter-spacing: -0.02em;
     color: ${({ theme }) => theme.color.textSecondary};
   }
+`;
+export const ErrorEmail = styled.p`
+  color: #e74a3b;
+  margin-top: 8px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
 `;

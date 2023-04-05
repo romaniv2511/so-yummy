@@ -7,6 +7,7 @@ import {
   FormBtn,
   FormWrap,
   FormWrapText,
+  ErrorEmail,
 } from './SubscribeForm.styled';
 import sprite from '../../../img/sprite.svg';
 import { toast } from 'react-toastify';
@@ -94,7 +95,7 @@ export const SubscribeForm = () => {
               </svg>
             </FormWrap>
             {props.errors.email && props.touched.email && (
-              <div style={{ color: 'red' }}>{props.errors.email}</div>
+              <ErrorEmail>Enter a valid Email</ErrorEmail>
             )}
             <FormBtn
               type="submit"
