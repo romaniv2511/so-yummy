@@ -47,9 +47,6 @@ export const InputUpload = styled.input`
 export const InputDescriptionWrap = styled.div`
   position: relative;
   margin-top: 24px;
-  &: first-child {
-    margin-top: 0;
-  }
 `;
 
 export const InputDescription = styled.input`
@@ -100,6 +97,7 @@ export const InputIngredientsWrap = styled.div`
 
 export const InputIngredients = styled.input`
   margin-right: 14px;
+  max-width: 194px;
   height: 53px;
   padding-left: 16px;
   border: none;
