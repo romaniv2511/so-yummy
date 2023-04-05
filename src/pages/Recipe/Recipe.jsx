@@ -12,13 +12,6 @@ import {
 } from './Recipe.styled';
 import { Container } from 'components/Container/Container';
 import { useParams } from 'react-router-dom';
-// import { ErrorMessage } from 'components/PreviewCategories/PreviewCategories.styled';
-// import imageErrorMob from '../../img/search-any-mob.png';
-// import imageErrorMobRetina from '../../img/search-any-mob@2x.png';
-// import imageErrorTab from '../../img/search-any-tablet.png';
-// import imageErrorTabRetina from '../../img/search-any-tablet@2x.png';
-// import imageErrorDesk from '../../img/search-any-desktop.png';
-// import imageErrorDeskRetina from '../../img/search-any-desktop@2x.png';
 import { ContainerError } from './Recipe.styled';
 
 const Recipe = () => {
