@@ -132,10 +132,6 @@ export const FormBtn = styled.button`
   text-align: center;
   color: ${({ theme }) => theme.color.textSecondary};
   transition: ${({ theme }) => theme.transitions.main};
-  :hover,
-  :focus {
-    color: ${({ theme }) => theme.color.textRights};
-  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     width: 171px;
     height: 50px;

@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import {
@@ -7,16 +7,19 @@ import {
   FormBtn,
   FormWrap,
   FormWrapText,
-  // ErrorEmail,
 } from './SubscribeForm.styled';
 import sprite from '../../../img/sprite.svg';
 import { toast } from 'react-toastify';
 import MediaQuery from 'react-responsive';
 
 const LoginSchema = Yup.object().shape({
-  email: Yup.mixed().test('email', 'Invalid email address', value =>
-    /\w+@\w+\.\w{1,5}/.test(value)
-  ),
+  email: Yup.mixed().test({
+    name: 'email',
+    params: { a: 'test', b: 'qwe' },
+    test: value => {
+      return /\w+@\w+\.\w{1,5}/.test(value);
+    },
+  }),
 });
 
 export const SubscribeForm = () => {
@@ -32,9 +35,8 @@ export const SubscribeForm = () => {
       throw new Error(error.response.status);
     }
   };
-  const getDisabledBtn = (errors, values) => {
-    return !values.email || Boolean(errors.email);
-  };
+  const getDisabledBtn = (errors, values) => !values.email || errors.email;
+
   return (
     <>
       <Formik
@@ -90,9 +92,9 @@ export const SubscribeForm = () => {
                 <use href={`${sprite}#email`}></use>
               </svg>
             </FormWrap>
-            {/* {props.errors.email && props.touched.email && (
-              <ErrorEmail>Enter a valid Email</ErrorEmail>
-            )} */}
+            {props.errors.email && props.values.email && (
+              <ErrorMessage className="error" name="email" component="div" />
+            )}
             <FormBtn
               type="submit"
               disabled={getDisabledBtn(props.errors, props.values)}
