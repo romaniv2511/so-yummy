@@ -10,14 +10,9 @@ import {
   ContainerItemNumber,
   BtnItemRemove,
 } from './IngredientsShoppingList.styled';
-import { ErrorImageContainer } from 'components/ErrorImageContainer/ErrorImageContainer';
-import { ContainerError } from 'pages/Recipe/Recipe.styled';
 export const IngredientsShoppingList = () => {
   return (
     <>
-      <ContainerError>
-        <ErrorImageContainer title="Doesn't find shopping list..." />
-      </ContainerError>
       <TableList>
         <TableItem key="123654789">
           <TableNameTitle>Products</TableNameTitle>
