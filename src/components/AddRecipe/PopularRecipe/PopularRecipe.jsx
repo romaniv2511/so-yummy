@@ -49,10 +49,7 @@ export const PopularRecipe = () => {
         <ul>
           {recipes.map(({ _id, title, description, preview }) => (
             <ListItemPopular key={_id}>
-              <ListLinkPopular
-                to={`/popular-recipes/${_id}`}
-                state={{ from: location }}
-              >
+              <ListLinkPopular to={`/recipe/${_id}`} state={{ from: location }}>
                 <ItemImg src={preview} alt="recipe-appearance" />
                 <ItemWrapper>
                   <ItemTitle>{title}</ItemTitle>
