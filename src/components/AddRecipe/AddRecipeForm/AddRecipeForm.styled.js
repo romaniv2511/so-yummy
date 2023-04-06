@@ -1,26 +1,13 @@
 import styled from 'styled-components';
 // import { IoCloseOutline } from 'react-icons/io5';
 
-export const Wrap = styled.div`
-  padding-top: 50px;
-  padding-bottom: 72px;
-`;
-
-export const Title = styled.h2`
-  margin-bottom: 72px;
-  color: ${({ theme }) => theme.color.title};
-  font-weight: ${({ theme }) => theme.fontWeights.l};
-  font-size: 28px;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-feature-settings: 'liga' off;
-`;
-
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    align-items: start;
+    text-align: start;
+  }
 `;
 
 export const Description = styled.div`
@@ -28,6 +15,9 @@ export const Description = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    gap: 50px;
   }
 `;
 
@@ -44,9 +34,15 @@ export const InputUpload = styled.input`
   height: 0;
 `;
 
+export const InputDescriptionMainWrap = styled.div`
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    margin-top: 0;
+  }
+`;
+
 export const InputDescriptionWrap = styled.div`
   position: relative;
-  margin-top: 24px;
+  margin-bottom: 24px;
 `;
 
 export const InputDescription = styled.input`
@@ -54,7 +50,7 @@ export const InputDescription = styled.input`
   width: 343px;
   height: 43px;
   border: none;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgba(126, 126, 126, 0.5);
   background: transparent;
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     font-weight: ${({ theme }) => theme.fontWeights.s};
@@ -80,6 +76,9 @@ export const MainWrapIngredients = styled.div`
     margin-top: 100px;
     margin-bottom: 32px;
   }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    max-width: 609px;
+  }
 `;
 
 export const WrapIngredients = styled.div`
@@ -91,7 +90,7 @@ export const WrapIngredients = styled.div`
   }
 `;
 
-export const TitleIngredients = styled.h2`
+export const TitleIngredients = styled.h3`
   color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.fontWeights.l};
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
@@ -145,10 +144,11 @@ export const WrapPreparation = styled.div`
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     margin-top: 100px;
     margin-bottom: 0;
+    margin-right: auto;
   }
 `;
 
-export const TitlePreparation = styled.h2`
+export const TitlePreparation = styled.h3`
   margin-bottom: 24px;
   color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.fontWeights.l};
@@ -165,6 +165,9 @@ export const TextAreaPreparation = styled.textarea`
   padding-top: 10px;
   padding-left: 16px;
   width: 100%;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    max-width: 505px;
+  }
 `;
 
 export const WrapButtonAdd = styled.div`

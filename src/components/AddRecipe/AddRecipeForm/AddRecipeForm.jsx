@@ -4,8 +4,6 @@ import { IoCloseOutline } from 'react-icons/io5';
 import uploadImg from 'img/add-recipe-placeholder.png';
 import {
   InputUpload,
-  Title,
-  Wrap,
   Form,
   ImgUploadWrap,
   InputDescriptionWrap,
@@ -23,6 +21,7 @@ import {
   ButtonAdd,
   WrapButtonAdd,
   Description,
+  InputDescriptionMainWrap,
 } from './AddRecipeForm.styled';
 
 import { Counter } from '../Counter/Counter';
@@ -39,8 +38,7 @@ export const AddRecipeForm = () => {
   };
 
   return (
-    <Wrap>
-      <Title>Add recipe</Title>
+    <div>
       <Form>
         <Description>
           <ImgUploadWrap>
@@ -50,7 +48,7 @@ export const AddRecipeForm = () => {
 
             <InputUpload id="file-input" type="file" />
           </ImgUploadWrap>
-          <div>
+          <InputDescriptionMainWrap>
             <InputDescriptionWrap>
               <InputDescription
                 type="text"
@@ -101,7 +99,7 @@ export const AddRecipeForm = () => {
                 <option value="">5 min</option>
               </SelectDescription>
             </InputDescriptionWrap>
-          </div>
+          </InputDescriptionMainWrap>
         </Description>
         <MainWrapIngredients>
           <WrapIngredients>
@@ -153,6 +151,6 @@ export const AddRecipeForm = () => {
           <ButtonAdd type="submit">Add</ButtonAdd>
         </WrapButtonAdd>
       </Form>
-    </Wrap>
+    </div>
   );
 };
