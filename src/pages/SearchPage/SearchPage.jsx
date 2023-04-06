@@ -26,6 +26,7 @@ const SearchPage = () => {
       searchText !== '' ? { [valueName]: searchText.searchText } : {};
     setSearchParams(nextParams);
     setSearchList([]);
+    setPage(1);
     actions.resetForm({ values: { searchText: '' } });
   };
 
@@ -36,7 +37,6 @@ const SearchPage = () => {
   const getSearchList = async (categoryValue, categoryName, page = 1) => {
     setLoading(true);
 
-    console.log(categoryValue, categoryName, page);
     try {
       const response = await axios.get(
         `https://soyummy-tw3y.onrender.com/api/v1//search?page=${page}&limit=20&query=${categoryValue}&type=${categoryName}`
@@ -54,7 +54,18 @@ const SearchPage = () => {
     }
   };
 
-  const totalPages = 8;
+  //для пагинации с запросом по страницам
+  //добавляем состояние  const [page, setPage] = useState(1);
+
+  const totalPages = 1; // высчитываем количество страниц и вставляем элемент
+  // <Pagination
+  //   totalPages={totalPages}
+  //   currentPage={page}
+  //   onSelectPage={handlePageChange}
+  //   onArrowLeftClick={handlePageChangeDecrement}
+  //   onArrowRightClick={handlePageChangeIncrement}
+  // />
+  //копируем функции ниже
 
   const handlePageChange = id => {
     setPage(id);
@@ -68,13 +79,13 @@ const SearchPage = () => {
     setPage(prevState => prevState - 1);
   };
 
+  //---------------------------------//
+
   useEffect(() => {
     if (value === '' || selectValue === '') return;
     getSearchList(value, selectValue, page);
   }, [value, selectValue, page]);
 
-  console.log('state', state);
-  console.log('searchList', searchList);
   return (
     <PagesWrapper>
       <MainPageTitle title="Search" />
