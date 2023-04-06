@@ -77,6 +77,9 @@ export const FormInput = styled.input`
   border: 1px solid ${({ theme }) => theme.color.footerInput};
   outline: transparent;
   transition: ${({ theme }) => theme.transitions.main};
+  :-webkit-autofill {
+    transition: background-color 250s linear, color 250s linear;
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     width: 259px;
     height: 50px;

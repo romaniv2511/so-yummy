@@ -15,7 +15,6 @@ import MediaQuery from 'react-responsive';
 const LoginSchema = Yup.object().shape({
   email: Yup.mixed().test({
     name: 'email',
-    params: { a: 'test', b: 'qwe' },
     test: value => {
       return /\w+@\w+\.\w{1,5}/.test(value);
     },
@@ -35,27 +34,27 @@ export const SubscribeForm = () => {
       throw new Error(error.response.status);
     }
   };
-  const getDisabledBtn = (errors, values) => !values.email || errors.email;
+  const getBtn = (errors, values) => !values.email || errors.email;
 
   return (
     <>
       <Formik
         initialValues={{ email: '' }}
         validationSchema={LoginSchema}
-        onSubmit={(values, actions) => {
-          subscribeEmail(values)
-            .then(data => {
-              toast.success('Check your email');
-              actions.resetForm();
-            })
-            .catch(error => {
-              if (error.message === '409') {
-                toast.warning('You have already subscribed');
-              } else {
-                toast.error('Something went wrong');
-              }
-            })
-            .finally(() => actions.setSubmitting(false));
+        onSubmit={async (values, actions) => {
+          try {
+            const data = await subscribeEmail(values);
+            toast.success('Check your email');
+            actions.resetForm();
+          } catch (error) {
+            if (error.message === '409') {
+              toast.warning('You have already subscribed');
+            } else {
+              toast.error(error.message);
+            }
+          } finally {
+            actions.setSubmitting(false);
+          }
         }}
       >
         {props => (
@@ -75,16 +74,6 @@ export const SubscribeForm = () => {
                 name="email"
                 placeholder="Enter your email address"
                 value={props.values.email}
-                color={
-                  props.errors.email && props.values.email
-                    ? 'rgba(255, 255, 255, 0.8)'
-                    : undefined
-                }
-                borderColor={
-                  props.errors.email && props.values.email
-                    ? 'rgba(255, 255, 255, 0.3)'
-                    : undefined
-                }
                 onChange={props.handleChange}
                 onBlur={props.handleBlur}
               />
@@ -97,7 +86,7 @@ export const SubscribeForm = () => {
             )}
             <FormBtn
               type="submit"
-              disabled={getDisabledBtn(props.errors, props.values)}
+              disabled={getBtn(props.errors, props.values)}
             >
               Subcribe
             </FormBtn>
