@@ -5,13 +5,15 @@ import {
   Form,
   FormInput,
   FormBtn,
-  FormWrap,
   FormWrapText,
+  FlagForInput,
 } from './SubscribeForm.styled';
 import sprite from '../../../img/sprite.svg';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import MediaQuery from 'react-responsive';
-
+import { useAuth } from 'hooks/useAuth';
+import { getColor } from 'utils/formikColors';
+import 'react-toastify/dist/ReactToastify.css';
 const LoginSchema = Yup.object().shape({
   email: Yup.mixed().test({
     name: 'email',
@@ -20,41 +22,40 @@ const LoginSchema = Yup.object().shape({
     },
   }),
 });
-
 export const SubscribeForm = () => {
+  const { token } = useAuth();
   const subscribeEmail = async values => {
     try {
       const results = await axios.post(
         `https://soyummy-tw3y.onrender.com/api/v1/auth/subscription`,
-        values
+        values,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
-      console.log(results.data);
       return results.data;
     } catch (error) {
       throw new Error(error.response.status);
     }
   };
-  const getBtn = (errors, values) => !values.email || errors.email;
-
+  const getBtn = (errors, value) => !value.email || errors.email;
   return (
     <>
+      <ToastContainer autoClose={2500} />
       <Formik
-        initialValues={{ email: '' }}
+        initialValues={{ email: `` }}
         validationSchema={LoginSchema}
         onSubmit={(values, actions) => {
-          subscribeEmail(values)
-            .then(data => {
-              toast.success('Check your email');
-              actions.resetForm();
-            })
+          subscribeEmail({ email: values.email })
+            .then(r => toast.success('Сheck your email'))
             .catch(error => {
-              if (error.message === '409') {
-                toast.warning('You have already subscribed');
-              } else {
-                toast.error('Something went wrong');
+              if (error === 200) {
+                toast.warning('Unauthorized');
               }
-            })
-            .finally(() => actions.setSubmitting(false));
+              toast.error('Something went wrong');
+            });
+          actions.setSubmitting(false);
+          actions.resetForm();
         }}
       >
         {props => (
@@ -68,19 +69,48 @@ export const SubscribeForm = () => {
                 </p>
               </FormWrapText>
             </MediaQuery>
-            <FormWrap>
-              <FormInput
-                type="email"
-                name="email"
-                placeholder="Enter your email address"
-                value={props.values.email}
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-              />
-              <svg>
-                <use href={`${sprite}#email`}></use>
-              </svg>
-            </FormWrap>
+            <FormInput
+              type="email"
+              placeholder="Enter your email address"
+              onBlur={props.handleBlur}
+              onChange={props.handleChange}
+              value={props.values.email}
+              name="email"
+              color={getColor(
+                props.errors.email,
+                props.values.email,
+                'rgba(255, 255, 255, 0.8)'
+              )}
+              borderColor={getColor(
+                props.errors.email,
+                props.values.email,
+                'rgba(255, 255, 255, 0.3)'
+              )}
+            />
+            <svg
+              className="icon"
+              fill={getColor(
+                props.errors.email,
+                props.values.email,
+                'rgba(255, 255, 255, 0.8)'
+              )}
+            >
+              <use href={sprite + '#email'}></use>
+            </svg>
+            {props.values.email && (
+              <FlagForInput>
+                <svg>
+                  <use
+                    href={`${sprite}${getColor(
+                      props.errors.email,
+                      props.values.email,
+                      'rgba(255, 255, 255, 0.8)'
+                    )}`}
+                  ></use>
+                </svg>
+              </FlagForInput>
+            )}
+
             {props.errors.email && props.values.email && (
               <ErrorMessage className="error" name="email" component="div" />
             )}
