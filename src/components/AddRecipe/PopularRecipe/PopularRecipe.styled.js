@@ -14,7 +14,13 @@ export const TitlePopular = styled.h3`
   margin-bottom: 32px;
 `;
 
-export const ListPopular = styled.ul``;
+export const ListPopular = styled.ul`
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+`;
 
 export const ListItemPopular = styled.li`
   padding-bottom: 13px;
@@ -22,6 +28,9 @@ export const ListItemPopular = styled.li`
   margin-top: 24px;
   &:first-child {
     margin-top: 0;
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    /* max-width: 336px; */
   }
 `;
 
@@ -34,6 +43,9 @@ export const ListLinkPopular = styled(Link)`
 export const ItemImg = styled.img`
   width: 104px;
   border-radius: 8px;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    width: 102px;
+  }
 `;
 
 export const ItemWrapper = styled.div``;

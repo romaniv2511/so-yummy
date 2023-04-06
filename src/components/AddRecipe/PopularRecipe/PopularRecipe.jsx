@@ -33,7 +33,6 @@ export const PopularRecipe = () => {
           setLoading(false);
           setRecipes(data);
         }
-        console.log(data);
       } catch {
         setError('Failed to fetch');
         setRecipes([]);
@@ -45,19 +44,22 @@ export const PopularRecipe = () => {
   return (
     <WrapperPopular>
       <TitlePopular>Popular recipe</TitlePopular>
-      <ul>
-        {recipes.map(({ _id, title, description, preview }) => (
-          <ListItemPopular key={_id}>
-            <ListLinkPopular to={`/movies/${_id}`} state={{ from: location }}>
-              <ItemImg src={preview} alt="recipe-appearance" />
-              <ItemWrapper>
-                <ItemTitle>{title}</ItemTitle>
-                <ItemText>{description}</ItemText>
-              </ItemWrapper>
-            </ListLinkPopular>
-          </ListItemPopular>
-        ))}
-      </ul>
+
+      {
+        <ul>
+          {recipes.map(({ _id, title, description, preview }) => (
+            <ListItemPopular key={_id}>
+              <ListLinkPopular to={`/movies/${_id}`} state={{ from: location }}>
+                <ItemImg src={preview} alt="recipe-appearance" />
+                <ItemWrapper>
+                  <ItemTitle>{title}</ItemTitle>
+                  <ItemText>{description}</ItemText>
+                </ItemWrapper>
+              </ListLinkPopular>
+            </ListItemPopular>
+          ))}
+        </ul>
+      }
       {error && !loading && (
         <ErrorMessage>Something wrong! Reload the page...</ErrorMessage>
       )}
