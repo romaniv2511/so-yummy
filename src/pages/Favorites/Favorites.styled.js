@@ -26,3 +26,8 @@ export const Text = styled.div`
   line-height: 1;
   letter-spacing: -0.02em;
 `;
+export const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+`;
