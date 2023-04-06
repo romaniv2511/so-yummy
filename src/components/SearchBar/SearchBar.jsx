@@ -1,10 +1,10 @@
 import { SearchForm } from 'components/SearchForm/SearchForm';
 import { SearchTypeSelector } from 'components/SearchTypeSelector/SearchTypeSelector';
 
-export const SearchBar = () => {
+export const SearchBar = ({ value, handleSearch }) => {
   return (
     <div>
-      <SearchForm />
+      <SearchForm initialValue={value} handleSubmit={handleSearch} />
       <SearchTypeSelector />
     </div>
   );
