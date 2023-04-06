@@ -38,6 +38,15 @@ export const ListItemPopular = styled.li`
   &:first-child {
     margin-top: 0;
   }
+  &:nth-child(2) {
+    @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+      margin-top: 0;
+    }
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+      margin-top: 24px;
+    }
+  }
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     max-width: 336px;
   }
@@ -52,7 +61,7 @@ export const ItemImg = styled.img`
   width: 104px;
   border-radius: 8px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    width: 102px;
+    /* width: 102px; */
   }
 `;
 
@@ -73,4 +82,8 @@ export const ItemText = styled.p`
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: -0.24px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;

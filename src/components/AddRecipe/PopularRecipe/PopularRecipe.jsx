@@ -46,10 +46,11 @@ export const PopularRecipe = () => {
 
   return (
     <WrapperPopular>
-      <TitlePopular>Popular recipe</TitlePopular>
       <MediaQuery minWidth={1440}>
+        <TitlePopular>Follow us</TitlePopular>
         <FollowUsPopular />
       </MediaQuery>
+      <TitlePopular>Popular recipe</TitlePopular>
       {
         <ListPopular>
           {recipes.map(({ _id, title, description, preview }) => (
