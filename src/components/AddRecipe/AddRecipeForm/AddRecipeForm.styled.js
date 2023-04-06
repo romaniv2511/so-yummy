@@ -4,8 +4,10 @@ import styled from 'styled-components';
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    align-items: start;
+    text-align: start;
+  }
 `;
 
 export const Description = styled.div`
@@ -76,7 +78,7 @@ export const WrapIngredients = styled.div`
   }
 `;
 
-export const TitleIngredients = styled.h2`
+export const TitleIngredients = styled.h3`
   color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.fontWeights.l};
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
@@ -130,10 +132,11 @@ export const WrapPreparation = styled.div`
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     margin-top: 100px;
     margin-bottom: 0;
+    margin-right: auto;
   }
 `;
 
-export const TitlePreparation = styled.h2`
+export const TitlePreparation = styled.h3`
   margin-bottom: 24px;
   color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.fontWeights.l};
@@ -150,6 +153,9 @@ export const TextAreaPreparation = styled.textarea`
   padding-top: 10px;
   padding-left: 16px;
   width: 100%;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    max-width: 505px;
+  }
 `;
 
 export const WrapButtonAdd = styled.div`

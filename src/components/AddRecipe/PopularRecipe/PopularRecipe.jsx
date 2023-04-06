@@ -2,8 +2,17 @@ import axios from 'axios';
 import { Loader } from 'components/Loader/Loader';
 import { ErrorMessage } from 'components/PreviewCategories/PreviewCategories.styled';
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import {
+  ItemImg,
+  ItemText,
+  ItemTitle,
+  ItemWrapper,
+  ListItemPopular,
+  ListLinkPopular,
+  TitlePopular,
+  WrapperPopular,
+} from './PopularRecipe.styled';
 
 export const PopularRecipe = () => {
   const [recipes, setRecipes] = useState([]);
@@ -34,23 +43,25 @@ export const PopularRecipe = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Popular recipe</h2>
+    <WrapperPopular>
+      <TitlePopular>Popular recipe</TitlePopular>
       <ul>
         {recipes.map(({ _id, title, description, preview }) => (
-          <li key={_id}>
-            <Link to={`/movies/${_id}`} state={{ from: location }}>
-              <img src={preview} alt="recipe-appearance" />
-              <h3>{title}</h3>
-              <p>{description}</p>
-            </Link>
-          </li>
+          <ListItemPopular key={_id}>
+            <ListLinkPopular to={`/movies/${_id}`} state={{ from: location }}>
+              <ItemImg src={preview} alt="recipe-appearance" />
+              <ItemWrapper>
+                <ItemTitle>{title}</ItemTitle>
+                <ItemText>{description}</ItemText>
+              </ItemWrapper>
+            </ListLinkPopular>
+          </ListItemPopular>
         ))}
       </ul>
       {error && !loading && (
         <ErrorMessage>Something wrong! Reload the page...</ErrorMessage>
       )}
       {loading && <Loader />}
-    </div>
+    </WrapperPopular>
   );
 };
