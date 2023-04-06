@@ -9,7 +9,7 @@ export const FieldContainer = styled(Field)`
   width: 288px;
   height: 52px;
   padding: 17px 32px;
-  color: ${props => props.theme.color.bgSecondary};
+  color: ${props => props.theme.color.text};
   background-color: #fafafa;
   border-radius: 24px 44px;
   border: 1px solid #f0f0f0;
