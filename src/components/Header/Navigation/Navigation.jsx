@@ -7,7 +7,7 @@ export const Navigation = ({ onClick }) => {
   });
   return (
     <Nav>
-      <Link to="/categories" onClick={onClick}>
+      <Link to="/categories/Beef" onClick={onClick}>
         Categories
       </Link>
       <Link to="/add-recipes" onClick={onClick}>

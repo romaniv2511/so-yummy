@@ -8,8 +8,10 @@ import {
 
 import { ChooseYourBreakfast } from 'components/ChooseYourBreakfast/ChooseYourBreakfast';
 import { SearchForm } from 'components/SearchForm/SearchForm';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <HeroContainer>
       <Container>
@@ -20,7 +22,12 @@ const Hero = () => {
           "What to cook?" is not only a recipe app, it is, in fact, your
           cookbook. You can add your own recipes to save them for the future.
         </BottomText>
-        <SearchForm />
+        <SearchForm
+          initialValue=""
+          handleSubmit={({ searchText }) => {
+            navigate(`/search/?query=${searchText}`);
+          }}
+        />
         <ChooseYourBreakfast />
       </Container>
     </HeroContainer>

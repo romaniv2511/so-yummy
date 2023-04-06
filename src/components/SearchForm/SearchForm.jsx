@@ -6,7 +6,6 @@ import {
 } from './SearchForm.styled';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
 
 const SearchSchema = Yup.object().shape({
   searchText: Yup.string()
@@ -15,23 +14,14 @@ const SearchSchema = Yup.object().shape({
     .required('You must enter some text'),
 });
 
-export const SearchForm = () => {
-  const navigate = useNavigate();
-
-  const onFormSubmit = (values, actions) => {
-    console.log(values);
-    actions.resetForm();
-
-    navigate(`/search`, { state: values });
-  };
-
+export const SearchForm = ({ initialValue, handleSubmit }) => {
   return (
     <Formik
       initialValues={{
-        searchText: '',
+        searchText: !initialValue ? '' : initialValue,
       }}
       validationSchema={SearchSchema}
-      onSubmit={onFormSubmit}
+      onSubmit={handleSubmit}
     >
       {({ errors, touched }) => (
         <FormContainer>

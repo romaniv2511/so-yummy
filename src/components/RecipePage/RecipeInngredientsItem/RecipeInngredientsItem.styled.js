@@ -79,6 +79,22 @@ export const IngDescr = styled.p`
     line-height: 1.67;
   }
 `;
+export const IngDescrDesk = styled.p`
+  /* display: ${({ showFullDesc }) => (showFullDesc ? 'block' : 'none')}; */
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 1.38;
+  letter-spacing: -0.24px;
+  color: ${({ theme }) => theme.color.text};
+  transition: ${props => props.theme.transitions.main};
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+    overflow-y: clip;
+    font-size: 24px;
+    line-height: -0.24px;
+    font-size: 12px;
+    line-height: 1.67;
+  }
+`;
 export const IngNumber = styled.p`
   display: flex;
   justify-content: center;
@@ -110,6 +126,7 @@ export const CustomCheckbox = styled.span`
   background: transparent;
   border: 1px solid rgba(126, 126, 126, 0.5);
   border-radius: 4px;
+  transition: ${({ theme }) => theme.transitions.main};
   &:hover {
     cursor: pointer;
   }
@@ -129,6 +146,7 @@ export const CustomCheckbox = styled.span`
     position: absolute;
     left: 50%;
     top: 50%;
+    transition: ${({ theme }) => theme.transitions.main};
     transform: translate(-50%, -50%) scale(0);
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
       width: 18px;
@@ -138,6 +156,7 @@ export const CustomCheckbox = styled.span`
 `;
 export const DoneCheckbox = styled.input`
   display: none;
+  transition: ${({ theme }) => theme.transitions.main};
   &:hover {
     cursor: pointer;
   }
