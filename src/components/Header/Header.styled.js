@@ -14,7 +14,6 @@ export const GlobalStyle = createGlobalStyle`
 export const HeaderBox = styled.header`
   position: absolute;
   width: 100%;
-  height: 100%;
   z-index: 7;
   box-sizing: border-box;
   top: 0;
