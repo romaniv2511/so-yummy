@@ -1,15 +1,24 @@
+import axios from 'axios';
 import { MainPageTitle } from 'components/MainPageTitle/MainPageTitle';
 import { PagesWrapper } from 'components/PagesWrapper/PagesWrapper';
 import { SearchBar } from 'components/SearchBar/SearchBar';
 import { useSearchParams } from 'react-router-dom';
 import { SearchedRecipesList } from 'components/SearchedRecipesList/SearchedRecipesList';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { ErrorImageContainer } from 'components/ErrorImageContainer/ErrorImageContainer';
+import { Loader } from 'components/Loader/Loader';
+import { Pagination } from 'components/Pagination/Pagination';
 
 const SearchPage = () => {
+  const [selectValue, setSelectValue] = useState('Title');
   const [searchList, setSearchList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const valueName = 'query'; // "ingredient"
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [state, setState] = useState('start');
+  const [page, setPage] = useState(1);
+
+  const valueName = selectValue === 'Title' ? 'query' : 'ingredient';
   const value = searchParams.get(`${valueName}`) ?? '';
 
   const handleSearch = (searchText, actions) => {
@@ -17,27 +26,100 @@ const SearchPage = () => {
       searchText !== '' ? { [valueName]: searchText.searchText } : {};
     setSearchParams(nextParams);
     setSearchList([]);
+    setPage(1);
     actions.resetForm({ values: { searchText: '' } });
   };
 
-  const getSearchList = async (value, valueName) => {
-    const response = await axios.get(
-      `https://soyummy-tw3y.onrender.com/api/v1//search?page=1&limit=20&query=${value}&type=${valueName}`
-    );
-    const { data } = response.data;
-    setSearchList(data);
-    console.log(data);
+  const handleSelect = select => {
+    setSelectValue(select);
   };
 
+  const getSearchList = async (categoryValue, categoryName, page = 1) => {
+    setLoading(true);
+
+    try {
+      const response = await axios.get(
+        `https://soyummy-tw3y.onrender.com/api/v1//search?page=${page}&limit=20&query=${categoryValue}&type=${categoryName}`
+      );
+      const { data } = response.data;
+
+      setState('end');
+      setSearchList(data);
+      setLoading(false);
+    } catch (error) {
+      setState('end');
+      setLoading(false);
+      setSearchList([]);
+      setError(error.message);
+    }
+  };
+
+  //для пагинации с запросом по страницам
+  //добавляем состояние  const [page, setPage] = useState(1);
+
+  const totalPages = 1; // высчитываем количество страниц и вставляем элемент
+  // <Pagination
+  //   totalPages={totalPages}
+  //   currentPage={page}
+  //   onSelectPage={handlePageChange}
+  //   onArrowLeftClick={handlePageChangeDecrement}
+  //   onArrowRightClick={handlePageChangeIncrement}
+  // />
+  //копируем функции ниже
+
+  const handlePageChange = id => {
+    setPage(id);
+  };
+
+  const handlePageChangeDecrement = () => {
+    setPage(prevState => prevState + 1);
+  };
+
+  const handlePageChangeIncrement = () => {
+    setPage(prevState => prevState - 1);
+  };
+
+  //---------------------------------//
+
   useEffect(() => {
-    getSearchList(value, valueName);
-  }, [value, valueName]);
+    if (value === '' || selectValue === '') return;
+    getSearchList(value, selectValue, page);
+  }, [value, selectValue, page]);
 
   return (
     <PagesWrapper>
       <MainPageTitle title="Search" />
-      <SearchBar value={value} handleSearch={handleSearch} />
-      <SearchedRecipesList searchList={searchList} />
+
+      <SearchBar
+        searchResult={searchList.length > 0}
+        value={value}
+        handleSearch={handleSearch}
+        title={selectValue}
+        handleSelect={handleSelect}
+      />
+      {state === 'start' && searchList.length === 0 && (
+        <ErrorImageContainer title="Please, enter value to input..." />
+      )}
+      {searchList.length > 0 && state === 'end' && (
+        <>
+          <SearchedRecipesList searchList={searchList} />
+          <Pagination
+            totalPages={totalPages}
+            currentPage={page}
+            onSelectPage={handlePageChange}
+            onArrowLeftClick={handlePageChangeDecrement}
+            onArrowRightClick={handlePageChangeIncrement}
+          />
+        </>
+      )}
+      {searchList.length === 0 && state === 'end' && (
+        <ErrorImageContainer title="Try looking for something else.." />
+      )}
+
+      {error && !loading && (
+        <ErrorImageContainer title="Something wrong! Reload page or enter another value..." />
+      )}
+      {!error && loading && <Loader />}
     </PagesWrapper>
   );
 };
