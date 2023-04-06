@@ -19,6 +19,25 @@ export const Form = styled.form`
     flex-direction: column;
     width: 339px;
   }
+  .error {
+    position: absolute;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 21px;
+    color: #e74a3b;
+    top: -20px;
+    left: 0;
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+      font-size: 14px;
+      top: -23px;
+      left: 103px;
+    }
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+      top: 82px;
+      left: 0;
+    }
+  }
 `;
 export const FormWrap = styled.div`
   position: relative;
@@ -58,6 +77,9 @@ export const FormInput = styled.input`
   border: 1px solid ${({ theme }) => theme.color.footerInput};
   outline: transparent;
   transition: ${({ theme }) => theme.transitions.main};
+  :-webkit-autofill {
+    transition: background-color 250s linear, color 250s linear;
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     width: 259px;
     height: 50px;
@@ -113,10 +135,6 @@ export const FormBtn = styled.button`
   text-align: center;
   color: ${({ theme }) => theme.color.textSecondary};
   transition: ${({ theme }) => theme.transitions.main};
-  :hover,
-  :focus {
-    color: ${({ theme }) => theme.color.textRights};
-  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     width: 171px;
     height: 50px;
@@ -127,6 +145,13 @@ export const FormBtn = styled.button`
     font-size: 16px;
     width: 100%;
     line-height: 1.13;
+  }
+  :hover:not([disabled]),
+  :focus:not([disabled]) {
+    color: ${({ theme }) => theme.color.textRights};
+  }
+  &[disabled] {
+    opacity: 0.7;
   }
 `;
 export const FormWrapText = styled.div`
@@ -147,4 +172,13 @@ export const FormWrapText = styled.div`
     letter-spacing: -0.02em;
     color: ${({ theme }) => theme.color.textSecondary};
   }
+`;
+export const ErrorEmail = styled.p`
+  color: #e74a3b;
+  margin-top: 8px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
 `;

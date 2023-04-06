@@ -10,9 +10,11 @@ import {
   IngName,
   IngDescr,
   IngDescrButton,
+  IngDescrDesk,
 } from './RecipeInngredientsItem.styled';
 import sprite from '../../../img/sprite.svg';
 import MediaQuery from 'react-responsive';
+import imgPlug from 'img/recipe-img.jpg';
 
 export const RecipeInngredientsItem = ({ ttl, thb, desc, measure }) => {
   const [showFullDesc, setShowFullDesc] = useState(false);
@@ -24,15 +26,22 @@ export const RecipeInngredientsItem = ({ ttl, thb, desc, measure }) => {
     <>
       <RecipeItem>
         <ImageWrapper>
-          <img src={thb} alt={ttl} />
+          {thb ? (
+            <img src={thb} alt={ttl} />
+          ) : (
+            <img src={`${imgPlug}`} alt={ttl} />
+          )}
         </ImageWrapper>
         <IngTextContainer>
           <IngName>{ttl}</IngName>
-          <MediaQuery minWidth={768}>
+          <MediaQuery minWidth={768} maxWidth={1439}>
             <IngDescrButton onClick={handleDescToggle}>
               {showFullDesc ? 'Collapse' : 'Description'}
             </IngDescrButton>
             <IngDescr showFullDesc={showFullDesc}>{desc}</IngDescr>
+          </MediaQuery>
+          <MediaQuery minWidth={1440}>
+            <IngDescrDesk>{desc}</IngDescrDesk>
           </MediaQuery>
         </IngTextContainer>
         <IngNumber>{measure}</IngNumber>
