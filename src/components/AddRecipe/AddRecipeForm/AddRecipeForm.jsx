@@ -21,6 +21,7 @@ import {
   ButtonAdd,
   WrapButtonAdd,
   Description,
+  InputDescriptionMainWrap,
 } from './AddRecipeForm.styled';
 
 import { Counter } from '../Counter/Counter';
@@ -47,7 +48,7 @@ export const AddRecipeForm = () => {
 
             <InputUpload id="file-input" type="file" />
           </ImgUploadWrap>
-          <div>
+          <InputDescriptionMainWrap>
             <InputDescriptionWrap>
               <InputDescription
                 type="text"
@@ -98,7 +99,7 @@ export const AddRecipeForm = () => {
                 <option value="">5 min</option>
               </SelectDescription>
             </InputDescriptionWrap>
-          </div>
+          </InputDescriptionMainWrap>
         </Description>
         <MainWrapIngredients>
           <WrapIngredients>

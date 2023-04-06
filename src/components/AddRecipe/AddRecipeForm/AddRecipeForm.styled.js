@@ -16,6 +16,9 @@ export const Description = styled.div`
     justify-content: space-between;
     width: 100%;
   }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    gap: 50px;
+  }
 `;
 
 export const ImgUploadWrap = styled.div`
@@ -31,9 +34,15 @@ export const InputUpload = styled.input`
   height: 0;
 `;
 
+export const InputDescriptionMainWrap = styled.div`
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    margin-top: 0;
+  }
+`;
+
 export const InputDescriptionWrap = styled.div`
   position: relative;
-  margin-top: 24px;
+  margin-bottom: 24px;
 `;
 
 export const InputDescription = styled.input`
@@ -41,7 +50,7 @@ export const InputDescription = styled.input`
   width: 343px;
   height: 43px;
   border: none;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgba(126, 126, 126, 0.5);
   background: transparent;
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     font-weight: ${({ theme }) => theme.fontWeights.s};
@@ -66,6 +75,9 @@ export const MainWrapIngredients = styled.div`
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     margin-top: 100px;
     margin-bottom: 32px;
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    max-width: 609px;
   }
 `;
 

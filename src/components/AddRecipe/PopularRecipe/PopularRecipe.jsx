@@ -1,4 +1,5 @@
 import axios from 'axios';
+import MediaQuery from 'react-responsive';
 import { Loader } from 'components/Loader/Loader';
 import { ErrorMessage } from 'components/PreviewCategories/PreviewCategories.styled';
 import { useState, useEffect } from 'react';
@@ -10,9 +11,11 @@ import {
   ItemWrapper,
   ListItemPopular,
   ListLinkPopular,
+  ListPopular,
   TitlePopular,
   WrapperPopular,
 } from './PopularRecipe.styled';
+import { FollowUsPopular } from '../FollowUsPopular/FollowUsPopular';
 
 export const PopularRecipe = () => {
   const [recipes, setRecipes] = useState([]);
@@ -44,9 +47,11 @@ export const PopularRecipe = () => {
   return (
     <WrapperPopular>
       <TitlePopular>Popular recipe</TitlePopular>
-
+      <MediaQuery minWidth={1440}>
+        <FollowUsPopular />
+      </MediaQuery>
       {
-        <ul>
+        <ListPopular>
           {recipes.map(({ _id, title, description, preview }) => (
             <ListItemPopular key={_id}>
               <ListLinkPopular to={`/recipe/${_id}`} state={{ from: location }}>
@@ -58,7 +63,7 @@ export const PopularRecipe = () => {
               </ListLinkPopular>
             </ListItemPopular>
           ))}
-        </ul>
+        </ListPopular>
       }
       {error && !loading && (
         <ErrorMessage>Something wrong! Reload the page...</ErrorMessage>

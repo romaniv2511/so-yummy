@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const WrapperPopular = styled.div`
   margin-top: 72px;
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    margin-top: 0;
+  }
 `;
 
 export const TitlePopular = styled.h3`
@@ -12,6 +15,9 @@ export const TitlePopular = styled.h3`
   line-height: 1;
   letter-spacing: -0.24px;
   margin-bottom: 32px;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const ListPopular = styled.ul`
@@ -19,6 +25,9 @@ export const ListPopular = styled.ul`
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    display: block;
   }
 `;
 
@@ -30,14 +39,13 @@ export const ListItemPopular = styled.li`
     margin-top: 0;
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    /* max-width: 336px; */
+    max-width: 336px;
   }
 `;
 
-export const ListLinkPopular = styled(Link)`
+export const ListLinkPopular = styled(NavLink)`
   display: flex;
   gap: 12px;
-  color: black;
 `;
 
 export const ItemImg = styled.img`
