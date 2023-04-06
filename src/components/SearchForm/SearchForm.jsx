@@ -6,7 +6,6 @@ import {
 } from './SearchForm.styled';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-// import { useNavigate } from 'react-router-dom';
 
 const SearchSchema = Yup.object().shape({
   searchText: Yup.string()
@@ -26,20 +25,6 @@ export const SearchForm = ({ initialValue, handleSubmit }) => {
     >
       {({ errors, touched }) => (
         <FormContainer>
-          {/* {initialValue ? (
-            <FieldContainer
-              id="searchText"
-              name="searchText"
-              placeholder="Beef"
-              value={initialValue}
-            />
-          ) : (
-            <FieldContainer
-              id="searchText"
-              name="searchText"
-              placeholder="Beef"
-            />
-          )} */}
           <FieldContainer
             id="searchText"
             name="searchText"

@@ -116,15 +116,17 @@ export const ButtonOtherCategory = styled(NavLink)`
 
 export const ErrorMessage = styled.p`
   font-weight: 500;
-  font-size: 20px;
+  font-size: 14px;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: ${props => props.theme.color.title};
+  letter-spacing: -0.02em;
+  color: #000000;
+  opacity: 0.5;
   margin-bottom: 100px;
   text-align: center;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    font-size: 36px;
+    font-size: 24px;
     margin-bottom: 140px;
   }
 
