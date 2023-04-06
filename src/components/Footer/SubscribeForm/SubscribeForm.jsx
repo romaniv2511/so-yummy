@@ -41,20 +41,20 @@ export const SubscribeForm = () => {
       <Formik
         initialValues={{ email: '' }}
         validationSchema={LoginSchema}
-        onSubmit={async (values, actions) => {
-          try {
-            const data = await subscribeEmail(values);
-            toast.success('Check your email');
-            actions.resetForm();
-          } catch (error) {
-            if (error.message === '409') {
-              toast.warning('You have already subscribed');
-            } else {
-              toast.error(error.message);
-            }
-          } finally {
-            actions.setSubmitting(false);
-          }
+        onSubmit={(values, actions) => {
+          subscribeEmail(values)
+            .then(data => {
+              toast.success('Check your email');
+              actions.resetForm();
+            })
+            .catch(error => {
+              if (error.message === '409') {
+                toast.warning('You have already subscribed');
+              } else {
+                toast.error('Something went wrong');
+              }
+            })
+            .finally(() => actions.setSubmitting(false));
         }}
       >
         {props => (
