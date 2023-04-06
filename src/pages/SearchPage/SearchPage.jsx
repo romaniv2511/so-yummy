@@ -7,6 +7,7 @@ import { SearchedRecipesList } from 'components/SearchedRecipesList/SearchedReci
 import { useEffect, useState } from 'react';
 import { ErrorImageContainer } from 'components/ErrorImageContainer/ErrorImageContainer';
 import { Loader } from 'components/Loader/Loader';
+import { Pagination } from 'components/Pagination/Pagination';
 
 const SearchPage = () => {
   const [selectValue, setSelectValue] = useState('Title');
@@ -15,6 +16,7 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [state, setState] = useState('start');
+  const [page, setPage] = useState(1);
 
   const valueName = selectValue === 'Title' ? 'query' : 'ingredient';
   const value = searchParams.get(`${valueName}`) ?? '';
@@ -31,13 +33,13 @@ const SearchPage = () => {
     setSelectValue(select);
   };
 
-  const getSearchList = async (categoryValue, categoryName) => {
+  const getSearchList = async (categoryValue, categoryName, page = 1) => {
     setLoading(true);
 
-    console.log(categoryValue, categoryName);
+    console.log(categoryValue, categoryName, page);
     try {
       const response = await axios.get(
-        `https://soyummy-tw3y.onrender.com/api/v1//search?page=1&limit=20&query=${categoryValue}&type=${categoryName}`
+        `https://soyummy-tw3y.onrender.com/api/v1//search?page=${page}&limit=20&query=${categoryValue}&type=${categoryName}`
       );
       const { data } = response.data;
 
@@ -52,10 +54,24 @@ const SearchPage = () => {
     }
   };
 
+  const totalPages = 8;
+
+  const handlePageChange = id => {
+    setPage(id);
+  };
+
+  const handlePageChangeDecrement = () => {
+    setPage(prevState => prevState + 1);
+  };
+
+  const handlePageChangeIncrement = () => {
+    setPage(prevState => prevState - 1);
+  };
+
   useEffect(() => {
     if (value === '' || selectValue === '') return;
-    getSearchList(value, selectValue);
-  }, [value, selectValue]);
+    getSearchList(value, selectValue, page);
+  }, [value, selectValue, page]);
 
   console.log('state', state);
   console.log('searchList', searchList);
@@ -74,7 +90,16 @@ const SearchPage = () => {
         <ErrorImageContainer title="Please, enter value to input..." />
       )}
       {searchList.length > 0 && state === 'end' && (
-        <SearchedRecipesList searchList={searchList} />
+        <>
+          <SearchedRecipesList searchList={searchList} />
+          <Pagination
+            totalPages={totalPages}
+            currentPage={page}
+            onSelectPage={handlePageChange}
+            onArrowLeftClick={handlePageChangeDecrement}
+            onArrowRightClick={handlePageChangeIncrement}
+          />
+        </>
       )}
       {searchList.length === 0 && state === 'end' && (
         <ErrorImageContainer title="Try looking for something else.." />
