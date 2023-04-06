@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/so-yummy/static/css/main.851f63e6.css",
-    "main.js": "/so-yummy/static/js/main.649aef32.js",
+    "main.css": "/so-yummy/static/css/main.4b1d3df1.css",
+    "main.js": "/so-yummy/static/js/main.4f9747a3.js",
     "static/media/recipe-bg-tablet.@2x.png": "/so-yummy/static/media/recipe-bg-tablet.@2x.19064f0c5cebd732dbdc.png",
     "static/media/hero-right-salad-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-salad-bg-desktop@2x.88a5b9a1bc55ece6fe58.png",
     "static/media/hero-right-leaf-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-leaf-bg-desktop@2x.cf2fa79869e6f4e17fdf.png",
@@ -39,7 +39,7 @@
     "static/media/error-page-tablet@2x.png": "/so-yummy/static/media/error-page-tablet@2x.b38e93587723c753d415.png",
     "static/media/footer-bg-tablet@2x.png": "/so-yummy/static/media/footer-bg-tablet@2x.6886b940b712f040b0ab.png",
     "static/media/footer-bg-desktop.png": "/so-yummy/static/media/footer-bg-desktop.bc92f889023ddcbbb20b.png",
-    "static/media/sprite.svg": "/so-yummy/static/media/sprite.a5534c390c2222f4193c182716a29c51.svg",
+    "static/media/sprite.svg": "/so-yummy/static/media/sprite.79162dc17a67c45f97be33c92e715376.svg",
     "static/media/bg-menu-mob.png": "/so-yummy/static/media/bg-menu-mob.a2df8cccd9303734cf35.png",
     "static/media/main-bg-leaf-mob.png": "/so-yummy/static/media/main-bg-leaf-mob.aaa5a520a7cf001ebcbb.png",
     "static/media/error-page-desktop.png": "/so-yummy/static/media/error-page-desktop.8c69496624b989a57187.png",
@@ -54,11 +54,11 @@
     "static/media/recipe-img.jpg": "/so-yummy/static/media/recipe-img.16e981bddcd391c281b1.jpg",
     "index.html": "/so-yummy/index.html",
     "static/media/logo-footer.svg": "/so-yummy/static/media/logo-footer.3dc4a1172f0f3a055eec904912aa4e43.svg",
-    "main.851f63e6.css.map": "/so-yummy/static/css/main.851f63e6.css.map",
-    "main.649aef32.js.map": "/so-yummy/static/js/main.649aef32.js.map"
+    "main.4b1d3df1.css.map": "/so-yummy/static/css/main.4b1d3df1.css.map",
+    "main.4f9747a3.js.map": "/so-yummy/static/js/main.4f9747a3.js.map"
   },
   "entrypoints": [
-    "static/css/main.851f63e6.css",
-    "static/js/main.649aef32.js"
+    "static/css/main.4b1d3df1.css",
+    "static/js/main.4f9747a3.js"
   ]
 }
