@@ -1,18 +1,4 @@
 import styled from 'styled-components';
-// import { IoCloseOutline } from 'react-icons/io5';
-
-// export const MainWrapIngredients = styled.div`
-//   margin-top: 44px;
-//   margin-bottom: 18px;
-//   width: 100%;
-//   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-//     margin-top: 100px;
-//     margin-bottom: 32px;
-//   }
-//   @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
-//     max-width: 609px;
-//   }
-// `;
 
 export const WrapIngredients = styled.div`
   margin-bottom: 24px;
