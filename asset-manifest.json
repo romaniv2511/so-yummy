@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/so-yummy/static/css/main.4b1d3df1.css",
-    "main.js": "/so-yummy/static/js/main.5fdaa551.js",
+    "main.js": "/so-yummy/static/js/main.4573412b.js",
     "static/media/recipe-bg-tablet.@2x.png": "/so-yummy/static/media/recipe-bg-tablet.@2x.19064f0c5cebd732dbdc.png",
     "static/media/hero-right-salad-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-salad-bg-desktop@2x.88a5b9a1bc55ece6fe58.png",
     "static/media/hero-right-leaf-bg-desktop@2x.png": "/so-yummy/static/media/hero-right-leaf-bg-desktop@2x.cf2fa79869e6f4e17fdf.png",
@@ -39,12 +39,12 @@
     "static/media/error-page-tablet@2x.png": "/so-yummy/static/media/error-page-tablet@2x.b38e93587723c753d415.png",
     "static/media/footer-bg-tablet@2x.png": "/so-yummy/static/media/footer-bg-tablet@2x.6886b940b712f040b0ab.png",
     "static/media/footer-bg-desktop.png": "/so-yummy/static/media/footer-bg-desktop.bc92f889023ddcbbb20b.png",
-    "static/media/sprite.svg": "/so-yummy/static/media/sprite.79162dc17a67c45f97be33c92e715376.svg",
     "static/media/bg-menu-mob.png": "/so-yummy/static/media/bg-menu-mob.a2df8cccd9303734cf35.png",
     "static/media/main-bg-leaf-mob.png": "/so-yummy/static/media/main-bg-leaf-mob.aaa5a520a7cf001ebcbb.png",
     "static/media/error-page-desktop.png": "/so-yummy/static/media/error-page-desktop.8c69496624b989a57187.png",
     "static/media/error-page-tablet.png": "/so-yummy/static/media/error-page-tablet.a44a4e0962ac6ec575a4.png",
     "static/media/search-any-mob.png": "/so-yummy/static/media/search-any-mob.45f9232ad635532adac1.png",
+    "static/media/sprite.svg": "/so-yummy/static/media/sprite.d6fdb8a759abecce77fc3cbc64fb3bb3.svg",
     "static/media/hero-left-bg-tablet@2x.png": "/so-yummy/static/media/hero-left-bg-tablet@2x.f030b57c946eda18305f.png",
     "static/media/hero-arrow-desk@2x.png": "/so-yummy/static/media/hero-arrow-desk@2x.a03520a73692702b9756.png",
     "static/media/footer-bg-mob@2x.png": "/so-yummy/static/media/footer-bg-mob@2x.a959cd7ae61d416156fd.png",
@@ -55,10 +55,10 @@
     "index.html": "/so-yummy/index.html",
     "static/media/logo-footer.svg": "/so-yummy/static/media/logo-footer.3dc4a1172f0f3a055eec904912aa4e43.svg",
     "main.4b1d3df1.css.map": "/so-yummy/static/css/main.4b1d3df1.css.map",
-    "main.5fdaa551.js.map": "/so-yummy/static/js/main.5fdaa551.js.map"
+    "main.4573412b.js.map": "/so-yummy/static/js/main.4573412b.js.map"
   },
   "entrypoints": [
     "static/css/main.4b1d3df1.css",
-    "static/js/main.5fdaa551.js"
+    "static/js/main.4573412b.js"
   ]
 }
