@@ -62,7 +62,9 @@ const Categories = () => {
     const el = elList.querySelector('.active');
     console.log('el', el);
     if (el) {
-      el.scrollIntoView({ block: 'start' });
+      el.scrollIntoView({
+        block: 'end',
+      });
     }
   };
 

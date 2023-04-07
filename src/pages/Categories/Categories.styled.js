@@ -61,7 +61,7 @@ export const ButtonCategory = styled(NavLink)`
   color: ${props => (props.active ? props.theme.color.accent : '#bdbdbd')};
   border-bottom: ${props =>
     props.active ? `2px solid ${props.theme.color.accent}` : 'none'};
-  padding: 0 0 32px 0;
+  padding: 0 0 30px 0;
   background-color: transparent;
   font-family: inherit;
   font-weight: 400;
