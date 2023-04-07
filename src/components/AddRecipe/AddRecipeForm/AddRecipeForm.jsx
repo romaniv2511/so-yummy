@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import {
   Form,
   MainWrapIngredients,
-  TitlePreparation,
   WrapPreparation,
-  TextAreaPreparation,
   ButtonAdd,
   WrapButtonAdd,
 } from './AddRecipeForm.styled';
 import { RecipeDescriptionFields } from '../RecipeDescriptionFields/RecipeDescriptionFields';
 import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngredientsFields';
+import { RecipePreparationFields } from '../RecipePreparationFields/RecipePreparationFields';
 
 export const AddRecipeForm = () => {
   const [descriptionFields, setDescriptionFields] = useState({
@@ -43,6 +42,7 @@ export const AddRecipeForm = () => {
       category: 'Breakfast',
       time: '40 min',
       ingredients: '',
+      preparation: '',
     });
   };
 
@@ -61,14 +61,10 @@ export const AddRecipeForm = () => {
             onSetValue={handleSetValue}
           />
           <WrapPreparation>
-            <TitlePreparation>Recipe Preparation</TitlePreparation>
-            <TextAreaPreparation
-              name=""
-              id=""
-              // cols="30"
-              rows="7"
-              placeholder="Enter recipe"
-            ></TextAreaPreparation>
+            <RecipePreparationFields
+              onInput={handleChange}
+              inputs={descriptionFields}
+            />
           </WrapPreparation>
         </MainWrapIngredients>
         <WrapButtonAdd>
