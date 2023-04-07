@@ -52,11 +52,10 @@ const Favorites = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-  const recipes = useSelector(selectFavorites);
+  const { data: recipes } = useSelector(selectFavorites);
   useEffect(() => {
     dispatch(fetchFavorites());
   }, [dispatch]);
-  console.log(recipes);
   return (
     <>
       {isLoading && <Loader />}

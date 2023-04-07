@@ -14,18 +14,19 @@ export const fetchFavorites = createAsyncThunk(
   }
 );
 
-// POST
-// export const addFavorite = createAsyncThunk(
-//   'favorites/addFavorites',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.post('/favorites');
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
+// POST;
+export const addFavorite = createAsyncThunk(
+  'favorites/addFavorites',
+  async (recipeId, thunkAPI) => {
+    try {
+      const response = await axios.post('/favorites', { _id: recipeId });
+      console.log(response.data);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
 
 // DELETE
 export const deleteFavorite = createAsyncThunk(

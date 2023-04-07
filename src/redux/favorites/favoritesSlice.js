@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from 'redux/auth/authOperations';
-import { fetchFavorites, deleteFavorite } from './favoritesOperations';
+import {
+  fetchFavorites,
+  addFavorite,
+  deleteFavorite,
+} from './favoritesOperations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -40,6 +44,19 @@ const favoritesSlice = createSlice({
       state.items = [];
       state.error = null;
       state.isLoading = false;
+    },
+    [addFavorite.pending](state) {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [addFavorite.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.items.push(action.payload);
+    },
+    [addFavorite.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });

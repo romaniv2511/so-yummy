@@ -102,3 +102,6 @@ export const InngredientsList = styled.ul`
     margin-bottom: 100px;
   }
 `;
+export const ContainerError = styled.div`
+  padding-top: 200px;
+`;
