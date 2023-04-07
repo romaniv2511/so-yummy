@@ -28,6 +28,23 @@ import { Counter } from '../Counter/Counter';
 
 export const AddRecipeForm = () => {
   const [count, setCount] = useState(0);
+  const [description, setDescription] = useState({
+    title: '',
+    about: '',
+    category: 'Breakfast',
+    time: '40 min',
+  });
+
+  const handleInputChange = e => {
+    const { name, value } = e.target;
+    setDescription(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    console.log(description);
+  };
 
   const handleIncrement = () => {
     setCount(state => state + 1);
@@ -39,41 +56,43 @@ export const AddRecipeForm = () => {
 
   return (
     <div>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Description>
           <ImgUploadWrap>
             <label htmlFor="file-input">
               <img src={uploadImg} alt="upload-img" />
             </label>
-
             <InputUpload id="file-input" type="file" />
           </ImgUploadWrap>
           <InputDescriptionMainWrap>
             <InputDescriptionWrap>
               <InputDescription
                 type="text"
-                name=""
-                id=""
+                name="title"
+                value={description.title}
+                id="description"
+                onChange={handleInputChange}
                 placeholder="Enter item title"
               />
             </InputDescriptionWrap>
             <InputDescriptionWrap>
               <InputDescription
                 type="text"
-                name=""
-                id=""
+                name="about"
+                value={description.about}
+                id="about"
+                onChange={handleInputChange}
                 placeholder="Enter about recipe"
               />
             </InputDescriptionWrap>
             <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                name=""
-                id=""
-                placeholder="Category"
-                disabled
-              />
-              <SelectDescription name="categories" id="categories">
+              <InputDescription type="text" placeholder="Category" disabled />
+              <SelectDescription
+                name="category"
+                value={description.category}
+                id="category"
+                onChange={handleInputChange}
+              >
                 <option value="Breakfast">Breakfast</option>
                 <option value="Beef">Beef</option>
                 <option value="Dessert">Dessert</option>
@@ -85,18 +104,21 @@ export const AddRecipeForm = () => {
             <InputDescriptionWrap>
               <InputDescription
                 type="text"
-                name=""
-                id="cooking-time"
                 placeholder="Cooking time"
                 disabled
               />
-              <SelectDescription name="cooking-time" id="cooking-time">
-                <option value="">40 min</option>
-                <option value="">30 min</option>
-                <option value="">20 min</option>
-                <option value="">15 min</option>
-                <option value="">10 min</option>
-                <option value="">5 min</option>
+              <SelectDescription
+                name="time"
+                id="time"
+                value={description.time}
+                onChange={handleInputChange}
+              >
+                <option value="40 min">40 min</option>
+                <option value="30 min">30 min</option>
+                <option value="20 min">20 min</option>
+                <option value="15 min">15 min</option>
+                <option value="10 min">10 min</option>
+                <option value="5 min">5 min</option>
               </SelectDescription>
             </InputDescriptionWrap>
           </InputDescriptionMainWrap>
