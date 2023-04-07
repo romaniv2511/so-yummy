@@ -5,6 +5,7 @@ import {
   ButtonPage,
 } from './Pagination.styled';
 import sprite from '../../img/sprite.svg';
+import { useEffect, useRef } from 'react';
 
 export const Pagination = ({
   currentPage,
@@ -13,7 +14,16 @@ export const Pagination = ({
   onArrowLeftClick,
   onArrowRightClick,
 }) => {
+  useEffect(() => {
+    if (currentPage > 1)
+      paginationRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
+  }, [currentPage]);
   let pages = [];
+
+  const paginationRef = useRef();
 
   for (let i = 1; i <= totalPages; i += 1) {
     pages.push(i);
@@ -30,7 +40,7 @@ export const Pagination = ({
   }
 
   return (
-    <PaginationContainer>
+    <PaginationContainer ref={paginationRef}>
       <ArrowButton
         type="button"
         onClick={onArrowRightClick}
