@@ -84,7 +84,6 @@ export const LoginForm = () => {
       onSubmit={handleSubmit}
     >
       <Form>
-        <label htmlFor="email">Email</label>
         <Field
           id="email"
           name="email"

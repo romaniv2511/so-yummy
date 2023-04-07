@@ -46,7 +46,6 @@ export const logIn = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      console.log("er", error);
       return rejectWithValue(error.message);
     }
   }
@@ -75,7 +74,6 @@ export const refreshUser = createAsyncThunk(
     token.set(persistedToken);
     try {
       const { data } = await axios.get('/auth/current');
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -24,7 +24,7 @@ export const UserModal = ({children, onClose}) => {
     <Overlay onClick={handleBackDropClick}>
       <ModalBox>
         <ButtonClose onClick={onClose}>
-          <RxCross2 width={24} height={24} fill={p=>p.theme.color.title}/>
+          <RxCross2 width={24} height={24}/>
         </ButtonClose>
         {children}
       </ModalBox>

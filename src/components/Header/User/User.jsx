@@ -4,6 +4,7 @@ import { UserModal } from './UserModal/UserModal';
 import { useState } from 'react';
 import { Box } from './User.styled';
 import { UserLogout } from './UserLogout/UserLogout';
+import { UserEdit } from './UserEdit/UserEdit';
 
 
 export const User = () => {
@@ -34,11 +35,9 @@ export const User = () => {
       {isDashboardOpen && <UserDashboard onClose={toggleDashboard} onLogout={openLogoutApproval} onEdit={openEditUser}/>}
       {isModalOpen &&
         <UserModal onClose={toggleModal}>
-          if(modalName === 'logout')
-          <UserLogout/>
+          {modalName === 'logout' ? <UserLogout onClose={toggleModal}/> :<UserEdit/>}
         </UserModal>
       }
-
     </Box>
   )
 }
