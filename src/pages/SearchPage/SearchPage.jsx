@@ -21,9 +21,12 @@ const SearchPage = () => {
   const valueName = selectValue === 'Title' ? 'query' : 'ingredient';
   const value = searchParams.get(`${valueName}`) ?? '';
 
-  const handleSearch = (searchText, actions) => {
+  const handleSearch = (text, actions) => {
+    const { searchText } = text;
+    const normalizedValue = searchText.toLowerCase().trim();
+    console.log(normalizedValue);
     const nextParams =
-      searchText !== '' ? { [valueName]: searchText.searchText } : {};
+      normalizedValue !== '' ? { [valueName]: normalizedValue } : {};
     setSearchParams(nextParams);
     setSearchList([]);
     setPage(1);
