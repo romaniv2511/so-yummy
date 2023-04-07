@@ -56,15 +56,23 @@ const Categories = () => {
     setMenuList(data);
   };
 
+  const handleScrollbar = () => {
+    console.log('рендер');
+    const elList = activeRef.current;
+    const el = elList.querySelector('.active');
+    console.log('el', el);
+    if (el) {
+      el.scrollIntoView({ block: 'start' });
+    }
+  };
+
   useEffect(() => {
-    searchMenuList().then(() => {
-      const elList = activeRef.current;
-      const el = elList.querySelector('.active');
-      if (el) {
-        el.scrollIntoView({ block: 'start' });
-      }
-    });
+    searchMenuList();
   }, []);
+
+  useEffect(() => {
+    handleScrollbar();
+  }, [menuList]);
 
   useEffect(() => {
     searchCategory(category);

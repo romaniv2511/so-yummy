@@ -24,7 +24,8 @@ const Hero = () => {
         </BottomText>
         <SearchForm
           initialValue=""
-          handleSubmit={({ searchText }) => {
+          handleSubmit={(text, actions) => {
+            const { searchText } = text;
             navigate(`/search/?query=${searchText}`);
           }}
         />

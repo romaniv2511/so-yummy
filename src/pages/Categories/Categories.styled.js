@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import 'react-perfect-scrollbar/dist/css/styles.css';
+
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 import { NavLink } from 'react-router-dom';
 
 export const ScrollableContainer = styled(PerfectScrollbar)`
