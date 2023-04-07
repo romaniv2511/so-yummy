@@ -17,6 +17,7 @@ const SearchPage = () => {
   const [error, setError] = useState(null);
   const [state, setState] = useState('start');
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   const valueName = selectValue === 'Title' ? 'query' : 'ingredient';
   const value = searchParams.get(`${valueName}`) ?? '';
@@ -30,6 +31,7 @@ const SearchPage = () => {
     setSearchParams(nextParams);
     setSearchList([]);
     setPage(1);
+    setTotalPages(0);
     actions.resetForm({ values: { searchText: '' } });
   };
 
@@ -44,8 +46,12 @@ const SearchPage = () => {
       const response = await axios.get(
         `https://soyummy-tw3y.onrender.com/api/v1//search?page=${page}&limit=20&query=${categoryValue}&type=${categoryName}`
       );
-      const { data } = response.data;
+      const { data, quantity } = response.data;
+      console.log('response', response.data);
 
+      const pages = quantity > 0 ? Math.ceil(quantity / data.length) : 0;
+      console.log('quantity', pages);
+      setTotalPages(pages);
       setState('end');
       setSearchList(data);
       setLoading(false);
@@ -60,7 +66,7 @@ const SearchPage = () => {
   //для пагинации с запросом по страницам
   //добавляем состояние  const [page, setPage] = useState(1);
 
-  const totalPages = 1; // высчитываем количество страниц и вставляем элемент
+  // высчитываем количество страниц и вставляем элемент
   // <Pagination
   //   totalPages={totalPages}
   //   currentPage={page}
@@ -100,22 +106,24 @@ const SearchPage = () => {
         title={selectValue}
         handleSelect={handleSelect}
       />
-      {state === 'start' && searchList.length === 0 && (
+      {state === 'start' && searchList.length === 0 && !loading && (
         <ErrorImageContainer title="Please, enter value to input..." />
       )}
       {searchList.length > 0 && state === 'end' && (
         <>
           <SearchedRecipesList searchList={searchList} />
-          <Pagination
-            totalPages={totalPages}
-            currentPage={page}
-            onSelectPage={handlePageChange}
-            onArrowLeftClick={handlePageChangeDecrement}
-            onArrowRightClick={handlePageChangeIncrement}
-          />
+          {totalPages > 1 && (
+            <Pagination
+              totalPages={totalPages}
+              currentPage={page}
+              onSelectPage={handlePageChange}
+              onArrowLeftClick={handlePageChangeDecrement}
+              onArrowRightClick={handlePageChangeIncrement}
+            />
+          )}
         </>
       )}
-      {searchList.length === 0 && state === 'end' && (
+      {searchList.length === 0 && state === 'end' && !loading && (
         <ErrorImageContainer title="Try looking for something else.." />
       )}
 
