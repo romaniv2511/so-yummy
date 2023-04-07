@@ -1,130 +1,73 @@
 import React, { useState } from 'react';
-import { IoCloseOutline } from 'react-icons/io5';
+// import { IoCloseOutline } from 'react-icons/io5';
 
-import uploadImg from 'img/add-recipe-placeholder.png';
 import {
-  InputUpload,
   Form,
-  ImgUploadWrap,
-  InputDescriptionWrap,
-  InputDescription,
-  SelectDescription,
-  TitleIngredients,
-  WrapIngredients,
-  InputIngredientsWrap,
+  // TitleIngredients,
+  // WrapIngredients,
+  // InputIngredientsWrap,
   MainWrapIngredients,
-  InputIngredients,
-  SelectIngredients,
+  // InputIngredients,
+  // SelectIngredients,
   TitlePreparation,
   WrapPreparation,
   TextAreaPreparation,
   ButtonAdd,
   WrapButtonAdd,
-  Description,
-  InputDescriptionMainWrap,
 } from './AddRecipeForm.styled';
 
-import { Counter } from '../Counter/Counter';
+// import { Counter } from '../Counter/Counter';
+import { RecipeDescriptionFields } from '../RecipeDescriptionFields/RecipeDescriptionFields';
+import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngredientsFields';
 
 export const AddRecipeForm = () => {
-  const [count, setCount] = useState(0);
-  const [description, setDescription] = useState({
+  // const [count, setCount] = useState(0);
+  const [descriptionFields, setDescriptionFields] = useState({
     title: '',
     about: '',
     category: 'Breakfast',
     time: '40 min',
   });
 
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setDescription(prevState => ({ ...prevState, [name]: value }));
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setDescriptionFields(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-
-    console.log(description);
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(descriptionFields);
+    reset();
   };
 
-  const handleIncrement = () => {
-    setCount(state => state + 1);
+  const reset = () => {
+    setDescriptionFields({
+      title: '',
+      about: '',
+      category: 'Breakfast',
+      time: '40 min',
+    });
   };
 
-  const handleDecrement = () => {
-    setCount(state => state - 1);
-  };
+  // const handleIncrement = () => {
+  //   setCount(state => state + 1);
+  // };
+
+  // const handleDecrement = () => {
+  //   setCount(state => state - 1);
+  // };
 
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <Description>
-          <ImgUploadWrap>
-            <label htmlFor="file-input">
-              <img src={uploadImg} alt="upload-img" />
-            </label>
-            <InputUpload id="file-input" type="file" />
-          </ImgUploadWrap>
-          <InputDescriptionMainWrap>
-            <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                name="title"
-                value={description.title}
-                id="description"
-                onChange={handleInputChange}
-                placeholder="Enter item title"
-              />
-            </InputDescriptionWrap>
-            <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                name="about"
-                value={description.about}
-                id="about"
-                onChange={handleInputChange}
-                placeholder="Enter about recipe"
-              />
-            </InputDescriptionWrap>
-            <InputDescriptionWrap>
-              <InputDescription type="text" placeholder="Category" disabled />
-              <SelectDescription
-                name="category"
-                value={description.category}
-                id="category"
-                onChange={handleInputChange}
-              >
-                <option value="Breakfast">Breakfast</option>
-                <option value="Beef">Beef</option>
-                <option value="Dessert">Dessert</option>
-                <option value="Goat">Goat</option>
-                <option value="Lamb">Lamb</option>
-                <option value="Miscellaneous">Miscellaneous</option>
-              </SelectDescription>
-            </InputDescriptionWrap>
-            <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                placeholder="Cooking time"
-                disabled
-              />
-              <SelectDescription
-                name="time"
-                id="time"
-                value={description.time}
-                onChange={handleInputChange}
-              >
-                <option value="40 min">40 min</option>
-                <option value="30 min">30 min</option>
-                <option value="20 min">20 min</option>
-                <option value="15 min">15 min</option>
-                <option value="10 min">10 min</option>
-                <option value="5 min">5 min</option>
-              </SelectDescription>
-            </InputDescriptionWrap>
-          </InputDescriptionMainWrap>
-        </Description>
+        <RecipeDescriptionFields
+          onInput={handleChange}
+          inputs={descriptionFields}
+        />
+
         <MainWrapIngredients>
-          <WrapIngredients>
+          <RecipeIngredientsFields />
+          {/* <WrapIngredients>
             <TitleIngredients>Ingredients</TitleIngredients>
             <Counter
               count={count}
@@ -156,7 +99,7 @@ export const AddRecipeForm = () => {
               </SelectIngredients>
             </div>
             <IoCloseOutline size={18} />
-          </InputIngredientsWrap>
+          </InputIngredientsWrap> */}
 
           <WrapPreparation>
             <TitlePreparation>Recipe Preparation</TitlePreparation>
