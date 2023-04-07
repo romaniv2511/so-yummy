@@ -63,6 +63,7 @@ const Recipe = () => {
             title={recipe.title}
             description={recipe.description}
             time={recipe.time}
+            id={recipeId}
           />
           <Container>
             <TableRecipe>
