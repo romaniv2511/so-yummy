@@ -34,6 +34,7 @@ export const User = () => {
       {isDashboardOpen && <UserDashboard onClose={toggleDashboard} onLogout={openLogoutApproval} onEdit={openEditUser}/>}
       {isModalOpen &&
         <UserModal onClose={toggleModal}>
+          if(modalName === 'logout')
           <UserLogout/>
         </UserModal>
       }
