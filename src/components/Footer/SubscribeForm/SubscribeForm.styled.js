@@ -3,9 +3,29 @@ import styled from 'styled-components';
 export const Form = styled.form`
   margin-top: 32px;
   display: flex;
+  position: relative;
   flex-direction: column;
   width: 204px;
   gap: 8px;
+  .icon {
+    position: absolute;
+    top: 13px;
+    left: 14px;
+    width: 16px;
+    height: 12px;
+    fill: ${({ color }) => color};
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
+      width: 20px;
+      height: 16px;
+      top: 16px;
+      left: 120px;
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
+      top: 126px;
+      left: 20px;
+    }
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     margin-top: 72px;
     justify-content: center;
@@ -39,13 +59,27 @@ export const Form = styled.form`
     }
   }
 `;
-export const FormWrap = styled.div`
-  position: relative;
+
+export const FormInput = styled.input`
+  width: 204px;
+  height: 38px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: -0.02em;
+  color: ${({ theme }) => theme.color.bgLightEl};
+  background-color: transparent;
+  border-radius: 6px;
+  padding-left: 42px;
+  padding-right: 38px;
+  border: 1px solid ${({ borderColor }) => borderColor};
+  outline: transparent;
+  transition: ${({ theme }) => theme.transitions.main};
   svg {
     position: absolute;
     width: 16px;
     height: 12px;
-    /* top: 0; */
+    top: 0;
     top: 13px;
     left: 14px;
     fill: ${({ theme }) => theme.color.bg};
@@ -60,23 +94,6 @@ export const FormWrap = styled.div`
       top: 20px;
     }
   }
-`;
-
-export const FormInput = styled.input`
-  width: 204px;
-  height: 38px;
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 15px;
-  letter-spacing: -0.02em;
-  color: ${({ theme }) => theme.color.bgLightEl};
-  background-color: transparent;
-  border-radius: 6px;
-  padding-left: 42px;
-  padding-right: 38px;
-  border: 1px solid ${({ theme }) => theme.color.footerInput};
-  outline: transparent;
-  transition: ${({ theme }) => theme.transitions.main};
   :-webkit-autofill {
     transition: background-color 250s linear, color 250s linear;
   }
@@ -94,10 +111,13 @@ export const FormInput = styled.input`
   }
   :hover,
   :focus {
-    border: 1px solid ${({ theme }) => theme.color.bgLightEl};
+    border: 1px solid 1px solid ${({ color }) => color};
     &::placeholder {
       opacity: 1;
     }
+  }
+  &:hover ~ svg.icon use {
+    opacity: 1;
   }
   ::placeholder {
     font-weight: 400;
@@ -181,4 +201,25 @@ export const ErrorEmail = styled.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
+`;
+export const FlagForInput = styled.div`
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  @media screen and (min-width: 768px) {
+    top: 15px;
+    right: 302px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    top: 126px;
+    right: 12px;
+  }
 `;

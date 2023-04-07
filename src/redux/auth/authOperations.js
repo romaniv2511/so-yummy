@@ -5,7 +5,7 @@ axios.defaults.baseURL = 'https://soyummy-tw3y.onrender.com/api/v1';
 
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `${token}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
     axios.defaults.headers.common.Authorization = '';
@@ -16,13 +16,12 @@ export const register = createAsyncThunk(
   'auth/register',
   async (user, { rejectWithValue }) => {
     try {
-      const req = await axios.post('/auth/register', user);
-      const {data} =req;
-      if(req.status === 200) {
+      const {data} = await axios.post('/auth/register', user);
+      if(data?.code === 200) {
         alert(data.message)
         return
       }
-      console.log(data);
+      console.log('register', data);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -36,11 +35,18 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (user, { rejectWithValue }) => {
     try {
-      const { data }  = await axios.post('/auth/login', user);
-      token.set(data.token);
+      const {data} = await axios.post('/auth/login', user);
 
+      if(data?.code === 200) {
+        console.log('error-login',data);
+        alert(data.message)
+        return
+      }
+      console.log('login',data);
+      token.set(data.token);
       return data;
     } catch (error) {
+      console.log("er", error);
       return rejectWithValue(error.message);
     }
   }
@@ -69,6 +75,7 @@ export const refreshUser = createAsyncThunk(
     token.set(persistedToken);
     try {
       const { data } = await axios.get('/auth/current');
+      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

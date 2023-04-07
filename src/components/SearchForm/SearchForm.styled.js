@@ -3,6 +3,24 @@ import { Field, Form } from 'formik';
 
 export const FormContainer = styled(Form)`
   position: relative;
+  width: 288px;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.mob}) {
+    width: 292px;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    width: 362px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    width: 510px;
+  }
 `;
 
 export const FieldContainer = styled(Field)`
@@ -19,11 +37,6 @@ export const FieldContainer = styled(Field)`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.mob}) {
     width: 292px;
-  }
-
-  @media screen and (max-width: 767px) {
-    margin-left: auto;
-    margin-right: auto;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
@@ -67,7 +80,7 @@ export const ButtonSearch = styled.button`
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.mob}) {
-    left: 203px;
+    left: 180px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
