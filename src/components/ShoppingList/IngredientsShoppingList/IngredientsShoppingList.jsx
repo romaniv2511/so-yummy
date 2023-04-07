@@ -1,14 +1,14 @@
-import sprite from '../../../img/sprite.svg';
+// import sprite from '../../../img/sprite.svg';
 import {
   TableList,
   TableItem,
-  ContainerImage,
-  ItemImage,
+  // ContainerImage,
+  // ItemImage,
   TableNameTitle,
   TableTitle,
-  ItemName,
-  ContainerItemNumber,
-  BtnItemRemove,
+  // ItemName,
+  // ContainerItemNumber,
+  // BtnItemRemove,
 } from './IngredientsShoppingList.styled';
 export const IngredientsShoppingList = () => {
   return (
