@@ -9,6 +9,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { authReducer } from './auth/authSlice';
+import { favoritesReducer } from './favorites/favoritesSlice';
 
 const middleware = getDefaultMiddleware =>
   getDefaultMiddleware({
@@ -20,6 +21,7 @@ const middleware = getDefaultMiddleware =>
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    favorites: favoritesReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

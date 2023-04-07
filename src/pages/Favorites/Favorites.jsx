@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// import axios from 'axios';
+// import { useAuth } from '../../hooks/useAuth';
 import { PagesWrapper } from 'components/PagesWrapper/PagesWrapper';
 import { Title, Container, Text, List } from './Favorites.styled';
 import imgMob from 'img/search-any-mob.png';
@@ -10,30 +12,51 @@ import imgDesk from 'img/search-any-desktop.png';
 import imgDesk2 from 'img/search-any-desktop@2x.png';
 import { Loader } from 'components/Loader/Loader';
 import { FavoriteCard } from 'components/FavoriteCard/FavoriteCard';
+import {
+  selectError,
+  selectFavorites,
+  selectIsLoading,
+} from 'redux/favorites/favoritesSelectors';
+import { fetchFavorites } from 'redux/favorites/favoritesOperations';
 
 const Favorites = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [recipes, setRecipes] = useState([]);
+  // const [error, setError] = useState(null);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const { token } = useAuth();
+  // useEffect(() => {
+  //   const fetchApi = async () => {
+  //     try {
+  //       setIsLoading(true);
+  //       setError(null);
+  //       const { data } = await axios.get(
+  //         'https://soyummy-tw3y.onrender.com/api/v1/recipes/category/Starter'
+  //       );
+  // const { data } = await axios.get(
+  //   'https://soyummy-tw3y.onrender.com/api/v1/favorites/',
+  //   {
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   }
+  // );
+  //       const result = data.data;
+  //       console.log(result);
+  //       setRecipes(result);
+  //     } catch (error) {
+  //       setError(error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+  //   fetchApi();
+  // }, [token]);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const recipes = useSelector(selectFavorites);
   useEffect(() => {
-    const fetchApi = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const { data } = await axios.get(
-          'https://soyummy-tw3y.onrender.com/api/v1/recipes/category/Breakfast'
-        );
-        const result = data.data;
-        console.log(result);
-        setRecipes(result);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchApi();
-  }, []);
+    dispatch(fetchFavorites());
+  }, [dispatch]);
+  console.log(recipes);
   return (
     <>
       {isLoading && <Loader />}

@@ -6,9 +6,17 @@ export const Item = styled.li`
   background-color: #fff;
   padding: 14px;
   border-radius: 8px;
+  scale: 1;
+
   @media (min-width: ${props => props.theme.breakpoints.tab}) {
     gap: 24px;
     padding: 28px 24px;
+    transition: ${props => props.theme.transitions.main};
+    :hover {
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+      scale: 1.01;
+    }
   }
   @media (min-width: ${props => props.theme.breakpoints.desk}) {
     gap: 40px;
@@ -23,6 +31,13 @@ export const ImgBox = styled.div`
     border-radius: 8px;
     width: 124px;
     height: 124px;
+    transition: ${props => props.theme.transitions.main};
+    @media (max-width: ${props => props.theme.breakpoints.mobMax}) {
+      :hover,
+      :focus {
+        scale: 1.05;
+      }
+    }
     @media (min-width: ${props => props.theme.breakpoints.tab}) {
       width: 228px;
       height: 232px;
@@ -110,6 +125,14 @@ export const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   background-color: ${p => p.theme.color.bgAccentEl};
+  transition: ${props => props.theme.transitions.main};
+  :hover,
+  :focus {
+    background-color: ${props => props.theme.color.accent};
+    & svg {
+      stroke: ${props => props.theme.color.socIconHover};
+    }
+  }
   & svg {
     stroke: currentColor;
     fill: transparent;

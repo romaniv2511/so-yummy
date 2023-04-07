@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+export const UserLogoBox = styled.div`
+  position: relative;
+`
 export const ButtonUser = styled.button`
   display: flex;
   gap: 14px;
