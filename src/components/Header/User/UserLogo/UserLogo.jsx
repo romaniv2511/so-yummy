@@ -1,4 +1,4 @@
-import userAvatar from 'img/avatar.png';
+// import userAvatar from 'img/avatar.png';
 import { ButtonUser, UserLogoBox } from './UserLogo.styled';
 import { useAuth } from '../../../../hooks/useAuth';
 
