@@ -17,13 +17,17 @@ export const AddRecipeForm = () => {
     about: '',
     category: 'Breakfast',
     time: '40 min',
-    ingredients: [],
-    amountIngredients: [],
+    ingredients: '',
+    // ingredients: [{ ttl: '', quantity: '' }],
   });
 
   const handleChange = event => {
     const { name, value } = event.target;
     setDescriptionFields(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSetValue = data => {
+    setDescriptionFields(prevState => ({ ...prevState, ingredients: data }));
   };
 
   const handleSubmit = e => {
@@ -38,6 +42,7 @@ export const AddRecipeForm = () => {
       about: '',
       category: 'Breakfast',
       time: '40 min',
+      ingredients: '',
     });
   };
 
@@ -50,7 +55,11 @@ export const AddRecipeForm = () => {
         />
 
         <MainWrapIngredients>
-          <RecipeIngredientsFields />
+          <RecipeIngredientsFields
+            onInput={handleChange}
+            inputs={descriptionFields}
+            onSetValue={handleSetValue}
+          />
           <WrapPreparation>
             <TitlePreparation>Recipe Preparation</TitlePreparation>
             <TextAreaPreparation

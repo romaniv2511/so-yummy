@@ -19,11 +19,11 @@ const getIngredientsByQuery = async query => {
   return data;
 };
 
-export const RecipeIngredientsFields = () => {
+export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
   const [count, setCount] = useState(0);
 
   const [ingredients, setIngredients] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -49,7 +49,8 @@ export const RecipeIngredientsFields = () => {
   }, [query]);
 
   const updateQueryString = e => {
-    setInputValue(e.target.value);
+    onInput(e);
+    // setInputValue(e.target.value);
     setSearchParams(e.target.value !== '' ? { query: e.target.value } : {});
   };
 
@@ -79,13 +80,20 @@ export const RecipeIngredientsFields = () => {
             name="ingredients"
             id="ingredients"
             placeholder=""
-            value={inputValue}
+            value={inputs.ingredients}
             onChange={e => updateQueryString(e)}
           />
           <ul>
             {ingredients.map(({ _id, ttl }) => (
               <li key={_id}>
-                <p onClick={() => setInputValue(ttl)}>{ttl}</p>
+                <p
+                  onClick={() => {
+                    onSetValue(ttl);
+                    // setInputValue(ttl);
+                  }}
+                >
+                  {ttl}
+                </p>
               </li>
             ))}
           </ul>
