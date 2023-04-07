@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Container } from '../Container/Container';
 import { Logo } from './Logo/Logo';
-import { UserLogo } from './UserLogo/UserLogo';
+import { User } from './User/User';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import { Navigation } from './Navigation/Navigation';
 import { ThemeToggler } from './ThemeToggler/ThemeToggler';
@@ -16,6 +16,7 @@ import {
   Section,
   GlobalStyle,
 } from './Header.styled';
+
 
 export const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -34,7 +35,7 @@ export const Header = () => {
             <Logo />
             {isDesktop && <Navigation />}
             <UserBox>
-              <UserLogo />
+              <User />
               {isDesktop ? (
                 <ThemeToggler />
               ) : (
