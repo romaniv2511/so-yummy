@@ -8,6 +8,7 @@ export const fetchFavorites = createAsyncThunk(
     try {
       const res = await axios.get('/favorites');
       const { data } = res.data;
+      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -20,8 +21,8 @@ export const addFavorite = createAsyncThunk(
   'favorites/addFavorites',
   async (recipeId, thunkAPI) => {
     try {
-      const response = await axios.post('/favorites', { _id: recipeId });
-      const { data } = response.data;
+      const res = await axios.post('/favorites', { _id: recipeId });
+      const { data } = res.data;
       console.log(data);
       return data;
     } catch (e) {
@@ -37,6 +38,7 @@ export const deleteFavorite = createAsyncThunk(
     try {
       const res = await axios.delete(`/favorites/${id}`);
       const { data } = res.data;
+      // console.log(data);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
