@@ -84,8 +84,7 @@ export const TableRecipe = styled.div`
       margin-left: 38px;
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
-     margin-left: 109px;
-}
+      margin-left: 109px;
     }
   }
 `;

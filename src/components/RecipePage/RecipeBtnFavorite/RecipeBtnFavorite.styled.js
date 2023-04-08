@@ -15,6 +15,7 @@ export const RecipeBtn = styled.button`
   outline: none;
   border-radius: 30px 80px;
   text-align: center;
+  transition: ${({ theme }) => theme.transitions.main};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     font-size: 16px;
     padding: 18px 44px;
@@ -25,6 +26,7 @@ export const RecipeBtn = styled.button`
 
   :hover,
   :focus {
+    transition: ${({ theme }) => theme.transitions.main};
     background: ${({ theme }) => theme.color.accent};
     color: ${({ theme }) => theme.color.textSecondary};
   }
