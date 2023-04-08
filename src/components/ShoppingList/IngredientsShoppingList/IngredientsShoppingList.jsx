@@ -25,7 +25,7 @@ export const IngredientsShoppingList = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const shoppingList = useSelector(state => state.shoppingList);
-  const { items, status } = shoppingList;
+  const { items } = shoppingList;
   const shoppingListId = items.shoppingList;
 
   const dispatch = useDispatch();

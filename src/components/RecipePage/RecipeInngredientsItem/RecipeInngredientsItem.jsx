@@ -84,9 +84,9 @@ export const RecipeInngredientsItem = ({ ttl, thb, desc, measure, _id }) => {
   const dispatch = useDispatch();
   // const [isChecked, setIsChecked] = useState(false);
   const shoppingList = useSelector(state => state.shoppingList);
-  const { items, status, error } = shoppingList;
+  const { items } = shoppingList;
   const shoppingListId = items.shoppingList;
-  // console.log(shoppingList);
+  console.log(shoppingListId);
   const handleDescToggle = () => {
     setShowFullDesc(!showFullDesc);
   };
