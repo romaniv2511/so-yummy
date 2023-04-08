@@ -38,9 +38,9 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
         <InputDescriptionWrap>
           <InputDescription
             type="text"
-            name="about"
-            value={inputs.about}
-            id="about"
+            name="description"
+            value={inputs.description}
+            id="description"
             onChange={handleInputChange}
             placeholder="Enter about recipe"
           />

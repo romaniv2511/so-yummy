@@ -9,20 +9,34 @@ import {
 import { RecipeDescriptionFields } from '../RecipeDescriptionFields/RecipeDescriptionFields';
 import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngredientsFields';
 import { RecipePreparationFields } from '../RecipePreparationFields/RecipePreparationFields';
+import { nanoid } from 'nanoid';
+
+const initialValues = {
+  title: '',
+  description: '',
+  category: 'Breakfast',
+  time: '40 min',
+  ingredients: '',
+  instructions: '',
+};
 
 export const AddRecipeForm = () => {
-  const [descriptionFields, setDescriptionFields] = useState({
-    title: '',
-    about: '',
-    category: 'Breakfast',
-    time: '40 min',
-    ingredients: '',
-    // ingredients: [{ ttl: '', quantity: '' }],
-  });
+  const [descriptionFields, setDescriptionFields] = useState(initialValues);
+
+  const [userIngredients, setUserIngredients] = useState([]);
+
+  const unitIncrement = () => {
+    console.log(userIngredients);
+    setUserIngredients(prev => [
+      ...prev,
+      { id: nanoid(), ingredient: '', unitValue: 100, qty: 'g' },
+    ]);
+  };
 
   const handleChange = event => {
-    const { name, value } = event.target;
-    setDescriptionFields(prevState => ({ ...prevState, [name]: value }));
+    console.log(event.target);
+    // const { name, value } = event.target;
+    // setDescriptionFields(prevState => ({ ...prevState, [name]: value }));
   };
 
   const handleSetValue = data => {
@@ -36,14 +50,7 @@ export const AddRecipeForm = () => {
   };
 
   const reset = () => {
-    setDescriptionFields({
-      title: '',
-      about: '',
-      category: 'Breakfast',
-      time: '40 min',
-      ingredients: '',
-      preparation: '',
-    });
+    setDescriptionFields(initialValues);
   };
 
   return (
@@ -56,6 +63,8 @@ export const AddRecipeForm = () => {
 
         <MainWrapIngredients>
           <RecipeIngredientsFields
+            unitIncrement={unitIncrement}
+            userIngredients={userIngredients}
             onInput={handleChange}
             inputs={descriptionFields}
             onSetValue={handleSetValue}
