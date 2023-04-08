@@ -17,7 +17,7 @@ import {
   GlobalStyle,
 } from './Header.styled';
 
-export const Header = () => {
+export const Header = ({ onToggle, isToggle }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const toggleOpenBurger = e => {
     setOpenMenu(!openMenu);
@@ -36,7 +36,7 @@ export const Header = () => {
             <UserBox>
               <UserLogo />
               {isDesktop ? (
-                <ThemeToggler />
+                <ThemeToggler onToggle={onToggle} isToggle={isToggle} />
               ) : (
                 <BurgerMenu onClick={toggleOpenBurger} />
               )}
@@ -66,7 +66,7 @@ export const Header = () => {
           />
         </div>
         <div>
-          <ThemeToggler />
+          <ThemeToggler onToggle={onToggle} isToggle={isToggle} />
         </div>
       </Modal>
     </>
