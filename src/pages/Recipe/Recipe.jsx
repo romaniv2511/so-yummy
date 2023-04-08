@@ -78,6 +78,7 @@ const Recipe = () => {
                 return (
                   <RecipeInngredientsItem
                     key={_id}
+                    _id={_id}
                     thb={thb}
                     ttl={ttl}
                     measure={measure}

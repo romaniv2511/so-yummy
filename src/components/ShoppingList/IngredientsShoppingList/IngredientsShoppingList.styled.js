@@ -58,12 +58,12 @@ export const ContainerImage = styled.div`
     width: 95px;
     margin-right: 15px;
   }
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
-export const ItemImage = styled.img`
-  width: 100%;
-  height: 100%;
-`;
 export const TableNameTitle = styled.div`
   display: flex;
   width: 225px;
@@ -92,12 +92,12 @@ export const ItemName = styled.p`
 export const ContainerItemNumber = styled.p`
   min-width: 40px;
   padding: 4px 4px;
-  background-color: ${({ theme }) => theme.color.bgAccentEl};
+  background-color: ${({ theme }) => theme.color.accent};
   font-size: 10px;
   border-radius: 10px;
   font-weight: 600;
   line-height: calc(27 / 18);
-  color: ${p => p.theme.colors.mainLight};
+  color: ${({ theme }) => theme.color.textSecondary};
   text-align: center;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     font-size: 18px;
@@ -110,6 +110,8 @@ export const BtnItemRemove = styled.button`
   height: 14px;
   padding: 0 20px;
   stroke: ${({ theme }) => theme.color.text};
+  background-color: inherit;
+  border: none;
   cursor: pointer;
   transition: ${({ theme }) => theme.transitions.main};
   @media screen and (min-width: 769px) {
@@ -117,7 +119,8 @@ export const BtnItemRemove = styled.button`
     width: 80px;
     height: 20px;
     &:hover {
-      stroke: ${({ theme }) => theme.color.bgAccentEl};
+      fill: ${({ theme }) => theme.color.accent};
+      stroke: ${({ theme }) => theme.color.accent};
       transform: rotate(-0.25turn);
     }
   }
