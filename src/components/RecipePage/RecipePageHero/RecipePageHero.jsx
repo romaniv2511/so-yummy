@@ -21,8 +21,8 @@ export const RecipePageHero = ({ title, description, time, id }) => {
   const dispatch = useDispatch();
   const [btnText, setBtnText] = useState(false);
 
-  const { data: favorites } = useSelector(selectFavorites);
-  console.log(favorites);
+  const data = useSelector(selectFavorites);
+  console.log(data);
   const { recipeId } = useParams();
   // const addFavorite = async () => {
   //   try {
@@ -58,8 +58,8 @@ export const RecipePageHero = ({ title, description, time, id }) => {
     return;
   }
   function getFavorite(recipeId) {
-    if (favorites !== undefined) {
-      const recipe = favorites.some(fav => fav._id === recipeId);
+    if (data !== undefined) {
+      const recipe = data.some(fav => fav._id === recipeId);
       return recipe;
     }
     return false;
@@ -67,6 +67,7 @@ export const RecipePageHero = ({ title, description, time, id }) => {
   function addToFavorite() {
     dispatch(addFavorite(id));
     setBtnText(true);
+    return;
   }
   return (
     <RecipePageHeroContainer>
@@ -76,16 +77,12 @@ export const RecipePageHero = ({ title, description, time, id }) => {
         <RecipeBtnFavorite
           type="button"
           text={'Remove from favorite recipes'}
-          styled="other"
-          location="recipes"
           onClick={deleteFromFav}
         />
       ) : (
         <RecipeBtnFavorite
           type="button"
           text="Add to favorite recipes"
-          styled="other"
-          location="recipes"
           onClick={addToFavorite}
         />
       )}
