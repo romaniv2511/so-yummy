@@ -1,104 +1,101 @@
-// import { unwrapResult } from '@reduxjs/toolkit';
-// import { useDispatch } from 'react-redux';
-// import { toast } from 'react-hot-toast';
-// import {
-//   MdOutlinePersonAdd,
-//   MdOutlinePersonAddDisabled,
-//   MdPersonOutline,
-//   MdAlternateEmail,
-//   MdOutlinePassword,
-//   MdOutlinePersonPin,
-// } from 'react-icons/md';
-// import { Form, Label, Input, RegistrationBtn } from './RegistrationForm.styled';
-// import { useAuth } from 'utils/hooks';
-// import { register } from 'redux/auth/authOperations';
-// import { Loader } from 'components/reusables/Loader/Loader';
-//
-// export const RegistrationForm = () => {
-//   const dispatch = useDispatch();
-//   const { isLoading } = useAuth();
-//
-//   const handleSubmit = evt => {
-//     evt.preventDefault();
-//     const form = evt.currentTarget;
-//     dispatch(
-//       register({
-//         name: form.elements.name.value,
-//         email: form.elements.email.value,
-//         password: form.elements.password.value,
-//       })
-//     )
-//       .then(unwrapResult)
-//       .then(response => {
-//         toast(`You were successfully registered as ${response.user.name}!`, {
-//           icon: <MdOutlinePersonAdd size={25} color="#327047" />,
-//         });
-//       })
-//       .catch(() =>
-//         toast(`Something's wrong. Please try again later.`, {
-//           icon: <MdOutlinePersonAddDisabled size={25} color="#aa8c3f" />,
-//         })
-//       );
-//     form.reset();
-//   };
-//
-//   return isLoading ? (
-//     <Loader />
-//   ) : (
-//     <Form onSubmit={handleSubmit} autoComplete="off">
-//       <Label>
-//         <Input type="text" name="name" placeholder="username" required />
-//         <MdPersonOutline size={28} color="#364a4a" />
-//       </Label>
-//       <Label>
-//         <Input type="email" name="email" placeholder="email@mail.com" required />
-//         <MdAlternateEmail size={28} color="#364a4a" />
-//       </Label>
-//       <Label>
-//         <Input type="password" name="password" placeholder="password" required />
-//         <MdOutlinePassword size={28} color="#364a4a" />
-//       </Label>
-//       <RegistrationBtn type="submit">
-//         Register
-//         <MdOutlinePersonPin size={20} color="#4d6868" />
-//       </RegistrationBtn>
-//     </Form>
-//   );
-// };
-
-
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperations';
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import sprite from '../../../img/sprite.svg';
+import {
+  TitleForm,
+  FormContainer,
+  FormContent,
+  Input,
+  Label,
+  LabelContainer,
+  ButtonSubmit,
+  ErrorMessage,
+} from '../AuthForm.styled';
+
+const SignupSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  password: Yup.string()
+    .required('No password provided.')
+    .min(6, 'Password is too short - should be 6 chars minimum.'),
+});
+
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
-  const handleSubmit =(data) => {
-    dispatch(register(data))
+  const handleSubmit = data => {
+    dispatch(register(data));
     console.log(data);
-  }
+  };
   return (
-    <Formik
-      initialValues = {{
-        name: '',
-        email:'',
-        password: '',}
-      }
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <label htmlFor="name">name</label>
-        <Field id="name" name="name" placeholder="Jane" />
-        <label htmlFor="email">Email</label>
-        <Field
-          id="email"
-          name="email"
-          placeholder="jane@acme.com"
-          type="email"
-        />
-        <label htmlFor="password">password</label>
-        <Field id="password" name="password" />
-        <button type="submit">Submit</button>
-      </Form>
-    </Formik>
-  )
-}
+    <FormContainer>
+      <TitleForm register="register">Registration</TitleForm>
+      <Formik
+        initialValues={{
+          name: '',
+          email: '',
+          password: '',
+        }}
+        onSubmit={handleSubmit}
+        validationSchema={SignupSchema}
+      >
+        {({ errors, touched }) => (
+          <>
+            <FormContent>
+              <LabelContainer>
+                <Label htmlFor="name">
+                  <svg>
+                    <use href={sprite + '#icon-name'} />
+                  </svg>
+                </Label>
+                <Input id="name" name="name" placeholder="Name" />
+                {errors.name && touched.name ? (
+                  <ErrorMessage>{errors.name}</ErrorMessage>
+                ) : null}
+              </LabelContainer>
+              <LabelContainer>
+                <Label htmlFor="email">
+                  <svg>
+                    <use href={sprite + '#icon-email'} />
+                  </svg>
+                </Label>
+                <Input
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  type="email"
+                />
+                {errors.email && touched.email ? (
+                  <ErrorMessage>{errors.email}</ErrorMessage>
+                ) : null}
+              </LabelContainer>
+              <LabelContainer>
+                <Label htmlFor="password">
+                  <svg>
+                    <use href={sprite + '#icon-password'} />
+                  </svg>
+                </Label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                />
+                {errors.password && touched.password ? (
+                  <ErrorMessage>{errors.password}</ErrorMessage>
+                ) : null}
+              </LabelContainer>
+            </FormContent>
+            <ButtonSubmit register="register" type="submit">
+              Sign up
+            </ButtonSubmit>{' '}
+          </>
+        )}
+      </Formik>
+    </FormContainer>
+  );
+};

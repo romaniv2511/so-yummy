@@ -1,14 +1,12 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { GlobalStyle } from '../GlobalStyle';
 import { Header } from '../Header/Header';
 import { Footer } from 'components/Footer/Footer';
 
-const SharedLayout = () => {
+const SharedLayout = ({ onToggle, isToggle }) => {
   return (
     <>
-      <GlobalStyle />
-      <Header />
+      <Header onToggle={onToggle} isToggle={isToggle} />
       <Suspense fallback={<p>Loading...</p>}>
         <Outlet />
       </Suspense>
