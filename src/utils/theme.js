@@ -29,6 +29,7 @@ export const lightTheme = {
     bgAccentEl: '#EBF3D4',
     bgLightEl: '#FFFFFF',
     gbCancel: '#D9D9D9',
+    textCancel: '#23262A',
     textSecondary: '#FAFAFA',
     textRights: '#22252A',
     textPagination: '#656565',

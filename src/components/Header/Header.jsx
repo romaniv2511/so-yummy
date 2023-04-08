@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Container } from '../Container/Container';
 import { Logo } from './Logo/Logo';
-import { UserLogo } from './UserLogo/UserLogo';
+import { User } from './User/User';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import { Navigation } from './Navigation/Navigation';
 import { ThemeToggler } from './ThemeToggler/ThemeToggler';
@@ -34,7 +34,7 @@ export const Header = ({ onToggle, isToggle }) => {
             <Logo />
             {isDesktop && <Navigation />}
             <UserBox>
-              <UserLogo />
+              <User />
               {isDesktop ? (
                 <ThemeToggler onToggle={onToggle} isToggle={isToggle} />
               ) : (
@@ -53,7 +53,7 @@ export const Header = ({ onToggle, isToggle }) => {
                 setOpenMenu(false);
               }}
             />
-            <Button type="button" onClick={toggleOpenBurger}>
+            <Button type="button" onClick={toggleOpenBurger} aria-label="Close">
               <svg width={32} height={32}>
                 <use href={sprite + '#icon-x'} />
               </svg>

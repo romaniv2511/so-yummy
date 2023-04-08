@@ -1,12 +1,11 @@
-import { PagesWrapper } from '../../components/PagesWrapper/PagesWrapper';
-import { TitlePage } from '../../components/TitlePage/TitlePage';
-
-
-const ShoppingList = () => {
+import { PagesWrapper } from 'components/PagesWrapper/PagesWrapper';
+import { ShoppingListPage } from 'components/ShoppingList/ShoppingListPage/ShoppingListPage';
+const ShopingList = () => {
   return (
     <PagesWrapper>
-      <TitlePage>ShoppingList</TitlePage>;
+      <ShoppingListPage />
     </PagesWrapper>
-  )
+  );
 };
-export default ShoppingList;
+
+export default ShopingList;

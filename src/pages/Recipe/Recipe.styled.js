@@ -84,8 +84,7 @@ export const TableRecipe = styled.div`
       margin-left: 38px;
     }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
-     margin-left: 109px;
-}
+      margin-left: 109px;
     }
   }
 `;
@@ -101,4 +100,7 @@ export const InngredientsList = styled.ul`
   @media screen and (min-width: 1440px) {
     margin-bottom: 100px;
   }
+`;
+export const ContainerError = styled.div`
+  padding-top: 200px;
 `;
