@@ -52,7 +52,8 @@ const Favorites = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-  const { data: recipes } = useSelector(selectFavorites);
+  const data = useSelector(selectFavorites);
+  // console.log(data);
   useEffect(() => {
     dispatch(fetchFavorites());
   }, [dispatch]);
@@ -63,9 +64,9 @@ const Favorites = () => {
       <main>
         <PagesWrapper>
           <Title>Favorites</Title>
-          {recipes.length > 0 ? (
+          {data && data.length > 0 ? (
             <List>
-              {recipes.map(({ _id, thumb, title, time, description }) => (
+              {data.map(({ _id, thumb, title, time, description }) => (
                 <FavoriteCard
                   key={_id}
                   thumb={thumb}
