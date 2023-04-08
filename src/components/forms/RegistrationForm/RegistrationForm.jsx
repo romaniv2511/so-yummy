@@ -44,7 +44,7 @@ export const RegistrationForm = () => {
         validationSchema={SignupSchema}
       >
         {({ errors, touched }) => (
-          <>
+
             <FormContent>
               <LabelContainer>
                 <Label htmlFor="name">
@@ -89,11 +89,11 @@ export const RegistrationForm = () => {
                   <ErrorMessage>{errors.password}</ErrorMessage>
                 ) : null}
               </LabelContainer>
+              <ButtonSubmit register="register" type="submit">
+                Sign up
+              </ButtonSubmit>
             </FormContent>
-            <ButtonSubmit register="register" type="submit">
-              Sign up
-            </ButtonSubmit>{' '}
-          </>
+
         )}
       </Formik>
     </FormContainer>

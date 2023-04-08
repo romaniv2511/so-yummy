@@ -40,7 +40,7 @@ export const LoginForm = () => {
         validationSchema={SigninSchema}
       >
         {({ errors, touched }) => (
-          <>
+
             <FormContent>
               <LabelContainer>
                 <Label htmlFor="email">
@@ -74,9 +74,10 @@ export const LoginForm = () => {
                   <ErrorMessage>{errors.password}</ErrorMessage>
                 ) : null}
               </LabelContainer>
+              <ButtonSubmit type="submit">Sign in</ButtonSubmit>
             </FormContent>
-            <ButtonSubmit type="submit">Sign in</ButtonSubmit>
-          </>
+
+
         )}
       </Formik>
     </FormContainer>

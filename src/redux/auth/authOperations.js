@@ -36,7 +36,7 @@ export const logIn = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const {data} = await axios.post('/auth/login', user);
-
+      console.log(data);
       if(data?.code === 200) {
         console.log('error-login',data);
         alert(data.message)
