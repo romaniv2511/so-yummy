@@ -19,6 +19,8 @@ const mainVars = {
 export const lightTheme = {
   ...mainVars,
   color: {
+    accentStartPage: '#8BAA36',
+    titleStartPage: '#FAFAFA',
     title: '#001833',
     text: '#3E4462',
     accent: '#8BAA36',
@@ -41,6 +43,7 @@ export const lightTheme = {
 export const darkTheme = {
   ...mainVars,
   color: {
+    titleStartPage: '#FAFAFA',
     title: '#FAFAFA',
     text: 'rgba(250, 250, 250, 0.6)',
     accent: '#8BAA36',

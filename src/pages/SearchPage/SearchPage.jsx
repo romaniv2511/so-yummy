@@ -18,6 +18,7 @@ const SearchPage = () => {
   const [state, setState] = useState('start');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const perPage = 8;
 
   const valueName = selectValue === 'Title' ? 'query' : 'ingredient';
   const value = searchParams.get(`${valueName}`) ?? '';
@@ -41,15 +42,21 @@ const SearchPage = () => {
 
   const getSearchList = async (categoryValue, categoryName, page = 1) => {
     setLoading(true);
-
+    let response;
     try {
-      const response = await axios.get(
-        `https://soyummy-tw3y.onrender.com/api/v1//search?page=${page}&limit=20&query=${categoryValue}&type=${categoryName}`
-      );
-      const { data, quantity } = response.data;
+      if (categoryName === 'Title') {
+        response = await axios.get(
+          `https://soyummy-tw3y.onrender.com/api/v1/search/by-title?page=${page}&query=${categoryValue}&limit=${perPage}`
+        );
+      } else {
+        response = await axios.get(
+          `https://soyummy-tw3y.onrender.com/api/v1/search/by-ingredient?page=${page}&query=${categoryValue}&limit=${perPage}`
+        );
+      }
+      const { data, quantity, total } = response.data;
       console.log('response', response.data);
 
-      const pages = quantity > 0 ? Math.ceil(quantity / data.length) : 0;
+      const pages = quantity > 0 ? Math.ceil(total / perPage) : 0;
       console.log('quantity', pages);
       setTotalPages(pages);
       setState('end');
