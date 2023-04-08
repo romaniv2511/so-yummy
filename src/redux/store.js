@@ -10,6 +10,7 @@ import {
 } from 'redux-persist';
 import { authReducer } from './auth/authSlice';
 import { favoritesReducer } from './favorites/favoritesSlice';
+import { shoppingListReducer } from './shoppingList/shoppingListSlice';
 
 const middleware = getDefaultMiddleware =>
   getDefaultMiddleware({
@@ -22,6 +23,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     favorites: favoritesReducer,
+    shoppingList: shoppingListReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
