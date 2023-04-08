@@ -21,36 +21,11 @@ export const RecipePageHero = ({ title, description, time, id }) => {
   const dispatch = useDispatch();
   const [btnText, setBtnText] = useState(false);
 
-  const { data: favorites } = useSelector(selectFavorites);
-  console.log(favorites);
+  const data = useSelector(selectFavorites);
   const { recipeId } = useParams();
-  // const addFavorite = async () => {
-  //   try {
-  //     const results = await axios.post(
-  //       `https://soyummy-tw3y.onrender.com/api/v1/favorites`,
-  //       { _id: recipeId },
-  //       {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       }
-  //     );
-  //     console.log(results);
-  //     return results.data;
-  //   } catch (error) {
-  //     throw new Error(error.response.status);
-  //   }
-  // };
   useEffect(() => {
     dispatch(fetchFavorites());
   }, [dispatch]);
-
-  // const handleFavoriteClick = () => {
-  //   const isFavorite = favorites.some(fav => fav._id === recipeId);
-  //   if (isFavorite) {
-  //     dispatch(deleteFavorite(recipeId));
-  //   } else {
-  //     dispatch(addFavorite(recipeId));
-  //   }
-  // };
 
   function deleteFromFav() {
     dispatch(deleteFavorite(id));
@@ -58,8 +33,8 @@ export const RecipePageHero = ({ title, description, time, id }) => {
     return;
   }
   function getFavorite(recipeId) {
-    if (favorites !== undefined) {
-      const recipe = favorites.some(fav => fav._id === recipeId);
+    if (data !== undefined) {
+      const recipe = data.some(fav => fav._id === recipeId);
       return recipe;
     }
     return false;
@@ -67,6 +42,7 @@ export const RecipePageHero = ({ title, description, time, id }) => {
   function addToFavorite() {
     dispatch(addFavorite(id));
     setBtnText(true);
+    return;
   }
   return (
     <RecipePageHeroContainer>
@@ -76,16 +52,12 @@ export const RecipePageHero = ({ title, description, time, id }) => {
         <RecipeBtnFavorite
           type="button"
           text={'Remove from favorite recipes'}
-          styled="other"
-          location="recipes"
           onClick={deleteFromFav}
         />
       ) : (
         <RecipeBtnFavorite
           type="button"
           text="Add to favorite recipes"
-          styled="other"
-          location="recipes"
           onClick={addToFavorite}
         />
       )}
