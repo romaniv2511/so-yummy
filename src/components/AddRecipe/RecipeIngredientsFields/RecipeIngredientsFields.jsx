@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import { IoCloseOutline } from 'react-icons/io5';
+import { IoCloseOutline } from 'react-icons/io5';
 import {
   InputIngredients,
-  // InputIngredientsWrap,
-  // SelectIngredients,
+  InputIngredientsWrap,
+  SelectIngredients,
   TitleIngredients,
   WrapIngredients,
 } from './RecipeIngredientsFields.styled';
 import { Counter } from '../Counter/Counter';
 import { useSearchParams } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
 const getIngredientsByQuery = async query => {
   const response = await axios.get(
@@ -19,15 +20,7 @@ const getIngredientsByQuery = async query => {
   return data;
 };
 
-// const measure = ['tbs', 'tsp', 'kg', 'g'];
-
-export const RecipeIngredientsFields = ({
-  userIngredients,
-  unitIncrement,
-  onInput,
-  inputs,
-  onSetValue,
-}) => {
+export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
   const [count, setCount] = useState(0);
   const [ingredients, setIngredients] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -36,33 +29,25 @@ export const RecipeIngredientsFields = ({
 
   const [activeInputIndex, setActiveInputIndex] = useState(-1);
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   console.log('InputFields', inputFields);
-  // };
-
   const handleChangeInput = (index, event) => {
     const values = [...inputFields];
     values[index][event.target.name] = event.target.value;
     setInputFields(values);
-    console.log(index);
-    console.log(event.target.id);
-    if ((index = event.target.id)) {
-      updateQueryString(event);
-    }
+
+    // updateQueryString(event);
 
     // updateQueryString(event);
   };
 
   const handleAddFields = () => {
-    setInputFields([...inputFields, { firstName: '', lastName: '' }]);
+    setInputFields([...inputFields, { id: nanoid(), field: '' }]);
   };
 
-  // const handleRemoveFields = index => {
-  //   const values = [...inputFields];
-  //   values.splice(index, 1);
-  //   setInputFields(values);
-  // };
+  const handleRemoveFields = index => {
+    const values = [...inputFields];
+    values.splice(index, 1);
+    setInputFields(values);
+  };
 
   const query = searchParams.get('query' ?? '');
 
@@ -87,11 +72,16 @@ export const RecipeIngredientsFields = ({
 
   const handleIncrement = () => {
     setCount(state => state + 1);
-    // unitIncrement();
     handleAddFields();
   };
 
   const handleDecrement = () => {
+    setCount(state => state - 1);
+    handleRemoveFields();
+  };
+
+  const handleDelete = fieldId => {
+    setInputFields(inputFields.filter(({ id }) => id !== fieldId));
     setCount(state => state - 1);
   };
 
@@ -107,51 +97,25 @@ export const RecipeIngredientsFields = ({
       </WrapIngredients>
 
       {inputFields.map((inputField, index) => (
-        <div key={index}>
-          <InputIngredients
-            name="ingredient"
-            id={index}
-            value={inputField[index]}
-            onChange={event => {
-              if ((index = event.target.id)) {
-                handleChangeInput(index, event);
-              }
-            }}
-          />
-          <ul>
-            {ingredients.map(({ _id, ttl }) => {
-              console.log(ingredients);
-              return (
-                <li key={_id}>
-                  <p
-                    onClick={() => {
-                      onSetValue(ttl);
-                    }}
-                  >
-                    {ttl}
-                  </p>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      ))}
-      {/* <ul>
-        {ingredients.map(({ id }) => (
-          <li key={id}>
-           
-            <div>
-              <InputIngredients
-                type="text"
-                name="ingredients"
-                id="ingredients"
-                placeholder=""
-                value={inputs.ingredients}
-                onChange={e => updateQueryString(e)}
-              />
-
-              <ul>
-                {ingredients.map(({ _id, ttl }) => (
+        <div key={inputField.id}>
+          <InputIngredientsWrap>
+            <InputIngredients
+              name="field"
+              id={inputField.id}
+              value={inputField.field}
+              onChange={event => handleChangeInput(index, event)}
+            />
+            <SelectIngredients>
+              <option value="Beef">tbs</option>
+              <option value="Breakfast">tsp</option>
+              <option value="Dessert">kg</option>
+              <option value="Goat">g</option>
+            </SelectIngredients>
+            <IoCloseOutline onClick={() => handleDelete(inputField.id)} />
+            {/* <ul>
+              {ingredients.map(({ _id, ttl }) => {
+                console.log(ingredients);
+                return (
                   <li key={_id}>
                     <p
                       onClick={() => {
@@ -161,13 +125,12 @@ export const RecipeIngredientsFields = ({
                       {ttl}
                     </p>
                   </li>
-                ))}
-              </ul>
-            </div>
-           
-          </li>
-        ))}
-      </ul> */}
+                );
+              })}
+            </ul> */}
+          </InputIngredientsWrap>
+        </div>
+      ))}
     </>
   );
 };
