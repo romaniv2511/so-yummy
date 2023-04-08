@@ -17,7 +17,6 @@ import {
   GlobalStyle,
 } from './Header.styled';
 
-
 export const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const toggleOpenBurger = e => {
@@ -54,7 +53,7 @@ export const Header = () => {
                 setOpenMenu(false);
               }}
             />
-            <Button type="button" onClick={toggleOpenBurger}>
+            <Button type="button" onClick={toggleOpenBurger} aria-label="Close">
               <svg width={32} height={32}>
                 <use href={sprite + '#icon-x'} />
               </svg>
