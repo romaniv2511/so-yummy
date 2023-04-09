@@ -20,7 +20,12 @@ const getIngredientsByQuery = async query => {
   return data;
 };
 
-export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
+export const RecipeIngredientsFields = ({
+  onInput,
+  inputs,
+  onSetValue,
+  handleSubmit,
+}) => {
   const [count, setCount] = useState(0);
   const [ingredients, setIngredients] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,13 +35,16 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
   const [activeInputIndex, setActiveInputIndex] = useState(-1);
 
   const handleChangeInput = (index, event) => {
-    console.log(index);
     const values = [...inputFields];
     values[index][event.target.name] = event.target.value;
     setInputFields(values);
-    onSetValue(inputFields);
+    // onSetValue(inputFields);
     setActiveInputIndex(index);
     updateQueryString(event);
+  };
+
+  const handleSetInputFields = inputFields => {
+    onSetValue(inputFields);
   };
 
   const handleAddFields = () => {
@@ -47,6 +55,7 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
     const values = [...inputFields];
     values.splice(index, 1);
     setInputFields(values);
+    // onSetValue(inputFields);
   };
 
   const query = searchParams.get('query' ?? '');
@@ -88,7 +97,9 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
 
   const handleDelete = fieldId => {
     setInputFields(inputFields.filter(({ id }) => id !== fieldId));
+    // onSetValue(inputs.ingredients);
     setCount(state => state - 1);
+    // onSetValue(inputFields);
   };
 
   return (
@@ -122,18 +133,16 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
           {activeInputIndex === index && (
             <ul>
               {ingredients.map(({ _id, ttl }) => {
-                // console.log(ingredients);
                 return (
                   <li
                     key={_id}
                     id={_id}
-                    onClick={e => {
-                      console.log(inputField.field);
+                    onClick={() => {
+                      console.log(inputFields);
                       inputField.field = ttl;
-                      // setIngredients(prevState => [...prevState, ttl]);
                       setActiveInputIndex(-1);
-                      // onSetValue(inputField.field);
-                      // setInputField(index, e);
+                      handleSetInputFields(inputFields);
+                      // handleChangeInput(index, event);
                     }}
                   >
                     <p>{ttl}</p>
