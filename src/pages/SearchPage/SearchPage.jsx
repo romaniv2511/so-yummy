@@ -26,7 +26,7 @@ const SearchPage = () => {
   const handleSearch = (text, actions) => {
     const { searchText } = text;
     const normalizedValue = searchText.toLowerCase().trim();
-    console.log(normalizedValue);
+
     const nextParams =
       normalizedValue !== '' ? { [valueName]: normalizedValue } : {};
     setSearchParams(nextParams);
@@ -57,7 +57,7 @@ const SearchPage = () => {
       console.log('response', response.data);
 
       const pages = quantity > 0 ? Math.ceil(total / perPage) : 0;
-      console.log('quantity', pages);
+
       setTotalPages(pages);
       setState('end');
       setSearchList(data);

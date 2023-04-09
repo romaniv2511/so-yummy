@@ -12,6 +12,7 @@ import {
   LabelContainer,
   ButtonSubmit,
   ErrorMessage,
+  LabelsContent,
 } from '../AuthForm.styled';
 
 const SignupSchema = Yup.object().shape({
@@ -31,6 +32,7 @@ export const RegistrationForm = () => {
     dispatch(register(data));
     console.log(data);
   };
+
   return (
     <FormContainer>
       <TitleForm register="register">Registration</TitleForm>
@@ -44,8 +46,8 @@ export const RegistrationForm = () => {
         validationSchema={SignupSchema}
       >
         {({ errors, touched }) => (
-
-            <FormContent>
+          <FormContent>
+            <LabelsContent>
               <LabelContainer>
                 <Label htmlFor="name">
                   <svg>
@@ -89,11 +91,11 @@ export const RegistrationForm = () => {
                   <ErrorMessage>{errors.password}</ErrorMessage>
                 ) : null}
               </LabelContainer>
-              <ButtonSubmit register="register" type="submit">
-                Sign up
-              </ButtonSubmit>
-            </FormContent>
-
+            </LabelsContent>
+            <ButtonSubmit register="register" type="submit">
+              Sign up
+            </ButtonSubmit>
+          </FormContent>
         )}
       </Formik>
     </FormContainer>
