@@ -101,7 +101,7 @@ export const ContainerItemNumber = styled.p`
   text-align: center;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     font-size: 18px;
-    min-width: 70px;
+    min-width: 78px;
   }
 `;
 
