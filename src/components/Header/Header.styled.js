@@ -62,7 +62,7 @@ export const Button = styled.button`
 export const Modal = styled.div`
   position: fixed;
   box-sizing: border-box;
-  z-index: 99;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -72,7 +72,7 @@ export const Modal = styled.div`
   overflow: auto;
   flex-direction: column;
   justify-content: space-between;
-  align-items: space-between;
+  align-items: center;
   transform: ${p => (p.isOpen ? 'translateY(0)' : 'translateY(-200%)')};
   transition: transform 0.9s cubic-bezier(0, 0, 0.58, 1);
   background-color: rgba(235, 243, 212, 1);

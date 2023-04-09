@@ -67,14 +67,16 @@ const Favorites = () => {
           {data && data.length > 0 ? (
             <List>
               {data.map(({ _id, thumb, title, time, description }) => (
-                <FavoriteCard
-                  key={_id}
-                  thumb={thumb}
-                  title={title}
-                  id={_id}
-                  description={description}
-                  time={time}
-                />
+                <li key={_id}>
+                  <FavoriteCard
+
+                    thumb={thumb}
+                    title={title}
+                    id={_id}
+                    description={description}
+                    time={time}
+                  />
+                </li>
               ))}
             </List>
           ) : (

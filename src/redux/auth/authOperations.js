@@ -80,3 +80,30 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+export const updateAvatar = createAsyncThunk(
+  'auth/avatar',
+  async (avatar, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch('/auth/user/avatar', avatar);
+      console.log('updateAvatar', data);
+      return data;
+      // return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+export const updateInfo = createAsyncThunk(
+  'auth/update',
+  async (user, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.put('/auth/user/update', user);
+      const {name, email} = data;
+      console.log('updateInfo', data);
+      return { name, email };
+      // return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
