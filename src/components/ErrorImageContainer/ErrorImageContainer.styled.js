@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ErrorImage = styled.img`
+export const ErrorImage = styled.picture`
   display: block;
   margin-bottom: 24px;
   margin-left: auto;
