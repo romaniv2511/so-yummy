@@ -8,8 +8,11 @@ import bgImageDesk2X from '../../img/start-page-desktop@2x.jpg';
 import { NavLink } from 'react-router-dom';
 
 export const Background = styled.div`
-  padding-top: 275px;
-  padding-bottom: 261px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-image: url(${bgImageMob});
   background-size: cover;
   background-repeat: no-repeat;

@@ -49,10 +49,9 @@ const favoritesSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     },
-    [addFavorite.fulfilled](state, action) {
+    [addFavorite.fulfilled](state) {
       state.isLoading = false;
       state.error = null;
-      state.items.push(action.payload);
     },
     [addFavorite.rejected](state, action) {
       state.isLoading = false;

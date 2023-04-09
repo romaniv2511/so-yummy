@@ -28,7 +28,7 @@ export const SearchForm = ({ initialValue, handleSubmit }) => {
           <FieldContainer
             id="searchText"
             name="searchText"
-            placeholder="Beef"
+            placeholder="Beef |"
           />
           {errors.searchText && touched.searchText ? (
             <ContainerError>{errors.searchText}</ContainerError>

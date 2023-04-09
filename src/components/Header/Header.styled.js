@@ -27,14 +27,19 @@ export const HeaderBox = styled.header`
 
 export const Section = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background: transparent;
+
+  @media (max-width: 1439px) {
+    justify-content: space-between;
+  }
 `;
+
 export const UserBox = styled.div`
   display: flex;
   gap: 24px;
   align-items: center;
+
   @media (min-width: ${props => props.theme.breakpoints.tab}) {
     gap: 50px;
   }

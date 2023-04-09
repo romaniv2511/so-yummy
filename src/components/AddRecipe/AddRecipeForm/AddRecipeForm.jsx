@@ -1,150 +1,106 @@
 import React, { useState } from 'react';
-import { IoCloseOutline } from 'react-icons/io5';
-
-import uploadImg from 'img/add-recipe-placeholder.png';
+import axios from 'axios';
 import {
-  InputUpload,
   Form,
-  ImgUploadWrap,
-  InputDescriptionWrap,
-  InputDescription,
-  SelectDescription,
-  TitleIngredients,
-  WrapIngredients,
-  InputIngredientsWrap,
   MainWrapIngredients,
-  InputIngredients,
-  SelectIngredients,
-  TitlePreparation,
   WrapPreparation,
-  TextAreaPreparation,
   ButtonAdd,
   WrapButtonAdd,
-  Description,
-  InputDescriptionMainWrap,
 } from './AddRecipeForm.styled';
+import { RecipeDescriptionFields } from '../RecipeDescriptionFields/RecipeDescriptionFields';
+import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngredientsFields';
+import { RecipePreparationFields } from '../RecipePreparationFields/RecipePreparationFields';
 
-import { Counter } from '../Counter/Counter';
+// import { nanoid } from 'nanoid';
+
+const initialValues = {
+  title: 'chicken',
+  description: 'chicken leg',
+  category: 'Breakfast',
+  time: 40,
+  ingredients: [],
+  instructions: 'test',
+};
 
 export const AddRecipeForm = () => {
-  const [count, setCount] = useState(0);
+  const [descriptionFields, setDescriptionFields] = useState(initialValues);
 
-  const handleIncrement = () => {
-    setCount(state => state + 1);
+  // useEffect(() => {
+  //   const postRecipe = async () => {};
+
+  //   // postRecipe()
+  // }, [third]);
+
+  const addRecipe = async text => {
+    try {
+      const response = await axios.post(
+        'https://soyummy-tw3y.onrender.com/api/v1/own-recipes',
+        text
+      );
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
   };
 
-  const handleDecrement = () => {
-    setCount(state => state - 1);
+  // const [userIngredients, setUserIngredients] = useState([]);
+
+  // const unitIncrement = () => {
+  //   // console.log(userIngredients);
+  //   setUserIngredients(prev => [
+  //     ...prev,
+  //     { id: nanoid(), ingredient: '', unitValue: 100, qty: 'g' },
+  //   ]);
+  // };
+
+  const handleChange = event => {
+    // console.log(event.target);
+    const { name, value } = event.target;
+    setDescriptionFields(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSetValue = data => {
+    // const newIngredient = [data];
+
+    console.log(data);
+    setDescriptionFields(prevState => ({
+      ...prevState,
+      ingredients: [...prevState.ingredients, data],
+    }));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(descriptionFields);
+    addRecipe(descriptionFields);
+    reset();
+  };
+
+  const reset = () => {
+    setDescriptionFields(initialValues);
   };
 
   return (
     <div>
-      <Form>
-        <Description>
-          <ImgUploadWrap>
-            <label htmlFor="file-input">
-              <img src={uploadImg} alt="upload-img" />
-            </label>
+      <Form onSubmit={handleSubmit}>
+        <RecipeDescriptionFields
+          onInput={handleChange}
+          inputs={descriptionFields}
+        />
 
-            <InputUpload id="file-input" type="file" />
-          </ImgUploadWrap>
-          <InputDescriptionMainWrap>
-            <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                name=""
-                id=""
-                placeholder="Enter item title"
-              />
-            </InputDescriptionWrap>
-            <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                name=""
-                id=""
-                placeholder="Enter about recipe"
-              />
-            </InputDescriptionWrap>
-            <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                name=""
-                id=""
-                placeholder="Category"
-                disabled
-              />
-              <SelectDescription name="categories" id="categories">
-                <option value="Breakfast">Breakfast</option>
-                <option value="Beef">Beef</option>
-                <option value="Dessert">Dessert</option>
-                <option value="Goat">Goat</option>
-                <option value="Lamb">Lamb</option>
-                <option value="Miscellaneous">Miscellaneous</option>
-              </SelectDescription>
-            </InputDescriptionWrap>
-            <InputDescriptionWrap>
-              <InputDescription
-                type="text"
-                name=""
-                id="cooking-time"
-                placeholder="Cooking time"
-                disabled
-              />
-              <SelectDescription name="cooking-time" id="cooking-time">
-                <option value="">40 min</option>
-                <option value="">30 min</option>
-                <option value="">20 min</option>
-                <option value="">15 min</option>
-                <option value="">10 min</option>
-                <option value="">5 min</option>
-              </SelectDescription>
-            </InputDescriptionWrap>
-          </InputDescriptionMainWrap>
-        </Description>
         <MainWrapIngredients>
-          <WrapIngredients>
-            <TitleIngredients>Ingredients</TitleIngredients>
-            <Counter
-              count={count}
-              handleIncrement={handleIncrement}
-              handleDecrement={handleDecrement}
-            />
-          </WrapIngredients>
-
-          <InputIngredientsWrap>
-            <div>
-              <InputIngredients type="text" name="" id="" placeholder="" />
-              <SelectIngredients name="ingredients" id="ingredients">
-                <option value="Beef">tbs</option>
-                <option value="Breakfast">tsp</option>
-                <option value="Dessert">kg</option>
-                <option value="Goat">g</option>
-              </SelectIngredients>
-            </div>
-            <IoCloseOutline size={18} />
-          </InputIngredientsWrap>
-          <InputIngredientsWrap>
-            <div>
-              <InputIngredients type="text" name="" id="" placeholder="" />
-              <SelectIngredients name="ingredients" id="ingredients">
-                <option value="Beef">tbs</option>
-                <option value="Breakfast">tsp</option>
-                <option value="Dessert">kg</option>
-                <option value="Goat">g</option>
-              </SelectIngredients>
-            </div>
-            <IoCloseOutline size={18} />
-          </InputIngredientsWrap>
-
+          <RecipeIngredientsFields
+            // unitIncrement={unitIncrement}
+            // userIngredients={userIngredients}
+            onInput={handleChange}
+            inputs={descriptionFields}
+            onSetValue={handleSetValue}
+          />
           <WrapPreparation>
-            <TitlePreparation>Recipe Preparation</TitlePreparation>
-            <TextAreaPreparation
-              name=""
-              id=""
-              // cols="30"
-              rows="7"
-              placeholder="Enter recipe"
-            ></TextAreaPreparation>
+            <RecipePreparationFields
+              onInput={handleChange}
+              inputs={descriptionFields}
+            />
           </WrapPreparation>
         </MainWrapIngredients>
         <WrapButtonAdd>
