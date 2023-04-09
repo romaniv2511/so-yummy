@@ -12,9 +12,7 @@ import { Pagination } from 'components/Pagination/Pagination';
 const SearchPage = () => {
   const [searchList, setSearchList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectValue, setSelectValue] = useState(
-    searchParams === 'query' ? 'Title' : 'Ingredients'
-  );
+  const [selectValue, setSelectValue] = useState('Title');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [state, setState] = useState('start');
