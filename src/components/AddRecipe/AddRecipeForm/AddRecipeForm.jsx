@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   Form,
   MainWrapIngredients,
@@ -9,29 +10,48 @@ import {
 import { RecipeDescriptionFields } from '../RecipeDescriptionFields/RecipeDescriptionFields';
 import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngredientsFields';
 import { RecipePreparationFields } from '../RecipePreparationFields/RecipePreparationFields';
-import { nanoid } from 'nanoid';
+
+// import { nanoid } from 'nanoid';
 
 const initialValues = {
-  title: '',
-  description: '',
+  title: 'chicken',
+  description: 'chicken leg',
   category: 'Breakfast',
-  time: '40 min',
-  ingredients: '',
-  instructions: '',
+  time: 40,
+  ingredients: [],
+  instructions: 'test',
 };
 
 export const AddRecipeForm = () => {
   const [descriptionFields, setDescriptionFields] = useState(initialValues);
 
-  const [userIngredients, setUserIngredients] = useState([]);
+  // useEffect(() => {
+  //   const postRecipe = async () => {};
 
-  const unitIncrement = () => {
-    // console.log(userIngredients);
-    setUserIngredients(prev => [
-      ...prev,
-      { id: nanoid(), ingredient: '', unitValue: 100, qty: 'g' },
-    ]);
+  //   // postRecipe()
+  // }, [third]);
+
+  const addRecipe = async text => {
+    try {
+      const response = await axios.post(
+        'https://soyummy-tw3y.onrender.com/api/v1/own-recipes',
+        text
+      );
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
   };
+
+  // const [userIngredients, setUserIngredients] = useState([]);
+
+  // const unitIncrement = () => {
+  //   // console.log(userIngredients);
+  //   setUserIngredients(prev => [
+  //     ...prev,
+  //     { id: nanoid(), ingredient: '', unitValue: 100, qty: 'g' },
+  //   ]);
+  // };
 
   const handleChange = event => {
     // console.log(event.target);
@@ -40,12 +60,19 @@ export const AddRecipeForm = () => {
   };
 
   const handleSetValue = data => {
-    setDescriptionFields(prevState => ({ ...prevState, ingredients: data }));
+    // const newIngredient = [data];
+
+    console.log(data);
+    setDescriptionFields(prevState => ({
+      ...prevState,
+      ingredients: [...prevState.ingredients, data],
+    }));
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     console.log(descriptionFields);
+    addRecipe(descriptionFields);
     reset();
   };
 
@@ -63,8 +90,8 @@ export const AddRecipeForm = () => {
 
         <MainWrapIngredients>
           <RecipeIngredientsFields
-            unitIncrement={unitIncrement}
-            userIngredients={userIngredients}
+            // unitIncrement={unitIncrement}
+            // userIngredients={userIngredients}
             onInput={handleChange}
             inputs={descriptionFields}
             onSetValue={handleSetValue}
