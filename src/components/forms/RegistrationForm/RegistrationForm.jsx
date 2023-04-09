@@ -11,7 +11,7 @@ import {
   Label,
   LabelContainer,
   ButtonSubmit,
-  ErrorMessage,
+  ErrorMessage,LabelsContent
 } from '../AuthForm.styled';
 
 const SignupSchema = Yup.object().shape({
@@ -44,56 +44,50 @@ export const RegistrationForm = () => {
         validationSchema={SignupSchema}
       >
         {({ errors, touched }) => (
-
-            <FormContent>
-              <LabelContainer>
-                <Label htmlFor="name">
-                  <svg>
-                    <use href={sprite + '#icon-name'} />
-                  </svg>
-                </Label>
-                <Input id="name" name="name" placeholder="Name" />
-                {errors.name && touched.name ? (
-                  <ErrorMessage>{errors.name}</ErrorMessage>
-                ) : null}
-              </LabelContainer>
-              <LabelContainer>
-                <Label htmlFor="email">
-                  <svg>
-                    <use href={sprite + '#icon-email'} />
-                  </svg>
-                </Label>
-                <Input
-                  id="email"
-                  name="email"
-                  placeholder="Email"
-                  type="email"
-                />
-                {errors.email && touched.email ? (
-                  <ErrorMessage>{errors.email}</ErrorMessage>
-                ) : null}
-              </LabelContainer>
-              <LabelContainer>
-                <Label htmlFor="password">
-                  <svg>
-                    <use href={sprite + '#icon-password'} />
-                  </svg>
-                </Label>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                />
-                {errors.password && touched.password ? (
-                  <ErrorMessage>{errors.password}</ErrorMessage>
-                ) : null}
-              </LabelContainer>
-              <ButtonSubmit register="register" type="submit">
-                Sign up
-              </ButtonSubmit>
-            </FormContent>
-
+          <FormContent>
+				<LabelsContent>
+            <LabelContainer>
+              <Label htmlFor="name">
+                <svg>
+                  <use href={sprite + '#icon-name'} />
+                </svg>
+              </Label>
+              <Input id="name" name="name" placeholder="Name" />
+              {errors.name && touched.name ? (
+                <ErrorMessage>{errors.name}</ErrorMessage>
+              ) : null}
+            </LabelContainer>
+            <LabelContainer>
+              <Label htmlFor="email">
+                <svg>
+                  <use href={sprite + '#icon-email'} />
+                </svg>
+              </Label>
+              <Input id="email" name="email" placeholder="Email" type="email" />
+              {errors.email && touched.email ? (
+                <ErrorMessage>{errors.email}</ErrorMessage>
+              ) : null}
+            </LabelContainer>
+            <LabelContainer>
+              <Label htmlFor="password">
+                <svg>
+                  <use href={sprite + '#icon-password'} />
+                </svg>
+              </Label>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Password"
+              />
+              {errors.password && touched.password ? (
+                <ErrorMessage>{errors.password}</ErrorMessage>
+              ) : null}
+            </LabelContainer></LabelsContent>
+            <ButtonSubmit register="register" type="submit">
+              Sign up
+            </ButtonSubmit>
+          </FormContent>
         )}
       </Formik>
     </FormContainer>
