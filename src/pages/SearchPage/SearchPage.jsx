@@ -54,8 +54,6 @@ const SearchPage = () => {
         );
       }
       const { data, quantity, total } = response.data;
-      console.log('response', response.data);
-
       const pages = quantity > 0 ? Math.ceil(total / perPage) : 0;
 
       setTotalPages(pages);
@@ -98,7 +96,9 @@ const SearchPage = () => {
   //---------------------------------//
 
   useEffect(() => {
-    if (value === '' || selectValue === '') return;
+    if (value === '' || selectValue === '') {
+      return;
+    }
     getSearchList(value, selectValue, page);
   }, [value, selectValue, page]);
 
