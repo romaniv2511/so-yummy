@@ -118,7 +118,15 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
                 // console.log(ingredients);
                 return (
                   <li key={_id}>
-                    <p>{ttl}</p>
+                    <p
+                      onClick={() => {
+                        // setIngredients(prevState => [...prevState, ttl]);
+                        setActiveInputIndex(-1);
+                        // onSetValue(ttl);
+                      }}
+                    >
+                      {ttl}
+                    </p>
                   </li>
                 );
               })}
