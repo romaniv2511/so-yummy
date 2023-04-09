@@ -24,7 +24,7 @@ export const FooterRightsBg = styled.div`
     font-style: normal;
     font-weight: 500;
     letter-spacing: -0.01em;
-    color: ${({ theme }) => theme.color.textRights};
+    color: ${({ theme }) => theme.color.mainTitle};
     opacity: 0.5;
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
       font-size: 14px;
