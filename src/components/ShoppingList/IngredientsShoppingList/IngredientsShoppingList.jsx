@@ -48,12 +48,12 @@ export const IngredientsShoppingList = () => {
     setLoading(false);
     setInfShoppingList(shoppingListId.map(({ _id }) => _id));
   }, [shoppingListId]);
-
+  // console.log(shoppingListId);
   return (
     <>
       {/* {shoppingList.status === 'loading' && <Loader />} */}
       {!loading && error && <p>{error}</p>}
-      {shoppingListId.length === 0 ? (
+      {shoppingListId === undefined || shoppingListId.length === 0 ? (
         <ContainerError>
           <ErrorImageContainer title="Doesn't find shopping list..." />
         </ContainerError>
