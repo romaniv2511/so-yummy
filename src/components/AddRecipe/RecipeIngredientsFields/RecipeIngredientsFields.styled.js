@@ -1,3 +1,4 @@
+import { IoCloseOutline } from 'react-icons/io5';
 import styled from 'styled-components';
 
 export const WrapIngredients = styled.div`
@@ -52,5 +53,13 @@ export const SelectIngredients = styled.select`
     width: 97px;
     height: 59px;
     text-align: center;
+  }
+`;
+
+export const DeleteBtn = styled(IoCloseOutline)`
+  width: 20px;
+  height: 20px;
+  &:hover {
+    color: ${({ theme }) => theme.color.accent};
   }
 `;

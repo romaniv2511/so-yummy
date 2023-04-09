@@ -12,8 +12,8 @@ import { RecipePreparationFields } from '../RecipePreparationFields/RecipePrepar
 import { nanoid } from 'nanoid';
 
 const initialValues = {
-  title: '',
-  description: '',
+  title: 'chicken',
+  description: 'description chicken',
   category: 'Breakfast',
   time: '40 min',
   ingredients: '',
@@ -26,7 +26,7 @@ export const AddRecipeForm = () => {
   const [userIngredients, setUserIngredients] = useState([]);
 
   const unitIncrement = () => {
-    console.log(userIngredients);
+    // console.log(userIngredients);
     setUserIngredients(prev => [
       ...prev,
       { id: nanoid(), ingredient: '', unitValue: 100, qty: 'g' },
@@ -35,8 +35,8 @@ export const AddRecipeForm = () => {
 
   const handleChange = event => {
     console.log(event.target);
-    // const { name, value } = event.target;
-    // setDescriptionFields(prevState => ({ ...prevState, [name]: value }));
+    const { name, value } = event.target;
+    setDescriptionFields(prevState => ({ ...prevState, [name]: value }));
   };
 
   const handleSetValue = data => {

@@ -13,9 +13,9 @@ export const RecipePreparationFields = ({ onInput, inputs }) => {
     <>
       <TitlePreparation>Recipe Preparation</TitlePreparation>
       <TextAreaPreparation
-        name="preparation"
-        value={inputs.preparation}
-        id="preparation"
+        name="instructions"
+        value={inputs.instructions}
+        id="instructions"
         rows="7"
         placeholder="Enter recipe"
         onChange={handleInputChange}

@@ -41,8 +41,6 @@ export const ButtonAdd = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  /* position: absolute; */
-  /* top: 0; */
   right: 25px;
   width: 113px;
   height: 52px;

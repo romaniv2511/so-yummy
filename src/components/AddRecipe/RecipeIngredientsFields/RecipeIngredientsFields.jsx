@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { IoCloseOutline } from 'react-icons/io5';
 import {
+  DeleteBtn,
   InputIngredients,
   InputIngredientsWrap,
   SelectIngredients,
@@ -27,14 +27,13 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
 
   const [inputFields, setInputFields] = useState([]);
 
-  const [activeInputIndex, setActiveInputIndex] = useState(-1);
+  // const [activeInputIndex, setActiveInputIndex] = useState(-1);
 
   const handleChangeInput = (index, event) => {
     const values = [...inputFields];
     values[index][event.target.name] = event.target.value;
     setInputFields(values);
-
-    // updateQueryString(event);
+    onSetValue(inputFields);
 
     // updateQueryString(event);
   };
@@ -111,24 +110,18 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
               <option value="Dessert">kg</option>
               <option value="Goat">g</option>
             </SelectIngredients>
-            <IoCloseOutline onClick={() => handleDelete(inputField.id)} />
-            {/* <ul>
-              {ingredients.map(({ _id, ttl }) => {
-                console.log(ingredients);
-                return (
-                  <li key={_id}>
-                    <p
-                      onClick={() => {
-                        onSetValue(ttl);
-                      }}
-                    >
-                      {ttl}
-                    </p>
-                  </li>
-                );
-              })}
-            </ul> */}
+            <DeleteBtn onClick={() => handleDelete(inputField.id)} />
           </InputIngredientsWrap>
+          {/* <ul>
+            {ingredients.map(({ _id, ttl }) => {
+              // console.log(ingredients);
+              return (
+                <li key={_id}>
+                  <p>{ttl}</p>
+                </li>
+              );
+            })}
+          </ul> */}
         </div>
       ))}
     </>
