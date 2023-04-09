@@ -30,6 +30,7 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
   const [activeInputIndex, setActiveInputIndex] = useState(-1);
 
   const handleChangeInput = (index, event) => {
+    console.log(index);
     const values = [...inputFields];
     values[index][event.target.name] = event.target.value;
     setInputFields(values);
@@ -62,6 +63,12 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
     };
     getIngredients();
   }, [query]);
+
+  // const setInputField = (index, event) => {
+  //   // console.log(event.currentTarget);
+  //   // console.log(index);
+  //   // inputFields.map(({field, index}) => )
+  // };
 
   const updateQueryString = e => {
     const { value } = e.target;
@@ -117,16 +124,19 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
               {ingredients.map(({ _id, ttl }) => {
                 // console.log(ingredients);
                 return (
-                  <li key={_id}>
-                    <p
-                      onClick={() => {
-                        // setIngredients(prevState => [...prevState, ttl]);
-                        setActiveInputIndex(-1);
-                        // onSetValue(ttl);
-                      }}
-                    >
-                      {ttl}
-                    </p>
+                  <li
+                    key={_id}
+                    id={_id}
+                    onClick={e => {
+                      console.log(inputField.field);
+                      inputField.field = ttl;
+                      // setIngredients(prevState => [...prevState, ttl]);
+                      setActiveInputIndex(-1);
+                      // onSetValue(inputField.field);
+                      // setInputField(index, e);
+                    }}
+                  >
+                    <p>{ttl}</p>
                   </li>
                 );
               })}

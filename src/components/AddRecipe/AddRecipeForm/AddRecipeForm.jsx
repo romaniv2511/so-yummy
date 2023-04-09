@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import {
   Form,
   MainWrapIngredients,
@@ -11,50 +11,31 @@ import { RecipeDescriptionFields } from '../RecipeDescriptionFields/RecipeDescri
 import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngredientsFields';
 import { RecipePreparationFields } from '../RecipePreparationFields/RecipePreparationFields';
 
-// import { nanoid } from 'nanoid';
-
 const initialValues = {
-  title: 'chicken',
-  description: 'chicken leg',
+  title: '',
+  description: '',
   category: 'Breakfast',
   time: 40,
   ingredients: [],
-  instructions: 'test',
+  instructions: '',
 };
 
 export const AddRecipeForm = () => {
   const [descriptionFields, setDescriptionFields] = useState(initialValues);
 
-  // useEffect(() => {
-  //   const postRecipe = async () => {};
-
-  //   // postRecipe()
-  // }, [third]);
-
-  const addRecipe = async text => {
-    try {
-      const response = await axios.post(
-        'https://soyummy-tw3y.onrender.com/api/v1/own-recipes',
-        text
-      );
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
-  };
-
-  // const [userIngredients, setUserIngredients] = useState([]);
-
-  // const unitIncrement = () => {
-  //   // console.log(userIngredients);
-  //   setUserIngredients(prev => [
-  //     ...prev,
-  //     { id: nanoid(), ingredient: '', unitValue: 100, qty: 'g' },
-  //   ]);
+  // const addRecipe = async text => {
+  //   try {
+  //     const response = await axios.post(
+  //       'https://soyummy-tw3y.onrender.com/api/v1/own-recipes',
+  //       text
+  //     );
+  //     return response.data;
+  //   } catch (error) {
+  //     return error.message;
+  //   }
   // };
 
   const handleChange = event => {
-    // console.log(event.target);
     const { name, value } = event.target;
     setDescriptionFields(prevState => ({ ...prevState, [name]: value }));
   };
@@ -72,7 +53,7 @@ export const AddRecipeForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log(descriptionFields);
-    addRecipe(descriptionFields);
+    // addRecipe(descriptionFields);
     reset();
   };
 
