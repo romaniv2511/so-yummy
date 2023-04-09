@@ -28,7 +28,7 @@ export const FieldContainer = styled(Field)`
   height: 52px;
   padding: 17px 32px;
   color: ${props => props.theme.color.text};
-  background-color: #fafafa;
+  background-color: ${props => props.theme.color.bg};
   border-radius: 24px 44px;
   border: 1px solid #f0f0f0;
   font-weight: 400;
@@ -66,7 +66,7 @@ export const ButtonSearch = styled.button`
   background-color: ${props => props.theme.color.bgSecondary};
   border-radius: 24px 44px;
   border: none;
-  color: ${props => props.theme.color.bg};
+  color: ${props => props.theme.color.btnColor};
   font-family: inherit;
   font-weight: 400;
   font-size: 14px;
@@ -77,6 +77,7 @@ export const ButtonSearch = styled.button`
   &:hover,
   &:focus {
     background-color: ${props => props.theme.color.accent};
+    color: ${props => props.theme.color.socIconHover};
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.mob}) {

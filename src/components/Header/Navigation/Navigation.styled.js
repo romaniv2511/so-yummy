@@ -6,13 +6,16 @@ export const Nav = styled.nav`
   flex-direction: column;
   align-items: center;
   gap: 32px;
+
   @media (min-width: ${props => props.theme.breakpoints.tab}) {
     gap: 40px;
-    @media (min-width: ${props => props.theme.breakpoints.desk}) {
-      display: flex;
-      flex-direction: row;
-      gap: 30px;
-    }
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.desk}) {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-right: auto;
   }
 `;
 export const Link = styled(NavLink)`
@@ -24,7 +27,7 @@ export const Link = styled(NavLink)`
   font-size: 18px;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: ${props => props.theme.color.textRights};
+  color: ${props => props.theme.color.primaryTextColor};
   & svg {
     width: 20px;
     height: 20px;

@@ -144,7 +144,7 @@ export const FormBtn = styled.button`
   height: 38px;
   border-radius: 6px;
   border: none;
-  background-color: ${({ theme }) => theme.color.accent};
+  background-color: ${({ theme }) => theme.color.bgSubscribe};
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -153,8 +153,9 @@ export const FormBtn = styled.button`
   display: flex;
   align-items: center;
   text-align: center;
-  color: ${({ theme }) => theme.color.textSecondary};
+  color: ${({ theme }) => theme.color.btnColor};
   transition: ${({ theme }) => theme.transitions.main};
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     width: 171px;
     height: 50px;

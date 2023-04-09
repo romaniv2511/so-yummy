@@ -17,3 +17,9 @@ export const Link = styled(NavLink)`
     transform: scale(1.2);
   }
 `;
+
+export const LogoContainer = styled.div`
+  @media (min-width: ${props => props.theme.breakpoints.desk}) {
+    margin-right: 187px;
+  }
+`;

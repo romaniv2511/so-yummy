@@ -10,9 +10,11 @@ import { Loader } from 'components/Loader/Loader';
 import { Pagination } from 'components/Pagination/Pagination';
 
 const SearchPage = () => {
-  const [selectValue, setSelectValue] = useState('Title');
   const [searchList, setSearchList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [selectValue, setSelectValue] = useState(
+    searchParams === 'query' ? 'Title' : 'Ingredients'
+  );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [state, setState] = useState('start');
@@ -54,8 +56,6 @@ const SearchPage = () => {
         );
       }
       const { data, quantity, total } = response.data;
-      console.log('response', response.data);
-
       const pages = quantity > 0 ? Math.ceil(total / perPage) : 0;
 
       setTotalPages(pages);
@@ -98,9 +98,12 @@ const SearchPage = () => {
   //---------------------------------//
 
   useEffect(() => {
-    if (value === '' || selectValue === '') return;
+    if (value === '' || selectValue === '') {
+      setSearchParams({});
+      return;
+    }
     getSearchList(value, selectValue, page);
-  }, [value, selectValue, page]);
+  }, [value, selectValue, page, setSearchParams]);
 
   return (
     <PagesWrapper>

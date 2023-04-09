@@ -29,37 +29,38 @@ export const IngredientsShoppingList = () => {
   const shoppingListId = items.shoppingList;
 
   const dispatch = useDispatch();
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
-    fetchShoppingList();
-  }, [dispatch]);
+    dispatch(fetchShoppingList());
+  }, []);
   const handleDelete = async (_id, measure) => {
     dispatch(deleteToShoppingList({ _id: _id, measure: measure }));
   };
-
   useEffect(() => {
     setLoading(true);
     setError(null);
-    setIngredientsMeasureList(
-      shoppingListId.map(({ _id: { _id }, measure }) => ({
-        id: _id,
-        measure,
-      }))
-    );
-    setLoading(false);
-    setInfShoppingList(shoppingListId.map(({ _id }) => _id));
+    if (shoppingListId) {
+      setIngredientsMeasureList(
+        shoppingListId.map(({ _id: { _id }, measure }) => ({
+          id: _id,
+          measure,
+        }))
+      );
+      setLoading(false);
+      setInfShoppingList(shoppingListId.map(({ _id }) => _id));
+    }
   }, [shoppingListId]);
 
   return (
     <>
-      {/* {shoppingList.status === 'loading' && <Loader />} */}
       {!loading && error && <p>{error}</p>}
-      {shoppingListId.length === 0 ? (
+      {shoppingListId === undefined || shoppingListId.length === 0 ? (
         <ContainerError>
           <ErrorImageContainer title="Doesn't find shopping list..." />
         </ContainerError>
       ) : (
         <TableList>
-          <TableItem key="123654789">
+          <TableItem key="123">
             <TableNameTitle>Products</TableNameTitle>
             <TableTitle>Number</TableTitle>
             <TableTitle>Remove</TableTitle>
@@ -68,7 +69,7 @@ export const IngredientsShoppingList = () => {
           {infShoppingList.map(({ _id, thb, ttl }, i) => {
             const { measure } = ingredientsMeasureList[i];
             return (
-              <TableItem>
+              <TableItem key={_id}>
                 <TableNameTitle>
                   <ContainerImage>
                     {thb ? (
