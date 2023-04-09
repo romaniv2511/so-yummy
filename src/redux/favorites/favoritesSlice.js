@@ -52,7 +52,7 @@ const favoritesSlice = createSlice({
     [addFavorite.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.items.push(action.payload);
+      // state.items.push(action.payload);
     },
     [addFavorite.rejected](state, action) {
       state.isLoading = false;
