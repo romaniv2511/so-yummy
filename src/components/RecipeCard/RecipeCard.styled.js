@@ -1,29 +1,5 @@
 import styled from 'styled-components';
 
-export const Item = styled.div`
-  display: flex;
-  gap: 14px;
-  background-color: #fff;
-  padding: 14px;
-  border-radius: 8px;
-  scale: 1;
-
-  @media (min-width: ${props => props.theme.breakpoints.tab}) {
-    gap: 24px;
-    padding: 28px 24px;
-    transition: ${props => props.theme.transitions.main};
-    :hover {
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-      scale: 1.01;
-    }
-  }
-  @media (min-width: ${props => props.theme.breakpoints.desk}) {
-    gap: 40px;
-    padding: 40px;
-  }
-`;
-
 export const ImgBox = styled.div`
   display: flex;
   object-fit: cover;
@@ -57,6 +33,7 @@ export const Text = styled.p`
   color: #23262a;
   flex-grow: 1;
   @media (min-width: ${props => props.theme.breakpoints.tab}) {
+    width: 85%;
     font-size: 14px;
     line-height: 1.29;
   }
@@ -124,17 +101,21 @@ export const Button = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: ${p => p.theme.color.bgAccentEl};
+  background-color: ${props =>
+    props.active ? props.theme.color.accent : props.theme.color.bgAccentEl};
   transition: ${props => props.theme.transitions.main};
   :hover,
   :focus {
-    background-color: ${props => props.theme.color.accent};
+    background-color: ${props =>
+      props.active ? props.theme.color.bgAccentEl : props.theme.color.accent};
     & svg {
-      stroke: ${props => props.theme.color.socIconHover};
+      stroke: ${props =>
+        props.active ? 'currentColor' : props.theme.color.socIconHover};
     }
   }
   & svg {
-    stroke: currentColor;
+    stroke: ${props =>
+      props.active ? props.theme.color.socIconHover : 'currentColor'};
     fill: transparent;
     width: 14px;
     height: 14px;
@@ -163,23 +144,34 @@ export const ButtonSee = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  width: 138px;
-  height: 45px;
-  background-color: ${props => props.theme.color.bgSecondary};
+  width: ${props => (props.active ? '87px' : '138px')};
+  height: ${props => (props.active ? '27px' : '45px')};
+  background-color: ${props =>
+    props.active
+      ? props.theme.color.accentStartPage
+      : props.theme.color.bgSecondary};
   border-radius: 24px 44px;
   border: none;
   color: ${props => props.theme.color.bg};
   font-weight: 400;
-  font-size: 14px;
+  font-size: ${props => (props.active ? '10px' : '14px')};
   line-height: 1.5;
 
   transition: ${props => props.theme.transitions.main};
 
   &:hover,
   &:focus {
-    background-color: ${props => props.theme.color.accent};
+    background-color: ${props =>
+      props.active
+        ? props.theme.color.bgSecondary
+        : props.theme.color.accentStartPage};
   }
 
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    width: 138px;
+    height: 45px;
+    font-size: 14px;
+  }
   @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     font-size: 16px;
     width: 160px;
