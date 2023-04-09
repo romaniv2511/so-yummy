@@ -9,7 +9,6 @@ export const Title = styled.h2`
   color: ${props => props.theme.color.title};
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     font-size: 32px;
-    /* margin-bottom: 100px; */
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
     font-size: 44px;

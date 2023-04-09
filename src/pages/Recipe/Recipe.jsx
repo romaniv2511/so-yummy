@@ -2,8 +2,9 @@ import { RecipePageHero } from 'components/RecipePage/RecipePageHero/RecipePageH
 import { RecipePreparation } from 'components/RecipePage/RecipePreparation/RecipePreparation';
 import { RecipeInngredientsItem } from 'components/RecipePage/RecipeInngredientsItem/RecipeInngredientsItem';
 import axios from 'axios';
-
+import { ErrorImageContainer } from 'components/ErrorImageContainer/ErrorImageContainer';
 import { useEffect, useState } from 'react';
+import { Loader } from 'components/Loader/Loader';
 import {
   ContainerRecipe,
   TableRecipe,
@@ -11,7 +12,7 @@ import {
 } from './Recipe.styled';
 import { Container } from 'components/Container/Container';
 import { useParams } from 'react-router-dom';
-import { ErrorMessage } from 'components/PreviewCategories/PreviewCategories.styled';
+import { ContainerError } from './Recipe.styled';
 
 const Recipe = () => {
   const [recipe, setRecipe] = useState({});
@@ -52,14 +53,17 @@ const Recipe = () => {
   return (
     <ContainerRecipe>
       {error && !loading && (
-        <ErrorMessage>Doesn't find any recipes...</ErrorMessage>
+        <ContainerError>
+          <ErrorImageContainer title="Doesn't find any recipes..." />
+        </ContainerError>
       )}
-      {recipe && !error && !loading && (
+      {recipe && !error && !loading && <Loader /> && (
         <>
           <RecipePageHero
             title={recipe.title}
             description={recipe.description}
             time={recipe.time}
+            id={recipeId}
           />
           <Container>
             <TableRecipe>
@@ -74,6 +78,7 @@ const Recipe = () => {
                 return (
                   <RecipeInngredientsItem
                     key={_id}
+                    _id={_id}
                     thb={thb}
                     ttl={ttl}
                     measure={measure}

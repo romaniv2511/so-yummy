@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+// import axios from 'axios';
+// import { useAuth } from '../../hooks/useAuth';
 import { useMediaQuery } from 'react-responsive';
 import {
   Button,
@@ -13,11 +15,27 @@ import {
   TitleWrapper,
 } from './FavoriteCard.styled';
 import sprite from 'img/sprite.svg';
+import { useDispatch } from 'react-redux';
+import { deleteFavorite } from 'redux/favorites/favoritesOperations';
 
 export const FavoriteCard = ({ id, thumb, title, description, time }) => {
   const isTablet = useMediaQuery({
     query: '(min-width: 768px)',
   });
+  const dispatch = useDispatch();
+  const handleDelete = () => dispatch(deleteFavorite(id));
+  // const { token } = useAuth();
+  // const handleDelete = async id => {
+  //   const result = await axios.del(
+  //     `https://soyummy-tw3y.onrender.com/api/v1/favorites/${id}`,
+  //     {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     }
+  //   );
+  //   .then(({ data }) => {
+  //     return data;
+  //   });;
+  // };
   return (
     <Item>
       {!isTablet ? (
@@ -37,7 +55,7 @@ export const FavoriteCard = ({ id, thumb, title, description, time }) => {
         ) : (
           <TitleWrapper>
             <Title>{title}</Title>
-            <Button type="button">
+            <Button type="button" aria-label="Delete" onClick={handleDelete}>
               <svg>
                 <use href={sprite + '#icon-del'} />
               </svg>
@@ -49,13 +67,15 @@ export const FavoriteCard = ({ id, thumb, title, description, time }) => {
         <ElementWrapper>
           <Time>{`${time} min`}</Time>
           {!isTablet ? (
-            <Button type="button">
+            <Button type="button" aria-label="Delete" onClick={handleDelete}>
               <svg>
                 <use href={sprite + '#icon-del'} />
               </svg>
             </Button>
           ) : (
-            <ButtonSee type="button">See recipe</ButtonSee>
+            <Link to={`/recipe/${id}`}>
+              <ButtonSee type="button">See recipe</ButtonSee>
+            </Link>
           )}
         </ElementWrapper>
       </RecipeDetails>

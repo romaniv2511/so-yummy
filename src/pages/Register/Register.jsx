@@ -1,20 +1,13 @@
-
-import { RegistrationPageWrap } from './Register.styled';
-// import { Helmet } from 'react-helmet-async';
 import { RegistrationForm } from 'components/forms/RegistrationForm/RegistrationForm';
+import { PageWrap, Link, ContainerRegister } from 'pages/SignIn/SignIn.styled';
 
 export default function Register() {
   return (
-    <RegistrationPageWrap>
-      {/*<Helmet>*/}
-        <title>Registration</title>
-      {/*</Helmet>*/}
-      <h2>
-        New User
-        <br />
-        registration form
-      </h2>
-      <RegistrationForm />
-    </RegistrationPageWrap>
+    <PageWrap register="register">
+      <ContainerRegister>
+        <RegistrationForm />
+        <Link to="/signin">Sign In</Link>
+      </ContainerRegister>
+    </PageWrap>
   );
 }

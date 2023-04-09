@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-// Добавити навігацію коли все буде готово
 
 export const Link = styled(NavLink)`
   font-style: normal;
@@ -10,9 +9,9 @@ export const Link = styled(NavLink)`
   letter-spacing: -0.02em;
   color: ${({ theme }) => theme.color.textSecondary};
   transition: ${({ theme }) => theme.transitions.main};
-  /* &.active {
+  &.active {
     color: ${({ theme }) => theme.color.accent};
-  } */
+  }
   :hover,
   :focus {
     color: ${({ theme }) => theme.color.accent};

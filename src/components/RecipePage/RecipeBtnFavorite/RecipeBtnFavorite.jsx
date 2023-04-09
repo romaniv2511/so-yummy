@@ -1,5 +1,5 @@
 import { RecipeBtn } from './RecipeBtnFavorite.styled';
 
-export const RecipeBtnFavorite = () => {
-  return <RecipeBtn>Add to favorite recipes</RecipeBtn>;
+export const RecipeBtnFavorite = ({ onClick, text }) => {
+  return <RecipeBtn onClick={onClick}>{text}</RecipeBtn>;
 };
