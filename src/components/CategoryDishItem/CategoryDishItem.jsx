@@ -5,6 +5,7 @@ import placeholder from '../../img/placeholder.jpg';
 
 export const CategoryDishItem = ({ id, thumb, title }) => {
   const image = thumb ? thumb : placeholder;
+
   return (
     <CardContainer>
       <Link to={`/recipe/${id}`}>
