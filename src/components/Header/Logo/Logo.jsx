@@ -1,16 +1,16 @@
 import sprite from 'img/sprite.svg';
-import { Link } from './Logo.styled';
+import { Link, LogoContainer } from './Logo.styled';
 
 export const Logo = ({ onClick }) => {
   //   const { isLoggedIn } = useAuth();
 
   return (
-    <div>
+    <LogoContainer>
       <Link to="/" onClick={onClick}>
         <svg>
           <use href={sprite + '#icon-logo-1'} />
         </svg>
       </Link>
-    </div>
+    </LogoContainer>
   );
 };

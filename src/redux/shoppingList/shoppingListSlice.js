@@ -39,13 +39,15 @@ const shoppingListSlice = createSlice({
       state.status = 'loading';
     });
     builder.addCase(deleteToShoppingList.fulfilled, (state, action) => {
-      const removedItemIndex = state.items.findIndex(
-        item => item._id === action.payload._id
-      );
-      if (removedItemIndex !== -1) {
-        state.items.splice(removedItemIndex, 1);
+      if (Array.isArray(state.items)) {
+        const removedItemIndex = state.items.findIndex(
+          item => item._id === action.payload._id
+        );
+        if (removedItemIndex !== -1) {
+          state.items.splice(removedItemIndex, 1);
+        }
+        state.status = 'succeeded';
       }
-      state.status = 'succeeded';
     });
     builder.addCase(deleteToShoppingList.rejected, (state, action) => {
       state.error = action.payload;

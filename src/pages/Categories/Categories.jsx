@@ -57,10 +57,8 @@ const Categories = () => {
   };
 
   const handleScrollbar = () => {
-    console.log('рендер');
     const elList = activeRef.current;
     const el = elList.querySelector('.active');
-    console.log('el', el);
     if (el) {
       el.scrollIntoView({
         block: 'end',

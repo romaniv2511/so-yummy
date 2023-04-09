@@ -37,17 +37,12 @@ export const ImageWrapper = styled.div`
 `;
 export const CheckLabel = styled.label``;
 export const IngTextContainer = styled.div`
-  /* height: 52px; */
-  /* overflow: hidden; */
-  /* text-overflow: ellipsis; */
   max-width: 90px;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     max-width: 208px;
-    /* height: 114px; */
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
     max-width: 547px;
-    /* height: 104px; */
   }
 `;
 export const IngName = styled.title`
@@ -111,7 +106,7 @@ export const IngNumber = styled.p`
   line-height: 1.5;
   color: ${({ theme }) => theme.color.textSecondary};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
-    min-width: 68px;
+    min-width: 78px;
     max-width: 150px;
     font-size: 18px;
     line-height: 1.5;

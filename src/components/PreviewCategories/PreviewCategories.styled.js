@@ -65,7 +65,7 @@ export const Link = styled(NavLink)`
   height: 38px;
   background-color: ${props => props.theme.color.accent};
   border: none;
-  color: ${props => props.theme.color.bg};
+  color: ${props => props.theme.color.btnColor};
   font-family: inherit;
   font-weight: 400;
   font-size: 14px;
@@ -78,6 +78,7 @@ export const Link = styled(NavLink)`
   &:hover,
   &:focus {
     background-color: ${props => props.theme.color.bgSecondary};
+    color: ${props => props.theme.color.socIconHover};
   }
 `;
 
@@ -91,7 +92,7 @@ export const ButtonOtherCategory = styled(NavLink)`
   background-color: transparent;
   border-radius: 24px 44px;
   border: 2px solid ${props => props.theme.color.accent};
-  color: ${props => props.theme.color.bgSecondary};
+  color: ${props => props.theme.color.btnColorSecondary};
   font-family: inherit;
   font-weight: 400;
   font-size: 14px;
@@ -104,7 +105,7 @@ export const ButtonOtherCategory = styled(NavLink)`
   &:hover,
   &:focus {
     background-color: ${props => props.theme.color.accent};
-    color: ${props => props.theme.color.bgLightEl};
+    color: ${props => props.theme.color.btnColor};
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {

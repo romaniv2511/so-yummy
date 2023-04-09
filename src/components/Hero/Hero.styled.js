@@ -24,7 +24,7 @@ export const HeroTitle = styled.h1`
   font-weight: 400;
   font-size: 55px;
   line-height: 1;
-  color: ${props => props.theme.color.bgSecondary};
+  color: ${props => props.theme.color.title};
   margin-bottom: 14px;
   text-align: center;
 
@@ -58,7 +58,7 @@ export const BottomText = styled.p`
   letter-spacing: -0.02em;
   margin-bottom: 364px;
   margin-right: auto;
-  color: #23262a;
+  color: ${props => props.theme.color.primaryTextColor};
 
   @media screen and (max-width: 767px) {
     margin-left: auto;
