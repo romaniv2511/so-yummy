@@ -27,15 +27,15 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
 
   const [inputFields, setInputFields] = useState([]);
 
-  // const [activeInputIndex, setActiveInputIndex] = useState(-1);
+  const [activeInputIndex, setActiveInputIndex] = useState(-1);
 
   const handleChangeInput = (index, event) => {
     const values = [...inputFields];
     values[index][event.target.name] = event.target.value;
     setInputFields(values);
     onSetValue(inputFields);
-
-    // updateQueryString(event);
+    setActiveInputIndex(index);
+    updateQueryString(event);
   };
 
   const handleAddFields = () => {
@@ -112,16 +112,18 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
             </SelectIngredients>
             <DeleteBtn onClick={() => handleDelete(inputField.id)} />
           </InputIngredientsWrap>
-          {/* <ul>
-            {ingredients.map(({ _id, ttl }) => {
-              // console.log(ingredients);
-              return (
-                <li key={_id}>
-                  <p>{ttl}</p>
-                </li>
-              );
-            })}
-          </ul> */}
+          {activeInputIndex === index && (
+            <ul>
+              {ingredients.map(({ _id, ttl }) => {
+                // console.log(ingredients);
+                return (
+                  <li key={_id}>
+                    <p>{ttl}</p>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
       ))}
     </>
