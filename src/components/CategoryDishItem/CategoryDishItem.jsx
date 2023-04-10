@@ -8,7 +8,7 @@ export const CategoryDishItem = ({ id, thumb, title }) => {
 
   return (
     <CardContainer>
-      <Link to={`/recipe/${id}`}>
+      <Link to={`/recipe/${id}`} state={{ from: '/' }}>
         <Image src={image} alt={title} />
         <CardTitle>
           <EllipsisText text={title} length={25} />

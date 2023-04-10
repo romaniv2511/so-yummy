@@ -10,11 +10,11 @@ import { Loader } from 'components/Loader/Loader';
 import { Pagination } from 'components/Pagination/Pagination';
 
 const SearchPage = () => {
+  const [searchList, setSearchList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectValue, setSelectValue] = useState(
-    searchParams.has('query') ? 'Title' : 'Ingredients'
+    searchParams.has('ingredient') ? 'Ingredients' : 'Title'
   );
-  const [searchList, setSearchList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [state, setState] = useState('start');
@@ -22,10 +22,8 @@ const SearchPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const perPage = 8;
 
-  const valueName = setSelectValue === 'Title' ? 'query' : 'ingredient';
+  const valueName = selectValue === 'Title' ? 'query' : 'ingredient';
   const value = searchParams.get(`${valueName}`) ?? '';
-  console.log('value', value);
-  console.log('valueName', valueName);
 
   const handleSearch = (text, actions) => {
     const { searchText } = text;
@@ -42,11 +40,9 @@ const SearchPage = () => {
 
   const handleSelect = select => {
     setSelectValue(select);
-    if (select === 'Title') {
-      setSearchParams('query');
-    } else {
-      setSearchParams('ingredient');
-    }
+    //  const searchQuery = select === "Title" ? "query": "ingredient";
+    setSearchParams({});
+    setSearchList([]);
   };
 
   const getSearchList = async (categoryValue, categoryName, page = 1) => {
@@ -105,17 +101,25 @@ const SearchPage = () => {
   //---------------------------------//
 
   useEffect(() => {
-    if (value !== '') {
-      getSearchList(value, valueName, page);
-    }
-  }, [value, page, valueName]);
-
-  useEffect(() => {
-    if (value === '') {
+    if (value === '' || selectValue === '') {
       setSearchParams({});
       return;
     }
-  }, [searchParams, setSearchParams, value]);
+    getSearchList(value, selectValue, page);
+  }, [value, selectValue, page, setSearchParams]);
+
+  //   useEffect(() => {
+  //     if (value !== '') {
+  //       getSearchList(value, valueName, page);
+  //     }
+  //   }, [value, page, valueName]);
+
+  //   useEffect(() => {
+  //     if (value === '') {
+  //       setSearchParams({});
+  //       return;
+  //     }
+  //   }, [searchParams, setSearchParams, value]);
 
   return (
     <PagesWrapper>
