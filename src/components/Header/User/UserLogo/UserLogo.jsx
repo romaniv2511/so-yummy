@@ -4,12 +4,11 @@ import { useAuth } from '../../../../hooks/useAuth';
 
 export const UserLogo = ({toggleDashboard}) => {
     const { user } = useAuth();
-    const {name, avatar} = user;
   return (
     <UserLogoBox>
       <ButtonUser type="button" onClick={toggleDashboard}>
-        <img src={avatar} alt="user" />
-        <p>{name}</p>
+        <img src={user?.avatar} alt="user" />
+        <p>{user?.name}</p>
       </ButtonUser>
     </UserLogoBox>
   );

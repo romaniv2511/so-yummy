@@ -98,7 +98,7 @@ export const updateInfo = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.put('/auth/user/update', user);
-      const {name, email} = data;
+      const {name, email } = data;
       console.log('updateInfo', data);
       return { name, email };
       // return data;

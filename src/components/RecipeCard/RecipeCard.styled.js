@@ -3,11 +3,13 @@ import styled from 'styled-components';
 export const ImgBox = styled.div`
   display: flex;
   object-fit: cover;
+
   & img {
     border-radius: 8px;
     width: 124px;
     height: 124px;
     transition: ${props => props.theme.transitions.main};
+
     @media (max-width: ${props => props.theme.breakpoints.mobMax}) {
       :hover,
       :focus {
@@ -30,8 +32,9 @@ export const Text = styled.p`
   font-size: 8px;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  color: #23262a;
+  color: ${props => props.theme.color.textFavorites};
   flex-grow: 1;
+
   @media (min-width: ${props => props.theme.breakpoints.tab}) {
     width: 85%;
     font-size: 14px;
@@ -48,6 +51,7 @@ export const RecipeDetails = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 export const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -60,6 +64,7 @@ export const Title = styled.h3`
   letter-spacing: -0.24px;
   color: ${p => p.theme.color.text};
   margin-bottom: 14px;
+
   @media (min-width: ${props => props.theme.breakpoints.tab}) {
     font-size: 24px;
     margin-bottom: 18px;
@@ -75,6 +80,7 @@ export const ElementWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+
   @media (min-width: ${props => props.theme.breakpoints.tab}) {
     align-items: flex-end;
   }
@@ -85,6 +91,7 @@ export const Time = styled.span`
   line-height: 1.4;
   letter-spacing: -0.24px;
   color: ${p => p.theme.color.text};
+
   @media (min-width: ${props => props.theme.breakpoints.tab}) {
     display: flex;
     font-size: 14px;
@@ -102,27 +109,37 @@ export const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   background-color: ${props =>
-    props.active ? props.theme.color.accent : props.theme.color.bgAccentEl};
+    props.active
+      ? props.theme.color.bgSubscribe
+      : props.theme.color.bgPaginationActive};
   transition: ${props => props.theme.transitions.main};
+
   :hover,
   :focus {
     background-color: ${props =>
-      props.active ? props.theme.color.bgAccentEl : props.theme.color.accent};
+      props.active ? props.theme.color.accent : props.theme.color.accent};
     & svg {
       stroke: ${props =>
-        props.active ? 'currentColor' : props.theme.color.socIconHover};
+        props.active
+          ? props.theme.color.btnColorSecondary
+          : props.theme.color.socIconHover};
     }
   }
+
   & svg {
     stroke: ${props =>
-      props.active ? props.theme.color.socIconHover : 'currentColor'};
+      props.active
+        ? props.theme.color.btnColor
+        : props.theme.color.btnColorSecondary};
     fill: transparent;
     width: 14px;
     height: 14px;
+
     @media (min-width: ${props => props.theme.breakpoints.tab}) {
       width: 22px;
       height: 22px;
     }
+
     @media (min-width: ${props => props.theme.breakpoints.desk}) {
       width: 24px;
       height: 24px;
@@ -152,7 +169,7 @@ export const ButtonSee = styled.button`
       : props.theme.color.bgSecondary};
   border-radius: 24px 44px;
   border: none;
-  color: ${props => props.theme.color.bg};
+  color: ${props => props.theme.color.btnColor};
   font-weight: 400;
   font-size: ${props => (props.active ? '10px' : '14px')};
   line-height: 1.5;
@@ -165,6 +182,7 @@ export const ButtonSee = styled.button`
       props.active
         ? props.theme.color.bgSecondary
         : props.theme.color.accentStartPage};
+    color: ${props => props.theme.color.socIconHover};
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {

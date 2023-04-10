@@ -35,7 +35,7 @@ export const User = () => {
       {isDashboardOpen && <UserDashboard onClose={toggleDashboard} onLogout={openLogoutApproval} onEdit={openEditUser}/>}
       {isModalOpen &&
         <UserModal onClose={toggleModal}>
-          {modalName === 'logout' ? <UserLogout onClose={toggleModal}/> :<UserEdit/>}
+          {modalName === 'logout' ? <UserLogout onClose={toggleModal}/> :<UserEdit onClose={toggleModal}/>}
         </UserModal>
       }
     </Box>

@@ -121,7 +121,7 @@ export const ErrorMessage = styled.p`
   line-height: 1;
   letter-spacing: -0.02em;
   letter-spacing: -0.02em;
-  color: #000000;
+  color: ${props => props.theme.color.secondaryTextColor};
   opacity: 0.5;
   margin-bottom: 100px;
   text-align: center;
