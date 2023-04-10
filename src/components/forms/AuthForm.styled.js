@@ -1,6 +1,7 @@
 import { Field, Form } from 'formik';
 import styled from 'styled-components';
-
+import { FiUser } from 'react-icons/fi';
+import { FiLock } from 'react-icons/fi';
 export const TitleForm = styled.h1`
   font-weight: 600;
   font-size: 24px;
@@ -45,7 +46,7 @@ export const FormContent = styled(Form)``;
 export const Input = styled(Field)`
   width: 248px;
   background-color: #2a2c36;
-  border: 1px solid ${props => props.theme.color.titleStartPage};
+  border: 1px solid ${({ bordercolor }) => bordercolor};
   border-radius: 6px;
   height: 45px;
   font-weight: 400;
@@ -54,12 +55,22 @@ export const Input = styled(Field)`
   letter-spacing: -0.02em;
   padding: 12px 12px 12px 40px;
   color: ${props => props.theme.color.titleStartPage};
-
+  :-webkit-autofill {
+    transition: background-color 250s linear, color 250s linear;
+  }
   &::placeholder {
     opacity: 0.8;
     color: ${props => props.theme.color.titleStartPage};
   }
 
+  &:hover,
+  :focus {
+    border: 1px solid ${({ color }) => color};
+    outline: none;
+    &::placeholder {
+      opacity: 1;
+    }
+  }
   @media screen and (min-width: ${props => props.theme.breakpoints.mob}) {
     width: 279px;
   }
@@ -86,6 +97,7 @@ export const LabelsContent = styled.div`
 
 export const LabelContainer = styled.div`
   position: relative;
+  isolation: isolate;
 `;
 
 export const Label = styled.label`
@@ -94,16 +106,16 @@ export const Label = styled.label`
   left: 14px;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    top: 17.5px;
+    top: 19.5px;
     left: 18px;
   }
 
   & svg {
     width: 18px;
     height: 18px;
-    fill: none;
-    opacity: 0.8;
-    stroke: ${props => props.theme.color.titleStartPage};
+    /* fill: transparent; */
+    /* stroke: ${({ color }) => color}; */
+    /* opacity: 0.8; */
 
     @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
       width: 24px;
@@ -111,7 +123,53 @@ export const Label = styled.label`
     }
   }
 `;
+export const IconName = styled(FiUser)`
+  color: ${({ color }) => color};
+  position: absolute;
+  top: -2px;
+  width: 16px;
+  height: 18px;
 
+  @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
+`;
+export const IconPassword = styled(FiLock)`
+  color: ${({ color }) => color};
+  position: absolute;
+  top: -2px;
+  width: 16px;
+  height: 18px;
+
+  @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
+`;
+export const FlagForInput = styled.div`
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+    right: 18px;
+    top: 20px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    /* top: 126px; */
+    /* right: 12px; */
+  }
+`;
 export const ButtonSubmit = styled.button`
   width: 248px;
   display: flex;
@@ -153,13 +211,13 @@ export const ButtonSubmit = styled.button`
 
 export const ErrorMessage = styled.div`
   position: absolute;
-  top: -30px;
-  left: 30px;
-  background-color: ${props => props.theme.color.titleStartPage};
-  color: ${props => props.theme.color.accentStartPage};
-  padding: 5px;
-  border-radius: 8px;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.5;
+  color: ${({ color }) => color};
+  top: 55px;
+  left: 10px;
+  font-size: 11px;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    top: 64px;
+    left: 10px;
+    font-size: 14px;
+  }
 `;
