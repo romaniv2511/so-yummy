@@ -12,18 +12,18 @@ import {
 import logo from 'img/logo.svg';
 import { getUserInfo, token } from '../../redux/auth/authOperations';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 const WelcomePage = () => {
+  const dispatch = useDispatch();
   useEffect(()=> {
     const urlSearchParams = new URLSearchParams(window.location.search);
-    console.log("urlSearchParams", urlSearchParams);
     const params = Object.fromEntries(urlSearchParams.entries());
-    console.log(params);
     const newToken = params.token;
-
+    console.log(newToken);
     if(newToken) {
       token.set(newToken);
-      getUserInfo();
+      dispatch(getUserInfo());
     }
   },[])
 
