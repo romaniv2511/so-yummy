@@ -1,106 +1,84 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import axios from 'axios';
-// import { useAuth } from '../../hooks/useAuth';
 import { PagesWrapper } from 'components/PagesWrapper/PagesWrapper';
-import { Title, Container, Text, List } from './Favorites.styled';
-import imgMob from 'img/search-any-mob.png';
-import imgMob2 from 'img/search-any-mob@2x.png';
-import imgTab from 'img/search-any-tablet.png';
-import imgTab2 from 'img/search-any-tablet@2x.png';
-import imgDesk from 'img/search-any-desktop.png';
-import imgDesk2 from 'img/search-any-desktop@2x.png';
+import { Container, List, Item } from './Favorites.styled';
 import { Loader } from 'components/Loader/Loader';
-import { FavoriteCard } from 'components/FavoriteCard/FavoriteCard';
+import { RecipeCard } from 'components/RecipeCard/RecipeCard';
 import {
   selectError,
   selectFavorites,
   selectIsLoading,
 } from 'redux/favorites/favoritesSelectors';
 import { fetchFavorites } from 'redux/favorites/favoritesOperations';
+import { ErrorImageContainer } from 'components/ErrorImageContainer/ErrorImageContainer';
+import { MainPageTitle } from 'components/MainPageTitle/MainPageTitle';
+import { Pagination } from 'components/Pagination/Pagination';
 
 const Favorites = () => {
-  // const [recipes, setRecipes] = useState([]);
-  // const [error, setError] = useState(null);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const { token } = useAuth();
-  // useEffect(() => {
-  //   const fetchApi = async () => {
-  //     try {
-  //       setIsLoading(true);
-  //       setError(null);
-  //       const { data } = await axios.get(
-  //         'https://soyummy-tw3y.onrender.com/api/v1/recipes/category/Starter'
-  //       );
-  // const { data } = await axios.get(
-  //   'https://soyummy-tw3y.onrender.com/api/v1/favorites/',
-  //   {
-  //     headers: { Authorization: `Bearer ${token}` },
-  //   }
-  // );
-  //       const result = data.data;
-  //       console.log(result);
-  //       setRecipes(result);
-  //     } catch (error) {
-  //       setError(error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-  //   fetchApi();
-  // }, [token]);
+  const [page, setPage] = useState(1);
+
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const data = useSelector(selectFavorites);
-  // console.log(data);
   useEffect(() => {
     dispatch(fetchFavorites());
   }, [dispatch]);
+  const totalPages = data.length > 0 ? Math.ceil(data.length / 4) : 0;
+
+  const perPage = 4;
+  const lastIndex = perPage * page;
+  const startIndex = lastIndex - perPage;
+  const renderList = data.slice(startIndex, lastIndex);
+  const handlePageChange = id => {
+    setPage(id);
+  };
+
+  const handlePageChangeDecrement = () => {
+    setPage(prevState => prevState + 1);
+  };
+
+  const handlePageChangeIncrement = () => {
+    setPage(prevState => prevState - 1);
+  };
+
   return (
     <>
       {isLoading && <Loader />}
       {error && <p>Something went wrong. Try again.</p>}
       <main>
         <PagesWrapper>
-          <Title>Favorites</Title>
-          {data && data.length > 0 ? (
+          <MainPageTitle title="Favorites" />
+          {renderList && renderList.length > 0 ? (
             <List>
-              {data.map(({ _id, thumb, title, time, description }) => (
-                <FavoriteCard
-                  key={_id}
-                  thumb={thumb}
-                  title={title}
-                  id={_id}
-                  description={description}
-                  time={time}
-                />
+              {renderList.map(({ _id, thumb, title, time, description }) => (
+                <Item key={_id}>
+                  <RecipeCard
+                    thumb={
+                      thumb ? thumb : 'https://via.placeholder.com/124x124'
+                    }
+                    title={title ?? 'No title'}
+                    id={_id}
+                    description={description ?? 'No description'}
+                    time={time ?? '--'}
+                    page="Favorites"
+                  />
+                </Item>
               ))}
             </List>
           ) : (
             <Container>
-              <picture>
-                <source
-                  srcSet={`${imgDesk} 1440w, ${imgDesk2} 2880w`}
-                  media="(min-width: 1440px)"
-                  sizes="(min-width: 1440px) 1440px"
-                />
-                <source
-                  srcSet={`${imgTab} 768w, ${imgTab2} 1536w`}
-                  media="(min-width: 768px)"
-                  sizes="(min-width: 768px) 768px"
-                />
-                <source
-                  srcSet={`${imgMob} 375w, ${imgMob2} 750w`}
-                  media="(max-width: 767px)"
-                  sizes="(max-width: 767px) 375px"
-                />
-                <img src={`${imgMob} 375w`} alt="there are no recipes" />
-              </picture>
-              <Text>
-                You don't have recipes in favorites yet, add your first recipe!
-              </Text>
+              <ErrorImageContainer title="You don't have recipes in favorites yet, add your first recipe!" />
             </Container>
+          )}
+          {totalPages > 1 && (
+            <Pagination
+              totalPages={totalPages}
+              currentPage={page}
+              onSelectPage={handlePageChange}
+              onArrowLeftClick={handlePageChangeDecrement}
+              onArrowRightClick={handlePageChangeIncrement}
+            />
           )}
         </PagesWrapper>
       </main>

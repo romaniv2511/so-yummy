@@ -32,6 +32,7 @@ export const Button = styled.button`
   font-size: 14px;
   color: ${p=> p.colorText};
   background-color: ${p=> p.bg};
+  cursor: pointer;
   @media screen and (min-width: ${p=>p.theme.breakpoints.tab}) {
     height: 60px;
     font-size: 18px;

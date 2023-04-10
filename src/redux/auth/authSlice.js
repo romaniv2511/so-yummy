@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { logIn, register, logOut, refreshUser } from './authOperations';
+import { logIn, register, logOut, refreshUser, updateAvatar, updateInfo } from './authOperations';
 
 const persistConfig = {
   key: 'auth',
@@ -13,7 +13,7 @@ const persistConfig = {
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: { name: null, email: null, avatarURL: null },
+    user: { name: null, email: null, avatar: null },
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
@@ -27,9 +27,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [logIn.fulfilled](state, { payload }) {
-      state.user.name = payload.name;
-      state.user.email = payload.email;
-      state.user.avatarURL = payload.avatarURL;
+      state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
     },
@@ -41,14 +39,20 @@ const authSlice = createSlice({
     [refreshUser.pending](state) {
       state.isRefreshing = true;
     },
-    [refreshUser.fulfilled](state, action) {
-      state.user = action.payload;
+    [refreshUser.fulfilled](state, { payload }) {
+      state.user = payload.user;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
     [refreshUser.rejected](state) {
       state.isRefreshing = false;
     },
+    [updateAvatar.fulfilled](state, { payload }) {
+      state.user.avatar = payload.avatarURL;
+    },
+    [updateInfo.fulfilled](state, { payload }) {
+      state.user = {...state.user, ...payload};
+    }
   },
 });
 
