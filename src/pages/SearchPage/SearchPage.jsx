@@ -10,13 +10,11 @@ import { Loader } from 'components/Loader/Loader';
 import { Pagination } from 'components/Pagination/Pagination';
 
 const SearchPage = () => {
-	const [searchParams, setSearchParams] = useSearchParams();
-	const [selectValue, setSelectValue] = useState('Title');
-	const valueName = selectValue === 'Title' ? 'query' : 'ingredient';
-	const value = searchParams.get(`${valueName}`) ?? '';
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectValue, setSelectValue] = useState(
+    searchParams.has('query') ? 'Title' : 'Ingredients'
+  );
   const [searchList, setSearchList] = useState([]);
-  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [state, setState] = useState('start');
@@ -24,7 +22,10 @@ const SearchPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const perPage = 8;
 
-  
+  const valueName = setSelectValue === 'Title' ? 'query' : 'ingredient';
+  const value = searchParams.get(`${valueName}`) ?? '';
+  console.log('value', value);
+  console.log('valueName', valueName);
 
   const handleSearch = (text, actions) => {
     const { searchText } = text;
@@ -41,6 +42,11 @@ const SearchPage = () => {
 
   const handleSelect = select => {
     setSelectValue(select);
+    if (select === 'Title') {
+      setSearchParams('query');
+    } else {
+      setSearchParams('ingredient');
+    }
   };
 
   const getSearchList = async (categoryValue, categoryName, page = 1) => {
@@ -99,12 +105,17 @@ const SearchPage = () => {
   //---------------------------------//
 
   useEffect(() => {
-    if (value === '' || selectValue === '') {
+    if (value !== '') {
+      getSearchList(value, valueName, page);
+    }
+  }, [value, page, valueName]);
+
+  useEffect(() => {
+    if (value === '') {
       setSearchParams({});
       return;
     }
-    getSearchList(value, selectValue, page);
-  }, [value, selectValue, page, setSearchParams]);
+  }, [searchParams, setSearchParams, value]);
 
   return (
     <PagesWrapper>
