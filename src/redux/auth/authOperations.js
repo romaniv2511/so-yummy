@@ -89,10 +89,12 @@ export const refreshUser = createAsyncThunk(
 
 
 export const getUserInfo = createAsyncThunk(
-  'auth/refresh',
+  'auth/getUser',
   async (_, thunkAPI) => {
     try {
+      console.log("token", token);
       const { data } = await axios.get('/auth/current');
+      console.log(data);
       if(data?.code === 200) {
         toast.error(data.message);
         return;
