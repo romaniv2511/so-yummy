@@ -8,7 +8,7 @@ export const Logo = ({ onClick }) => {
     <LogoContainer>
       <Link to="/" onClick={onClick}>
         <svg>
-          <use href={sprite + '#icon-logo-1'} />
+          <use href={sprite + '#icon-logo'} />
         </svg>
       </Link>
     </LogoContainer>

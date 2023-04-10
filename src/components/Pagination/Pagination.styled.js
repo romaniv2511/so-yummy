@@ -8,8 +8,8 @@ export const PaginationContainer = styled.div`
   width: 275px;
   height: 51px;
   padding: 14px 28px;
-  background-color: ${props => props.theme.color.bg};
-  box-shadow: 0px 4px 4px rgba(135, 135, 135, 0.2);
+  background-color: ${props => props.theme.color.bgPagination};
+  box-shadow: 0px 4px 4px ${props => props.theme.color.footerInput};
   border-radius: 26px;
   margin-left: auto;
   margin-right: auto;
@@ -67,10 +67,10 @@ export const ButtonPage = styled.button`
   line-height: 1.5;
   border: none;
   background-color: ${props =>
-    props.active ? props.theme.color.bgAccentEl : 'transparent'};
+    props.active ? props.theme.color.bgPaginationActive : 'transparent'};
 
   color: ${props =>
     props.active
-      ? props.theme.color.textRights
+      ? props.theme.color.btnColorSecondary
       : props.theme.color.textPagination};
 `;

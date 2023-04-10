@@ -53,9 +53,10 @@ export const Button = styled.button`
   cursor: pointer;
   background: transparent;
   & svg {
-    stroke: currentColor;
+    stroke: ${({ theme }) => theme.color.btnColorSecondary};
     fill: transparent;
     transition: ${p => p.theme.transitions.main};
+
     :hover,
     :focus {
       stroke: ${({ theme }) => theme.color.accent};
@@ -77,10 +78,9 @@ export const Modal = styled.div`
   overflow: auto;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   transform: ${p => (p.isOpen ? 'translateY(0)' : 'translateY(-200%)')};
   transition: transform 0.9s cubic-bezier(0, 0, 0.58, 1);
-  background-color: rgba(235, 243, 212, 1);
+  background-color: ${props => props.theme.color.bgMenu};
   background-image: url(${bgMenuMob});
   background-repeat: no-repeat;
   background-size: contain;
