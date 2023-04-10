@@ -20,7 +20,12 @@ const getIngredientsByQuery = async query => {
   return data;
 };
 
-export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
+export const RecipeIngredientsFields = ({
+  onInput,
+  inputs,
+  onSetValue,
+  handleSubmit,
+}) => {
   const [count, setCount] = useState(0);
   const [ingredients, setIngredients] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -33,9 +38,13 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
     const values = [...inputFields];
     values[index][event.target.name] = event.target.value;
     setInputFields(values);
-    onSetValue(inputFields);
+    // onSetValue(inputFields);
     setActiveInputIndex(index);
     updateQueryString(event);
+  };
+
+  const handleSetInputFields = inputFields => {
+    onSetValue(inputFields);
   };
 
   const handleAddFields = () => {
@@ -46,6 +55,7 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
     const values = [...inputFields];
     values.splice(index, 1);
     setInputFields(values);
+    // onSetValue(inputFields);
   };
 
   const query = searchParams.get('query' ?? '');
@@ -62,6 +72,12 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
     };
     getIngredients();
   }, [query]);
+
+  // const setInputField = (index, event) => {
+  //   // console.log(event.currentTarget);
+  //   // console.log(index);
+  //   // inputFields.map(({field, index}) => )
+  // };
 
   const updateQueryString = e => {
     const { value } = e.target;
@@ -81,7 +97,9 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
 
   const handleDelete = fieldId => {
     setInputFields(inputFields.filter(({ id }) => id !== fieldId));
+    // onSetValue(inputs.ingredients);
     setCount(state => state - 1);
+    // onSetValue(inputFields);
   };
 
   return (
@@ -115,18 +133,19 @@ export const RecipeIngredientsFields = ({ onInput, inputs, onSetValue }) => {
           {activeInputIndex === index && (
             <ul>
               {ingredients.map(({ _id, ttl }) => {
-                // console.log(ingredients);
                 return (
-                  <li key={_id}>
-                    <p
-                      onClick={() => {
-                        // setIngredients(prevState => [...prevState, ttl]);
-                        setActiveInputIndex(-1);
-                        // onSetValue(ttl);
-                      }}
-                    >
-                      {ttl}
-                    </p>
+                  <li
+                    key={_id}
+                    id={_id}
+                    onClick={() => {
+                      // console.log(inputFields);
+                      inputField.field = ttl;
+                      setActiveInputIndex(-1);
+                      handleSetInputFields(inputFields);
+                      // handleChangeInput(index, event);
+                    }}
+                  >
+                    <p>{ttl}</p>
                   </li>
                 );
               })}

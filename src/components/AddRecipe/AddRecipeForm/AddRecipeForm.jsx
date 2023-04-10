@@ -11,25 +11,17 @@ import { RecipeDescriptionFields } from '../RecipeDescriptionFields/RecipeDescri
 import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngredientsFields';
 import { RecipePreparationFields } from '../RecipePreparationFields/RecipePreparationFields';
 
-// import { nanoid } from 'nanoid';
-
 const initialValues = {
   title: 'chicken',
   description: 'chicken leg',
   category: 'Breakfast',
   time: 40,
   ingredients: [],
-  instructions: 'test',
+  instructions: '',
 };
 
 export const AddRecipeForm = () => {
   const [descriptionFields, setDescriptionFields] = useState(initialValues);
-
-  // useEffect(() => {
-  //   const postRecipe = async () => {};
-
-  //   // postRecipe()
-  // }, [third]);
 
   const addRecipe = async text => {
     try {
@@ -54,18 +46,18 @@ export const AddRecipeForm = () => {
   // };
 
   const handleChange = event => {
-    // console.log(event.target);
     const { name, value } = event.target;
     setDescriptionFields(prevState => ({ ...prevState, [name]: value }));
   };
 
   const handleSetValue = data => {
-    // const newIngredient = [data];
+    const filteredFields = data.filter(({ field }) => field !== '');
+    const fields = filteredFields.map(({ field }) => field);
 
-    console.log(data);
+    // console.log(fields);
     setDescriptionFields(prevState => ({
       ...prevState,
-      ingredients: [...prevState.ingredients, data],
+      ingredients: fields,
     }));
   };
 
@@ -90,8 +82,7 @@ export const AddRecipeForm = () => {
 
         <MainWrapIngredients>
           <RecipeIngredientsFields
-            // unitIncrement={unitIncrement}
-            // userIngredients={userIngredients}
+            handleSubmit={handleSubmit}
             onInput={handleChange}
             inputs={descriptionFields}
             onSetValue={handleSetValue}
