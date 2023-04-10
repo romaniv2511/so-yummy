@@ -14,7 +14,7 @@ export const Link = styled(NavLink)`
   }
   :hover,
   :focus {
-    color: ${({ theme }) => theme.color.accent};
+    color: ${({ theme }) => theme.color.bgSubscribe};
   }
 `;
 
