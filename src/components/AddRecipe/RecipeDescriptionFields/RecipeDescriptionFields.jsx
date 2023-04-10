@@ -19,7 +19,6 @@ const time = [
 
 export const RecipeDescriptionFields = ({ onInput, inputs }) => {
   const [categoryList, setCategoryList] = useState([]);
-  // const [timeList, setTimeList] = useState(time);
   // const [error, setError] = useState(null);
 
   const handleInputChange = e => {
@@ -27,7 +26,7 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
   };
 
   useEffect(() => {
-    const renderList = async () => {
+    const renderCategoryList = async () => {
       try {
         const response = await axios.get(
           `https://soyummy-tw3y.onrender.com/api/v1/recipes/category-list`
@@ -41,7 +40,7 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
         setCategoryList([]);
       }
     };
-    renderList();
+    renderCategoryList();
   }, []);
 
   return (

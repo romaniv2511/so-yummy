@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import {
   Form,
   MainWrapIngredients,
@@ -23,17 +23,17 @@ const initialValues = {
 export const AddRecipeForm = () => {
   const [descriptionFields, setDescriptionFields] = useState(initialValues);
 
-  // const addRecipe = async text => {
-  //   try {
-  //     const response = await axios.post(
-  //       'https://soyummy-tw3y.onrender.com/api/v1/own-recipes',
-  //       text
-  //     );
-  //     return response.data;
-  //   } catch (error) {
-  //     return error.message;
-  //   }
-  // };
+  const addRecipe = async text => {
+    try {
+      const response = await axios.post(
+        'https://soyummy-tw3y.onrender.com/api/v1/own-recipes',
+        text
+      );
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  };
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -42,11 +42,9 @@ export const AddRecipeForm = () => {
 
   const handleSetValue = data => {
     const filteredFields = data.filter(({ field }) => field !== '');
-    // const newIngredient = [data];
     const fields = filteredFields.map(({ field }) => field);
-    // console.log(fields);
 
-    console.log(fields);
+    // console.log(fields);
     setDescriptionFields(prevState => ({
       ...prevState,
       ingredients: fields,
@@ -56,7 +54,7 @@ export const AddRecipeForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log(descriptionFields);
-    // addRecipe(descriptionFields);
+    addRecipe(descriptionFields);
     reset();
   };
 

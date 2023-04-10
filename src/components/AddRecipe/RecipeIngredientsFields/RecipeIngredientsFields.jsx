@@ -138,7 +138,7 @@ export const RecipeIngredientsFields = ({
                     key={_id}
                     id={_id}
                     onClick={() => {
-                      console.log(inputFields);
+                      // console.log(inputFields);
                       inputField.field = ttl;
                       setActiveInputIndex(-1);
                       handleSetInputFields(inputFields);
