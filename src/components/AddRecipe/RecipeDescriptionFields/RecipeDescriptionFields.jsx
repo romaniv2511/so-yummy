@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import uploadImg from 'img/add-recipe-placeholder.png';
 import {
@@ -10,11 +10,39 @@ import {
   InputUpload,
   SelectDescription,
 } from './RecipeDescriptionFields.styled';
+import axios from 'axios';
+
+const time = [
+  5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95,
+  100, 105, 110, 115, 120,
+];
 
 export const RecipeDescriptionFields = ({ onInput, inputs }) => {
+  const [categoryList, setCategoryList] = useState([]);
+  // const [timeList, setTimeList] = useState(time);
+  // const [error, setError] = useState(null);
+
   const handleInputChange = e => {
     onInput(e);
   };
+
+  useEffect(() => {
+    const renderList = async () => {
+      try {
+        const response = await axios.get(
+          `https://soyummy-tw3y.onrender.com/api/v1/recipes/category-list`
+        );
+        const { data } = response.data;
+        if (response) {
+          setCategoryList(data);
+        }
+      } catch (error) {
+        console.log(error);
+        setCategoryList([]);
+      }
+    };
+    renderList();
+  }, []);
 
   return (
     <Description>
@@ -53,12 +81,11 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
             id="category"
             onChange={handleInputChange}
           >
-            <option value="Breakfast">Breakfast</option>
-            <option value="Beef">Beef</option>
-            <option value="Dessert">Dessert</option>
-            <option value="Goat">Goat</option>
-            <option value="Lamb">Lamb</option>
-            <option value="Miscellaneous">Miscellaneous</option>
+            {categoryList.map(item => (
+              <option value={item} key={item}>
+                {item}
+              </option>
+            ))}
           </SelectDescription>
         </InputDescriptionWrap>
         <InputDescriptionWrap>
@@ -69,12 +96,11 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
             value={inputs.time}
             onChange={handleInputChange}
           >
-            <option value="40 min">40 min</option>
-            <option value="30 min">30 min</option>
-            <option value="20 min">20 min</option>
-            <option value="15 min">15 min</option>
-            <option value="10 min">10 min</option>
-            <option value="5 min">5 min</option>
+            {time.map(item => (
+              <option value={Number(item)} key={item}>
+                {`${item} min`}
+              </option>
+            ))}
           </SelectDescription>
         </InputDescriptionWrap>
       </InputDescriptionMainWrap>
