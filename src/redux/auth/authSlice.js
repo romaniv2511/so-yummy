@@ -11,6 +11,9 @@ const persistConfig = {
 };
 const handlePending = (state) => {
   state.isLoading = true;
+};
+const handleError = (state) => {
+  state.isLoading = false;
 }
 const authSlice = createSlice({
   name: 'auth',
@@ -31,6 +34,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isLoading = false;
     },
+    [register.rejected]: handleError,
     [logIn.pending]: handlePending,
     [logIn.fulfilled](state, { payload }) {
       state.user = payload.user;
@@ -38,6 +42,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isLoading = false;
     },
+    [logIn.rejected]: handleError,
     [logOut.pending]: handlePending,
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null, avatarURL: null };
@@ -45,30 +50,28 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.isLoading = false;
     },
+    [logOut.rejected]: handleError,
     [refreshUser.pending](state) {
       state.isRefreshing = true;
     },
     [refreshUser.fulfilled](state, { payload }) {
-      console.log(payload);
       state.user = payload.user;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
-    [refreshUser.rejected](state) {
-      state.isRefreshing = false;
-    },
+    [refreshUser.rejected]: handleError,
     [updateAvatar.pending]: handlePending,
     [updateAvatar.fulfilled](state, { payload }) {
       state.user.avatar = payload.avatarURL;
       state.isLoading = false;
     },
+    [updateAvatar.rejected]: handleError,
     [updateInfo.pending]: handlePending,
     [updateInfo.fulfilled](state, { payload }) {
-      console.log(payload);
       state.user = {...state.user, ...payload};
       state.isLoading = false;
-      console.log(state.user);
-    }
+    },
+    [updateInfo.rejected]: handleError,
   },
 });
 

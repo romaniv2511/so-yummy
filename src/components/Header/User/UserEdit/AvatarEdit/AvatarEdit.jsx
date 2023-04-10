@@ -9,6 +9,7 @@ export const AvatarEdit = ({updateAvatar}) => {
   const handleAvatarChange = (event) => {
     const avatar = event.target.files[0];
     setAvatarPreview(URL.createObjectURL(avatar));
+    console.log(avatar);
     updateAvatar(avatar);
   };
 
