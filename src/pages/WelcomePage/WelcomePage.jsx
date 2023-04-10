@@ -21,11 +21,9 @@ const WelcomePage = () => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     const newToken = params.token;
-    console.log(newToken);
     if(newToken) {
       token.set(newToken);
       dispatch(updateToken(newToken));
-      // dispatch(getUserInfo());
     }
   },[dispatch])
 

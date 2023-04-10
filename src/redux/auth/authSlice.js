@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { logIn, register, logOut, refreshUser, updateAvatar, updateInfo, getUserInfo } from './authOperations';
+import { logIn, register, logOut, refreshUser, updateAvatar, updateInfo } from './authOperations';
 
 const persistConfig = {
   key: 'auth',
@@ -82,18 +82,6 @@ const authSlice = createSlice({
     },
     [updateInfo.rejected]: handleError,
   },
-    [getUserInfo.pending](state) {
-      console.log('pending');
-      state.isRefreshing = true;
-    },
-    [getUserInfo.fulfilled](state, { payload }) {
-      state.user = payload.user;
-      state.isLoggedIn = true;
-      state.isRefreshing = false;
-    },
-    [getUserInfo.rejected] (state) {
-      state.isRefreshing = false;
-    },
 });
 export const {updateToken} = authSlice.actions;
 export const authReducer = persistReducer(persistConfig, authSlice.reducer);

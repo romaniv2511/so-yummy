@@ -22,7 +22,6 @@ export const register = createAsyncThunk(
         toast.error(data.message)
         return
       }
-      console.log('register', data);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -88,23 +87,6 @@ export const refreshUser = createAsyncThunk(
 );
 
 
-export const getUserInfo = createAsyncThunk(
-  'auth/getUser',
-  async (_, thunkAPI) => {
-    try {
-      const { data } = await axios.get('/auth/current');
-      console.log(data);
-      if(data?.code === 200) {
-        toast.error(data.message);
-        return;
-      }
-      return data;
-    } catch (error) {
-      toast.error('Oops, something wrong')
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
 export const updateAvatar = createAsyncThunk(
   'auth/avatar',
   async (avatar, { rejectWithValue }) => {
