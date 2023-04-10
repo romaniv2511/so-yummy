@@ -21,21 +21,26 @@ import {
   addToShoppingList,
   deleteToShoppingList,
 } from 'redux/shoppingList/shoppingListOperations';
+
 export const RecipeInngredientsItem = ({ ttl, thb, desc, measure, _id }) => {
   const [showFullDesc, setShowFullDesc] = useState(false);
   const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(false);
   const shoppingList = useSelector(state => state.shoppingList);
   const { items } = shoppingList;
+  /* eslint-disable react-hooks/exhaustive-deps */
   const shoppingListId = items.shoppingList;
-  const shoppingId = shoppingListId.map(({ _id: { _id }, measure }) => ({
-    id: _id,
-    measure,
-  }));
+  let shoppingId = [];
+  if (shoppingListId && shoppingListId.length > 0) {
+    shoppingId = shoppingListId.map(({ _id: { _id }, measure }) => ({
+      id: _id,
+      measure,
+    }));
+  }
   const handleDescToggle = () => {
     setShowFullDesc(!showFullDesc);
   };
-
+  const measureValue = measure.trim() !== '' ? measure : '1';
   useEffect(() => {
     fetchShoppingList();
     const hasItem = shoppingId.some(item => item.id === _id);
@@ -74,7 +79,7 @@ export const RecipeInngredientsItem = ({ ttl, thb, desc, measure, _id }) => {
             <IngDescrDesk>{desc}</IngDescrDesk>
           </MediaQuery>
         </IngTextContainer>
-        <IngNumber>{measure}</IngNumber>
+        <IngNumber>{measureValue}</IngNumber>
         <CheckLabel>
           <DoneCheckbox
             type="checkbox"

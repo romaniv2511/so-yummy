@@ -13,7 +13,7 @@ const SearchPage = () => {
   const [searchList, setSearchList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectValue, setSelectValue] = useState(
-    searchParams === 'query' ? 'Title' : 'Ingredients'
+    searchParams.has('ingredient') ? 'Ingredients' : 'Title'
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -40,6 +40,9 @@ const SearchPage = () => {
 
   const handleSelect = select => {
     setSelectValue(select);
+    //  const searchQuery = select === "Title" ? "query": "ingredient";
+    setSearchParams({});
+    setSearchList([]);
   };
 
   const getSearchList = async (categoryValue, categoryName, page = 1) => {
@@ -104,6 +107,19 @@ const SearchPage = () => {
     }
     getSearchList(value, selectValue, page);
   }, [value, selectValue, page, setSearchParams]);
+
+  //   useEffect(() => {
+  //     if (value !== '') {
+  //       getSearchList(value, valueName, page);
+  //     }
+  //   }, [value, page, valueName]);
+
+  //   useEffect(() => {
+  //     if (value === '') {
+  //       setSearchParams({});
+  //       return;
+  //     }
+  //   }, [searchParams, setSearchParams, value]);
 
   return (
     <PagesWrapper>
