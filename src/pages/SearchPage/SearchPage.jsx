@@ -10,9 +10,13 @@ import { Loader } from 'components/Loader/Loader';
 import { Pagination } from 'components/Pagination/Pagination';
 
 const SearchPage = () => {
+	const [searchParams, setSearchParams] = useSearchParams();
+	const [selectValue, setSelectValue] = useState('Title');
+	const valueName = selectValue === 'Title' ? 'query' : 'ingredient';
+	const value = searchParams.get(`${valueName}`) ?? '';
+
   const [searchList, setSearchList] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [selectValue, setSelectValue] = useState('Title');
+  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [state, setState] = useState('start');
@@ -20,8 +24,7 @@ const SearchPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const perPage = 8;
 
-  const valueName = selectValue === 'Title' ? 'query' : 'ingredient';
-  const value = searchParams.get(`${valueName}`) ?? '';
+  
 
   const handleSearch = (text, actions) => {
     const { searchText } = text;
