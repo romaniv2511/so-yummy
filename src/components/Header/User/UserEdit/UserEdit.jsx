@@ -6,6 +6,8 @@ import {  Box, Form } from './UserEdit.styled';
 import { Button } from '../UserLogout/UserLogout.styled';
 import { AvatarEdit } from './AvatarEdit/AvatarEdit';
 import { InfoEdit } from './InfoEdit/InfoEdit';
+import { useAuth } from '../../../../hooks/useAuth';
+import { LoaderWithoutMargin } from '../../../Loader/LoaderWithoutMargin';
 
 
 
@@ -14,6 +16,7 @@ export const UserEdit = () => {
   const [newInfo, setNewInfo]= useState(null);
 
   const dispatch = useDispatch();
+  const {isLoading} = useAuth();
   const changeAvatar = () => {
     const formData = new FormData();
     formData.append('avatar', newAvatar)
@@ -32,12 +35,14 @@ export const UserEdit = () => {
     <Box>
       <Form onSubmit={handleSubmit}>
         <AvatarEdit updateAvatar={(avatar)=> setNewAvatar(avatar)}/>
-        <InfoEdit updateInfo={(info)=> setNewInfo(info)}/>
-        <Button
-          colorText={p=>p.theme.color.bg}
-          bg={p=>p.theme.color.accent}>
-            Save changes
-        </Button>
+        <InfoEdit  info={newInfo} updateInfo={(info)=> setNewInfo(info)}/>
+        {isLoading
+          ? <LoaderWithoutMargin/>
+          : <Button
+              colorText={p=>p.theme.color.bg}
+              bg={p=>p.theme.color.accent}>
+              Save changes
+            </Button>}
       </Form>
     </Box>
   )
