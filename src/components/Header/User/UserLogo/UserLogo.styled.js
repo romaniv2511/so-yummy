@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const UserLogoBox = styled.div`
   position: relative;
-`
+`;
 export const ButtonUser = styled.button`
   display: flex;
   gap: 14px;
@@ -25,6 +25,8 @@ export const ButtonUser = styled.button`
     font-weight: ${({ theme }) => theme.fontWeights.l};
     font-size: 12px;
     line-height: 1.7;
+    color: ${props => props.theme.color.btnColorSecondary};
+
     @media (min-width: ${props => props.theme.breakpoints.tab}) {
       font-size: 14px;
     }

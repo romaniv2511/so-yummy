@@ -43,9 +43,11 @@ export const ButtonSelect = styled.button`
   width: ${props => (props.nonActive ? 'auto' : '146px')};
   height: ${props => (props.nonActive ? 'auto' : '34px')};
   padding: ${props => (props.nonActive ? '0' : '8px 14px')};
-  border: none;
-  background-color: ${props => (props.nonActive ? 'transparent' : '#ececec')};
-  color: #000000;
+  border: ${props =>
+    props.nonActive ? 'none' : '1px solid rgba(250, 250, 250, 0.2)'};
+  background-color: ${props =>
+    props.nonActive ? 'transparent' : props.theme.color.bgButtonSelect};
+  color: ${props => props.theme.color.secondaryTextColor};
   border-radius: 6px;
 
   font-family: inherit;
@@ -94,7 +96,7 @@ export const SelectDownContainer = styled.ul`
   flex-direction: column;
   gap: 8px;
   padding: 8px 14px 10px 14px;
-  background-color: ${props => props.theme.color.bg};
+  background-color: ${props => props.theme.color.bgSelectColor};
   border-radius: 0px 0px 6px 6px;
   z-index: 4;
 

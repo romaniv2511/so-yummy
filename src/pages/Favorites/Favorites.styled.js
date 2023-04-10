@@ -7,12 +7,17 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 18px;
+  margin-bottom: 40px;
+
+  @media (min-width: ${props => props.theme.breakpoints.tab}) {
+    margin-bottom: 50px;
+  }
 `;
 
 export const Item = styled.li`
   display: flex;
   gap: 14px;
-  background-color: #fff;
+  background-color: ${props => props.theme.color.bgLightEl};
   padding: 14px;
   border-radius: 8px;
   scale: 1;

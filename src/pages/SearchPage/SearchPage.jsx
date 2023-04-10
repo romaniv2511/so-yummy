@@ -73,19 +73,6 @@ const SearchPage = () => {
     }
   };
 
-  //для пагинации с запросом по страницам
-  //добавляем состояние  const [page, setPage] = useState(1);
-
-  // высчитываем количество страниц и вставляем элемент
-  // <Pagination
-  //   totalPages={totalPages}
-  //   currentPage={page}
-  //   onSelectPage={handlePageChange}
-  //   onArrowLeftClick={handlePageChangeDecrement}
-  //   onArrowRightClick={handlePageChangeIncrement}
-  // />
-  //копируем функции ниже
-
   const handlePageChange = id => {
     setPage(id);
   };
@@ -97,8 +84,6 @@ const SearchPage = () => {
   const handlePageChangeIncrement = () => {
     setPage(prevState => prevState - 1);
   };
-
-  //---------------------------------//
 
   useEffect(() => {
     if (value === '' || selectValue === '') {
