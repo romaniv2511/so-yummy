@@ -21,14 +21,15 @@ import {
   addToShoppingList,
   deleteToShoppingList,
 } from 'redux/shoppingList/shoppingListOperations';
+
 export const RecipeInngredientsItem = ({ ttl, thb, desc, measure, _id }) => {
   const [showFullDesc, setShowFullDesc] = useState(false);
   const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(false);
   const shoppingList = useSelector(state => state.shoppingList);
   const { items } = shoppingList;
-  const shoppingListId = items.shoppingList;
-  const shoppingId = shoppingListId.map(({ _id: { _id }, measure }) => ({
+  const shoppingListId = items?.shoppingList;
+  const shoppingId = shoppingListId?.map(({ _id: { _id }, measure }) => ({
     id: _id,
     measure,
   }));
@@ -38,7 +39,7 @@ export const RecipeInngredientsItem = ({ ttl, thb, desc, measure, _id }) => {
 
   useEffect(() => {
     fetchShoppingList();
-    const hasItem = shoppingId.some(item => item.id === _id);
+    const hasItem = shoppingId?.some(item => item.id === _id);
     setIsChecked(hasItem); // set isChecked to true if it is
   }, [dispatch, shoppingId, _id]);
 
