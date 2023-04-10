@@ -11,17 +11,20 @@ import {
 
 import logo from 'img/logo.svg';
 import { getUserInfo, token } from '../../redux/auth/authOperations';
+import { useEffect } from 'react';
 
 const WelcomePage = () => {
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  const params = Object.fromEntries(urlSearchParams.entries());
-  const newToken = params.token;
+  useEffect(()=> {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    const newToken = params.token;
 
-  if(newToken) {
-    token.set(newToken);
-    getUserInfo();
+    if(newToken) {
+      token.set(newToken);
+      getUserInfo();
+    }
+  },[])
 
-  }
   return (
     <Background>
       <header>
