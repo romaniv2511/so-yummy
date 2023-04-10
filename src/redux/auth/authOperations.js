@@ -92,7 +92,6 @@ export const getUserInfo = createAsyncThunk(
   'auth/getUser',
   async (_, thunkAPI) => {
     try {
-      console.log("token", token);
       const { data } = await axios.get('/auth/current');
       console.log(data);
       if(data?.code === 200) {
@@ -110,7 +109,6 @@ export const updateAvatar = createAsyncThunk(
   'auth/avatar',
   async (avatar, { rejectWithValue }) => {
     try {
-      console.log('oper' , avatar);
       const { data } = await axios.patch('/auth/user/avatar', avatar);
       return data;
     } catch (error) {

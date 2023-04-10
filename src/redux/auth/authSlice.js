@@ -24,7 +24,11 @@ const authSlice = createSlice({
     isRefreshing: false,
     isLoading: false,
   },
-
+  reducers: {
+    updateToken(state, { payload }) {
+      state.user.token =  payload;
+    },
+  },
   extraReducers: {
     [register.pending]: handlePending,
     [register.fulfilled](state, { payload }) {
@@ -81,13 +85,12 @@ const authSlice = createSlice({
     },
     [getUserInfo.fulfilled](state, { payload }) {
       state.user = payload.user;
-      state.token = payload.token;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
     [getUserInfo.rejected] (state) {
-      state.isLoading = false;
+      state.isRefreshing = false;
     },
 });
-
+export const {updateToken} = authSlice.actions;
 export const authReducer = persistReducer(persistConfig, authSlice.reducer);

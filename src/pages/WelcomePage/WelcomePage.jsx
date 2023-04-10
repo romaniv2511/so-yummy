@@ -11,6 +11,7 @@ import {
 
 import logo from 'img/logo.svg';
 import { getUserInfo, token } from '../../redux/auth/authOperations';
+import { updateToken } from '../../redux/auth/authSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -23,6 +24,7 @@ const WelcomePage = () => {
     console.log(newToken);
     if(newToken) {
       token.set(newToken);
+      dispatch(updateToken(newToken));
       dispatch(getUserInfo());
     }
   },[dispatch])
