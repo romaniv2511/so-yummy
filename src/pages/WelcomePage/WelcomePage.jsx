@@ -25,7 +25,7 @@ const WelcomePage = () => {
       token.set(newToken);
       dispatch(getUserInfo());
     }
-  },[])
+  },[dispatch])
 
   return (
     <Background>
