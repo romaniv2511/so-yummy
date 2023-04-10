@@ -10,22 +10,24 @@ import { ErrorImage } from './ErrorImageContainer.styled';
 export const ErrorImageContainer = ({ title }) => {
   return (
     <>
-      <ErrorImage
-        srcSet={`
-              ${imageErrorDeskRetina} 2880w,
-              ${imageErrorDesk} 1440w,
-              ${imageErrorTabRetina} 1536w,
-              ${imageErrorTab} 768w,
-              ${imageErrorMobRetina} 750w,
-              ${imageErrorMob} 375w,
-            `}
-        sizes="
-              (max-width: 767px) 208px,
-              (min-width: 768px) 350px, 100vw
-            "
-        src={imageErrorMob}
-        alt="doesn't find"
-      />
+      <ErrorImage>
+        <source
+          srcSet={`${imageErrorDesk} 1440w, ${imageErrorDeskRetina} 2880w`}
+          media="(min-width: 1440px)"
+          sizes="(min-width: 1440px) 1440px"
+        />
+        <source
+          srcSet={`${imageErrorTab} 768w, ${imageErrorTabRetina} 1536w`}
+          media="(min-width: 768px)"
+          sizes="(min-width: 768px) 768px"
+        />
+        <source
+          srcSet={`${imageErrorMob} 375w, ${imageErrorMobRetina} 750w`}
+          media="(max-width: 767px)"
+          sizes="(max-width: 767px) 375px"
+        />
+        <img src={`${imageErrorMob} 375w`} alt="there are no recipes" />
+      </ErrorImage>
       <ErrorMessage>{title}</ErrorMessage>
     </>
   );
