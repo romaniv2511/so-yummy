@@ -10,7 +10,7 @@ import {
 } from './WelcomePage.styled';
 
 import logo from 'img/logo.svg';
-import { token } from '../../redux/auth/authOperations';
+import { getUserInfo, token } from '../../redux/auth/authOperations';
 
 const WelcomePage = () => {
   const urlSearchParams = new URLSearchParams(window.location.search);
@@ -19,6 +19,7 @@ const WelcomePage = () => {
 
   if(newToken) {
     token.set(newToken);
+    getUserInfo();
 
   }
   return (
