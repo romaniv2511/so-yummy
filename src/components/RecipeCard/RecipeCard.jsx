@@ -40,10 +40,7 @@ export const RecipeCard = ({
           {!isTablet ? (
             <Link to={`/recipe/${id}`}>
               <ImgBox>
-                <img
-                  src={thumb ? thumb : 'https://via.placeholder.com/124x124'}
-                  alt={title}
-                />
+                <img src={thumb} alt={title} />
               </ImgBox>
             </Link>
           ) : (

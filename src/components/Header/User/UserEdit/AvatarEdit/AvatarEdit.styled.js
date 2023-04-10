@@ -12,6 +12,7 @@ export const Label = styled.label`
   margin-bottom: 54px;
   cursor: pointer;
   & img {
+    object-fit: cover;
     border-radius: 50%;
     width: 88px;
     height: 88px;

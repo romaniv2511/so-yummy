@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import {  toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://soyummy-tw3y.onrender.com/api/v1';
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -18,14 +19,14 @@ export const register = createAsyncThunk(
     try {
       const {data} = await axios.post('/auth/register', user);
       if(data?.code === 200) {
-        alert(data.message)
+        toast.error(data.message)
         return
       }
       console.log('register', data);
       token.set(data.token);
       return data;
     } catch (error) {
-
+      toast.error('Oops, something wrong')
       return rejectWithValue(error.message);
     }
   }
@@ -36,16 +37,14 @@ export const logIn = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const {data} = await axios.post('/auth/login', user);
-      console.log(data);
       if(data?.code === 200) {
-        console.log('error-login',data);
-        alert(data.message)
+        toast.error(data.message)
         return
       }
-      console.log('login',data);
       token.set(data.token);
       return data;
     } catch (error) {
+      toast.error('Oops, something wrong')
       return rejectWithValue(error.message);
     }
   }
@@ -58,6 +57,7 @@ export const logOut = createAsyncThunk(
       token.unset();
       return data;
     } catch (error) {
+      toast.error('Oops, something wrong')
       return rejectWithValue(error.message);
     }
   }
@@ -74,8 +74,34 @@ export const refreshUser = createAsyncThunk(
     token.set(persistedToken);
     try {
       const { data } = await axios.get('/auth/current');
+      if(data?.code === 200) {
+
+        toast.error(data.message);
+        return;
+      }
       return data;
     } catch (error) {
+      toast.error('Oops, something wrong')
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+
+export const getUserInfo = createAsyncThunk(
+  'auth/getUser',
+  async (_, thunkAPI) => {
+    try {
+      console.log("token", token);
+      const { data } = await axios.get('/auth/current');
+      console.log(data);
+      if(data?.code === 200) {
+        toast.error(data.message);
+        return;
+      }
+      return data;
+    } catch (error) {
+      toast.error('Oops, something wrong')
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -84,11 +110,11 @@ export const updateAvatar = createAsyncThunk(
   'auth/avatar',
   async (avatar, { rejectWithValue }) => {
     try {
+      console.log('oper' , avatar);
       const { data } = await axios.patch('/auth/user/avatar', avatar);
-      console.log('updateAvatar', data);
       return data;
-      // return data;
     } catch (error) {
+      toast.error('Oops, something wrong')
       return rejectWithValue(error.message);
     }
   }
@@ -99,7 +125,6 @@ export const updateInfo = createAsyncThunk(
     try {
       const { data } = await axios.put('/auth/user/update', user);
       const {name, email } = data;
-      console.log('updateInfo', data);
       return { name, email };
       // return data;
     } catch (error) {

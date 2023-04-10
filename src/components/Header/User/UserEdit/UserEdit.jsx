@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateAvatar, updateInfo } from 'redux/auth/authOperations';
 
@@ -12,30 +12,41 @@ import { LoaderWithoutMargin } from '../../../Loader/LoaderWithoutMargin';
 
 
 export const UserEdit = () => {
-  const [newAvatar, setNewAvatar] = useState(null);
-  const [newInfo, setNewInfo]= useState(null);
+  const [isNewAvatar, setIsNewAvatar] = useState(false);
+  const [isNewInfo, setIsNewInfo]= useState(false);
+  useEffect(()=> {
+    setIsNewAvatar(false);
+    setIsNewInfo(false);
+  }, [])
 
   const dispatch = useDispatch();
   const {isLoading} = useAuth();
-  const changeAvatar = () => {
-    const formData = new FormData();
-    formData.append('avatar', newAvatar)
-    dispatch(updateAvatar(formData));
+
+  const avatarFormData = new FormData();
+  const changeAvatar = (avatar) => {
+    avatarFormData.append('avatar', avatar);
+    setIsNewAvatar(true);
   }
   const changeInfo = () => {
-    dispatch(updateInfo(newInfo));
+    setIsNewInfo(true);
   }
 
   const handleSubmit = e => {
     e.preventDefault();
-    if(newAvatar) changeAvatar();
-    if(newInfo) changeInfo();
+    if(isNewAvatar) dispatch(updateAvatar(avatarFormData));
+    if(isNewInfo) {
+      const updatedInfo = {
+        name: e.target.name.value,
+        email: e.target.email.value,
+      }
+      dispatch(updateInfo(updatedInfo))
+    };
   }
   return(
     <Box>
       <Form onSubmit={handleSubmit}>
-        <AvatarEdit updateAvatar={(avatar)=> setNewAvatar(avatar)}/>
-        <InfoEdit  info={newInfo} updateInfo={(info)=> setNewInfo(info)}/>
+        <AvatarEdit updateAvatar={changeAvatar}/>
+        <InfoEdit  updateInfo={changeInfo}/>
         {isLoading
           ? <LoaderWithoutMargin/>
           : <Button
