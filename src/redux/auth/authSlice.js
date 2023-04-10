@@ -60,7 +60,9 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
-    [refreshUser.rejected]: handleError,
+    [refreshUser.rejected] (state) {
+      state.isRefreshing = false;
+    },
     [updateAvatar.pending]: handlePending,
     [updateAvatar.fulfilled](state, { payload }) {
       state.user.avatar = payload.avatarURL;
@@ -83,7 +85,9 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
-    [getUserInfo.rejected]: handleError,
+    [getUserInfo.rejected] (state) {
+      state.isLoading = false;
+    },
 });
 
 export const authReducer = persistReducer(persistConfig, authSlice.reducer);
