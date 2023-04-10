@@ -16,7 +16,9 @@ import { useEffect } from 'react';
 const WelcomePage = () => {
   useEffect(()=> {
     const urlSearchParams = new URLSearchParams(window.location.search);
+    console.log("urlSearchParams", urlSearchParams);
     const params = Object.fromEntries(urlSearchParams.entries());
+    console.log(params);
     const newToken = params.token;
 
     if(newToken) {
