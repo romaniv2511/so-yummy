@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
+  CustomInput,
   DeleteBtn,
   InputIngredients,
   InputIngredientsWrap,
   SelectIngredients,
+  SelectWrap,
   TitleIngredients,
   WrapIngredients,
 } from './RecipeIngredientsFields.styled';
@@ -25,6 +27,7 @@ export const RecipeIngredientsFields = ({
   inputs,
   onSetValue,
   handleSubmit,
+  setDescriptionFields,
 }) => {
   const [count, setCount] = useState(0);
   const [ingredients, setIngredients] = useState([]);
@@ -37,18 +40,21 @@ export const RecipeIngredientsFields = ({
   const handleChangeInput = (index, event) => {
     const values = [...inputFields];
     values[index][event.target.name] = event.target.value;
+    // console.log(inputFields);
     setInputFields(values);
     // onSetValue(inputFields);
     setActiveInputIndex(index);
-    updateQueryString(event);
+    if (event.target.name !== 'measure') {
+      updateQueryString(event);
+    }
   };
 
-  const handleSetInputFields = inputFields => {
-    onSetValue(inputFields);
-  };
+  // const handleSetInputFields = inputFields => {
+  //   onSetValue(inputFields);
+  // };
 
   const handleAddFields = () => {
-    setInputFields([...inputFields, { id: nanoid(), field: '' }]);
+    setInputFields([...inputFields, { id: nanoid(), field: '', measure: '' }]);
   };
 
   const handleRemoveFields = index => {
@@ -67,11 +73,19 @@ export const RecipeIngredientsFields = ({
     const getIngredients = async () => {
       try {
         const data = await getIngredientsByQuery(query);
+        // console.log(data);
         setIngredients(data);
       } catch {}
     };
     getIngredients();
   }, [query]);
+
+  // useEffect(() => {
+  //   setDescriptionFields(prevState => ({
+  //     ...prevState,
+  //     ingredients: inputFields,
+  //   }));
+  // }, [inputFields, setDescriptionFields]);
 
   // const setInputField = (index, event) => {
   //   // console.log(event.currentTarget);
@@ -96,8 +110,12 @@ export const RecipeIngredientsFields = ({
   };
 
   const handleDelete = fieldId => {
-    setInputFields(inputFields.filter(({ id }) => id !== fieldId));
-    // onSetValue(inputs.ingredients);
+    const newFields = inputFields.filter(({ id }) => id !== fieldId);
+
+    setInputFields(newFields);
+    // console.log(inputFields);
+    onSetValue(newFields);
+
     setCount(state => state - 1);
     // onSetValue(inputFields);
   };
@@ -117,17 +135,29 @@ export const RecipeIngredientsFields = ({
         <div key={inputField.id}>
           <InputIngredientsWrap>
             <InputIngredients
+              autoComplete="off"
               name="field"
               id={inputField.id}
               value={inputField.field}
               onChange={event => handleChangeInput(index, event)}
             />
-            <SelectIngredients>
-              <option value="Beef">tbs</option>
-              <option value="Breakfast">tsp</option>
-              <option value="Dessert">kg</option>
-              <option value="Goat">g</option>
-            </SelectIngredients>
+            <SelectWrap>
+              <span>
+                <CustomInput
+                  type="text"
+                  name="measure"
+                  id={inputField.id}
+                  value={inputField.measure}
+                  onChange={event => handleChangeInput(index, event)}
+                />
+                <SelectIngredients>
+                  <option value="Beef">tbs</option>
+                  <option value="Breakfast">tsp</option>
+                  <option value="Dessert">kg</option>
+                  <option value="Goat">g</option>
+                </SelectIngredients>
+              </span>
+            </SelectWrap>
             <DeleteBtn onClick={() => handleDelete(inputField.id)} />
           </InputIngredientsWrap>
           {activeInputIndex === index && (
@@ -141,7 +171,15 @@ export const RecipeIngredientsFields = ({
                       // console.log(inputFields);
                       inputField.field = ttl;
                       setActiveInputIndex(-1);
-                      handleSetInputFields(inputFields);
+                      inputFields.map(item => {
+                        if (item.id === inputField.id) {
+                          inputField.id = _id;
+                        }
+                        return item;
+                      });
+                      onSetValue(inputFields);
+                      // console.log(inputFields);
+                      // handleSetInputFields(inputFields);
                       // handleChangeInput(index, event);
                     }}
                   >

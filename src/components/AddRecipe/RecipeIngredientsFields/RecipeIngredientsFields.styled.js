@@ -44,7 +44,33 @@ export const InputIngredients = styled.input`
   }
 `;
 
+export const SelectWrap = styled.div`
+  float: left;
+  width: 50%;
+`;
+export const CustomInput = styled.input`
+  height: 18px;
+  position: relative;
+  left: 3px;
+  height: 53px;
+  border: none;
+  &:focus-within {
+    outline: none;
+  }
+  background: ${({ theme }) => theme.color.gbCancel};
+
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    width: 97px;
+    height: 59px;
+    text-align: center;
+  }
+`;
+
 export const SelectIngredients = styled.select`
+  position: absolute;
+  border-left: none;
   height: 53px;
   border: none;
   background: ${({ theme }) => theme.color.gbCancel};

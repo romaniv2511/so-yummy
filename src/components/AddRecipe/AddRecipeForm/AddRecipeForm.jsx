@@ -12,8 +12,8 @@ import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngred
 import { RecipePreparationFields } from '../RecipePreparationFields/RecipePreparationFields';
 
 const initialValues = {
-  title: 'chicken',
-  description: 'chicken leg',
+  title: '',
+  description: '',
   category: 'Breakfast',
   time: 40,
   ingredients: [],
@@ -35,26 +35,25 @@ export const AddRecipeForm = () => {
     }
   };
 
-  // const [userIngredients, setUserIngredients] = useState([]);
-
-  // const unitIncrement = () => {
-  //   // console.log(userIngredients);
-  //   setUserIngredients(prev => [
-  //     ...prev,
-  //     { id: nanoid(), ingredient: '', unitValue: 100, qty: 'g' },
-  //   ]);
-  // };
-
   const handleChange = event => {
     const { name, value } = event.target;
     setDescriptionFields(prevState => ({ ...prevState, [name]: value }));
   };
 
   const handleSetValue = data => {
-    const filteredFields = data.filter(({ field }) => field !== '');
-    const fields = filteredFields.map(({ field }) => field);
+    // console.log(data);
+    // const filteredFields = data.filter(
+    //   ({ field, measure }) => field !== '' && measure !== ''
+    // );
+    // console.log(filteredFields);
 
+    const fields = data.map(({ id, measure }) => {
+      // console.log(item);
+      const _id = id;
+      return { _id, measure };
+    });
     // console.log(fields);
+
     setDescriptionFields(prevState => ({
       ...prevState,
       ingredients: fields,
@@ -82,6 +81,7 @@ export const AddRecipeForm = () => {
 
         <MainWrapIngredients>
           <RecipeIngredientsFields
+            setDescriptionFields={setDescriptionFields}
             handleSubmit={handleSubmit}
             onInput={handleChange}
             inputs={descriptionFields}
