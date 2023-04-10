@@ -41,18 +41,10 @@ export const AddRecipeForm = () => {
   };
 
   const handleSetValue = data => {
-    // console.log(data);
-    // const filteredFields = data.filter(
-    //   ({ field, measure }) => field !== '' && measure !== ''
-    // );
-    // console.log(filteredFields);
-
     const fields = data.map(({ id, measure }) => {
-      // console.log(item);
       const _id = id;
       return { _id, measure };
     });
-    // console.log(fields);
 
     setDescriptionFields(prevState => ({
       ...prevState,
@@ -81,10 +73,7 @@ export const AddRecipeForm = () => {
 
         <MainWrapIngredients>
           <RecipeIngredientsFields
-            setDescriptionFields={setDescriptionFields}
-            handleSubmit={handleSubmit}
             onInput={handleChange}
-            inputs={descriptionFields}
             onSetValue={handleSetValue}
           />
           <WrapPreparation>
