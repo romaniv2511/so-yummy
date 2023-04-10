@@ -3,6 +3,7 @@ import { logIn } from '../../../redux/auth/authOperations';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import sprite from '../../../img/sprite.svg';
+import { getColor } from 'utils/formikColors';
 import {
   TitleForm,
   FormContainer,
@@ -13,6 +14,8 @@ import {
   ButtonSubmit,
   ErrorMessage,
   LabelsContent,
+  FlagForInput,
+  IconPassword,
 } from '../AuthForm.styled';
 
 const SigninSchema = Yup.object().shape({
@@ -24,9 +27,9 @@ const SigninSchema = Yup.object().shape({
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  const handleSubmit = data => {
-    dispatch(logIn(data));
-    console.log(data);
+  const handleSubmit = values => {
+    dispatch(logIn(values));
+    console.log(values);
   };
 
   return (
@@ -40,40 +43,108 @@ export const LoginForm = () => {
         onSubmit={handleSubmit}
         validationSchema={SigninSchema}
       >
-        {({ errors, touched }) => (
+        {props => (
           <FormContent>
             <LabelsContent>
               <LabelContainer>
                 <Label htmlFor="email">
-                  <svg>
-                    <use href={sprite + '#icon-email'} />
+                  <svg
+                    fill={getColor(
+                      props.errors.email,
+                      props.values.email,
+                      'rgba(255, 255, 255, 0.8)'
+                    )}
+                  >
+                    <use href={sprite + '#email'} />
                   </svg>
                 </Label>
+                {props.values.email && (
+                  <FlagForInput>
+                    <svg>
+                      <use
+                        href={`${sprite}${getColor(
+                          props.errors.email,
+                          props.values.email,
+                          'rgba(255, 255, 255, 0.8)'
+                        )}`}
+                      ></use>
+                    </svg>
+                  </FlagForInput>
+                )}
                 <Input
                   id="email"
                   name="email"
                   placeholder="Email"
                   type="email"
+                  color={getColor(
+                    props.errors.email,
+                    props.values.email,
+                    'rgba(255, 255, 255, 0.8)'
+                  )}
+                  bordercolor={getColor(
+                    props.errors.email,
+                    props.values.email,
+                    'rgba(255, 255, 255, 0.3)'
+                  )}
                 />
-                {errors.email && touched.email ? (
-                  <ErrorMessage>{errors.email}</ErrorMessage>
-                ) : null}
+                {props.values.email && (
+                  <ErrorMessage
+                    id="feedback"
+                    color={getColor(props.errors.email, props.values.email)}
+                  >
+                    {props.errors.email}
+                  </ErrorMessage>
+                )}
               </LabelContainer>
               <LabelContainer>
                 <Label htmlFor="password">
-                  <svg>
-                    <use href={sprite + '#icon-password'} />
-                  </svg>
+                  <IconPassword
+                    color={getColor(
+                      props.errors.password,
+                      props.values.password
+                    )}
+                  />
                 </Label>
+                {props.values.password && (
+                  <FlagForInput>
+                    <svg>
+                      <use
+                        href={`${sprite}${getColor(
+                          props.errors.password,
+                          props.values.password,
+                          'rgba(255, 255, 255, 0.8)'
+                        )}`}
+                      ></use>
+                    </svg>
+                  </FlagForInput>
+                )}
                 <Input
                   id="password"
                   name="password"
                   placeholder="Password"
                   type="password"
+                  color={getColor(
+                    props.errors.password,
+                    props.values.password,
+                    'rgba(255, 255, 255, 0.8)'
+                  )}
+                  bordercolor={getColor(
+                    props.errors.password,
+                    props.values.password,
+                    'rgba(255, 255, 255, 0.3)'
+                  )}
                 />
-                {errors.password && touched.password ? (
-                  <ErrorMessage>{errors.password}</ErrorMessage>
-                ) : null}
+                {props.values.password && (
+                  <ErrorMessage
+                    id="feedback"
+                    color={getColor(
+                      props.errors.password,
+                      props.values.password
+                    )}
+                  >
+                    {props.errors.password || 'Password is secure'}
+                  </ErrorMessage>
+                )}
               </LabelContainer>
             </LabelsContent>
             <ButtonSubmit type="submit">Sign in</ButtonSubmit>
