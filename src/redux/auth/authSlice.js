@@ -26,6 +26,7 @@ const authSlice = createSlice({
   },
   reducers: {
     updateToken(state, { payload }) {
+      console.log("updateToken", state);
       state.user.token =  payload;
     },
   },
@@ -81,6 +82,7 @@ const authSlice = createSlice({
     [updateInfo.rejected]: handleError,
   },
     [getUserInfo.pending](state) {
+      console.log('pending');
       state.isRefreshing = true;
     },
     [getUserInfo.fulfilled](state, { payload }) {
