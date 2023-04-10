@@ -27,7 +27,6 @@ export const IngredientsShoppingList = () => {
   const shoppingList = useSelector(state => state.shoppingList);
   const { items } = shoppingList;
   const shoppingListId = items.shoppingList;
-
   const dispatch = useDispatch();
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
@@ -68,6 +67,7 @@ export const IngredientsShoppingList = () => {
           {!error && loading && <Loader />}
           {infShoppingList.map(({ _id, thb, ttl }, i) => {
             const { measure } = ingredientsMeasureList[i];
+            const measureValue = measure.trim() !== '' ? measure : '1';
             return (
               <TableItem key={_id}>
                 <TableNameTitle>
@@ -81,7 +81,7 @@ export const IngredientsShoppingList = () => {
                   <ItemName>{ttl}</ItemName>
                 </TableNameTitle>
                 <TableTitle>
-                  <ContainerItemNumber>{measure}</ContainerItemNumber>
+                  <ContainerItemNumber>{measureValue}</ContainerItemNumber>
                 </TableTitle>
                 <TableTitle>
                   <BtnItemRemove
