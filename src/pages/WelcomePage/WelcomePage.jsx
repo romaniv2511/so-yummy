@@ -25,7 +25,7 @@ const WelcomePage = () => {
     if(newToken) {
       token.set(newToken);
       dispatch(updateToken(newToken));
-      dispatch(getUserInfo());
+      // dispatch(getUserInfo());
     }
   },[dispatch])
 

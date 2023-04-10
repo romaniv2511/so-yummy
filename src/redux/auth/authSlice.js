@@ -26,8 +26,9 @@ const authSlice = createSlice({
   },
   reducers: {
     updateToken(state, { payload }) {
-      console.log("updateToken", state);
-      state.user.token =  payload;
+      console.log("updateToken", payload);
+      state.token =  payload;
+      state.isLoggedIn = true;
     },
   },
   extraReducers: {
