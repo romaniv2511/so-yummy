@@ -17,7 +17,7 @@ import {
   FlagForInput,
   IconPassword,
 } from '../AuthForm.styled';
-
+import { LinkRegister } from 'pages/SignIn/SignIn.styled';
 const SigninSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string()
@@ -29,7 +29,7 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = values => {
     dispatch(logIn(values));
-    console.log(values);
+    // console.log(values);
   };
 
   return (
@@ -151,6 +151,7 @@ export const LoginForm = () => {
           </FormContent>
         )}
       </Formik>
+      <LinkRegister to="/register">Registration</LinkRegister>
     </FormContainer>
   );
 };

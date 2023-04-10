@@ -18,7 +18,9 @@ import {
   IconPassword,
   FlagForInput,
 } from '../AuthForm.styled';
+import { LoginWithGoogle } from 'components/LoginWithGoogle/LoginWithGoogle';
 
+import { Link } from 'pages/SignIn/SignIn.styled';
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
@@ -194,6 +196,8 @@ export const RegistrationForm = () => {
           </FormContent>
         )}
       </Formik>
+      <LoginWithGoogle />
+      <Link to="/signin">Sign In</Link>
     </FormContainer>
   );
 };

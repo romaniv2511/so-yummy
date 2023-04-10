@@ -24,7 +24,7 @@ export const FormContainer = styled.div`
   border-radius: 30px;
   padding: 32px 20px 40px;
   margin-bottom: 18px;
-
+  position: relative;
   @media screen and (min-width: ${props => props.theme.breakpoints.mob}) {
     width: 335px;
     padding: 32px 28px 40px;
