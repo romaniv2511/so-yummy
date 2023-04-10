@@ -9,7 +9,9 @@ const persistConfig = {
   storage: storage,
   whitelist: ['token'],
 };
-
+const handlePending = (state) => {
+  state.isLoading = true;
+}
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -17,24 +19,31 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isLoading: false,
   },
   extraReducers: {
+    [register.pending]: handlePending,
     [register.fulfilled](state, { payload }) {
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.user.avatarURL = payload.avatarURL;
       state.token = payload.token;
       state.isLoggedIn = true;
+      state.isLoading = false;
     },
+    [logIn.pending]: handlePending,
     [logIn.fulfilled](state, { payload }) {
       state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
+      state.isLoading = false;
     },
+    [logOut.pending]: handlePending,
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null, avatarURL: null };
       state.token = null;
       state.isLoggedIn = false;
+      state.isLoading = false;
     },
     [refreshUser.pending](state) {
       state.isRefreshing = true;
@@ -47,11 +56,17 @@ const authSlice = createSlice({
     [refreshUser.rejected](state) {
       state.isRefreshing = false;
     },
+    [updateAvatar.pending]: handlePending,
     [updateAvatar.fulfilled](state, { payload }) {
       state.user.avatar = payload.avatarURL;
+      state.isLoading = false;
     },
+    [updateInfo.pending]: handlePending,
     [updateInfo.fulfilled](state, { payload }) {
+      console.log(payload);
       state.user = {...state.user, ...payload};
+      state.isLoading = false;
+      console.log(state.user);
     }
   },
 });

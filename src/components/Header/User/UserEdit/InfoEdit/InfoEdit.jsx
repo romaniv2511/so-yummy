@@ -4,7 +4,7 @@ import { InfoBox, Input, InputBox, InputIcon } from './InfoEdit.styled';
 import { BiUser } from 'react-icons/bi';
 import { MdOutlineMail } from 'react-icons/md';
 
-export const InfoEdit = ({updateInfo}) => {
+export const InfoEdit = ({updateInfo, info}) => {
   const {user: {name, email}} = useAuth();
   const [newName, setNewName] = useState(name);
   const [newEmail, setNewEmail] = useState(email);
@@ -13,6 +13,8 @@ export const InfoEdit = ({updateInfo}) => {
     const { name, value } = e.target
     if (name === "name") setNewName(value);
     if (name === "email") setNewEmail(value);
+    console.log(info);
+    console.log(newName, newEmail);
     updateInfo({name: newName, email: newEmail})
   }
 
