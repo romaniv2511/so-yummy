@@ -9,10 +9,11 @@ export const Button = styled.button`
   cursor: pointer;
   background: transparent;
   transition: ${p => p.theme.transitions.main};
+
   & svg {
     width: 32px;
     height: 32px;
-    stroke: currentColor;
+    stroke: ${p => p.theme.color.btnColorSecondary};
     fill: transparent;
 
     @media (min-width: ${props => props.theme.breakpoints.tab}) {

@@ -7,10 +7,7 @@ import categoryRightMob from '../../img/categories-right-mob.png';
 import categoryRightMobRetina from '../../img/categories-right-mob@2x.png';
 import categoryRightDesk from '../../img/categories-right-desktop.png';
 import categoryRightDeskRetina from '../../img/categories-right-desktop@2x.png';
-import categoryCenterMob from '../../img/categories-center-mob.png';
-import categoryCenterMobRetina from '../../img/categories-center-mob@2x.png';
-import categoryCenterDesk from '../../img/categories-center-desktop.png';
-import categoryCenterDeskRetina from '../../img/categories-center-desktop@2x.png';
+
 import bgMob from '../../img/main-bg-leaf-mob.png';
 import bgMobRetina from '../../img/main-bg-leaf-mob@2x.png';
 import bgTablet from '../../img/main-bg-leaf-tablet.png';
@@ -20,8 +17,8 @@ import bgDesktopRetina from '../../img/main-bg-leaf-desktop@2x.png';
 
 export const MainContainerHeaderStyle = styled.div`
   padding-top: 114px;
-  background-image: url(${categoryLeftMob}), url(${categoryCenterMob}),
-    url(${categoryRightMob});
+  background-image: url(${categoryLeftMob}),
+    url(${props => props.theme.image.imageMob}), url(${categoryRightMob});
   background-size: 10px 10px, 7px 7px, 10px 10px;
   background-repeat: no-repeat;
   background-position: top 76px left 120px, top 142px left 247px,
@@ -32,13 +29,14 @@ export const MainContainerHeaderStyle = styled.div`
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     background-image: url(${categoryLeftMobRetina}),
-      url(${categoryCenterMobRetina}), url(${categoryRightMobRetina});
+      url(${props => props.theme.image.imageMobRet}),
+      url(${categoryRightMobRetina});
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     padding-top: 136px;
-    background-image: url(${categoryLeftDesk}), url(${categoryCenterDesk}),
-      url(${categoryRightDesk});
+    background-image: url(${categoryLeftDesk}),
+      url(${props => props.theme.image.imageDesk}), url(${categoryRightDesk});
     background-size: 18px 17px, 15px 15px, 18px 17px;
     background-position: top 85px left 219px, top 155px left 437px,
       top 98px left 726px;
@@ -48,7 +46,8 @@ export const MainContainerHeaderStyle = styled.div`
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       background-image: url(${categoryLeftDeskRetina}),
-        url(${categoryCenterDeskRetina}), url(${categoryRightDeskRetina});
+        url(${props => props.theme.image.imageDeskRet}),
+        url(${categoryRightDeskRetina});
     }
   }
 

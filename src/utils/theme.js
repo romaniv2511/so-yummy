@@ -1,3 +1,12 @@
+import categoryCenterMob from '../img/categories-center-mob.png';
+import categoryCenterMobRetina from '../img/categories-center-mob@2x.png';
+import categoryCenterDesk from '../img/categories-center-desktop.png';
+import categoryCenterDeskRetina from '../img/categories-center-desktop@2x.png';
+import categoryCenterMobWhite from '../img/categories-center-mob-white.png';
+import categoryCenterMobRetinaWhite from '../img/categories-center-mob-white@2x.png';
+import categoryCenterDeskWhite from '../img/categories-center-tab-white.png';
+import categoryCenterDeskRetinaWhite from '../img/categories-center-tab-white@2x.png';
+
 const mainVars = {
   breakpoints: {
     mob: '375px',
@@ -18,6 +27,12 @@ const mainVars = {
 };
 export const lightTheme = {
   ...mainVars,
+  image: {
+    imageMob: categoryCenterMob,
+    imageMobRet: categoryCenterMobRetina,
+    imageDesk: categoryCenterDesk,
+    imageDeskRet: categoryCenterDeskRetina,
+  },
   color: {
     accentStartPage: '#8BAA36',
     titleStartPage: '#FAFAFA',
@@ -26,9 +41,11 @@ export const lightTheme = {
     mainTitle: '#22252A',
     text: '#3E4462',
     secondaryTextColor: '#000000',
+    textFavorites: '#23262A',
     accent: '#8BAA36',
     btnColor: '#FAFAFA',
     btnColorSecondary: '#22252A',
+    bgMenu: 'rgba(235, 243, 212, 1)',
     bg: '#FAFAFA',
     bgButtonSelect: '#D9D9D9',
     bgSubscribe: '#8BAA36',
@@ -52,6 +69,12 @@ export const lightTheme = {
 
 export const darkTheme = {
   ...mainVars,
+  image: {
+    imageMob: categoryCenterMobWhite,
+    imageMobRet: categoryCenterMobRetinaWhite,
+    imageDesk: categoryCenterDeskWhite,
+    imageDeskRet: categoryCenterDeskRetinaWhite,
+  },
   color: {
     accentStartPage: '#8BAA36',
     titleStartPage: '#FAFAFA',
@@ -60,9 +83,11 @@ export const darkTheme = {
     mainTitle: '#FAFAFA',
     text: '#FAFAFA',
     secondaryTextColor: '#FAFAFA',
+    textFavorites: 'rgba(250, 250, 250, 0.6)',
     accent: '#8BAA36',
     btnColor: '#FAFAFA',
     btnColorSecondary: '#FAFAFA',
+    bgMenu: '#1E1F28',
     bg: '#1E1F28',
     bgButtonSelect: '#1E1F28',
     bgSubscribe: '#1E1F28',
