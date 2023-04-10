@@ -1,51 +1,44 @@
-import { AvatarBox, AvatarInput, Box, Label, Form, Input, InputIcon, InputBox } from './UserEdit.styled';
-import { useAuth } from '../../../../hooks/useAuth';
-import { Formik } from 'formik';
-import { Button } from '../UserLogout/UserLogout.styled';
-import {BiUser} from 'react-icons/bi';
-import {MdOutlineMail} from 'react-icons/md';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateAvatar, updateInfo } from 'redux/auth/authOperations';
 
-import avatar from 'img/avatar.png';
+import {  Box, Form } from './UserEdit.styled';
+import { Button } from '../UserLogout/UserLogout.styled';
+import { AvatarEdit } from './AvatarEdit/AvatarEdit';
+import { InfoEdit } from './InfoEdit/InfoEdit';
+
+
 
 export const UserEdit = () => {
+  const [newAvatar, setNewAvatar] = useState(null);
+  const [newInfo, setNewInfo]= useState(null);
 
-  const {user} = useAuth();
-  const handleSubmit = data => {
-    console.log(data);
+  const dispatch = useDispatch();
+  const changeAvatar = () => {
+    const formData = new FormData();
+    formData.append('avatar', newAvatar)
+    dispatch(updateAvatar(formData));
+  }
+  const changeInfo = () => {
+    dispatch(updateInfo(newInfo));
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if(newAvatar) changeAvatar();
+    if(newInfo) changeInfo();
   }
   return(
     <Box>
-      <AvatarBox>
-        <Label htmlFor='avatar'>
-          <img src={avatar} alt='avatar'/>
-        </Label>
-        <AvatarInput type='file' id='avatar'/>
-      </AvatarBox>
-      <Formik initialValues={{name: '', email: ''}} onSubmit={handleSubmit}>
-        <Form>
-          <InputBox>
-            <Input name="name" placeholder="Jane"/>
-            <InputIcon><BiUser/></InputIcon>
-          </InputBox>
-          <InputBox>
-            <Input
-              name="email"
-              placeholder={user.email}
-              type="email"
-            />
-            <InputIcon><MdOutlineMail/></InputIcon>
-          </InputBox>
-
-
-
-
-          <Button
-            colorText={p=>p.theme.color.bg}
-            bg={p=>p.theme.color.accent}>
-              Save changes
-          </Button>
-        </Form>
-      </Formik>
+      <Form onSubmit={handleSubmit}>
+        <AvatarEdit updateAvatar={(avatar)=> setNewAvatar(avatar)}/>
+        <InfoEdit updateInfo={(info)=> setNewInfo(info)}/>
+        <Button
+          colorText={p=>p.theme.color.bg}
+          bg={p=>p.theme.color.accent}>
+            Save changes
+        </Button>
+      </Form>
     </Box>
   )
 }
