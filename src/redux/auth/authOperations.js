@@ -4,7 +4,7 @@ import {  toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://soyummy-tw3y.onrender.com/api/v1';
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -75,7 +75,25 @@ export const refreshUser = createAsyncThunk(
     try {
       const { data } = await axios.get('/auth/current');
       if(data?.code === 200) {
-        console.log('error-refresh',data);
+
+        toast.error(data.message);
+        return;
+      }
+      return data;
+    } catch (error) {
+      toast.error('Oops, something wrong')
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+
+export const getUserInfo = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/auth/current');
+      if(data?.code === 200) {
         toast.error(data.message);
         return;
       }

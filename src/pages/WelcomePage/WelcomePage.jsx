@@ -10,8 +10,17 @@ import {
 } from './WelcomePage.styled';
 
 import logo from 'img/logo.svg';
+import { token } from '../../redux/auth/authOperations';
 
 const WelcomePage = () => {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+  const newToken = params.token;
+
+  if(newToken) {
+    token.set(newToken);
+
+  }
   return (
     <Background>
       <header>
