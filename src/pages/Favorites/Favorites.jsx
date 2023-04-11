@@ -21,9 +21,15 @@ const Favorites = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const data = useSelector(selectFavorites);
+  console.log(data);
+
   useEffect(() => {
-    dispatch(fetchFavorites());
-  }, [dispatch]);
+    if (!data) {
+      console.log('dispatch');
+      dispatch(fetchFavorites());
+    }
+  }, [data, dispatch]);
+
   const totalPages = data.length > 0 ? Math.ceil(data.length / 4) : 0;
 
   const perPage = 4;
