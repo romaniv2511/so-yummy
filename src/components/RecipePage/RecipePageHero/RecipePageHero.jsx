@@ -23,22 +23,27 @@ export const RecipePageHero = ({ title, description, time, id }) => {
 
   const data = useSelector(selectFavorites);
   const { recipeId } = useParams();
+
   useEffect(() => {
-    dispatch(fetchFavorites());
-  }, [dispatch]);
+    if (!data) {
+      dispatch(fetchFavorites());
+    }
+  }, [dispatch, data]);
 
   function deleteFromFav() {
     dispatch(deleteFavorite(id));
     setBtnText(false);
     return;
   }
+
   function getFavorite(recipeId) {
-    if (data !== undefined) {
+    if (data) {
       const recipe = data.some(fav => fav._id === recipeId);
       return recipe;
     }
     return false;
   }
+
   function addToFavorite() {
     dispatch(addFavorite(id));
     setBtnText(true);
