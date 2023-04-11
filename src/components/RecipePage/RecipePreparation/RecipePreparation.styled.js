@@ -73,7 +73,7 @@ export const InstructionText = styled.li`
     font-weight: 600;
     font-size: 12px;
     line-height: 18px;
-    color: ${({ theme }) => theme.color.bgLightEl};
+    color: ${({ theme }) => theme.color.textNumber};
     background: ${({ theme }) => theme.color.accent};
     border-radius: 100px;
     flex: none;
@@ -87,7 +87,7 @@ export const InstructionText = styled.li`
 
   & p {
     padding-top: 2px;
-    color: rgba(0, 0, 0, 0.8);
+    color: ${({ theme }) => theme.color.textPreparation};
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     }
 

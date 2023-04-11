@@ -71,15 +71,18 @@ export const RecipePageHeroTitle = styled.title`
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-y: clip;
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     max-width: 680px;
     font-size: 44px;
     margin-bottom: 24px;
   }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desk}) {
     max-width: 1000px;
   }
 `;
+
 export const RecipePageHeroText = styled.p`
   font-weight: 400;
   text-align: center;
@@ -91,6 +94,8 @@ export const RecipePageHeroText = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-y: clip;
+  color: ${props => props.theme.color.userText};
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     width: 506px;
     font-size: 18px;

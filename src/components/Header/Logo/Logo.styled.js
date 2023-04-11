@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Link = styled(NavLink)`
-  & svg {
+  & img {
     width: 40px;
     height: 40px;
     transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -12,7 +12,7 @@ export const Link = styled(NavLink)`
       height: 44px;
     }
   }
-  &:hover svg {
+  &:hover img {
     transform: scale(1.2);
   }
 `;

@@ -28,10 +28,12 @@ export const IngredientsShoppingList = () => {
   const { items } = shoppingList;
   const shoppingListId = items && items.shoppingList;
   const dispatch = useDispatch();
+
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     dispatch(fetchShoppingList());
   }, []);
+
   const handleDelete = async (_id, measure) => {
     dispatch(deleteToShoppingList({ _id: _id, measure: measure }));
   };
