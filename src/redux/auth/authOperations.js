@@ -74,9 +74,8 @@ export const refreshUser = createAsyncThunk(
     try {
       const { data } = await axios.get('/auth/current');
       if(data?.code === 200) {
-
-        toast.error(data.message);
-        return;
+        throw Error(data);
+        return; ;
       }
       return data;
     } catch (error) {

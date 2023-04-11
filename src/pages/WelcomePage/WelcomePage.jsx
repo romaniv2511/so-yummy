@@ -19,8 +19,11 @@ const WelcomePage = () => {
   const dispatch = useDispatch();
   useEffect(()=> {
     const urlSearchParams = new URLSearchParams(window.location.search);
+    console.log(urlSearchParams);
     const params = Object.fromEntries(urlSearchParams.entries());
+    console.log('params', params);
     const newToken = params.token;
+    console.log('newToken',newToken);
     if(newToken) {
       token.set(newToken);
       dispatch(updateToken(newToken));
