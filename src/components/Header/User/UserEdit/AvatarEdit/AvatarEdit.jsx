@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth} from 'hooks/useAuth'
-import { AvatarBox, AvatarInput, Label } from './AvatarEdit.styled';
+import { AddIcon, AvatarBox, AvatarInput, Label } from './AvatarEdit.styled';
+
 import userAvatar from 'img/avatar.png';
 
 export const AvatarEdit = ({updateAvatar}) => {
@@ -19,7 +20,9 @@ export const AvatarEdit = ({updateAvatar}) => {
           <Label htmlFor='avatar'>
             {avatarPreview ?
               <img src={avatarPreview} alt="Avatar preview" /> :
-              <img src={user?.avatar ?? userAvatar} alt='avatar'/>}
+              <img src={user?.avatar ?? userAvatar} alt='avatar'/>
+            }
+           <AddIcon/>
           </Label>
           <AvatarInput type='file' id='avatar' name='avatar' onChange={handleAvatarChange}/>
         </AvatarBox>
