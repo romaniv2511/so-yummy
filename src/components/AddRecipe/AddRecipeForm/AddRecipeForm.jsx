@@ -33,9 +33,6 @@ export const AddRecipeForm = () => {
 
   const onImageChange = event => {
     setImage(event.target.files[0]);
-    // if (event.target.files && event.target.files[0]) {
-    //   setImage(URL.createObjectURL(event.target.files[0]));
-    // }
   };
 
   useEffect(() => {
