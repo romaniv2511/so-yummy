@@ -28,8 +28,9 @@ const initialValues = {
 };
 
 export const AddRecipeForm = () => {
+  const [recipes, setRecipes] = useState(initialValues);
   const [image, setImage] = useState(uploadImg);
-  const [descriptionFields, setDescriptionFields] = useState(initialValues);
+  const [fieldsVisibility, setFieldsVisibility] = useState(true);
 
   const onImageChange = event => {
     setImage(event.target.files[0]);
@@ -70,9 +71,13 @@ export const AddRecipeForm = () => {
     }
   };
 
+  const toggleVisibility = () => {
+    setFieldsVisibility(true);
+  };
+
   const handleChange = event => {
     const { name, value } = event.target;
-    setDescriptionFields(prevState => ({ ...prevState, [name]: value }));
+    setRecipes(prevState => ({ ...prevState, [name]: value }));
   };
 
   const handleSetValue = data => {
@@ -81,7 +86,7 @@ export const AddRecipeForm = () => {
       return { _id, measure };
     });
 
-    setDescriptionFields(prevState => ({
+    setRecipes(prevState => ({
       ...prevState,
       ingredients: fields,
     }));
@@ -89,14 +94,16 @@ export const AddRecipeForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    descriptionFields.thumb = image;
-    console.log(descriptionFields);
-    addRecipe(descriptionFields);
+    recipes.thumb = image;
+    console.log(recipes);
+    addRecipe(recipes);
     reset();
   };
 
   const reset = () => {
-    setDescriptionFields(initialValues);
+    setFieldsVisibility(false);
+    setRecipes(initialValues);
+    setImage(uploadImg);
   };
 
   return (
@@ -109,22 +116,18 @@ export const AddRecipeForm = () => {
             </label>
             <InputUpload id="file-input" type="file" onChange={onImageChange} />
           </ImgUploadWrap>
-          <RecipeDescriptionFields
-            onInput={handleChange}
-            inputs={descriptionFields}
-          />
+          <RecipeDescriptionFields onInput={handleChange} inputs={recipes} />
         </Description>
 
         <MainWrapIngredients>
           <RecipeIngredientsFields
+            toggleVisibility={toggleVisibility}
+            fieldsVisibility={fieldsVisibility}
             onInput={handleChange}
             onSetValue={handleSetValue}
           />
           <WrapPreparation>
-            <RecipePreparationFields
-              onInput={handleChange}
-              inputs={descriptionFields}
-            />
+            <RecipePreparationFields onInput={handleChange} inputs={recipes} />
           </WrapPreparation>
         </MainWrapIngredients>
         <WrapButtonAdd>
