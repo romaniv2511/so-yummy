@@ -64,19 +64,10 @@ export const App = () => {
           <Route
             path="/"
             element={
-              <SharedLayout
-                onToggle={handleClick}
-                isToggle={isToggleOn}
-                pageMain={true}
-              />
+              <SharedLayout onToggle={handleClick} isToggle={isToggleOn} />
             }
           >
-            <Route
-              index
-              element={
-                <PrivateRoute component={<MainPage />} pageMain="Main" />
-              }
-            />
+            <Route index element={<PrivateRoute component={<MainPage />} />} />
             <Route
               path="categories"
               element={<PrivateRoute component={<Categories />} />}

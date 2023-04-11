@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+
 export const RecipePageHero = ({ title, description, time, id }) => {
   const dispatch = useDispatch();
   const [btnText, setBtnText] = useState(false);
@@ -49,6 +50,7 @@ export const RecipePageHero = ({ title, description, time, id }) => {
     setBtnText(true);
     return;
   }
+
   return (
     <RecipePageHeroContainer>
       <RecipePageHeroTitle>{title}</RecipePageHeroTitle>

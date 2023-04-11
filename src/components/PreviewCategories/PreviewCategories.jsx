@@ -36,22 +36,22 @@ export const PreviewCategories = () => {
 
       if (response) {
         setLoading(false);
+
+        const newData = data.reduce((acc, item) => {
+          if (item._id === 'Breakfast') {
+            acc[0] = item;
+          } else if (item._id === 'Miscellaneous') {
+            acc[1] = item;
+          } else if (item._id === 'Vegan') {
+            acc[2] = item;
+          } else if (item._id === 'Dessert') {
+            acc[3] = item;
+          }
+          return acc;
+        }, []);
+
+        setDishes(newData);
       }
-
-      const newData = data.reduce((acc, item) => {
-        if (item._id === 'Breakfast') {
-          acc[0] = item;
-        } else if (item._id === 'Miscellaneous') {
-          acc[1] = item;
-        } else if (item._id === 'Vegan') {
-          acc[2] = item;
-        } else if (item._id === 'Dessert') {
-          acc[3] = item;
-        }
-        return acc;
-      }, []);
-
-      setDishes(newData);
     } catch (error) {
       setLoading(false);
       setError(error.message);

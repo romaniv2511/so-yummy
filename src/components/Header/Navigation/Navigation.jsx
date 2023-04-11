@@ -1,12 +1,13 @@
 import { useMediaQuery } from 'react-responsive';
 import { Link, Nav } from './Navigation.styled';
 import sprite from 'img/sprite.svg';
-export const Navigation = ({ onClick }) => {
+
+export const Navigation = ({ onClick, color }) => {
   const isDesktop = useMediaQuery({
     query: '(min-width: 1440px)',
   });
   return (
-    <Nav>
+    <Nav colorProp={color}>
       <Link to="/categories/Beef" onClick={onClick}>
         Categories
       </Link>

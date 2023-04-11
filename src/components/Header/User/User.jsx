@@ -6,7 +6,7 @@ import { Box } from './User.styled';
 import { UserLogout } from './UserLogout/UserLogout';
 import { UserEdit } from './UserEdit/UserEdit';
 
-export const User = ({ pageMain }) => {
+export const User = ({ color }) => {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalName, setModalName] = useState('edit');
@@ -28,7 +28,7 @@ export const User = ({ pageMain }) => {
   };
   return (
     <Box>
-      <UserLogo pageMain={pageMain} toggleDashboard={toggleDashboard} />
+      <UserLogo color={color} toggleDashboard={toggleDashboard} />
 
       {isDashboardOpen && (
         <UserDashboard

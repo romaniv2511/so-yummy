@@ -52,6 +52,7 @@ export const Button = styled.button`
   padding: 0;
   cursor: pointer;
   background: transparent;
+
   & svg {
     stroke: ${({ theme }) => theme.color.btnColorSecondary};
     fill: transparent;

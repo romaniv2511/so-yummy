@@ -24,14 +24,17 @@ export const IngredientsShoppingList = () => {
   const [infShoppingList, setInfShoppingList] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const shoppingList = useSelector(state => state.shoppingList);
+  const shoppingList = useSelector(state => state.items);
   const { items } = shoppingList;
   const shoppingListId = items.shoppingList;
   const dispatch = useDispatch();
+  console.log(shoppingList);
   /* eslint-disable react-hooks/exhaustive-deps */
+
   useEffect(() => {
     dispatch(fetchShoppingList());
   }, []);
+
   const handleDelete = async (_id, measure) => {
     dispatch(deleteToShoppingList({ _id: _id, measure: measure }));
   };
