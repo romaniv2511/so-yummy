@@ -34,7 +34,7 @@ export const PreviewCategories = () => {
       );
       const { data } = response.data;
 
-      if (response) {
+      if (data) {
         setLoading(false);
 
         const newData = data.reduce((acc, item) => {
