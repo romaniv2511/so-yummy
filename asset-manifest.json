@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/so-yummy/static/css/main.29cbfe85.css",
-    "main.js": "/so-yummy/static/js/main.f8f62af9.js",
+    "main.js": "/so-yummy/static/js/main.8b0fe4ca.js",
     "static/media/start-page-desktop@2x.jpg": "/so-yummy/static/media/start-page-desktop@2x.f9fd1b84a264be4c77f8.jpg",
     "static/media/recipe-bg-tablet.@2x.png": "/so-yummy/static/media/recipe-bg-tablet.@2x.19064f0c5cebd732dbdc.png",
     "static/media/start-page-tablet@2x.jpg": "/so-yummy/static/media/start-page-tablet@2x.d9db385f866bf51df61d.jpg",
@@ -68,10 +68,10 @@
     "static/media/logo.svg": "/so-yummy/static/media/logo.730141656e2fa293a2ae7c83da54bb81.svg",
     "static/media/logo-footer.svg": "/so-yummy/static/media/logo-footer.3dc4a1172f0f3a055eec904912aa4e43.svg",
     "main.29cbfe85.css.map": "/so-yummy/static/css/main.29cbfe85.css.map",
-    "main.f8f62af9.js.map": "/so-yummy/static/js/main.f8f62af9.js.map"
+    "main.8b0fe4ca.js.map": "/so-yummy/static/js/main.8b0fe4ca.js.map"
   },
   "entrypoints": [
     "static/css/main.29cbfe85.css",
-    "static/js/main.f8f62af9.js"
+    "static/js/main.8b0fe4ca.js"
   ]
 }
