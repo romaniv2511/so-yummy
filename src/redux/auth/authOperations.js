@@ -19,8 +19,7 @@ export const register = createAsyncThunk(
     try {
       const {data} = await axios.post('/auth/register', user);
       if(data?.code === 200) {
-        toast.error(data.message)
-        return
+        return rejectWithValue(data.message);
       }
       token.set(data.token);
       return data;
@@ -37,8 +36,7 @@ export const logIn = createAsyncThunk(
     try {
       const {data} = await axios.post('/auth/login', user);
       if(data?.code === 200) {
-        toast.error(data.message)
-        return
+        return rejectWithValue(data.message);
       }
       token.set(data.token);
       return data;
@@ -74,7 +72,6 @@ export const refreshUser = createAsyncThunk(
     try {
       const { data } = await axios.get('/auth/current');
       if(data?.code === 200) {
-
         return thunkAPI.rejectWithValue(data.message);
       }
       return data;
@@ -105,7 +102,7 @@ export const updateInfo = createAsyncThunk(
       const { data } = await axios.put('/auth/user/update', user);
       const {name, email } = data;
       return { name, email };
-      // return data;
+
     } catch (error) {
       return rejectWithValue(error.message);
     }
