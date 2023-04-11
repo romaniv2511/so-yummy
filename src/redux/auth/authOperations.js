@@ -74,8 +74,8 @@ export const refreshUser = createAsyncThunk(
     try {
       const { data } = await axios.get('/auth/current');
       if(data?.code === 200) {
-        throw Error(data);
-        return; ;
+
+        return thunkAPI.rejectWithValue(data.message);
       }
       return data;
     } catch (error) {
