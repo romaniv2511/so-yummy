@@ -10,8 +10,25 @@ import {
 } from './WelcomePage.styled';
 
 import logo from 'img/logo.svg';
+import { token } from '../../redux/auth/authOperations';
+import { updateToken } from '../../redux/auth/authSlice';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 const WelcomePage = () => {
+  const dispatch = useDispatch();
+  useEffect(()=> {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    const newToken = params.token;
+    console.log(newToken);
+    if(newToken) {
+      token.set(newToken);
+      dispatch(updateToken(newToken));
+      // dispatch(getUserInfo());
+    }
+  },[dispatch])
+
   return (
     <Background>
       <header>

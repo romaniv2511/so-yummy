@@ -1,5 +1,11 @@
+import { GoogleLink } from './LoginWithGoogle.styled';
 export const LoginWithGoogle = () => {
   return (
-    <a href='https://soyummy-tw3y.onrender.com/api/v1/auth/google'>SignIn with Google</a>
-  )
-}
+    <GoogleLink
+      type="button"
+      href="https://soyummy-tw3y.onrender.com/api/v1/auth/google"
+    >
+      Google
+    </GoogleLink>
+  );
+};
