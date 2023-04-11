@@ -12,41 +12,40 @@ import { LoaderWithoutMargin } from '../../../Loader/LoaderWithoutMargin';
 
 
 export const UserEdit = () => {
-  const [isNewAvatar, setIsNewAvatar] = useState(false);
+  const [newAvatar, setNewAvatar] = useState(null);
   const [isNewInfo, setIsNewInfo]= useState(false);
   useEffect(()=> {
-    setIsNewAvatar(false);
+    setNewAvatar(null);
     setIsNewInfo(false);
   }, [])
 
   const dispatch = useDispatch();
   const {isLoading} = useAuth();
 
-  const avatarFormData = new FormData();
-  const changeAvatar = (avatar) => {
-    avatarFormData.append('avatar', avatar);
-    setIsNewAvatar(true);
+
+  const changeAvatar = () => {
+    const formData = new FormData();
+    formData.append('avatar', newAvatar);
+    dispatch(updateAvatar(formData))
   }
-  const changeInfo = () => {
-    setIsNewInfo(true);
-  }
+  const changeInfo = (e) => {
+    const updatedInfo = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+    }
+    dispatch(updateInfo(updatedInfo))
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    if(isNewAvatar) dispatch(updateAvatar(avatarFormData));
-    if(isNewInfo) {
-      const updatedInfo = {
-        name: e.target.name.value,
-        email: e.target.email.value,
-      }
-      dispatch(updateInfo(updatedInfo))
-    };
+    if(newAvatar) changeAvatar();
+    if(isNewInfo) changeInfo(e)
   }
   return(
     <Box>
       <Form onSubmit={handleSubmit}>
-        <AvatarEdit updateAvatar={changeAvatar}/>
-        <InfoEdit  updateInfo={changeInfo}/>
+        <AvatarEdit updateAvatar={(avatar)=> setNewAvatar(avatar)}/>
+        <InfoEdit  updateInfo={() => setIsNewInfo(true)}/>
         {isLoading
           ? <LoaderWithoutMargin/>
           : <Button

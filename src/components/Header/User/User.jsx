@@ -6,38 +6,46 @@ import { Box } from './User.styled';
 import { UserLogout } from './UserLogout/UserLogout';
 import { UserEdit } from './UserEdit/UserEdit';
 
-
-export const User = () => {
+export const User = ({ pageMain }) => {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalName, setModalName] = useState('edit')
+  const [modalName, setModalName] = useState('edit');
   const toggleDashboard = () => {
-    setIsDashboardOpen(current=> !current);
-  }
+    setIsDashboardOpen(current => !current);
+  };
   const toggleModal = () => {
-    setIsModalOpen(current=> !current);
-
-  }
-  const openEditUser = () =>{
+    setIsModalOpen(current => !current);
+  };
+  const openEditUser = () => {
     toggleModal();
     toggleDashboard();
-    setModalName('edit')
-  }
-  const openLogoutApproval = () =>{
+    setModalName('edit');
+  };
+  const openLogoutApproval = () => {
     toggleModal();
     toggleDashboard();
-    setModalName('logout')
-  }
+    setModalName('logout');
+  };
   return (
     <Box>
-      <UserLogo toggleDashboard={toggleDashboard} />
+      <UserLogo pageMain={pageMain} toggleDashboard={toggleDashboard} />
 
-      {isDashboardOpen && <UserDashboard onClose={toggleDashboard} onLogout={openLogoutApproval} onEdit={openEditUser}/>}
-      {isModalOpen &&
+      {isDashboardOpen && (
+        <UserDashboard
+          onClose={toggleDashboard}
+          onLogout={openLogoutApproval}
+          onEdit={openEditUser}
+        />
+      )}
+      {isModalOpen && (
         <UserModal onClose={toggleModal}>
-          {modalName === 'logout' ? <UserLogout onClose={toggleModal}/> :<UserEdit onClose={toggleModal}/>}
+          {modalName === 'logout' ? (
+            <UserLogout onClose={toggleModal} />
+          ) : (
+            <UserEdit onClose={toggleModal} />
+          )}
         </UserModal>
-      }
+      )}
     </Box>
-  )
-}
+  );
+};
