@@ -114,6 +114,7 @@ export const RecipeIngredientsFields = ({ onInput, onSetValue }) => {
             <SelectWrap>
               <span>
                 <CustomInput
+                  autoComplete="off"
                   type="text"
                   name="measure"
                   id={inputField.id}
@@ -147,6 +148,7 @@ export const RecipeIngredientsFields = ({ onInput, onSetValue }) => {
                         return item;
                       });
                       onSetValue(inputFields);
+                      // setSearchParams(null);
                     }}
                   >
                     <p>{ttl}</p>
