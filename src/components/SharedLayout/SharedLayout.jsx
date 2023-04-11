@@ -3,10 +3,10 @@ import { Outlet } from 'react-router-dom';
 import { Header } from '../Header/Header';
 import { Footer } from 'components/Footer/Footer';
 
-const SharedLayout = ({ onToggle, isToggle }) => {
+const SharedLayout = ({ onToggle, isToggle, pageMain }) => {
   return (
     <>
-      <Header onToggle={onToggle} isToggle={isToggle} />
+      <Header onToggle={onToggle} isToggle={isToggle} pageMain={pageMain} />
       <Suspense fallback={<p>Loading...</p>}>
         <Outlet />
       </Suspense>

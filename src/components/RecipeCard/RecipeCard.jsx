@@ -33,6 +33,7 @@ export const RecipeCard = ({
   });
   const dispatch = useDispatch();
   const handleDelete = () => dispatch(deleteFavorite(id));
+
   return (
     <>
       {page === 'Favorites' && (

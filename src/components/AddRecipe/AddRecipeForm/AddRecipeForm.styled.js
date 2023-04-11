@@ -9,6 +9,10 @@ export const Form = styled.form`
   }
 `;
 
+export const MainWrapDescription = styled.div`
+  display: flex;
+`;
+
 export const MainWrapIngredients = styled.div`
   margin-top: 44px;
   margin-bottom: 18px;
