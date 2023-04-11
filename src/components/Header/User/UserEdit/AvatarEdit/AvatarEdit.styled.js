@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {Modal} from '../../../Header.styled';
+import {IoAddCircleSharp} from 'react-icons/io5'
 
 
 
@@ -26,4 +27,16 @@ export const AvatarInput  = styled.input`
 
 export const AvatarModal = styled(Modal)`
   z-index: 20;
+`
+export const AddIcon = styled(IoAddCircleSharp)`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 24px;
+  height: 24px;
+
+  fill: ${p=> p.theme.color.accent};
+
+
+
 `

@@ -18,6 +18,7 @@ import {
   IconPassword,
 } from '../AuthForm.styled';
 import { LinkRegister } from 'pages/SignIn/SignIn.styled';
+import { LoginWithGoogle } from 'components/LoginWithGoogle/LoginWithGoogle';
 const SigninSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string()
@@ -151,6 +152,7 @@ export const LoginForm = () => {
           </FormContent>
         )}
       </Formik>
+      <LoginWithGoogle />
       <LinkRegister to="/register">Registration</LinkRegister>
     </FormContainer>
   );
