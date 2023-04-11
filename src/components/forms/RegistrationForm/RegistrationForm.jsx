@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperations';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { getColor } from 'utils/formikColors';
 import sprite from '../../../img/sprite.svg';
 import {
   TitleForm,
@@ -13,8 +14,13 @@ import {
   ButtonSubmit,
   ErrorMessage,
   LabelsContent,
+  IconName,
+  IconPassword,
+  FlagForInput,
 } from '../AuthForm.styled';
+import { LoginWithGoogle } from 'components/LoginWithGoogle/LoginWithGoogle';
 
+import { Link } from 'pages/SignIn/SignIn.styled';
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
@@ -22,15 +28,22 @@ const SignupSchema = Yup.object().shape({
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string()
-    .required('No password provided.')
-    .min(6, 'Password is too short - should be 6 chars minimum.'),
+    .min(6, 'Your password is short')
+    .max(16, 'Your password is to long')
+    .matches(/[1-9]/, 'Your password is little secure. Add a number!')
+    .matches(
+      /[a-zа-яA-ZА-ЯіїЇІєЄ]/,
+      'Your password is little secure. Add a letter!'
+    )
+    .matches(/^[a-zа-яA-ZА-ЯіїЇІЄє1-9]/, 'Enter a valid Password*')
+    .required('Enter a Password*'),
 });
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
-  const handleSubmit = data => {
-    dispatch(register(data));
-    console.log(data);
+  const handleSubmit = values => {
+    dispatch(register(values));
+    console.log(values.name);
   };
 
   return (
@@ -45,51 +58,136 @@ export const RegistrationForm = () => {
         onSubmit={handleSubmit}
         validationSchema={SignupSchema}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, values }) => (
           <FormContent>
             <LabelsContent>
               <LabelContainer>
                 <Label htmlFor="name">
-                  <svg>
-                    <use href={sprite + '#icon-name'} />
-                  </svg>
+                  <IconName color={getColor(errors.name, values.name)} />
                 </Label>
-                <Input id="name" name="name" placeholder="Name" />
-                {errors.name && touched.name ? (
-                  <ErrorMessage>{errors.name}</ErrorMessage>
-                ) : null}
+                {values.name && (
+                  <FlagForInput>
+                    <svg>
+                      <use
+                        href={`${sprite}${getColor(
+                          errors.name,
+                          values.name,
+                          'rgba(255, 255, 255, 0.8)'
+                        )}`}
+                      ></use>
+                    </svg>
+                  </FlagForInput>
+                )}
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="Name"
+                  color={getColor(
+                    errors.name,
+                    values.name,
+                    'rgba(255, 255, 255, 0.8)'
+                  )}
+                  bordercolor={getColor(
+                    errors.name,
+                    values.name,
+                    'rgba(255, 255, 255, 0.3)'
+                  )}
+                />
+                {values.name && (
+                  <ErrorMessage
+                    id="feedback"
+                    color={getColor(errors.name, values.name)}
+                  >
+                    {errors.name}
+                  </ErrorMessage>
+                )}
               </LabelContainer>
               <LabelContainer>
                 <Label htmlFor="email">
-                  <svg>
-                    <use href={sprite + '#icon-email'} />
+                  <svg
+                    className="icon"
+                    fill={getColor(
+                      errors.email,
+                      values.email,
+                      'rgba(255, 255, 255, 0.8)'
+                    )}
+                  >
+                    <use href={sprite + '#email'} />
                   </svg>
                 </Label>
+                {values.email && (
+                  <FlagForInput>
+                    <svg>
+                      <use
+                        href={`${sprite}${getColor(
+                          errors.email,
+                          values.email,
+                          'rgba(255, 255, 255, 0.8)'
+                        )}`}
+                      ></use>
+                    </svg>
+                  </FlagForInput>
+                )}
                 <Input
                   id="email"
                   name="email"
                   placeholder="Email"
                   type="email"
+                  color={getColor(errors.email, values.email)}
+                  bordercolor={getColor(
+                    errors.email,
+                    values.email,
+                    'rgba(255, 255, 255, 0.3)'
+                  )}
                 />
-                {errors.email && touched.email ? (
-                  <ErrorMessage>{errors.email}</ErrorMessage>
-                ) : null}
+                {values.email && (
+                  <ErrorMessage
+                    id="feedback"
+                    color={getColor(errors.email, values.email)}
+                  >
+                    {errors.email}
+                  </ErrorMessage>
+                )}
               </LabelContainer>
               <LabelContainer>
                 <Label htmlFor="password">
-                  <svg>
-                    <use href={sprite + '#icon-password'} />
-                  </svg>
+                  <IconPassword
+                    color={getColor(errors.password, values.password)}
+                  />
                 </Label>
+                {values.password && (
+                  <FlagForInput>
+                    <svg>
+                      <use
+                        href={`${sprite}${getColor(
+                          errors.password,
+                          values.password,
+                          'rgba(255, 255, 255, 0.8)'
+                        )}`}
+                      ></use>
+                    </svg>
+                  </FlagForInput>
+                )}
                 <Input
                   id="password"
                   name="password"
                   type="password"
                   placeholder="Password"
+                  color={getColor(errors.password, touched.password)}
+                  bordercolor={getColor(
+                    errors.password,
+                    touched.password,
+                    'rgba(255, 255, 255, 0.3)'
+                  )}
                 />
-                {errors.password && touched.password ? (
-                  <ErrorMessage>{errors.password}</ErrorMessage>
-                ) : null}
+                {values.password && (
+                  <ErrorMessage
+                    id="feedback"
+                    color={getColor(errors.password, values.password)}
+                  >
+                    {errors.password}
+                  </ErrorMessage>
+                )}
               </LabelContainer>
             </LabelsContent>
             <ButtonSubmit register="register" type="submit">
@@ -98,6 +196,8 @@ export const RegistrationForm = () => {
           </FormContent>
         )}
       </Formik>
+      <LoginWithGoogle />
+      <Link to="/signin">Sign In</Link>
     </FormContainer>
   );
 };

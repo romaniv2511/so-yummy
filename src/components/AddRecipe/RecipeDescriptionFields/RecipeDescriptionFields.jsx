@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import uploadImg from 'img/add-recipe-placeholder.png';
 import {
-  Description,
-  ImgUploadWrap,
   InputDescription,
   InputDescriptionMainWrap,
   InputDescriptionWrap,
-  InputUpload,
   SelectDescription,
 } from './RecipeDescriptionFields.styled';
 import axios from 'axios';
@@ -19,7 +15,6 @@ const time = [
 
 export const RecipeDescriptionFields = ({ onInput, inputs }) => {
   const [categoryList, setCategoryList] = useState([]);
-  // const [error, setError] = useState(null);
 
   const handleInputChange = e => {
     onInput(e);
@@ -44,13 +39,7 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
   }, []);
 
   return (
-    <Description>
-      <ImgUploadWrap>
-        <label htmlFor="file-input">
-          <img src={uploadImg} alt="upload-img" />
-        </label>
-        <InputUpload id="file-input" type="file" />
-      </ImgUploadWrap>
+    <>
       <InputDescriptionMainWrap>
         <InputDescriptionWrap>
           <InputDescription
@@ -103,6 +92,6 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
           </SelectDescription>
         </InputDescriptionWrap>
       </InputDescriptionMainWrap>
-    </Description>
+    </>
   );
 };

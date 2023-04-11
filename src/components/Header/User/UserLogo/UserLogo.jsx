@@ -8,8 +8,10 @@ export const UserLogo = ({ toggleDashboard, pageMain }) => {
   return (
     <UserLogoBox>
       <ButtonUser type="button" onClick={toggleDashboard}>
-        <img src={user?.avatar} alt="user" />
-        <UserName main={pageMain}>{user?.name}</UserName>
+
+        <img src={user?.avatar || ''} alt="user" />
+        <UserName main={pageMain}>{user?.name ||  'user'}</UserName>
+
       </ButtonUser>
     </UserLogoBox>
   );

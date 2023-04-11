@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { logIn, register, logOut, refreshUser, updateAvatar, updateInfo } from './authOperations';
+import { logIn, register, logOut, refreshUser, updateAvatar, updateInfo, getUserInfo } from './authOperations';
 
 const persistConfig = {
   key: 'auth',
@@ -11,6 +11,9 @@ const persistConfig = {
 };
 const handlePending = (state) => {
   state.isLoading = true;
+};
+const handleError = (state) => {
+  state.isLoading = false;
 }
 const authSlice = createSlice({
   name: 'auth',
@@ -20,6 +23,13 @@ const authSlice = createSlice({
     isLoggedIn: false,
     isRefreshing: false,
     isLoading: false,
+  },
+  reducers: {
+    updateToken(state, { payload }) {
+      console.log("updateToken", payload);
+      state.token =  payload;
+      state.isLoggedIn = true;
+    },
   },
   extraReducers: {
     [register.pending]: handlePending,
@@ -31,6 +41,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isLoading = false;
     },
+    [register.rejected]: handleError,
     [logIn.pending]: handlePending,
     [logIn.fulfilled](state, { payload }) {
       state.user = payload.user;
@@ -38,6 +49,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isLoading = false;
     },
+    [logIn.rejected]: handleError,
     [logOut.pending]: handlePending,
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null, avatarURL: null };
@@ -45,6 +57,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.isLoading = false;
     },
+    [logOut.rejected]: handleError,
     [refreshUser.pending](state) {
       state.isRefreshing = true;
     },
@@ -53,7 +66,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
-    [refreshUser.rejected](state) {
+    [refreshUser.rejected] (state) {
       state.isRefreshing = false;
     },
     [updateAvatar.pending]: handlePending,
@@ -61,14 +74,26 @@ const authSlice = createSlice({
       state.user.avatar = payload.avatarURL;
       state.isLoading = false;
     },
+    [updateAvatar.rejected]: handleError,
     [updateInfo.pending]: handlePending,
     [updateInfo.fulfilled](state, { payload }) {
-      console.log(payload);
       state.user = {...state.user, ...payload};
       state.isLoading = false;
-      console.log(state.user);
-    }
+    },
+    [updateInfo.rejected]: handleError,
   },
+    [getUserInfo.pending](state) {
+      console.log('pending');
+      state.isRefreshing = true;
+    },
+    [getUserInfo.fulfilled](state, { payload }) {
+      state.user = payload.user;
+      state.isLoggedIn = true;
+      state.isRefreshing = false;
+    },
+    [getUserInfo.rejected] (state) {
+      state.isRefreshing = false;
+    },
 });
-
+export const {updateToken} = authSlice.actions;
 export const authReducer = persistReducer(persistConfig, authSlice.reducer);

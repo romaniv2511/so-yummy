@@ -16,6 +16,7 @@ export const ButtonUser = styled.button`
     width: 34px;
     height: 34px;
     border-radius: 50px;
+    object-fit: cover;
     @media (min-width: ${props => props.theme.breakpoints.tab}) {
       width: 44px;
       height: 44px;

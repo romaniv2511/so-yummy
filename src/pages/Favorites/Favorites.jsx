@@ -13,6 +13,8 @@ import { fetchFavorites } from 'redux/favorites/favoritesOperations';
 import { ErrorImageContainer } from 'components/ErrorImageContainer/ErrorImageContainer';
 import { MainPageTitle } from 'components/MainPageTitle/MainPageTitle';
 import { Pagination } from 'components/Pagination/Pagination';
+import placeholder from '../../img/placeholder.jpg';
+import ErrorPage from 'pages/ErrorPage/ErrorPage';
 
 const Favorites = () => {
   const [page, setPage] = useState(1);
@@ -50,43 +52,44 @@ const Favorites = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {error && <p>Something went wrong. Try again.</p>}
-      <main>
-        <PagesWrapper>
-          <MainPageTitle title="Favorites" />
-          {renderList && renderList.length > 0 ? (
-            <List>
-              {renderList.map(({ _id, thumb, title, time, description }) => (
-                <Item key={_id}>
-                  <RecipeCard
-                    thumb={
-                      thumb ? thumb : 'https://via.placeholder.com/124x124'
-                    }
-                    title={title ?? 'No title'}
-                    id={_id}
-                    description={description ?? 'No description'}
-                    time={time ?? '--'}
-                    page="Favorites"
-                  />
-                </Item>
-              ))}
-            </List>
-          ) : (
-            <Container>
-              <ErrorImageContainer title="You don't have recipes in favorites yet, add your first recipe!" />
-            </Container>
-          )}
-          {totalPages > 1 && (
-            <Pagination
-              totalPages={totalPages}
-              currentPage={page}
-              onSelectPage={handlePageChange}
-              onArrowLeftClick={handlePageChangeDecrement}
-              onArrowRightClick={handlePageChangeIncrement}
-            />
-          )}
-        </PagesWrapper>
-      </main>
+      {error ? (
+        <ErrorPage />
+      ) : (
+        <main>
+          <PagesWrapper>
+            <MainPageTitle title="Favorites" />
+            {renderList && renderList.length > 0 ? (
+              <List>
+                {renderList.map(({ _id, thumb, title, time, description }) => (
+                  <Item key={_id}>
+                    <RecipeCard
+                      thumb={thumb ? thumb : placeholder}
+                      title={title ?? 'No title'}
+                      id={_id}
+                      description={description ?? 'No description'}
+                      time={time ?? '--'}
+                      page="Favorites"
+                    />
+                  </Item>
+                ))}
+              </List>
+            ) : (
+              <Container>
+                <ErrorImageContainer title="You don't have recipes in favorites yet, add your first recipe!" />
+              </Container>
+            )}
+            {totalPages > 1 && (
+              <Pagination
+                totalPages={totalPages}
+                currentPage={page}
+                onSelectPage={handlePageChange}
+                onArrowLeftClick={handlePageChangeDecrement}
+                onArrowRightClick={handlePageChangeIncrement}
+              />
+            )}
+          </PagesWrapper>
+        </main>
+      )}
     </>
   );
 };

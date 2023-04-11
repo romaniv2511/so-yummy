@@ -111,7 +111,7 @@ export const FormInput = styled.input`
   }
   :hover,
   :focus {
-    border: 1px solid 1px solid ${({ color }) => color};
+    border: 1px solid ${({ color }) => color};
     &::placeholder {
       opacity: 1;
     }
