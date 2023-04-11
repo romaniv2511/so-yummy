@@ -67,6 +67,7 @@ export const lightTheme = {
     socIconHover: '#FFFFFF',
     logo: '#FAFAFA',
     footerInput: 'rgba(255, 255, 255, 0.3)',
+    border: 'none',
   },
 };
 
@@ -112,5 +113,6 @@ export const darkTheme = {
     socIconHover: '#1E1F28',
     logo: '#FAFAFA',
     footerInput: 'rgba(31, 30, 30, 0.2)',
+    border: '1px solid #8BAA36',
   },
 };
