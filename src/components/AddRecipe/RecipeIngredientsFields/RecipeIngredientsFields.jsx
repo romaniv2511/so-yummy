@@ -26,9 +26,7 @@ export const RecipeIngredientsFields = ({ onInput, onSetValue }) => {
   const [count, setCount] = useState(0);
   const [ingredients, setIngredients] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [inputFields, setInputFields] = useState([]);
-
   const [activeInputIndex, setActiveInputIndex] = useState(-1);
 
   const handleChangeInput = (index, event) => {
@@ -45,10 +43,11 @@ export const RecipeIngredientsFields = ({ onInput, onSetValue }) => {
     setInputFields([...inputFields, { id: nanoid(), field: '', measure: '' }]);
   };
 
-  const handleRemoveFields = index => {
+  const handleRemoveFields = () => {
     const values = [...inputFields];
-    values.splice(index, 1);
+    values.splice(-1, 1);
     setInputFields(values);
+    onSetValue(values);
   };
 
   const query = searchParams.get('query' ?? '');
@@ -105,6 +104,7 @@ export const RecipeIngredientsFields = ({ onInput, onSetValue }) => {
         <div key={inputField.id}>
           <InputIngredientsWrap>
             <InputIngredients
+              required
               autoComplete="off"
               name="field"
               id={inputField.id}
@@ -114,6 +114,7 @@ export const RecipeIngredientsFields = ({ onInput, onSetValue }) => {
             <SelectWrap>
               <span>
                 <CustomInput
+                  required
                   autoComplete="off"
                   type="text"
                   name="measure"
