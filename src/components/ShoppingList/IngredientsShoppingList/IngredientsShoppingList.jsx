@@ -26,7 +26,7 @@ export const IngredientsShoppingList = () => {
   const [loading, setLoading] = useState(false);
   const shoppingList = useSelector(state => state.shoppingList);
   const { items } = shoppingList;
-  const shoppingListId = items.shoppingList;
+  const shoppingListId = items && items.shoppingList;
   const dispatch = useDispatch();
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
