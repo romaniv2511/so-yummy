@@ -21,7 +21,6 @@ const Favorites = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const data = useSelector(selectFavorites);
-  console.log(data);
 
   useEffect(() => {
     if (!data) {
@@ -30,12 +29,12 @@ const Favorites = () => {
     }
   }, [data, dispatch]);
 
-  const totalPages = data.length > 0 ? Math.ceil(data.length / 4) : 0;
+  const totalPages = data?.length > 0 ? Math.ceil(data?.length / 4) : 0;
 
   const perPage = 4;
   const lastIndex = perPage * page;
   const startIndex = lastIndex - perPage;
-  const renderList = data.slice(startIndex, lastIndex);
+  const renderList = data?.slice(startIndex, lastIndex);
   const handlePageChange = id => {
     setPage(id);
   };

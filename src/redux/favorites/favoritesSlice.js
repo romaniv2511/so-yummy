@@ -18,7 +18,7 @@ const handleRejected = (state, action) => {
 const favoritesSlice = createSlice({
   name: 'favorites',
   initialState: {
-    items: [],
+    items: null,
     isLoading: false,
     error: null,
   },
@@ -35,10 +35,7 @@ const favoritesSlice = createSlice({
     [deleteFavorite.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      const index = state.items.findIndex(
-        favorite => favorite.id === action.payload.id
-      );
-      state.items.splice(index, 1);
+      state.items = action.payload;
     },
     [logOut.fulfilled](state) {
       state.items = [];
