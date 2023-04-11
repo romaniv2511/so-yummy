@@ -25,7 +25,10 @@ export const Button = styled.button`
     }
 
     @media screen and (min-width: 768px) and (max-width: 820px) {
-      stroke: ${props => props.theme.color.userText};
+      stroke: ${props =>
+        props.color === 'colorMain' || props.color === 'recipe'
+          ? props.theme.color.userText
+          : props.theme.color.btnColorSecondary};
     }
   }
   &:hover svg,

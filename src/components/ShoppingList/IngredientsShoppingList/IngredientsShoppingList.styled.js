@@ -67,6 +67,8 @@ export const ContainerImage = styled.div`
 export const TableNameTitle = styled.div`
   display: flex;
   width: 225px;
+  color: ${props => props.theme.color.btnColor};
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tab}) {
     width: 450px;
   }
@@ -77,6 +79,7 @@ export const TableNameTitle = styled.div`
 
 export const TableTitle = styled.div`
   text-align: center;
+  color: ${props => props.theme.color.btnColor};
 `;
 
 export const ItemName = styled.p`
@@ -109,15 +112,22 @@ export const BtnItemRemove = styled.button`
   width: 54px;
   height: 14px;
   padding: 0 20px;
-  stroke: ${({ theme }) => theme.color.text};
+  color: ${({ theme }) => theme.color.mainTitle};
   background-color: inherit;
   border: none;
   cursor: pointer;
+
+  & svg {
+    stroke: currentColor;
+    fill: currentColor;
+  }
+
   transition: ${({ theme }) => theme.transitions.main};
   @media screen and (min-width: 769px) {
     padding: 0 30px;
     width: 80px;
     height: 20px;
+
     &:hover {
       fill: ${({ theme }) => theme.color.accent};
       stroke: ${({ theme }) => theme.color.accent};
