@@ -13,6 +13,7 @@ export const RecipePreparationFields = ({ onInput, inputs }) => {
     <>
       <TitlePreparation>Recipe Preparation</TitlePreparation>
       <TextAreaPreparation
+        autoComplete="off"
         name="instructions"
         value={inputs.instructions}
         id="instructions"

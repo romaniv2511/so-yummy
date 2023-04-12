@@ -9,6 +9,34 @@ export const Form = styled.form`
   }
 `;
 
+export const Description = styled.div`
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    gap: 50px;
+  }
+`;
+
+export const ImgUploadWrap = styled.div`
+  margin-bottom: 32px;
+  img:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    margin-bottom: 0;
+  }
+`;
+
+export const InputUpload = styled.input`
+  visibility: hidden;
+  width: 0;
+  height: 0;
+`;
+
 export const MainWrapDescription = styled.div`
   display: flex;
 `;
