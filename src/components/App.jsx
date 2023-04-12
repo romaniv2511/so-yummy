@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy  } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { PublicRoute, PrivateRoute } from '../services/routes';
 import { useDispatch } from 'react-redux';
@@ -6,22 +6,25 @@ import { refreshUser } from '../redux/auth/authOperations';
 import { useAuth } from '../hooks/useAuth';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../utils/theme';
+import ScrollToTop from './ScrollToTop/ScrollToTop';
+import { GlobalStyle } from './GlobalStyle';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import WelcomePage from '../pages/WelcomePage/WelcomePage';
 import Register from '../pages/Register/Register';
-import SignIn from '../pages/SignIn/SignIn';
-import MainPage from '../pages/MainPage/MainPage';
-import Categories from '../pages/Categories/Categories';
-import AddRecipes from '../pages/AddRecipes/AddRecipes';
-import MyRecipes from '../pages/MyRecipes/MyRecipes';
-import Recipe from '../pages/Recipe/Recipe';
-import Favorites from '../pages/Favorites/Favorites';
-import ShoppingList from '../pages/ShoppingList/ShoppingList';
-import SearchPage from 'pages/SearchPage/SearchPage';
-import ErrorPage from 'pages/ErrorPage/ErrorPage';
-import ScrollToTop from './ScrollToTop/ScrollToTop';
-import { GlobalStyle } from './GlobalStyle';
+import SignIn from '../pages/SignIn/SignIn'
+
+const MainPage = lazy(() => import('pages/MainPage/MainPage'));
+const Categories = lazy(() => import('pages/Categories/Categories'));
+const AddRecipes = lazy(() => import('pages/AddRecipes/AddRecipes'));
+const MyRecipes = lazy(() => import('pages/MyRecipes/MyRecipes'));
+const Recipe = lazy(() => import('pages/Recipe/Recipe'));
+const Favorites = lazy(() => import('pages/Favorites/Favorites'));
+const ShoppingList = lazy(() => import('pages/ShoppingList/ShoppingList'));
+const SearchPage = lazy(() => import('pages/SearchPage/SearchPage'));
+const ErrorPage = lazy(() => import('pages/ErrorPage/ErrorPage'));
+
+
 
 export const App = () => {
   const dispatch = useDispatch();

@@ -25,9 +25,6 @@ export const AvatarInput  = styled.input`
   height: 0;
 `
 
-export const AvatarModal = styled(Modal)`
-  z-index: 20;
-`
 export const AddIcon = styled(IoAddCircleSharp)`
   position: absolute;
   right: 0;
