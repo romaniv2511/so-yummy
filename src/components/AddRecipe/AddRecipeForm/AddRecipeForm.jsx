@@ -93,9 +93,6 @@ export const AddRecipeForm = () => {
   };
 
   const handleSubmit = e => {
-    // const notify = () => {
-    //   toast.warn('add at least one ingredient!');
-    // };
     e.preventDefault();
     recipes.thumb = image;
     if (recipes.ingredients.length === 0) {
