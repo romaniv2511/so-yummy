@@ -12,6 +12,7 @@ import { Pagination } from 'components/Pagination/Pagination';
 const SearchPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
   const [searchList, setSearchList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectValue, setSelectValue] = useState(
