@@ -93,17 +93,16 @@ export const AddRecipeForm = () => {
   };
 
   const handleSubmit = e => {
-    const notify = () => {
-      toast.warn('add at least one ingredient!', {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    };
+    // const notify = () => {
+    //   toast.warn('add at least one ingredient!');
+    // };
     e.preventDefault();
     recipes.thumb = image;
     if (recipes.ingredients.length === 0) {
-      notify();
+      toast.warn('add at least one ingredient!');
       return;
     }
+    toast.success('the recipe has been added successfully');
     console.log(recipes);
     addRecipe(recipes);
     reset();
