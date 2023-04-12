@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import axios from 'axios';
 import { CategoryDishItem } from 'components/CategoryDishItem/CategoryDishItem';
 import { Container } from 'components/Container/Container';

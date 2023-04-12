@@ -79,7 +79,7 @@ export const ButtonAdd = styled.button`
   background-color: ${props => props.theme.color.bgSecondary};
   border-radius: 24px 44px;
   border: none;
-  color: ${props => props.theme.color.bg};
+  color: ${props => props.theme.color.btnColor};
   font-family: inherit;
   font-weight: 400;
   font-size: 16px;
@@ -90,5 +90,6 @@ export const ButtonAdd = styled.button`
   &:hover,
   &:focus {
     background-color: ${props => props.theme.color.accent};
+    color: ${props => props.theme.color.socIconHover};
   }
 `;

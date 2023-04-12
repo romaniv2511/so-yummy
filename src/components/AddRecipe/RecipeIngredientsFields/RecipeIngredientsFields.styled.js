@@ -5,6 +5,7 @@ export const WrapIngredients = styled.div`
   margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     margin-bottom: 32px;
   }
@@ -13,6 +14,7 @@ export const WrapIngredients = styled.div`
 export const TitleIngredients = styled.h3`
   color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.fontWeights.l};
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     font-size: 24px;
     line-height: 1;
@@ -33,9 +35,11 @@ export const InputIngredients = styled.input`
   max-width: 194px;
   height: 53px;
   padding-left: 16px;
-  border: none;
-  background: ${({ theme }) => theme.color.gbCancel};
+  color: ${props => props.theme.color.secondaryTextColor};
+  border: ${({ theme }) => theme.color.borderSelect};
+  background-color: ${({ theme }) => theme.color.bgButtonSelect};
   border-radius: 6px;
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     margin-right: 32px;
     max-width: none;
@@ -49,18 +53,23 @@ export const SelectWrap = styled.div`
   float: left;
   width: 50%;
 `;
+
 export const CustomInput = styled.input`
   position: relative;
   left: 3px;
   width: 53px;
   height: 53px;
-  border: none;
+  color: ${props => props.theme.color.secondaryTextColor};
+  border: ${({ theme }) => theme.color.borderSelect};
+  background-color: ${({ theme }) => theme.color.bgButtonSelect};
+
   &:focus-within {
     outline: none;
   }
-  background: ${({ theme }) => theme.color.gbCancel};
+
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     height: 59px;
     text-align: center;
@@ -69,11 +78,19 @@ export const CustomInput = styled.input`
 
 export const SelectIngredients = styled.select`
   position: absolute;
-  border-left: none;
   height: 53px;
-  border: none;
-  background: ${({ theme }) => theme.color.gbCancel};
+  color: ${props => props.theme.color.secondaryTextColor};
+  border: ${({ theme }) => theme.color.borderSelect};
+  border-left: none;
+  background-color: ${({ theme }) => theme.color.bgButtonSelect};
   border-radius: 6px;
+
+  & option {
+    background-color: ${props => props.theme.color.bgSelectColor};
+    color: ${props => props.theme.color.secondaryTextColor};
+    opacity: 0.5;
+  }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     width: 97px;
     height: 59px;

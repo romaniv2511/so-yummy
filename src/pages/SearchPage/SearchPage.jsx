@@ -2,7 +2,7 @@ import axios from 'axios';
 import { MainPageTitle } from 'components/MainPageTitle/MainPageTitle';
 import { PagesWrapper } from 'components/PagesWrapper/PagesWrapper';
 import { SearchBar } from 'components/SearchBar/SearchBar';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { SearchedRecipesList } from 'components/SearchedRecipesList/SearchedRecipesList';
 import { useEffect, useState } from 'react';
 import { ErrorImageContainer } from 'components/ErrorImageContainer/ErrorImageContainer';
@@ -10,6 +10,8 @@ import { Loader } from 'components/Loader/Loader';
 import { Pagination } from 'components/Pagination/Pagination';
 
 const SearchPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [searchList, setSearchList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectValue, setSelectValue] = useState(
@@ -18,19 +20,22 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [state, setState] = useState('start');
-  const [page, setPage] = useState(1);
+  const [pageNumber, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const perPage = 8;
 
   const valueName = selectValue === 'Title' ? 'query' : 'ingredient';
   const value = searchParams.get(`${valueName}`) ?? '';
+  const pageValue = searchParams.get('page') ?? 1;
 
   const handleSearch = (text, actions) => {
     const { searchText } = text;
     const normalizedValue = searchText.toLowerCase().trim();
 
     const nextParams =
-      normalizedValue !== '' ? { [valueName]: normalizedValue } : {};
+      normalizedValue !== ''
+        ? { [valueName]: normalizedValue, page: pageValue }
+        : {};
     setSearchParams(nextParams);
     setSearchList([]);
     setPage(1);
@@ -40,7 +45,6 @@ const SearchPage = () => {
 
   const handleSelect = select => {
     setSelectValue(select);
-    //  const searchQuery = select === "Title" ? "query": "ingredient";
     setSearchParams({});
     setSearchList([]);
   };
@@ -86,25 +90,22 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
-    if (value === '' || selectValue === '') {
+    if ((value === '' && pageNumber === 1) || selectValue === '') {
       setSearchParams({});
       return;
     }
-    getSearchList(value, selectValue, page);
-  }, [value, selectValue, page, setSearchParams]);
+    getSearchList(value, selectValue, pageNumber);
+  }, [value, selectValue, pageNumber, setSearchParams]);
 
-  //   useEffect(() => {
-  //     if (value !== '') {
-  //       getSearchList(value, valueName, page);
-  //     }
-  //   }, [value, page, valueName]);
-
-  //   useEffect(() => {
-  //     if (value === '') {
-  //       setSearchParams({});
-  //       return;
-  //     }
-  //   }, [searchParams, setSearchParams, value]);
+  useEffect(() => {
+    if (
+      searchParams.has('page') &&
+      parseInt(searchParams.get('page')) !== pageNumber
+    ) {
+      searchParams.set('page', pageNumber);
+      navigate(`${location.pathname}?${searchParams.toString()}`);
+    }
+  }, [pageNumber, searchParams, location, navigate]);
 
   return (
     <PagesWrapper>
@@ -126,7 +127,7 @@ const SearchPage = () => {
           {totalPages > 1 && (
             <Pagination
               totalPages={totalPages}
-              currentPage={page}
+              currentPage={pageNumber}
               onSelectPage={handlePageChange}
               onArrowLeftClick={handlePageChangeDecrement}
               onArrowRightClick={handlePageChangeIncrement}

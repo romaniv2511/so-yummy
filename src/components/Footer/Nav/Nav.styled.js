@@ -10,7 +10,7 @@ export const Link = styled(NavLink)`
   color: ${({ theme }) => theme.color.textSecondary};
   transition: ${({ theme }) => theme.transitions.main};
   &.active {
-    color: ${({ theme }) => theme.color.accent};
+    color: ${({ theme }) => theme.color.bgSubscribe};
   }
   :hover,
   :focus {

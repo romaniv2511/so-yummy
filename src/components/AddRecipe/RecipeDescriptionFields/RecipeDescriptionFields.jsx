@@ -5,6 +5,7 @@ import {
   InputDescriptionMainWrap,
   InputDescriptionWrap,
   SelectDescription,
+  StyledOption,
 } from './RecipeDescriptionFields.styled';
 import axios from 'axios';
 
@@ -74,9 +75,9 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
             onChange={handleInputChange}
           >
             {categoryList.map(item => (
-              <option value={item} key={item}>
+              <StyledOption value={item} key={item}>
                 {item}
-              </option>
+              </StyledOption>
             ))}
           </SelectDescription>
         </InputDescriptionWrap>
