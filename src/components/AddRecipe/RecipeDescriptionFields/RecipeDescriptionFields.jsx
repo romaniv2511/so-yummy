@@ -5,6 +5,7 @@ import {
   InputDescriptionMainWrap,
   InputDescriptionWrap,
   SelectDescription,
+  StyledOption,
 } from './RecipeDescriptionFields.styled';
 import axios from 'axios';
 
@@ -43,6 +44,8 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
       <InputDescriptionMainWrap>
         <InputDescriptionWrap>
           <InputDescription
+            required
+            autoComplete="off"
             type="text"
             name="title"
             value={inputs.title}
@@ -53,6 +56,8 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
         </InputDescriptionWrap>
         <InputDescriptionWrap>
           <InputDescription
+            required
+            autoComplete="off"
             type="text"
             name="description"
             value={inputs.description}
@@ -70,9 +75,9 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
             onChange={handleInputChange}
           >
             {categoryList.map(item => (
-              <option value={item} key={item}>
+              <StyledOption value={item} key={item}>
                 {item}
-              </option>
+              </StyledOption>
             ))}
           </SelectDescription>
         </InputDescriptionWrap>

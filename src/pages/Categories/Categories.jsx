@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { Loader } from 'components/Loader/Loader';
 import {
   ButtonsList,
@@ -14,14 +19,17 @@ import { ErrorImageContainer } from 'components/ErrorImageContainer/ErrorImageCo
 import { RecipesList } from 'components/RecipesList/RecipesList';
 
 const Categories = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { categoryName } = useParams();
   const [menuList, setMenuList] = useState([]);
   const [category, setCategory] = useState(categoryName || 'Beef');
   const [categoriesList, setCategoriesList] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  const [pageNumber, setPage] = useState(1);
   const activeRef = useRef();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const searchCategory = async category => {
     setLoading(true);
@@ -67,6 +75,12 @@ const Categories = () => {
   };
 
   useEffect(() => {
+    if (pageNumber === 1) {
+      setSearchParams({ ...searchParams, page: 1 });
+    }
+  }, [pageNumber, searchParams, setSearchParams]);
+
+  useEffect(() => {
     searchMenuList();
   }, []);
 
@@ -75,14 +89,25 @@ const Categories = () => {
   }, [menuList]);
 
   useEffect(() => {
+    setPage(1);
     searchCategory(category);
   }, [category]);
+
+  useEffect(() => {
+    if (
+      searchParams.has('page') &&
+      parseInt(searchParams.get('page')) !== pageNumber
+    ) {
+      searchParams.set('page', pageNumber);
+      navigate(`${location.pathname}?${searchParams.toString()}`);
+    }
+  }, [setSearchParams, navigate, location, pageNumber, searchParams]);
 
   const totalPages =
     categoriesList.length > 0 ? Math.ceil(categoriesList.length / 8) : 0;
 
   const perPage = 8;
-  const lastIndex = perPage * page;
+  const lastIndex = perPage * pageNumber;
   const startIndex = lastIndex - perPage;
   const renderList = categoriesList.slice(startIndex, lastIndex);
 
@@ -117,7 +142,6 @@ const Categories = () => {
                     to={`/categories/${item}`}
                     onClick={() => {
                       setCategory(item);
-                      setPage(1);
                     }}
                   >
                     {item}
@@ -136,7 +160,7 @@ const Categories = () => {
         {totalPages > 1 && (
           <Pagination
             totalPages={totalPages}
-            currentPage={page}
+            currentPage={pageNumber}
             onSelectPage={handlePageChange}
             onArrowLeftClick={handlePageChangeDecrement}
             onArrowRightClick={handlePageChangeIncrement}

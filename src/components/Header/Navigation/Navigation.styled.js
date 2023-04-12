@@ -6,6 +6,11 @@ export const Nav = styled.nav`
   flex-direction: column;
   align-items: center;
   gap: 32px;
+  color: ${props => {
+    return props.colorProp === 'recipe'
+      ? props.theme.color.textCancel
+      : props.theme.color.primaryTextColor;
+  }};
 
   @media (min-width: ${props => props.theme.breakpoints.tab}) {
     gap: 40px;
@@ -18,6 +23,7 @@ export const Nav = styled.nav`
     margin-right: auto;
   }
 `;
+
 export const Link = styled(NavLink)`
   display: flex;
   gap: 8px;
@@ -27,12 +33,14 @@ export const Link = styled(NavLink)`
   font-size: 18px;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: ${props => props.theme.color.primaryTextColor};
+  color: inherit;
+
   & svg {
     width: 20px;
     height: 20px;
     stroke: currentColor;
     fill: transparent;
+
     :hover {
       stroke: ${props => props.theme.color.accent};
     }
@@ -41,16 +49,20 @@ export const Link = styled(NavLink)`
       height: 24px;
     }
   }
+
   :hover {
     color: ${props => props.theme.color.accent};
   }
+
   &.active {
     color: ${props => props.theme.color.accent};
     font-weight: 600;
   }
+
   @media (min-width: ${props => props.theme.breakpoints.tab}) {
     font-size: 24px;
   }
+
   @media (min-width: ${props => props.theme.breakpoints.desk}) {
     font-size: 14px;
     line-height: 1.6;

@@ -77,7 +77,7 @@ export const ItemTitle = styled.h4`
 `;
 
 export const ItemText = styled.p`
-  color: #7e7e7e;
+  color: ${props => props.theme.color.textPopular};
   font-weight: ${props => props.theme.fontWeights.s};
   font-size: 12px;
   line-height: 1.33;

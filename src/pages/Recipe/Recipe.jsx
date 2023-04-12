@@ -31,14 +31,18 @@ const Recipe = () => {
         } = await axios.get(
           `https://soyummy-tw3y.onrender.com/api/v1/recipes/${recipeId}`
         );
-        const ing = data.ingredients;
-        const measures = ing.map(({ _id: { _id }, measure }) => ({
-          id: _id,
-          measure,
-        }));
-        setIngredientsMeasureList(measures);
-        setIngredientsList(ing.map(({ _id }) => _id));
-        setRecipe(data);
+        if (data && data.ingredients) {
+          const ing = data.ingredients;
+          const measures = ing.map(({ _id: { _id }, measure }) => ({
+            id: _id,
+            measure,
+          }));
+          setIngredientsMeasureList(measures);
+          setIngredientsList(ing.map(({ _id }) => _id));
+          setRecipe(data);
+        } else {
+          setError('Unable to retrieve recipe data');
+        }
       } catch (error) {
         setError(error.message);
         console.log(error);

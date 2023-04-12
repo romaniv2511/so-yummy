@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import axios from 'axios';
 import { CategoryDishItem } from 'components/CategoryDishItem/CategoryDishItem';
 import { Container } from 'components/Container/Container';
@@ -34,24 +35,24 @@ export const PreviewCategories = () => {
       );
       const { data } = response.data;
 
-      if (response) {
+      if (data) {
         setLoading(false);
+
+        const newData = data.reduce((acc, item) => {
+          if (item._id === 'Breakfast') {
+            acc[0] = item;
+          } else if (item._id === 'Miscellaneous') {
+            acc[1] = item;
+          } else if (item._id === 'Vegan') {
+            acc[2] = item;
+          } else if (item._id === 'Dessert') {
+            acc[3] = item;
+          }
+          return acc;
+        }, []);
+
+        setDishes(newData);
       }
-
-      const newData = data.reduce((acc, item) => {
-        if (item._id === 'Breakfast') {
-          acc[0] = item;
-        } else if (item._id === 'Miscellaneous') {
-          acc[1] = item;
-        } else if (item._id === 'Vegan') {
-          acc[2] = item;
-        } else if (item._id === 'Dessert') {
-          acc[3] = item;
-        }
-        return acc;
-      }, []);
-
-      setDishes(newData);
     } catch (error) {
       setLoading(false);
       setError(error.message);

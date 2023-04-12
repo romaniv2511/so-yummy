@@ -1,5 +1,4 @@
 import { Container } from '../../components/Container/Container';
-import { Link } from 'react-router-dom';
 import {
   Logo,
   Title,
@@ -17,27 +16,21 @@ import { useDispatch } from 'react-redux';
 
 const WelcomePage = () => {
   const dispatch = useDispatch();
-  useEffect(()=> {
+  useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     const newToken = params.token;
-    if(newToken) {
+    if (newToken) {
       token.set(newToken);
       dispatch(updateToken(newToken));
     }
-  },[dispatch])
+  }, [dispatch]);
 
   return (
     <Background>
-      <header>
-        <Container>
-          <Link to="/">
-            <Logo src={logo} alt="logo" />
-          </Link>
-        </Container>
-      </header>
       <main>
         <Container>
+          <Logo src={logo} alt="logo" />
           <Title>Welcome to the app!</Title>
           <Description>
             This app offers more than just a collection of recipes - it is

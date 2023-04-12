@@ -1,10 +1,10 @@
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import { ButtonClose, ModalBox, Overlay } from './UserModal.styled';
-import {RxCross2} from 'react-icons/rx'
+import { RxCross2 } from 'react-icons/rx';
 
 const modalRoot = document.querySelector('#modal-root');
-export const UserModal = ({children, onClose}) => {
+export const UserModal = ({ children, onClose }) => {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -24,11 +24,11 @@ export const UserModal = ({children, onClose}) => {
     <Overlay onClick={handleBackDropClick}>
       <ModalBox>
         <ButtonClose onClick={onClose}>
-          <RxCross2 width={24} height={24}/>
+          <RxCross2 width={24} height={24} style={{ color: 'currentcolor' }} />
         </ButtonClose>
         {children}
       </ModalBox>
     </Overlay>,
     modalRoot
-  )
-}
+  );
+};

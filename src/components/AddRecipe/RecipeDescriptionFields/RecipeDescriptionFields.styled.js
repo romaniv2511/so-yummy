@@ -1,27 +1,4 @@
 import styled from 'styled-components';
-export const Description = styled.div`
-  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
-    gap: 50px;
-  }
-`;
-
-export const ImgUploadWrap = styled.div`
-  margin-bottom: 32px;
-  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    margin-bottom: 0;
-  }
-`;
-
-export const InputUpload = styled.input`
-  visibility: hidden;
-  width: 0;
-  height: 0;
-`;
 
 export const InputDescriptionMainWrap = styled.div`
   @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
@@ -54,5 +31,34 @@ export const SelectDescription = styled.select`
   top: 0;
   right: 0;
   border: none;
-  background: transparent;
+  background-color: ${props => props.theme.color.select};
+  color: ${props => props.theme.color.secondaryTextColor};
+
+  & option {
+    background-color: ${props => props.theme.color.bgSelectColor};
+  }
+`;
+
+export const Option = styled.optgroup`
+  width: 123px;
+  height: 144px;
+  display: inline-block;
+  padding: 8px 14px;
+  box-shadow: 0px 6.51852px 7.82222px rgba(0, 0, 0, 0.0314074);
+  border-radius: 6px;
+
+  overflow-y: auto;
+`;
+
+export const StyledOption = styled.option.attrs(props => ({
+  value: props.value,
+}))`
+  color: ${props => props.theme.color.secondaryTextColor};
+  display: inline;
+  opacity: 0.5;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
 `;

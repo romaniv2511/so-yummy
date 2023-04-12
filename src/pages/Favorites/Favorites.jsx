@@ -26,7 +26,6 @@ const Favorites = () => {
 
   useEffect(() => {
     if (!data) {
-      console.log('dispatch');
       dispatch(fetchFavorites());
     }
   }, [data, dispatch]);

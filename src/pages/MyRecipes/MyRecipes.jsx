@@ -18,6 +18,7 @@ const MyRecipes = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const { token } = useAuth();
+
   useEffect(() => {
     const fetchApi = async () => {
       try {
@@ -30,7 +31,6 @@ const MyRecipes = () => {
           }
         );
         const { data } = res.data;
-        console.log(data);
         setRecipes(data);
       } catch (error) {
         setError(error);
@@ -54,6 +54,7 @@ const MyRecipes = () => {
       setRecipes(prevRecipes =>
         prevRecipes.filter(recipe => recipe._id !== id)
       );
+
       return res.data;
     } catch (error) {
       setError(error);
@@ -61,7 +62,6 @@ const MyRecipes = () => {
       setIsLoading(false);
     }
   };
-  console.log('recipes', recipes);
 
   const totalPages = recipes.length > 0 ? Math.ceil(recipes.length / 4) : 0;
 

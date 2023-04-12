@@ -13,12 +13,22 @@ export const Button = styled.button`
   & svg {
     width: 32px;
     height: 32px;
-    stroke: ${p => p.theme.color.btnColorSecondary};
+    stroke: ${p =>
+      p.color === 'recipe'
+        ? p.theme.color.userText
+        : p.theme.color.btnColorSecondary};
     fill: transparent;
 
     @media (min-width: ${props => props.theme.breakpoints.tab}) {
       width: 32px;
       height: 32px;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 820px) {
+      stroke: ${props =>
+        props.color === 'colorMain' || props.color === 'recipe'
+          ? props.theme.color.userText
+          : props.theme.color.btnColorSecondary};
     }
   }
   &:hover svg,

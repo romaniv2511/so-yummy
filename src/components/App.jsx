@@ -28,7 +28,24 @@ const ErrorPage = lazy(() => import('pages/ErrorPage/ErrorPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const [isToggleOn, setIsToggleOn] = useState(false);
+  const [isToggleOn, setIsToggleOn] = useState(() => {
+    const savedState = localStorage.getItem('theme');
+    if (savedState) {
+      return JSON.parse(savedState);
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const savedState = localStorage.getItem('theme');
+    if (savedState) {
+      setIsToggleOn(JSON.parse(savedState));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('theme', JSON.stringify(isToggleOn));
+  }, [isToggleOn]);
 
   const handleClick = () => {
     setIsToggleOn(prevState => !prevState);
@@ -67,19 +84,10 @@ export const App = () => {
           <Route
             path="/"
             element={
-              <SharedLayout
-                onToggle={handleClick}
-                isToggle={isToggleOn}
-                pageMain={true}
-              />
+              <SharedLayout onToggle={handleClick} isToggle={isToggleOn} />
             }
           >
-            <Route
-              index
-              element={
-                <PrivateRoute component={<MainPage />} pageMain="Main" />
-              }
-            />
+            <Route index element={<PrivateRoute component={<MainPage />} />} />
             <Route
               path="categories"
               element={<PrivateRoute component={<Categories />} />}

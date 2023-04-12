@@ -10,8 +10,10 @@ export const CounterButton = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: ${({ theme }) => theme.color.borderColor};
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${({ theme }) => theme.color.accent};
   }
 `;
@@ -22,7 +24,7 @@ export const CounterWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid rgba(51, 51, 51, 0.3);
+  border: 1px solid ${({ theme }) => theme.color.borderColor};
   border-radius: 18px;
   padding: 0 4px;
   width: 92px;
