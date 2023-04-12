@@ -41,6 +41,7 @@ export const RecipeIngredientsFields = ({
     values[index][event.target.name] = event.target.value;
     setInputFields(values);
     setActiveInputIndex(index);
+    onSetValue(inputFields);
     if (event.target.name !== 'measure') {
       updateQueryString(event);
     }
