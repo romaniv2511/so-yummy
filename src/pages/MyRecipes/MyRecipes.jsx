@@ -31,7 +31,6 @@ const MyRecipes = () => {
           }
         );
         const { data } = res.data;
-        console.log(data);
         setRecipes(data);
       } catch (error) {
         setError(error);
@@ -63,7 +62,6 @@ const MyRecipes = () => {
       setIsLoading(false);
     }
   };
-  console.log('recipes', recipes);
 
   const totalPages = recipes.length > 0 ? Math.ceil(recipes.length / 4) : 0;
 

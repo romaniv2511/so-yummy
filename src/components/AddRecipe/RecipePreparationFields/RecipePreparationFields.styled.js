@@ -17,6 +17,10 @@ export const TextAreaPreparation = styled.textarea`
   padding-top: 10px;
   padding-left: 16px;
   width: 100%;
+  color: ${props => props.theme.color.secondaryTextColor};
+  border: ${({ theme }) => theme.color.borderSelect};
+  background-color: ${({ theme }) => theme.color.bgButtonSelect};
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     max-width: 505px;
   }

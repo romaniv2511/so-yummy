@@ -20,7 +20,6 @@ export const fetchFavorites = createAsyncThunk(
 export const addFavorite = createAsyncThunk(
   'favorites/addFavorites',
   async (recipeId, thunkAPI) => {
-    console.log('recipeId', recipeId);
     try {
       const res = await axios.post('/favorites', { _id: recipeId });
       const { data } = res.data;
