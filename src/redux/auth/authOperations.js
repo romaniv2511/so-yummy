@@ -19,6 +19,7 @@ export const register = createAsyncThunk(
     try {
       const {data} = await axios.post('/auth/register', user);
       if(data?.code === 200) {
+        toast.error(data.message);
         return rejectWithValue(data.message);
       }
       token.set(data.token);
@@ -36,6 +37,7 @@ export const logIn = createAsyncThunk(
     try {
       const {data} = await axios.post('/auth/login', user);
       if(data?.code === 200) {
+        toast.error(data.message);
         return rejectWithValue(data.message);
       }
       token.set(data.token);

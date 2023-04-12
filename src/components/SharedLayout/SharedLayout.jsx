@@ -2,6 +2,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Header } from '../Header/Header';
 import { Footer } from 'components/Footer/Footer';
+import { Loader } from '../Loader/Loader';
 
 const SharedLayout = ({ onToggle, isToggle }) => {
   const location = useLocation();
@@ -20,7 +21,7 @@ const SharedLayout = ({ onToggle, isToggle }) => {
   return (
     <>
       <Header onToggle={onToggle} isToggle={isToggle} color={headerColor} />
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Loader/>}>
         <Outlet />
       </Suspense>
       <Footer />
