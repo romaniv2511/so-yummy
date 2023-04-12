@@ -6,15 +6,14 @@ import {
   WrapPreparation,
   ButtonAdd,
   WrapButtonAdd,
+  Description,
+  ImgUploadWrap,
+  InputUpload,
 } from './AddRecipeForm.styled';
 import { RecipeDescriptionFields } from '../RecipeDescriptionFields/RecipeDescriptionFields';
 import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngredientsFields';
 import { RecipePreparationFields } from '../RecipePreparationFields/RecipePreparationFields';
-import {
-  Description,
-  ImgUploadWrap,
-  InputUpload,
-} from '../RecipeDescriptionFields/RecipeDescriptionFields.styled';
+
 import uploadImg from 'img/add-recipe-placeholder.png';
 
 const initialValues = {
