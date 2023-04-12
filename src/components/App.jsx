@@ -8,6 +8,7 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../utils/theme';
 import ScrollToTop from './ScrollToTop/ScrollToTop';
 import { GlobalStyle } from './GlobalStyle';
+import { ToastContainer } from 'react-toastify';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import WelcomePage from '../pages/WelcomePage/WelcomePage';
@@ -124,6 +125,7 @@ export const App = () => {
           </Route>
         </Routes>
       </ScrollToTop>
+      <ToastContainer/>
     </ThemeProvider>
   );
 };
