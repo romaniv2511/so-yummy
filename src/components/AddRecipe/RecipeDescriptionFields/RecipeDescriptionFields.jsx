@@ -44,6 +44,7 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
         <InputDescriptionWrap>
           <InputDescription
             required
+            autoComplete="off"
             type="text"
             name="title"
             value={inputs.title}
@@ -55,6 +56,7 @@ export const RecipeDescriptionFields = ({ onInput, inputs }) => {
         <InputDescriptionWrap>
           <InputDescription
             required
+            autoComplete="off"
             type="text"
             name="description"
             value={inputs.description}

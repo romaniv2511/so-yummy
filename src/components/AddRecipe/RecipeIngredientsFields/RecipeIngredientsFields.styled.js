@@ -28,6 +28,7 @@ export const InputIngredientsWrap = styled.div`
 `;
 
 export const InputIngredients = styled.input`
+  text-transform: capitalize;
   margin-right: 14px;
   max-width: 194px;
   height: 53px;
@@ -49,20 +50,18 @@ export const SelectWrap = styled.div`
   width: 50%;
 `;
 export const CustomInput = styled.input`
-  height: 18px;
   position: relative;
   left: 3px;
+  width: 53px;
   height: 53px;
   border: none;
   &:focus-within {
     outline: none;
   }
   background: ${({ theme }) => theme.color.gbCancel};
-
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
-    width: 97px;
     height: 59px;
     text-align: center;
   }
@@ -85,6 +84,37 @@ export const SelectIngredients = styled.select`
 export const DeleteBtn = styled(IoCloseOutline)`
   width: 20px;
   height: 20px;
+  &:hover {
+    color: ${({ theme }) => theme.color.accent};
+  }
+`;
+
+export const QueryList = styled.ul`
+  padding-left: 18px;
+  background-color: ${({ theme }) => theme.color.bgLightEl};
+  box-shadow: 0px 6.51852px 7.82222px rgba(0, 0, 0, 0.0314074);
+  border-radius: 6px;
+  max-width: 194px;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
+    max-width: none;
+    width: 348px;
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desk}) {
+    max-width: none;
+    width: 320px;
+  }
+`;
+
+export const QueryItem = styled.li`
+  cursor: pointer;
+  margin-bottom: 6px;
+  &:first-child {
+    padding-top: 8px;
+  }
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 8px;
+  }
   &:hover {
     color: ${({ theme }) => theme.color.accent};
   }

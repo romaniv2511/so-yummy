@@ -5,6 +5,8 @@ import {
   DeleteBtn,
   InputIngredients,
   InputIngredientsWrap,
+  QueryItem,
+  QueryList,
   SelectIngredients,
   SelectWrap,
   TitleIngredients,
@@ -94,9 +96,11 @@ export const RecipeIngredientsFields = ({
   const handleDecrement = () => {
     setCount(state => state - 1);
     handleRemoveFields();
+    setSearchParams('');
   };
 
   const handleDelete = fieldId => {
+    setSearchParams('');
     const newFields = inputFields.filter(({ id }) => id !== fieldId);
 
     setInputFields(newFields);
@@ -156,10 +160,10 @@ export const RecipeIngredientsFields = ({
               <DeleteBtn onClick={() => handleDelete(inputField.id)} />
             </InputIngredientsWrap>
             {activeInputIndex === index && (
-              <ul>
+              <QueryList>
                 {ingredients.map(({ _id, ttl }) => {
                   return (
-                    <li
+                    <QueryItem
                       key={_id}
                       id={_id}
                       onClick={() => {
@@ -176,10 +180,10 @@ export const RecipeIngredientsFields = ({
                       }}
                     >
                       <p>{ttl}</p>
-                    </li>
+                    </QueryItem>
                   );
                 })}
-              </ul>
+              </QueryList>
             )}
           </div>
         ))}
