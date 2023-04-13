@@ -15,6 +15,7 @@ import {
 import { Counter } from '../Counter/Counter';
 import { useSearchParams } from 'react-router-dom';
 import { nanoid } from 'nanoid';
+import { toast } from 'react-toastify';
 
 const getIngredientsByQuery = async query => {
   const response = await axios.get(
@@ -75,8 +76,9 @@ export const RecipeIngredientsFields = ({
 
   const updateQueryString = e => {
     const { value } = e.target;
+
     onInput(e);
-    setSearchParams(value !== '' ? { query: value } : {});
+    setSearchParams(value !== '' && value.length > 1 ? { query: value } : {});
   };
 
   const onceAddFields = () => {
@@ -168,6 +170,15 @@ export const RecipeIngredientsFields = ({
                       key={_id}
                       id={_id}
                       onClick={() => {
+                        const theSameIngredient = inputFields.find(
+                          item => item.field === ttl
+                        );
+
+                        if (theSameIngredient) {
+                          toast.warn("you've already added such ingredient");
+                          return;
+                        }
+
                         inputField.field = ttl;
                         setActiveInputIndex(-1);
                         inputFields.map(item => {
@@ -178,6 +189,7 @@ export const RecipeIngredientsFields = ({
                         });
                         onSetValue(inputFields);
                         setSearchParams('');
+                        console.log(inputFields);
                       }}
                     >
                       <p>{ttl}</p>

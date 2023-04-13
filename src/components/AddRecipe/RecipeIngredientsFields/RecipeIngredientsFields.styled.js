@@ -112,6 +112,8 @@ export const QueryList = styled.ul`
   box-shadow: 0px 6.51852px 7.82222px rgba(0, 0, 0, 0.0314074);
   border-radius: 6px;
   max-width: 194px;
+  max-height: 200px;
+  overflow: auto;
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     max-width: none;
     width: 348px;

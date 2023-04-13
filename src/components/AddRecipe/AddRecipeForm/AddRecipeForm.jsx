@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import {
   Form,
   MainWrapIngredients,
@@ -94,6 +95,11 @@ export const AddRecipeForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     recipes.thumb = image;
+    if (recipes.ingredients.length === 0) {
+      toast.warn('add at least one ingredient!');
+      return;
+    }
+    toast.success('the recipe has been added successfully');
     console.log(recipes);
     addRecipe(recipes);
     reset();
