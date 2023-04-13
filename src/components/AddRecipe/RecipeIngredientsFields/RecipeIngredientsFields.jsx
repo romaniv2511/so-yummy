@@ -189,7 +189,6 @@ export const RecipeIngredientsFields = ({
                         });
                         onSetValue(inputFields);
                         setSearchParams('');
-                        console.log(inputFields);
                       }}
                     >
                       <p>{ttl}</p>
