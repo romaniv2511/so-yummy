@@ -76,8 +76,9 @@ export const RecipeIngredientsFields = ({
 
   const updateQueryString = e => {
     const { value } = e.target;
+
     onInput(e);
-    setSearchParams(value !== '' ? { query: value } : {});
+    setSearchParams(value !== '' && value.length > 1 ? { query: value } : {});
   };
 
   const onceAddFields = () => {
