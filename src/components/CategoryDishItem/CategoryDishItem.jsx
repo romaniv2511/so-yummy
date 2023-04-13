@@ -6,21 +6,7 @@ import placeholder from '../../img/placeholder.jpg';
 
 export const CategoryDishItem = ({ id, thumb, title }) => {
   const location = useLocation();
-  //   const navigate = useNavigate();
   const image = thumb ? thumb : placeholder;
-
-  //   useEffect(() => {
-  //     console.log('location.state', `${location.pathname}${location.search}`);
-  //     const handleBackButton = () => {
-  //       navigate(`${location.pathname}+${location.search}` ?? '/');
-  //     };
-
-  //     window.addEventListener('popstate', handleBackButton);
-
-  //     return () => {
-  //       window.removeEventListener('popstate', handleBackButton);
-  //     };
-  //   }, [location, navigate]);
 
   return (
     <CardContainer>

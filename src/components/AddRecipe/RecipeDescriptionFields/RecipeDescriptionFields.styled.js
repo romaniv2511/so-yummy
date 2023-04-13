@@ -17,7 +17,9 @@ export const InputDescription = styled.input`
   height: 43px;
   border: none;
   border-bottom: 1px solid rgba(126, 126, 126, 0.5);
-  background: transparent;
+  background-color: transparent;
+  color: ${({ theme }) => theme.color.textPreparation};
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     font-weight: ${({ theme }) => theme.fontWeights.s};
     font-size: 16px;
