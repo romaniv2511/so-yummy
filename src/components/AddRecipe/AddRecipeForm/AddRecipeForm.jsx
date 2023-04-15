@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {
@@ -29,35 +29,49 @@ const initialValues = {
 
 export const AddRecipeForm = () => {
   const [recipes, setRecipes] = useState(initialValues);
-  const [image, setImage] = useState(uploadImg);
+  const [image, setImage] = useState('');
+  // const [image, setImage] = useState(uploadImg);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(uploadImg);
   const [fieldsVisibility, setFieldsVisibility] = useState(true);
 
   const onImageChange = event => {
+    event.preventDefault();
+    // створення тимчасового url для попереднього перегляду зображення
+    let reader = new FileReader();
+    let file = event.target.files[0];
+
+    reader.onloadend = () => {
+      setImagePreviewUrl(reader.result);
+    };
+    reader.readAsDataURL(file);
+    // записуємо url у стейт і передаємо у форму
     setImage(event.target.files[0]);
+    const formData = new FormData();
+    formData.append('image', image);
   };
 
-  useEffect(() => {
-    const handleApiImage = () => {
-      if (image === uploadImg) {
-        return;
-      }
-      const formData = new FormData();
-      formData.append('image', image);
-      try {
-        axios
-          .patch(
-            'https://soyummy-tw3y.onrender.com/api/v1/own-recipes/upload',
-            formData
-          )
-          .then(({ data }) => {
-            setImage(data.data);
-          });
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    handleApiImage();
-  }, [image]);
+  // useEffect(() => {
+  //   const handleApiImage = () => {
+  //     if (image === uploadImg) {
+  //       return;
+  //     }
+  //     const formData = new FormData();
+  //     formData.append('image', image);
+  //     //   try {
+  //     //     axios
+  //     //       .patch(
+  //     //         'https://soyummy-tw3y.onrender.com/api/v1/own-recipes/upload',
+  //     //         formData
+  //     //       )
+  //     //       .then(({ data }) => {
+  //     //         setImage(data.data);
+  //     //       });
+  //     //   } catch (error) {
+  //     //     console.log(error.message);
+  //     //   }
+  //   };
+  //   handleApiImage();
+  // }, [image]);
 
   const addRecipe = async text => {
     try {
@@ -108,7 +122,8 @@ export const AddRecipeForm = () => {
   const reset = () => {
     setFieldsVisibility(false);
     setRecipes(initialValues);
-    setImage(uploadImg);
+    // setImage(uploadImg);
+    setImagePreviewUrl(uploadImg);
   };
 
   return (
@@ -117,7 +132,13 @@ export const AddRecipeForm = () => {
         <Description>
           <ImgUploadWrap>
             <label htmlFor="file-input">
-              <img src={image} alt="upload-img" width={279} height={268} />
+              {/* <img src={image} alt="upload-img" width={279} height={268} /> */}
+              <img
+                src={imagePreviewUrl}
+                alt="upload-img"
+                width={279}
+                height={268}
+              />
             </label>
             <InputUpload id="file-input" type="file" onChange={onImageChange} />
           </ImgUploadWrap>
