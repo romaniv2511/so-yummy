@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {
@@ -18,7 +18,7 @@ import { RecipePreparationFields } from '../RecipePreparationFields/RecipePrepar
 import uploadImg from 'img/add-recipe-placeholder.png';
 
 const initialValues = {
-  thumb: '',
+  image: '',
   title: '',
   description: '',
   category: 'Breakfast',
@@ -50,6 +50,19 @@ export const AddRecipeForm = () => {
     formData.append('image', image);
   };
 
+  // const handleFile = ({ currentTarget }) => {
+  //   const { files } = currentTarget;
+  //   const [file] = files;
+
+  //   if (!file || !file.type.includes('image')) {
+  //     setFile(null);
+  //     setPath('');
+  //     return;
+  //   }
+  //   setFile(file);
+  //   setPath(URL.createObjectURL(file));
+  // };
+
   // useEffect(() => {
   //   const handleApiImage = () => {
   //     if (image === uploadImg) {
@@ -74,10 +87,31 @@ export const AddRecipeForm = () => {
   // }, [image]);
 
   const addRecipe = async text => {
+    // console.log(text);
+    const { title, description, category, time, ingredients, instructions } =
+      text;
+    console.log(ingredients);
+
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('category', category);
+    formData.append('time', time);
+    // console.log(formData.getAll('title'));
+    // ingredients.forEach(item => {
+    //   formData.append(`ingredients[]`, JSON.stringify(item));
+    // });
+    formData.append('ingredients', JSON.stringify(ingredients));
+    console.log(formData.getAll('ingredients[]'));
+
+    // formData.append('ingredients', JSON.stringify(ingredients));
+    formData.append('instructions', instructions);
+
     try {
       const response = await axios.post(
         'https://soyummy-tw3y.onrender.com/api/v1/own-recipes',
-        text
+        formData
       );
       return response.data;
     } catch (error) {
@@ -108,13 +142,25 @@ export const AddRecipeForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    recipes.thumb = image;
+    recipes.image = image;
     if (recipes.ingredients.length === 0) {
       toast.warn('add at least one ingredient!');
       return;
     }
     toast.success('the recipe has been added successfully');
     console.log(recipes);
+    // const { title, description, category, time, ingredients, instructions } =
+    //   recipes;
+
+    // const formData = new FormData();
+    // formData.append('image', image);
+    // formData.append('title', title);
+    // formData.append('description', description);
+    // formData.append('category', category);
+    // formData.append('time', time);
+    // formData.append('ingredients', JSON.stringify(ingredients));
+    // formData.append('instructions', instructions);
+
     addRecipe(recipes);
     reset();
   };
