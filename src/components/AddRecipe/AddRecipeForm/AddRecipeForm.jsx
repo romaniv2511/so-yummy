@@ -18,7 +18,6 @@ import { RecipePreparationFields } from '../RecipePreparationFields/RecipePrepar
 import uploadImg from 'img/add-recipe-placeholder.png';
 
 const initialValues = {
-  thumb: '',
   title: '',
   description: '',
   category: 'Breakfast',
@@ -46,39 +45,15 @@ export const AddRecipeForm = () => {
     reader.readAsDataURL(file);
     // записуємо url у стейт і передаємо у форму
     setImage(event.target.files[0]);
-    const formData = new FormData();
-    formData.append('image', image);
   };
 
-  // useEffect(() => {
-  //   const handleApiImage = () => {
-  //     if (image === uploadImg) {
-  //       return;
-  //     }
-  //     const formData = new FormData();
-  //     formData.append('image', image);
-  //     //   try {
-  //     //     axios
-  //     //       .patch(
-  //     //         'https://soyummy-tw3y.onrender.com/api/v1/own-recipes/upload',
-  //     //         formData
-  //     //       )
-  //     //       .then(({ data }) => {
-  //     //         setImage(data.data);
-  //     //       });
-  //     //   } catch (error) {
-  //     //     console.log(error.message);
-  //     //   }
-  //   };
-  //   handleApiImage();
-  // }, [image]);
-
-  const addRecipe = async text => {
+  const addRecipe = async data => {
     try {
       const response = await axios.post(
         'https://soyummy-tw3y.onrender.com/api/v1/own-recipes',
-        text
+        data
       );
+      toast.success('the recipe has been added successfully');
       return response.data;
     } catch (error) {
       return error.message;
@@ -108,21 +83,36 @@ export const AddRecipeForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    recipes.thumb = image;
     if (recipes.ingredients.length === 0) {
       toast.warn('add at least one ingredient!');
       return;
     }
-    toast.success('the recipe has been added successfully');
-    console.log(recipes);
-    addRecipe(recipes);
+
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("title", recipes.title);
+    formData.append("description", recipes.description);
+    formData.append("instructions", recipes.instructions);
+    formData.append("category", recipes.category);
+    formData.append("time", recipes.time);
+    recipes.ingredients.forEach((ingredient, index) => {
+      formData.append(`ingredients[${index}][_id]`, ingredient._id);
+      formData.append(
+        `ingredients[${index}][measure]`,
+        ingredient.measure
+      );
+    });
+
+    addRecipe(formData);
+
+
     reset();
   };
 
   const reset = () => {
     setFieldsVisibility(false);
     setRecipes(initialValues);
-    // setImage(uploadImg);
+    setImage(uploadImg);
     setImagePreviewUrl(uploadImg);
   };
 
@@ -132,7 +122,6 @@ export const AddRecipeForm = () => {
         <Description>
           <ImgUploadWrap>
             <label htmlFor="file-input">
-              {/* <img src={image} alt="upload-img" width={279} height={268} /> */}
               <img
                 src={imagePreviewUrl}
                 alt="upload-img"
