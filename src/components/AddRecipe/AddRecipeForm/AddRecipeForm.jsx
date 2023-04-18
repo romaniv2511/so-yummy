@@ -87,6 +87,11 @@ export const AddRecipeForm = () => {
       return;
     }
 
+    if (image === '') {
+      toast.warn("add recipe's picture!");
+      return;
+    }
+
     const formData = new FormData();
     formData.append('image', image);
     formData.append('title', recipes.title);
