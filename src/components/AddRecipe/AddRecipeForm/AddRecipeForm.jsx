@@ -15,7 +15,7 @@ import { RecipeDescriptionFields } from '../RecipeDescriptionFields/RecipeDescri
 import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngredientsFields';
 import { RecipePreparationFields } from '../RecipePreparationFields/RecipePreparationFields';
 
-import placeholder from 'img/add-recipe-placeholder.png';
+import uploadImg from 'img/add-recipe-placeholder.png';
 
 const initialValues = {
   title: '',
@@ -29,27 +29,13 @@ const initialValues = {
 export const AddRecipeForm = () => {
   const [recipes, setRecipes] = useState(initialValues);
   const [image, setImage] = useState('');
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(placeholder);
+  // const [image, setImage] = useState(uploadImg);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(uploadImg);
   const [fieldsVisibility, setFieldsVisibility] = useState(true);
-
-  const makeFormDataToSend = (recipes, image) => {
-    const formData = new FormData();
-    formData.append('image', image);
-    formData.append('title', recipes.title);
-    formData.append('description', recipes.description);
-    formData.append('instructions', recipes.instructions);
-    formData.append('category', recipes.category);
-    formData.append('time', recipes.time);
-    recipes.ingredients.forEach((ingredient, index) => {
-      formData.append(`ingredients[${index}][_id]`, ingredient._id);
-      formData.append(`ingredients[${index}][measure]`, ingredient.measure);
-    });
-    return formData;
-  };
 
   const onImageChange = event => {
     event.preventDefault();
-
+    // створення тимчасового url для попереднього перегляду зображення
     let reader = new FileReader();
     let file = event.target.files[0];
 
@@ -57,7 +43,7 @@ export const AddRecipeForm = () => {
       setImagePreviewUrl(reader.result);
     };
     reader.readAsDataURL(file);
-
+    // записуємо url у стейт і передаємо у форму
     setImage(event.target.files[0]);
   };
 
@@ -74,7 +60,7 @@ export const AddRecipeForm = () => {
     }
   };
 
-  const toggleVisibilityIngrFields = () => {
+  const toggleVisibility = () => {
     setFieldsVisibility(true);
   };
 
@@ -83,7 +69,7 @@ export const AddRecipeForm = () => {
     setRecipes(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const handleSetIngrValue = data => {
+  const handleSetValue = data => {
     const fields = data.map(({ id, measure }) => {
       const _id = id;
       return { _id, measure };
@@ -102,12 +88,19 @@ export const AddRecipeForm = () => {
       return;
     }
 
-    if (image === '') {
-      toast.warn("add recipe's picture!");
-      return;
-    }
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('title', recipes.title);
+    formData.append('description', recipes.description);
+    formData.append('instructions', recipes.instructions);
+    formData.append('category', recipes.category);
+    formData.append('time', recipes.time);
+    recipes.ingredients.forEach((ingredient, index) => {
+      formData.append(`ingredients[${index}][_id]`, ingredient._id);
+      formData.append(`ingredients[${index}][measure]`, ingredient.measure);
+    });
 
-    addRecipe(makeFormDataToSend(recipes, image));
+    addRecipe(formData);
 
     reset();
   };
@@ -115,8 +108,8 @@ export const AddRecipeForm = () => {
   const reset = () => {
     setFieldsVisibility(false);
     setRecipes(initialValues);
-    setImage(placeholder);
-    setImagePreviewUrl(placeholder);
+    setImage(uploadImg);
+    setImagePreviewUrl(uploadImg);
   };
 
   return (
@@ -139,10 +132,10 @@ export const AddRecipeForm = () => {
 
         <MainWrapIngredients>
           <RecipeIngredientsFields
-            toggleVisibility={toggleVisibilityIngrFields}
+            toggleVisibility={toggleVisibility}
             fieldsVisibility={fieldsVisibility}
             onInput={handleChange}
-            onSetValue={handleSetIngrValue}
+            onSetValue={handleSetValue}
           />
           <WrapPreparation>
             <RecipePreparationFields onInput={handleChange} inputs={recipes} />
