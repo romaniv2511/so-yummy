@@ -68,7 +68,7 @@ export const AddRecipeForm = () => {
     setRecipes(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const handleSetValue = data => {
+  const handleSetIngrValue = data => {
     const fields = data.map(({ id, measure }) => {
       const _id = id;
       return { _id, measure };
@@ -139,7 +139,7 @@ export const AddRecipeForm = () => {
             toggleVisibility={toggleVisibilityIngrFields}
             fieldsVisibility={fieldsVisibility}
             onInput={handleChange}
-            onSetValue={handleSetValue}
+            onSetValue={handleSetIngrValue}
           />
           <WrapPreparation>
             <RecipePreparationFields onInput={handleChange} inputs={recipes} />
