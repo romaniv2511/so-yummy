@@ -34,7 +34,7 @@ export const AddRecipeForm = () => {
 
   const onImageChange = event => {
     event.preventDefault();
-    // створення тимчасового url для попереднього перегляду зображення
+
     let reader = new FileReader();
     let file = event.target.files[0];
 
@@ -42,7 +42,7 @@ export const AddRecipeForm = () => {
       setImagePreviewUrl(reader.result);
     };
     reader.readAsDataURL(file);
-    // записуємо url у стейт і передаємо у форму
+
     setImage(event.target.files[0]);
   };
 
