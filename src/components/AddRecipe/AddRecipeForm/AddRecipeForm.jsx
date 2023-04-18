@@ -59,7 +59,7 @@ export const AddRecipeForm = () => {
     }
   };
 
-  const toggleVisibility = () => {
+  const toggleVisibilityIngrFields = () => {
     setFieldsVisibility(true);
   };
 
@@ -131,7 +131,7 @@ export const AddRecipeForm = () => {
 
         <MainWrapIngredients>
           <RecipeIngredientsFields
-            toggleVisibility={toggleVisibility}
+            toggleVisibility={toggleVisibilityIngrFields}
             fieldsVisibility={fieldsVisibility}
             onInput={handleChange}
             onSetValue={handleSetValue}
