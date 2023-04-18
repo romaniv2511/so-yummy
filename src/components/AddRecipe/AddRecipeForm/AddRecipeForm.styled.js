@@ -10,8 +10,12 @@ export const Form = styled.form`
 `;
 
 export const Description = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     width: 100%;
   }
