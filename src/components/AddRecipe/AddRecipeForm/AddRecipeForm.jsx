@@ -72,13 +72,13 @@ export const AddRecipeForm = () => {
     formData.append('category', category);
     formData.append('time', time);
     // console.log(formData.getAll('title'));
-    const newIngr = ingredients.forEach(item => {
-      formData.append(`ingredients[]`, JSON.stringify(item));
-    });
+    // ingredients.forEach(item => {
+    //   formData.append(`ingredients[]`, JSON.stringify(item));
+    // });
 
-    // formData.append('ingredients', JSON.stringify(ingredients));
-    // console.log(formData.getAll('ingredients[]'));
-    formData.append('ingredients', newIngr);
+    formData.append('ingredients', JSON.stringify(ingredients));
+    console.log(formData.getAll('ingredients'));
+    // formData.append('ingredients', newIngr);
     // formData.append('ingredients', JSON.stringify(ingredients));
     formData.append('instructions', instructions);
     return formData;
