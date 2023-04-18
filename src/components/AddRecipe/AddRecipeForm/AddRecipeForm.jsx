@@ -32,6 +32,21 @@ export const AddRecipeForm = () => {
   const [imagePreviewUrl, setImagePreviewUrl] = useState(placeholder);
   const [fieldsVisibility, setFieldsVisibility] = useState(true);
 
+  const makeFormDataToSend = (recipes, image) => {
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('title', recipes.title);
+    formData.append('description', recipes.description);
+    formData.append('instructions', recipes.instructions);
+    formData.append('category', recipes.category);
+    formData.append('time', recipes.time);
+    recipes.ingredients.forEach((ingredient, index) => {
+      formData.append(`ingredients[${index}][_id]`, ingredient._id);
+      formData.append(`ingredients[${index}][measure]`, ingredient.measure);
+    });
+    return formData;
+  };
+
   const onImageChange = event => {
     event.preventDefault();
 
@@ -92,19 +107,21 @@ export const AddRecipeForm = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('image', image);
-    formData.append('title', recipes.title);
-    formData.append('description', recipes.description);
-    formData.append('instructions', recipes.instructions);
-    formData.append('category', recipes.category);
-    formData.append('time', recipes.time);
-    recipes.ingredients.forEach((ingredient, index) => {
-      formData.append(`ingredients[${index}][_id]`, ingredient._id);
-      formData.append(`ingredients[${index}][measure]`, ingredient.measure);
-    });
+    // const formData = new FormData();
+    // formData.append('image', image);
+    // formData.append('title', recipes.title);
+    // formData.append('description', recipes.description);
+    // formData.append('instructions', recipes.instructions);
+    // formData.append('category', recipes.category);
+    // formData.append('time', recipes.time);
+    // recipes.ingredients.forEach((ingredient, index) => {
+    //   formData.append(`ingredients[${index}][_id]`, ingredient._id);
+    //   formData.append(`ingredients[${index}][measure]`, ingredient.measure);
+    // });
 
-    addRecipe(formData);
+    // makeFormDataToSend(recipes, image);
+
+    addRecipe(makeFormDataToSend(recipes, image));
 
     reset();
   };
