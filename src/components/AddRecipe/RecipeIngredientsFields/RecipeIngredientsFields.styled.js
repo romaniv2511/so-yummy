@@ -47,6 +47,9 @@ export const InputIngredients = styled.input`
     height: 59px;
     padding-left: 18px;
   }
+  &:focus-within {
+    outline: none;
+  }
 `;
 
 export const SelectWrap = styled.div`

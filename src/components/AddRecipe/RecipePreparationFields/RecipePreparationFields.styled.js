@@ -24,4 +24,7 @@ export const TextAreaPreparation = styled.textarea`
   @media screen and (min-width: ${props => props.theme.breakpoints.tab}) {
     max-width: 505px;
   }
+  &:focus-within {
+    outline: none;
+  }
 `;

@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {
@@ -15,7 +15,7 @@ import { RecipeDescriptionFields } from '../RecipeDescriptionFields/RecipeDescri
 import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngredientsFields';
 import { RecipePreparationFields } from '../RecipePreparationFields/RecipePreparationFields';
 
-import uploadImg from 'img/add-recipe-placeholder.png';
+import placeholder from 'img/add-recipe-placeholder.png';
 
 const initialValues = {
   title: '',
@@ -29,13 +29,27 @@ const initialValues = {
 export const AddRecipeForm = () => {
   const [recipes, setRecipes] = useState(initialValues);
   const [image, setImage] = useState('');
-  // const [image, setImage] = useState(uploadImg);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(uploadImg);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(placeholder);
   const [fieldsVisibility, setFieldsVisibility] = useState(true);
+
+  const makeFormDataToSend = (recipes, image) => {
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('title', recipes.title);
+    formData.append('description', recipes.description);
+    formData.append('instructions', recipes.instructions);
+    formData.append('category', recipes.category);
+    formData.append('time', recipes.time);
+    recipes.ingredients.forEach((ingredient, index) => {
+      formData.append(`ingredients[${index}][_id]`, ingredient._id);
+      formData.append(`ingredients[${index}][measure]`, ingredient.measure);
+    });
+    return formData;
+  };
 
   const onImageChange = event => {
     event.preventDefault();
-    // створення тимчасового url для попереднього перегляду зображення
+
     let reader = new FileReader();
     let file = event.target.files[0];
 
@@ -43,7 +57,7 @@ export const AddRecipeForm = () => {
       setImagePreviewUrl(reader.result);
     };
     reader.readAsDataURL(file);
-    // записуємо url у стейт і передаємо у форму
+
     setImage(event.target.files[0]);
   };
 
@@ -60,7 +74,7 @@ export const AddRecipeForm = () => {
     }
   };
 
-  const toggleVisibility = () => {
+  const toggleVisibilityIngrFields = () => {
     setFieldsVisibility(true);
   };
 
@@ -69,7 +83,7 @@ export const AddRecipeForm = () => {
     setRecipes(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const handleSetValue = data => {
+  const handleSetIngrValue = data => {
     const fields = data.map(({ id, measure }) => {
       const _id = id;
       return { _id, measure };
@@ -88,23 +102,12 @@ export const AddRecipeForm = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("image", image);
-    formData.append("title", recipes.title);
-    formData.append("description", recipes.description);
-    formData.append("instructions", recipes.instructions);
-    formData.append("category", recipes.category);
-    formData.append("time", recipes.time);
-    recipes.ingredients.forEach((ingredient, index) => {
-      formData.append(`ingredients[${index}][_id]`, ingredient._id);
-      formData.append(
-        `ingredients[${index}][measure]`,
-        ingredient.measure
-      );
-    });
+    if (image === '') {
+      toast.warn("add recipe's picture!");
+      return;
+    }
 
-    addRecipe(formData);
-
+    addRecipe(makeFormDataToSend(recipes, image));
 
     reset();
   };
@@ -112,8 +115,8 @@ export const AddRecipeForm = () => {
   const reset = () => {
     setFieldsVisibility(false);
     setRecipes(initialValues);
-    setImage(uploadImg);
-    setImagePreviewUrl(uploadImg);
+    setImage(placeholder);
+    setImagePreviewUrl(placeholder);
   };
 
   return (
@@ -136,10 +139,10 @@ export const AddRecipeForm = () => {
 
         <MainWrapIngredients>
           <RecipeIngredientsFields
-            toggleVisibility={toggleVisibility}
+            toggleVisibility={toggleVisibilityIngrFields}
             fieldsVisibility={fieldsVisibility}
             onInput={handleChange}
-            onSetValue={handleSetValue}
+            onSetValue={handleSetIngrValue}
           />
           <WrapPreparation>
             <RecipePreparationFields onInput={handleChange} inputs={recipes} />
