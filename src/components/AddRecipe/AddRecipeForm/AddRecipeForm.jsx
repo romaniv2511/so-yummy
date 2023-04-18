@@ -15,7 +15,7 @@ import { RecipeDescriptionFields } from '../RecipeDescriptionFields/RecipeDescri
 import { RecipeIngredientsFields } from '../RecipeIngredientsFields/RecipeIngredientsFields';
 import { RecipePreparationFields } from '../RecipePreparationFields/RecipePreparationFields';
 
-import uploadImg from 'img/add-recipe-placeholder.png';
+import placeholder from 'img/add-recipe-placeholder.png';
 
 const initialValues = {
   title: '',
@@ -29,7 +29,7 @@ const initialValues = {
 export const AddRecipeForm = () => {
   const [recipes, setRecipes] = useState(initialValues);
   const [image, setImage] = useState('');
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(uploadImg);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(placeholder);
   const [fieldsVisibility, setFieldsVisibility] = useState(true);
 
   const onImageChange = event => {
@@ -107,8 +107,8 @@ export const AddRecipeForm = () => {
   const reset = () => {
     setFieldsVisibility(false);
     setRecipes(initialValues);
-    setImage(uploadImg);
-    setImagePreviewUrl(uploadImg);
+    setImage(placeholder);
+    setImagePreviewUrl(placeholder);
   };
 
   return (
