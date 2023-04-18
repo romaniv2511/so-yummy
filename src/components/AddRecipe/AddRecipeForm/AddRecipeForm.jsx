@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {
@@ -29,7 +29,6 @@ const initialValues = {
 export const AddRecipeForm = () => {
   const [recipes, setRecipes] = useState(initialValues);
   const [image, setImage] = useState('');
-  // const [image, setImage] = useState(uploadImg);
   const [imagePreviewUrl, setImagePreviewUrl] = useState(uploadImg);
   const [fieldsVisibility, setFieldsVisibility] = useState(true);
 
@@ -89,22 +88,18 @@ export const AddRecipeForm = () => {
     }
 
     const formData = new FormData();
-    formData.append("image", image);
-    formData.append("title", recipes.title);
-    formData.append("description", recipes.description);
-    formData.append("instructions", recipes.instructions);
-    formData.append("category", recipes.category);
-    formData.append("time", recipes.time);
+    formData.append('image', image);
+    formData.append('title', recipes.title);
+    formData.append('description', recipes.description);
+    formData.append('instructions', recipes.instructions);
+    formData.append('category', recipes.category);
+    formData.append('time', recipes.time);
     recipes.ingredients.forEach((ingredient, index) => {
       formData.append(`ingredients[${index}][_id]`, ingredient._id);
-      formData.append(
-        `ingredients[${index}][measure]`,
-        ingredient.measure
-      );
+      formData.append(`ingredients[${index}][measure]`, ingredient.measure);
     });
 
     addRecipe(formData);
-
 
     reset();
   };
